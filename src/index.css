@@ -2,6 +2,12 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+@layer utilities {
+  .flex-self-start {
+    align-self: flex-start;
+  }
+}
+
 @font-face {
   font-family: 'Pretendard Variable';
   font-weight: 45 920;
