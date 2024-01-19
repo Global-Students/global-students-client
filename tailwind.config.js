@@ -7,6 +7,8 @@ module.exports = {
         'orange-main': '#FF743D',
         'gray-scale-3': '#50545E',
         'gray-scale-4': '#808593',
+        'gray-scale-5': '#B7BECF',
+        'gray-scale-6': '#CFD5E3',
         'gray-scale-7-main': '#E7EAF2',
         'gray-scale-8': '#F5F5F5',
       },
@@ -18,6 +20,8 @@ module.exports = {
         key: "url('/src/assets/key.svg')",
         translate: "url('/src/assets/translate.svg')",
         cancel: "url('/src/assets/cancel.svg')",
+        'check-circle': "url('/src/assets/check_circle.svg')",
+        'check-true-circle': "url('/src/assets/check_true_circle.svg')",
       },
       boxShadow: {
         DEFAULT: '0px 5px 30px -15px rgba(0, 0, 0, 0.20)',
