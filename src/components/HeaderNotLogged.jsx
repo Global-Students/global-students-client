@@ -4,7 +4,6 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 export default function HeaderLogged() {
   const navRectangle = useRef();
   const { pathname } = useLocation();
-  // redux 이용해서 새로고침해도 currentItem 값 유지할 수 있도록 할 예정
   const [currentItem, setCurrentItem] = useState(0);
 
   useEffect(() => {
@@ -28,7 +27,12 @@ export default function HeaderLogged() {
       navRectangle.current.style.left = '466px';
       navRectangle.current.style.opacity = '1';
     }
-    if (currentItem === 0) {
+    if (
+      pathname !== '/Main' &&
+      pathname !== '/International' &&
+      pathname !== '/SouthKorea' &&
+      pathname !== '/SearchingFriend'
+    ) {
       navRectangle.current.style.opacity = '0';
     }
   });
@@ -50,7 +54,7 @@ export default function HeaderLogged() {
           <div className='nav flex flex-row items-center w-[552px] h-[60px] relative top-[8px] left-[370px] gap-[10px]'>
             <span
               ref={navRectangle}
-              className='navRectangle w-[140px] h-[54px] bg-orange-main rounded-[35px] absolute duration-500'
+              className='navRectangle w-[140px] h-[54px] bg-orange-main rounded-[35px] absolute duration-500 opacity-0'
             />
             <div className='item w-[114px] h-[60px] p-2.5 absolute left-[13px]'>
               <NavLink
