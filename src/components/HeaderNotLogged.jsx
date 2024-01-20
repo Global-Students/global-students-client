@@ -44,7 +44,7 @@ export default function HeaderLogged() {
                 setCurrentItem(0);
               }}
             >
-              <img src='/assets/logo.svg' alt='logo' />
+              <img src='/assets/logoHeader.svg' alt='logo' />
             </Link>
           </div>
           <div className='nav flex flex-row items-center w-[552px] h-[60px] relative top-[8px] left-[370px] gap-[10px]'>
