@@ -1,5 +1,6 @@
 import React from 'react';
 import Input from '../components/Input';
+import ResetIcon from '../components/ResetIcon';
 
 export default function Login() {
   return (
@@ -14,8 +15,12 @@ export default function Login() {
         </button>
         <form className='border border-gray-scale-7-main rounded p-[25px] shadow'>
           <div className='flex flex-col gap-[10px] mb-[52px]'>
-            <Input id='id' type='text' placeholder='아이디' icon='person' />
-            <Input id='pw' type='password' placeholder='비밀번호' icon='key' />
+            <Input id='id' type='text' placeholder='아이디' icon='person'>
+              <ResetIcon />
+            </Input>
+            <Input id='pw' type='password' placeholder='비밀번호' icon='key'>
+              <ResetIcon />
+            </Input>
           </div>
           <button
             className='w-full h-[70px] inline-flex justify-center items-center bg-orange-main rounded text-white text-[22px] py-[22px] shadow-inner-orange hover:brightness-110'
