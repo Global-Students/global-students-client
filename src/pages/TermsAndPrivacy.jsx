@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CheckForm from '../components/CheckForm';
 import Checkbox from '../components/Checkbox';
 
-export default function TermsAndPrivacy({ nextStep }) {
+export default function TermsAndPrivacy({ moveStep }) {
   const [check, setCheck] = useState({
     all: false,
     terms: false,
@@ -82,7 +82,7 @@ export default function TermsAndPrivacy({ nextStep }) {
             : 'border border-gray-scale-6 bg-gray-scale-8 text-gray-scale-5'
         } rounded text-[18px] font-semibold leading-[20px] py-[14px] my-[46px]`}
         type='button'
-        onClick={() => nextStep('profile')}
+        onClick={() => moveStep('signUpInfo')}
         disabled={!isPassed}
       >
         다음

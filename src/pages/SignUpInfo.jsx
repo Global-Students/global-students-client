@@ -6,8 +6,8 @@ import Input from '../components/Input';
 import Label from '../components/Label';
 import ResetIcon from '../components/ResetIcon';
 
-export default function SignUpInfo() {
-  const isPassed = false;
+export default function SignUpInfo({ moveStep }) {
+  const isPassed = true;
   return (
     <section className='w-[850px] flex flex-col items-center m-auto mt-[94px]'>
       <form className='w-[460px] flex flex-col gap-[90px]'>
@@ -121,11 +121,11 @@ export default function SignUpInfo() {
         </FieldSet>
       </form>
       <div className='w-[850px] flex justify-between my-[46px]'>
-        <Button type='prev' text='이전' onClick={() => {}} />
+        <Button type='prev' text='이전' onClick={() => moveStep('terms')} />
         <Button
           type='next'
           text='다음'
-          onClick={() => {}}
+          onClick={() => moveStep('welcome')}
           disabled={!isPassed}
         />
       </div>
