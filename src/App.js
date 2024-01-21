@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React from 'react';
-// import HeaderLogged from './components/HeaderLogged';
-import HeaderNotLogged from './components/HeaderNotLogged';
+import Header from './components/Header';
 import Main from './pages/Main';
 import International from './pages/International';
 import SouthKorea from './pages/SouthKorea';
@@ -9,9 +8,8 @@ import Login from './pages/Login';
 
 function App() {
   return (
-    // <HeaderLogged />
     <BrowserRouter>
-      <HeaderNotLogged />
+      <Header />
       <Routes>
         <Route path='/Main' element={<Main />} />
         <Route path='/International' element={<International />} />

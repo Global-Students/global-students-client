@@ -1,5 +1,6 @@
 import { React, useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import LoginControl from './LoginControl';
 
 export default function HeaderLogged() {
   const navRectangle = useRef();
@@ -39,19 +40,14 @@ export default function HeaderLogged() {
 
   return (
     <div>
-      <div className='flex w-[1920px] h-[130px] sticky'>
-        <div className='flex flex-row w-[1280px] h-[76px] absolute top-[27px] left-[320px]'>
+      <div className='flex w-[1920px] h-[130px] absolute justify-center items-center'>
+        <div className='flex flex-row w-[1280px] h-[76px] absolute'>
           <div className='flex w-[216px] h-[61px] absolute top-[7px] left-[1px]'>
-            <Link
-              to='/'
-              onClick={() => {
-                setCurrentItem(0);
-              }}
-            >
+            <Link to='/'>
               <img src='/assets/logoHeader.svg' alt='logo' />
             </Link>
           </div>
-          <div className='nav flex flex-row items-center w-[552px] h-[60px] relative top-[8px] left-[370px] gap-[10px]'>
+          <div className='flex flex-row items-center items-center w-[552px] h-[60px] relative top-[8px] left-[370px] gap-[10px]'>
             <span
               ref={navRectangle}
               className='navRectangle w-[140px] h-[54px] bg-orange-main rounded-[35px] absolute duration-500 opacity-0'
@@ -121,30 +117,10 @@ export default function HeaderLogged() {
             </div>
           </div>
           <div className='flex flex-row w-[215px] h-[47px] absolute top-[14px] left-[1075px] gap-[37px]'>
-            <Link
-              to='/Search'
-              onClick={() => {
-                setCurrentItem(0);
-              }}
-            >
+            <Link to='/Search'>
               <div className='w-[47px] h-[47px] bg-search hover:bg-searchHover' />
             </Link>
-            <Link
-              to='/Message'
-              onClick={() => {
-                setCurrentItem(0);
-              }}
-            >
-              <div className='w-[47px] h-[47px] bg-message hover:bg-messageHover active:bg-messageHoverPress' />
-            </Link>
-            <Link
-              to='/MyPage'
-              onClick={() => {
-                setCurrentItem(0);
-              }}
-            >
-              <div className='w-[47px] h-[47px] bg-mypage hover:bg-mypageHover active:bg-mypageHoverPress' />
-            </Link>
+            <LoginControl />
           </div>
         </div>
       </div>
