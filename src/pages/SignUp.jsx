@@ -4,7 +4,7 @@ import SignUpInfo from './SignUpInfo';
 import TermsAndPrivacy from './TermsAndPrivacy';
 import Welcome from './Welcome';
 
-export default function Join() {
+export default function SignUp() {
   const [step, setStep] = useState('terms');
   const moveStep = (nextStep) => setStep(nextStep);
   return (
