@@ -6,8 +6,10 @@ module.exports = {
       colors: {
         'orange-main': '#FF743D',
         'gray-scale-1': '#1E1E1E',
+        'gray-scale-2': '#414244',
         'gray-scale-3': '#50545E',
         'gray-scale-4': '#808593',
+        'gray-scale-5': '#B7BECF',
         'gray-scale-7-main': '#E7EAF2',
         'gray-scale-8': '#F5F5F5',
         'gray-scale-9': '#FFFFFF',
@@ -30,6 +32,8 @@ module.exports = {
         mypageHover: "url('/src/assets/mypageHover.svg')",
         mypageHoverPress: "url('/src/assets/mypageHoverPress.svg')",
         mypagePress: "url('/src/assets/mypagePress.svg')",
+        like: "url('/src/assets/thumbUp.svg')",
+        arrowBack: "url('/src/assets/arrowBack.svg')",
       },
       boxShadow: {
         DEFAULT: '0px 5px 30px -15px rgba(0, 0, 0, 0.20)',
@@ -37,10 +41,11 @@ module.exports = {
           '-12px -12px 14.3px 1px rgba(255, 85, 0, 0.20) inset, -2px -2px 6.7px 0px rgba(255, 255, 255, 0.25) inset, 3px 3px 5px -2px rgba(255, 255, 255, 0.25) inset',
       },
       fontSize: {
-        navBarFont: [
+        headerFont: [
           '15px',
           { lineHeight: '20px', letterSpacing: '-0.02em', fontWeight: '500' },
         ],
+        footerFont: ['9px', { lineHeight: '20px', fontWeight: '300' }],
       },
     },
   },

@@ -8,17 +8,17 @@ export default function HeaderLogged() {
   const [currentItem, setCurrentItem] = useState(0);
 
   useEffect(() => {
-    if (currentItem === 1 || pathname === '/Main') {
+    if (currentItem === 1 || pathname === '/NoticeBoard/All') {
       navRectangle.current.style.width = '140px';
       navRectangle.current.style.left = '0px';
       navRectangle.current.style.opacity = '1';
     }
-    if (currentItem === 2 || pathname === '/International') {
+    if (currentItem === 2 || pathname === '/NoticeBoard/International') {
       navRectangle.current.style.width = '164px';
       navRectangle.current.style.left = '150px';
       navRectangle.current.style.opacity = '1';
     }
-    if (currentItem === 3 || pathname === '/SouthKorea') {
+    if (currentItem === 3 || pathname === '/NoticeBoard/SouthKorea') {
       navRectangle.current.style.width = '132px';
       navRectangle.current.style.left = '324px';
       navRectangle.current.style.opacity = '1';
@@ -29,9 +29,9 @@ export default function HeaderLogged() {
       navRectangle.current.style.opacity = '1';
     }
     if (
-      pathname !== '/Main' &&
-      pathname !== '/International' &&
-      pathname !== '/SouthKorea' &&
+      pathname !== '/NoticeBoard/All' &&
+      pathname !== '/NoticeBoard/International' &&
+      pathname !== '/NoticeBoard/SouthKorea' &&
       pathname !== '/SearchingFriend'
     ) {
       navRectangle.current.style.opacity = '0';
@@ -54,7 +54,7 @@ export default function HeaderLogged() {
             />
             <div className='item w-[114px] h-[60px] p-2.5 absolute left-[13px]'>
               <NavLink
-                to='/Main'
+                to='/NoticeBoard/All'
                 onClick={() => {
                   setCurrentItem(1);
                 }}
@@ -62,7 +62,7 @@ export default function HeaderLogged() {
                   isActive ? 'text-gray-scale-9' : 'text-gray-scale-1'
                 }
               >
-                <p className='w-[94px] h-[40px] text-navBarFont text-center duration-500'>
+                <p className='w-[94px] h-[40px] text-headerFont text-center duration-500'>
                   Hanyang Uni <br />
                   All Students
                 </p>
@@ -70,7 +70,7 @@ export default function HeaderLogged() {
             </div>
             <div className='item w-[138x] h-[60px] p-2.5	absolute left-[163px]'>
               <NavLink
-                to='/International'
+                to='/NoticeBoard/International'
                 onClick={() => {
                   setCurrentItem(2);
                 }}
@@ -78,7 +78,7 @@ export default function HeaderLogged() {
                   isActive ? 'text-gray-scale-9' : 'text-gray-scale-1'
                 }
               >
-                <p className='w-[118px] h-[40px] text-navBarFont text-center duration-500'>
+                <p className='w-[118px] h-[40px] text-headerFont text-center duration-500'>
                   Hanyang Uni <br />
                   Korean Students
                 </p>
@@ -86,7 +86,7 @@ export default function HeaderLogged() {
             </div>
             <div className='item w-[106x] h-[60px] p-2.5	absolute left-[337px]'>
               <NavLink
-                to='/SouthKorea'
+                to='/NoticeBoard/SouthKorea'
                 onClick={() => {
                   setCurrentItem(3);
                 }}
@@ -94,7 +94,7 @@ export default function HeaderLogged() {
                   isActive ? 'text-gray-scale-9' : 'text-gray-scale-1'
                 }
               >
-                <p className='w-[91px] h-[40px] text-navBarFont text-center duration-500'>
+                <p className='w-[91px] h-[40px] text-headerFont text-center duration-500'>
                   South Korea <br />
                   All Students
                 </p>
@@ -110,7 +110,7 @@ export default function HeaderLogged() {
                   isActive ? 'text-gray-scale-9' : 'text-gray-scale-1'
                 }
               >
-                <p className='w-[53px] h-[20px] text-navBarFont text-center duration-500'>
+                <p className='w-[53px] h-[20px] text-headerFont text-center duration-500'>
                   친구찾기
                 </p>
               </NavLink>
