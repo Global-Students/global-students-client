@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function LoginControl() {
   // const [isLogin, setIsLogin] = useState(false);
-  const isLogin = true;
+  const isLogin = false;
   /* function handleLoginClick() {
     setIsLogin(!isLogin);
   }

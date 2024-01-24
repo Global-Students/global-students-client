@@ -10,22 +10,22 @@ export default function HeaderLogged() {
   useEffect(() => {
     if (currentItem === 1 || pathname === '/NoticeBoard/All') {
       navRectangle.current.style.width = '140px';
-      navRectangle.current.style.left = '0px';
+      navRectangle.current.style.left = '673px';
       navRectangle.current.style.opacity = '1';
     }
     if (currentItem === 2 || pathname === '/NoticeBoard/International') {
       navRectangle.current.style.width = '164px';
-      navRectangle.current.style.left = '150px';
+      navRectangle.current.style.left = '823px';
       navRectangle.current.style.opacity = '1';
     }
     if (currentItem === 3 || pathname === '/NoticeBoard/SouthKorea') {
       navRectangle.current.style.width = '132px';
-      navRectangle.current.style.left = '324px';
+      navRectangle.current.style.left = '1003px';
       navRectangle.current.style.opacity = '1';
     }
     if (currentItem === 4 || pathname === '/SearchingFriend') {
       navRectangle.current.style.width = '99px';
-      navRectangle.current.style.left = '466px';
+      navRectangle.current.style.left = '1150px';
       navRectangle.current.style.opacity = '1';
     }
     if (
@@ -39,20 +39,20 @@ export default function HeaderLogged() {
   });
 
   return (
-    <div>
-      <div className='flex w-[1920px] h-[130px] absolute justify-center items-center'>
-        <div className='flex flex-row w-[1280px] h-[76px] absolute'>
-          <div className='flex w-[216px] h-[61px] absolute top-[7px] left-[1px]'>
+    <div className='flex w-[1920px] h-[130px] justify-center items-center'>
+      <div className='flex w-[1280px] h-[130px] justify-center items-center border-b border-gray-scale-8'>
+        <div className='flex flex-row w-[1280px] h-[76px] py-[27px] justify-between items-center'>
+          <div className='flex w-[216px] h-[61px]'>
             <Link to='/'>
               <img src='/assets/logoHeader.svg' alt='logo' />
             </Link>
           </div>
-          <div className='flex flex-row items-center items-center w-[552px] h-[60px] relative top-[8px] left-[370px] gap-[10px]'>
+          <div className='flex flex-row w-[552px] h-[60px] items-center justify-between'>
             <span
               ref={navRectangle}
-              className='navRectangle w-[140px] h-[54px] bg-orange-main rounded-[35px] absolute duration-500 opacity-0'
+              className='navRectangle w-[140px] h-[54px] absolute -z-10 bg-orange-main rounded-[35px] duration-500 opacity-0'
             />
-            <div className='item w-[114px] h-[60px] p-2.5 absolute left-[13px]'>
+            <div className='w-[114px] h-[60px] p-2.5'>
               <NavLink
                 to='/NoticeBoard/All'
                 onClick={() => {
@@ -68,7 +68,7 @@ export default function HeaderLogged() {
                 </p>
               </NavLink>
             </div>
-            <div className='item w-[138x] h-[60px] p-2.5	absolute left-[163px]'>
+            <div className='w-[138x] h-[60px] p-2.5'>
               <NavLink
                 to='/NoticeBoard/International'
                 onClick={() => {
@@ -84,7 +84,7 @@ export default function HeaderLogged() {
                 </p>
               </NavLink>
             </div>
-            <div className='item w-[106x] h-[60px] p-2.5	absolute left-[337px]'>
+            <div className='w-[106x] h-[60px] p-2.5'>
               <NavLink
                 to='/NoticeBoard/SouthKorea'
                 onClick={() => {
@@ -100,7 +100,7 @@ export default function HeaderLogged() {
                 </p>
               </NavLink>
             </div>
-            <div className='item w-[73x] h-[40px] p-2.5 absolute top-[10px] left-[479px]'>
+            <div className='w-[73x] h-[40px] p-2.5'>
               <NavLink
                 to='/SearchingFriend'
                 onClick={() => {
@@ -116,7 +116,7 @@ export default function HeaderLogged() {
               </NavLink>
             </div>
           </div>
-          <div className='flex flex-row w-[215px] h-[47px] absolute top-[14px] left-[1075px] gap-[37px]'>
+          <div className='flex flex-row w-[215px] h-[47px] justify-between items-center'>
             <Link to='/Search'>
               <div className='w-[47px] h-[47px] bg-search hover:bg-searchHover' />
             </Link>
@@ -124,7 +124,6 @@ export default function HeaderLogged() {
           </div>
         </div>
       </div>
-      <div className='w-[1280px] h-[0px] border border-gray-scale-8 absolute left-[320px]' />
     </div>
   );
 }
