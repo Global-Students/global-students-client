@@ -2,7 +2,7 @@ import { React, useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import LoginControl from './LoginControl';
 
-export default function HeaderLogged() {
+export default function Header() {
   const navRectangle = useRef();
   const { pathname } = useLocation();
   const [currentItem, setCurrentItem] = useState(0);
