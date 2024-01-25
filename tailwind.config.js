@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         'orange-main': '#FF743D',
+        'orange-1': '#FF5500',
         'gray-scale-1': '#1E1E1E',
         'gray-scale-2': '#414244',
         'gray-scale-3': '#50545E',
@@ -53,6 +54,9 @@ module.exports = {
           { lineHeight: '20px', letterSpacing: '-0.02em', fontWeight: '500' },
         ],
         footerFont: ['9px', { lineHeight: '20px', fontWeight: '300' }],
+      },
+      lineHeight: {
+        DEFAULT: 'normal',
       },
     },
   },

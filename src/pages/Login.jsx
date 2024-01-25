@@ -1,4 +1,5 @@
 import React from 'react';
+import OrangeButton from '../components/Button/OrangeButton';
 import Input from '../components/Input';
 import ResetIcon from '../components/ResetIcon';
 
@@ -13,7 +14,7 @@ export default function Login() {
         >
           언어 설정
         </button>
-        <form className='border border-gray-scale-7-main rounded p-[25px] shadow'>
+        <form className='flex flex-col border border-gray-scale-7-main rounded p-[25px] shadow'>
           <div className='flex flex-col gap-[10px] mb-[52px]'>
             <Input id='id' type='text' placeholder='아이디' icon='person'>
               <ResetIcon />
@@ -22,12 +23,7 @@ export default function Login() {
               <ResetIcon />
             </Input>
           </div>
-          <button
-            className='w-full h-[70px] inline-flex justify-center items-center bg-orange-main rounded text-white text-[22px] py-[22px] shadow-inner-orange hover:brightness-110'
-            type='submit'
-          >
-            로그인
-          </button>
+          <OrangeButton text='로그인' textSize={22} py={22} />
         </form>
         <div className='flex justify-between text-gray-scale-3 text-[17px] m-4'>
           <div className='flex gap-2'>
