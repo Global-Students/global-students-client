@@ -10,22 +10,22 @@ export default function Header() {
   useEffect(() => {
     if (currentItem === 1 || pathname === '/NoticeBoard/All') {
       navRectangle.current.style.width = '140px';
-      navRectangle.current.style.left = '673px';
+      navRectangle.current.style.left = '-13px';
       navRectangle.current.style.opacity = '1';
     }
     if (currentItem === 2 || pathname === '/NoticeBoard/International') {
       navRectangle.current.style.width = '164px';
-      navRectangle.current.style.left = '823px';
+      navRectangle.current.style.left = '137px';
       navRectangle.current.style.opacity = '1';
     }
     if (currentItem === 3 || pathname === '/NoticeBoard/SouthKorea') {
       navRectangle.current.style.width = '132px';
-      navRectangle.current.style.left = '1003px';
+      navRectangle.current.style.left = '317px';
       navRectangle.current.style.opacity = '1';
     }
     if (currentItem === 4 || pathname === '/SearchingFriend') {
       navRectangle.current.style.width = '99px';
-      navRectangle.current.style.left = '1150px';
+      navRectangle.current.style.left = '464px';
       navRectangle.current.style.opacity = '1';
     }
     if (
@@ -39,7 +39,7 @@ export default function Header() {
   });
 
   return (
-    <div className='flex w-[1920px] h-[130px] justify-center items-center'>
+    <div className='flex h-[130px] justify-center items-center'>
       <div className='flex w-[1280px] h-[130px] justify-center items-center border-b border-gray-scale-8'>
         <div className='flex flex-row w-[1280px] h-[76px] py-[27px] justify-between items-center'>
           <div className='flex w-[216px] h-[61px]'>
@@ -47,7 +47,7 @@ export default function Header() {
               <img src='/assets/logoHeader.svg' alt='logo' />
             </Link>
           </div>
-          <div className='flex flex-row w-[552px] h-[60px] items-center justify-between'>
+          <div className='flex flex-row w-[552px] h-[60px] relative items-center justify-between'>
             <span
               ref={navRectangle}
               className='navRectangle w-[140px] h-[54px] absolute -z-10 bg-orange-main rounded-[35px] duration-500 opacity-0'
