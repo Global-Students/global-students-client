@@ -16,7 +16,7 @@ export default function LoginControl() {
     <div>
       {isLogin ? (
         <div className='flex flex-row gap-[37px]'>
-          <Link to='/Message' src='/assets/message.svg'>
+          <Link to='/Message'>
             <HeaderIcon label='message' />
           </Link>
           <Link to='/MyPage'>
