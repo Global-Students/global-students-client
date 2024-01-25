@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import HeaderIcon from './HeaderIcon';
 
 export default function LoginControl() {
   // const [isLogin, setIsLogin] = useState(false);
-  const isLogin = false;
+  const isLogin = true;
   /* function handleLoginClick() {
     setIsLogin(!isLogin);
   }
@@ -15,11 +16,11 @@ export default function LoginControl() {
     <div>
       {isLogin ? (
         <div className='flex flex-row gap-[37px]'>
-          <Link to='/Message'>
-            <div className='w-[47px] h-[47px] bg-message hover:bg-messageHover active:bg-messageHoverPress' />
+          <Link to='/Message' src='/assets/message.svg'>
+            <HeaderIcon label='message' />
           </Link>
           <Link to='/MyPage'>
-            <div className='w-[47px] h-[47px] bg-mypage hover:bg-mypageHover active:bg-mypageHoverPress' />
+            <HeaderIcon label='mypage' />
           </Link>
         </div>
       ) : (
