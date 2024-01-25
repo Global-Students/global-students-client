@@ -1,5 +1,6 @@
 import React from 'react';
 import OrangeButton from '../components/Button/OrangeButton';
+import TranslateButton from '../components/Button/TranslateButton';
 import Input from '../components/Input';
 import ResetIcon from '../components/ResetIcon';
 
@@ -8,12 +9,9 @@ export default function Login() {
     <div className='h-screen flex flex-col justify-center items-center gap-y-[42px]'>
       <img src='/assets/logo.svg' alt='logo' />
       <div className='w-[460px]'>
-        <button
-          className='flex-self-start bg-gray-scale-8 rounded-lg bg-translate bg-[right_14px_center] bg-no-repeat pr-[33px] px-[15px] py-[5px] mb-2 hover:brightness-90 transition-all'
-          type='button'
-        >
-          언어 설정
-        </button>
+        <div className='mb-[8px]'>
+          <TranslateButton />
+        </div>
         <form className='flex flex-col border border-gray-scale-7-main rounded p-[25px] shadow'>
           <div className='flex flex-col gap-[10px] mb-[52px]'>
             <Input id='id' type='text' placeholder='아이디' icon='person'>
