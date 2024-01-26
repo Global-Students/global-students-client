@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function HeaderIcon({ label }) {
   return (
-    <div className='group w-[47px] h-[47px] relative'>
+    <div className='group relative'>
       <img src={`/assets/${label}.svg`} alt={`${label}`} />
       <img
         src={`/assets/${label}Hover.svg`}
