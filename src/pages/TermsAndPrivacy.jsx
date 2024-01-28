@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import OrangeButton from '../components/Button/OrangeButton';
 import CheckForm from '../components/CheckForm';
 import Checkbox from '../components/Checkbox';
 
@@ -75,18 +76,16 @@ export default function TermsAndPrivacy({ moveStep }) {
         />
         {text.event}
       </CheckForm>
-      <button
-        className={`self-end w-[148px] ${
-          isPassed
-            ? 'bg-orange-main shadow-inner-orange text-white hover:brightness-110'
-            : 'border border-gray-scale-6 bg-gray-scale-8 text-gray-scale-5'
-        } rounded text-[18px] font-semibold leading-[20px] py-[14px] my-[46px]`}
-        type='button'
-        onClick={() => moveStep('signUpInfo')}
-        disabled={!isPassed}
-      >
-        다음
-      </button>
+      <div className='flex justify-end my-[46px]'>
+        <OrangeButton
+          text='다음'
+          textSize={18}
+          py={14}
+          width={148}
+          onClick={() => moveStep('signUpInfo')}
+          disabled={!isPassed}
+        />
+      </div>
     </section>
   );
 }

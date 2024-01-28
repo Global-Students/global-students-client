@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import TranslateButton from '../components/Button/TranslateButton';
 import RightPoint from '../components/RightPoint';
 import SignUpInfo from './SignUpInfo';
 import TermsAndPrivacy from './TermsAndPrivacy';
@@ -8,7 +9,10 @@ export default function SignUp() {
   const [step, setStep] = useState('terms');
   const moveStep = (nextStep) => setStep(nextStep);
   return (
-    <>
+    <div className='w-[1280px] m-auto flex flex-col justify-center'>
+      <div className='my-[25px]'>
+        <TranslateButton />
+      </div>
       <div className='w-[850px] flex justify-between m-auto'>
         <RightPoint name='terms' step={step} text='이용약관 및 정보처리방침' />
         <RightPoint name='signUpInfo' step={step} text='기본정보 기입' />
@@ -17,6 +21,6 @@ export default function SignUp() {
       {step === 'terms' && <TermsAndPrivacy moveStep={moveStep} />}
       {step === 'signUpInfo' && <SignUpInfo moveStep={moveStep} />}
       {step === 'welcome' && <Welcome />}
-    </>
+    </div>
   );
 }
