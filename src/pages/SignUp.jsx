@@ -9,18 +9,24 @@ export default function SignUp() {
   const [step, setStep] = useState('terms');
   const moveStep = (nextStep) => setStep(nextStep);
   return (
-    <div className='w-[1280px] m-auto flex flex-col justify-center'>
-      <div className='my-[25px]'>
+    <section className='flex flex-col items-center mt-[25px]'>
+      <div className='self-start mb-[25px]'>
         <TranslateButton />
       </div>
-      <div className='w-[850px] flex justify-between m-auto'>
-        <RightPoint name='terms' step={step} text='이용약관 및 정보처리방침' />
-        <RightPoint name='signUpInfo' step={step} text='기본정보 기입' />
-        <RightPoint name='welcome' step={step} text='회원가입 완료' />
+      <div className='w-[850px]'>
+        <div className='flex justify-between'>
+          <RightPoint
+            name='terms'
+            step={step}
+            text='이용약관 및 정보처리방침'
+          />
+          <RightPoint name='signUpInfo' step={step} text='기본정보 기입' />
+          <RightPoint name='welcome' step={step} text='회원가입 완료' />
+        </div>
+        {step === 'terms' && <TermsAndPrivacy moveStep={moveStep} />}
+        {step === 'signUpInfo' && <SignUpInfo moveStep={moveStep} />}
+        {step === 'welcome' && <Welcome />}
       </div>
-      {step === 'terms' && <TermsAndPrivacy moveStep={moveStep} />}
-      {step === 'signUpInfo' && <SignUpInfo moveStep={moveStep} />}
-      {step === 'welcome' && <Welcome />}
-    </div>
+    </section>
   );
 }

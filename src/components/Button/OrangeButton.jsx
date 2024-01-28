@@ -12,7 +12,7 @@ export default function OrangeButton({
     width ? `w-[${width}px]` : ''
   }`;
   const defaultStyle = `${commonStyle} bg-orange-main shadow-inner-orange text-white hover:bg-orange-1`;
-  const disabledStyle = `${commonStyle} bg-gray-scale-8 border border-gray-scale-6`;
+  const disabledStyle = `${commonStyle} bg-gray-scale-8 border border-gray-scale-6 text-gray-scale-5`;
 
   return (
     <button

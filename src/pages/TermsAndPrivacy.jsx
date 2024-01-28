@@ -39,7 +39,7 @@ export default function TermsAndPrivacy({ moveStep }) {
   };
 
   return (
-    <section className='w-[850px] flex flex-col gap-[25px] m-auto mt-[74px]'>
+    <section className='flex flex-col gap-[25px] mt-[74px]'>
       <Checkbox
         id='all'
         isChecked={check}
