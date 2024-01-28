@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import FindAccountPage from './pages/FindAccount/FindAccountPage';
 import Login from './pages/Login';
 import NoticeBoard from './pages/NoticeBoard';
 
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path='/NoticeBoard/All' element={<NoticeBoard />} />
         <Route path='/Login' element={<Login />} />
+        <Route path='/findAccount' element={<FindAccountPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>
