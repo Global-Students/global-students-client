@@ -1,9 +1,5 @@
 import React from 'react';
 
 export default function NoticeBoard() {
-  return (
-    <div className='flex flex-row w-[1920px] h-[1995px] justify-center items-center'>
-      NoticeBoard
-    </div>
-  );
+  return <div className='bg-blue-100'>NoticeBoard</div>;
 }
