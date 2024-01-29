@@ -11,31 +11,29 @@ export default function FindAccountPage() {
     'w-full bg-gray-scale-8 rounded-t-[14px] border-b border-gray-scale-5 text-gray-scale-4 text-[18px] font-semibold leading py-[18px] shadow-[0px_5px_30px_-15px_rgba(0,0,0,0.20)]';
 
   return (
-    <section className='w-[460px] h-screen flex flex-col justify-center items-center m-auto'>
+    <section className='w-[460px] mt-[120px] m-auto'>
+      <div className='mb-3'>
+        <TranslateButton />
+      </div>
       <div>
-        <div className='mb-3'>
-          <TranslateButton />
+        <div className='w-full flex'>
+          <button
+            className={`${tabState === 'id' ? selectedStyle : defaultStyle}`}
+            onClick={() => setTabState('id')}
+            type='button'
+          >
+            아이디 찾기
+          </button>
+          <button
+            className={`${tabState === 'pw' ? selectedStyle : defaultStyle}`}
+            onClick={() => setTabState('pw')}
+            type='button'
+          >
+            비밀번호 찾기
+          </button>
         </div>
-        <div>
-          <div className='w-full flex'>
-            <button
-              className={`${tabState === 'id' ? selectedStyle : defaultStyle}`}
-              onClick={() => setTabState('id')}
-              type='button'
-            >
-              아이디 찾기
-            </button>
-            <button
-              className={`${tabState === 'pw' ? selectedStyle : defaultStyle}`}
-              onClick={() => setTabState('pw')}
-              type='button'
-            >
-              비밀번호 찾기
-            </button>
-          </div>
-          {tabState === 'id' && <FindId />}
-          {tabState === 'pw' && <FindPassword />}
-        </div>
+        {tabState === 'id' && <FindId />}
+        {tabState === 'pw' && <FindPassword />}
       </div>
     </section>
   );
