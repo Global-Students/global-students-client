@@ -6,7 +6,7 @@ import ResetIcon from '../components/ResetIcon';
 
 export default function Login() {
   return (
-    <div className='h-screen flex flex-col justify-center items-center gap-y-[42px]'>
+    <div className='flex flex-col justify-center items-center gap-y-[42px] mt-[124px]'>
       <img src='/assets/logo.svg' alt='logo' />
       <div className='w-[460px]'>
         <div className='mb-[8px]'>

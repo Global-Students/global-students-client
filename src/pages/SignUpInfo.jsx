@@ -9,7 +9,7 @@ import ResetIcon from '../components/ResetIcon';
 export default function SignUpInfo({ moveStep }) {
   const isPassed = true;
   return (
-    <section className='w-[850px] flex flex-col items-center m-auto mt-[94px]'>
+    <section className='flex flex-col items-center mt-[94px]'>
       <form className='w-[460px] flex flex-col gap-[90px]'>
         <FieldSet legend='아이디/비밀번호 설정'>
           <div>
@@ -120,7 +120,7 @@ export default function SignUpInfo({ moveStep }) {
           </div>
         </FieldSet>
       </form>
-      <div className='w-[850px] flex justify-between my-[46px]'>
+      <div className='w-full flex justify-between my-[46px]'>
         <button
           className='rounded border border-gray-scale-5 py-[14px] w-[148px] shadow-prev-btn text-[18px] text-gray-scale-4 font-semibold leading hover:bg-gray-scale-8'
           type='button'
