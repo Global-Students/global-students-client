@@ -136,7 +136,7 @@ function OpenedDropdown() {
 
 function ClosedDropdown() {
   return(
-    <div className="flex flex-col justify-start items-start overflow-hidden gap-2.5 px-4 py-1 rounded-[20px] bg-neutral-100">
+    <div className="flex flex-col justify-start items-start overflow-hidden gap-2.5 px-4 py-1 rounded-[20px] bg-neutral-100 cursor-pointer">
                                 <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative">
                                     <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 relative gap-px">
                                         <p className="flex-grow-0 flex-shrink-0 text-base text-left text-[#808593]">비공개</p>
@@ -204,7 +204,6 @@ function AccessButton() {
         const [isClicked, setIsClicked] = useState(true);
 
         const handleClick = () => {
-          console.log("clicked");
           setIsClicked(!isClicked);
         };
 
