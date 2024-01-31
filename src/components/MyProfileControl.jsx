@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import ShowButton from './Button/ShowButton';
 
-export default function LoginControlLeft() {
-  const [isLogin, setIsLogin] = useState(false);
+export default function MyProfileControl() {
+  const [isLogin, setIsLogin] = useState(true);
 
   function handleLooutClick() {
     setIsLogin(!isLogin);
@@ -23,18 +24,8 @@ export default function LoginControlLeft() {
               </div>
             </div>
             <div className='flex flex-col mt-[29px] gap-[10px]'>
-              <button
-                className='w-[238px] h-12 rounded-[14px] shadow shadow-inner border border-gray-scale-7-main justify-center items-center text-gray-scale-2 text-sm font-medium leading-tight tracking-tight'
-                type='button'
-              >
-                내가 쓴 글 보러가기
-              </button>
-              <button
-                className='w-[238px] h-12 rounded-[14px] shadow shadow-inner border border-gray-scale-7-main justify-center items-center text-gray-scale-2 text-sm font-medium leading-tight tracking-tight'
-                type='button'
-              >
-                즐겨찾기한 글 보러가기
-              </button>
+              <ShowButton text='내가 쓴 글 보러가기' borderId='mypost' />
+              <ShowButton text='즐겨찾기한 글 보러가기' borderId='Favorites' />
             </div>
             <button
               type='button'

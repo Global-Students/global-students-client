@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from '../components/Button';
-import DuplicateCheckButton from '../components/DuplicateCheckButton';
+import DuplicateCheckButton from '../components/Button/DuplicateCheckButton';
+import OrangeButton from '../components/Button/OrangeButton';
 import FieldSet from '../components/FieldSet';
 import Input from '../components/Input';
 import Label from '../components/Label';
@@ -121,10 +121,18 @@ export default function SignUpInfo({ moveStep }) {
         </FieldSet>
       </form>
       <div className='w-[850px] flex justify-between my-[46px]'>
-        <Button type='prev' text='이전' onClick={() => moveStep('terms')} />
-        <Button
-          type='next'
+        <button
+          className='rounded border border-gray-scale-5 py-[14px] w-[148px] shadow-prev-btn text-[18px] text-gray-scale-4 font-semibold leading hover:bg-gray-scale-8'
+          type='button'
+          onClick={() => moveStep('terms')}
+        >
+          이전
+        </button>
+        <OrangeButton
           text='다음'
+          textSize={18}
+          py={14}
+          width={148}
           onClick={() => moveStep('welcome')}
           disabled={!isPassed}
         />

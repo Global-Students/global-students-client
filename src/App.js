@@ -1,9 +1,9 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React from 'react';
-import Header from './components/Header';
-import NoticeBoard from './pages/NoticeBoard';
-import Login from './pages/Login';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer';
+import Header from './components/Header';
+import Login from './pages/Login';
+import NoticeBoard from './pages/NoticeBoard';
 
 function App() {
   return (
