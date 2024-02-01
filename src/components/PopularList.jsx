@@ -63,62 +63,6 @@ export default function PopularList() {
                   </div>
                 </td>
               </tr>
-              <tr className='h-[71px] border-b border-gray-scale-7-main hover:bg-gray-scale-8'>
-                <td className='w-[77px] text-center text-orange-main text-xl font-bold'>
-                  1
-                </td>
-                <td className='w-[806px] text-gray-scale-1 text-lg font-normal'>
-                  게시글 제목
-                </td>
-                <td className='w-[70px]'>
-                  <div className='flex flex-row w-[70px] items-center text-gray-scale-4 text-base font-light'>
-                    <img src='/assets/thumbUp.svg' alt='thumbUp' />
-                    &nbsp;00
-                  </div>
-                </td>
-              </tr>
-              <tr className='h-[71px] border-b border-gray-scale-7-main hover:bg-gray-scale-8'>
-                <td className='w-[77px] text-center text-orange-main text-xl font-bold'>
-                  1
-                </td>
-                <td className='w-[806px] text-gray-scale-1 text-lg font-normal'>
-                  게시글 제목
-                </td>
-                <td className='w-[70px]'>
-                  <div className='flex flex-row w-[70px] items-center text-gray-scale-4 text-base font-light'>
-                    <img src='/assets/thumbUp.svg' alt='thumbUp' />
-                    &nbsp;00
-                  </div>
-                </td>
-              </tr>
-              <tr className='h-[71px] border-b border-gray-scale-7-main hover:bg-gray-scale-8'>
-                <td className='w-[77px] text-center text-orange-main text-xl font-bold'>
-                  1
-                </td>
-                <td className='w-[806px] text-gray-scale-1 text-lg font-normal'>
-                  게시글 제목
-                </td>
-                <td className='w-[70px]'>
-                  <div className='flex flex-row w-[70px] items-center text-gray-scale-4 text-base font-light'>
-                    <img src='/assets/thumbUp.svg' alt='thumbUp' />
-                    &nbsp;00
-                  </div>
-                </td>
-              </tr>
-              <tr className='h-[71px] border-b border-gray-scale-7-main hover:bg-gray-scale-8'>
-                <td className='w-[77px] text-center text-orange-main text-xl font-bold'>
-                  1
-                </td>
-                <td className='w-[806px] text-gray-scale-1 text-lg font-normal'>
-                  게시글 제목
-                </td>
-                <td className='w-[70px]'>
-                  <div className='flex flex-row w-[70px] items-center text-gray-scale-4 text-base font-light'>
-                    <img src='/assets/thumbUp.svg' alt='thumbUp' />
-                    &nbsp;00
-                  </div>
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>

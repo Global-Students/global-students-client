@@ -4,8 +4,6 @@ import InformText from '../components/InformText';
 import Inform from '../components/Inform';
 import PopularList from '../components/PopularList';
 import Posts from '../components/Posts';
-import Pagination from '../components/Pagination';
-import SearchInput from '../components/SearchInput';
 
 export default function NoticeBoard() {
   return (
@@ -14,6 +12,8 @@ export default function NoticeBoard() {
         <UserInfoControl />
         <div className='flex flex-col w-[953px] items-center'>
           <InformText
+            translate
+            mb={80}
             school='Hanyang'
             borderId='All'
             text='우리 학교에 재학 중인 모든 유학생을 만날 수 있습니다.'
@@ -22,9 +22,7 @@ export default function NoticeBoard() {
           <div className='flex flex-col items-center'>
             <PopularList />
             <Posts />
-            <Pagination />
           </div>
-          <SearchInput />
           <div />
         </div>
       </div>

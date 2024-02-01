@@ -3,7 +3,7 @@ import React from 'react';
 export default function PostList() {
   return (
     <div>
-      <table className='w-[953px] h-[750px] table-fixed rounded-[14px] border border-separate	border-spacing-0 overflow-hidden border-gray-scale-main-7'>
+      <table className='w-[953px] h-[750px] mb-[30px] table-fixed rounded-[14px] border border-separate	border-spacing-0 overflow-hidden border-gray-scale-main-7'>
         <thead className='flex h-10 bg-gray-scale-8 justify-center items-center border-b border-gray-scale-main-7'>
           <tr className='flex flex-row text-gray-scale-4 text-[14px] font-normal'>
             <th className='font-normal w-[671px] text-start'>제목</th>
