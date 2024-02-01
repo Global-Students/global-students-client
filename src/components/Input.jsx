@@ -1,6 +1,14 @@
 import React from 'react';
 
-export default function Input({ id, type, placeholder, icon, children }) {
+export default function Input({
+  id,
+  type,
+  value,
+  onChange,
+  placeholder,
+  icon,
+  children,
+}) {
   const icons = {
     person:
       'w-full h-[64px] border border-gray-scale-7-main rounded outline-none bg-person bg-[22px_center] bg-no-repeat placeholder:gray-scale-4 placeholder:text-[18px] pl-[52px] pr-[44px] py-5 shadow',
@@ -15,6 +23,8 @@ export default function Input({ id, type, placeholder, icon, children }) {
         className={icons[icon]}
         id={id}
         type={type}
+        value={value}
+        onChange={onChange}
         placeholder={placeholder}
         autoComplete={type === 'password' ? 'current-password' : 'off'}
       />

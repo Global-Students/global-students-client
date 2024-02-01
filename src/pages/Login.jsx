@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import OrangeButton from '../components/Button/OrangeButton';
 import TranslateButton from '../components/Button/TranslateButton';
 import Input from '../components/Input';
 import ResetIcon from '../components/ResetIcon';
 
 export default function Login() {
+  const [loginData, setLoginData] = useState({ userId: '', password: '' });
+  const handleChange = (event) => {
+    const targetId = event.target.id;
+    setLoginData((prev) => ({ ...prev, [targetId]: event.target.value }));
+  };
+
   return (
     <div className='flex flex-col justify-center items-center gap-y-[42px] mt-[124px]'>
       <img src='/assets/logo.svg' alt='logo' />
@@ -14,10 +20,24 @@ export default function Login() {
         </div>
         <form className='flex flex-col border border-gray-scale-7-main rounded p-[25px] shadow'>
           <div className='flex flex-col gap-[10px] mb-[52px]'>
-            <Input id='id' type='text' placeholder='아이디' icon='person'>
+            <Input
+              id='userId'
+              type='text'
+              value={loginData.userId}
+              onChange={handleChange}
+              placeholder='아이디'
+              icon='person'
+            >
               <ResetIcon />
             </Input>
-            <Input id='pw' type='password' placeholder='비밀번호' icon='key'>
+            <Input
+              id='password'
+              type='password'
+              value={loginData.password}
+              onChange={handleChange}
+              placeholder='비밀번호'
+              icon='key'
+            >
               <ResetIcon />
             </Input>
           </div>
