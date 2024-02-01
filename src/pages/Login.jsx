@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import OrangeButton from '../components/Button/OrangeButton';
 import TranslateButton from '../components/Button/TranslateButton';
 import Input from '../components/Input';
 import ResetIcon from '../components/ResetIcon';
+import useLogin from '../hooks/useLogin';
 
 export default function Login() {
-  const [loginData, setLoginData] = useState({ userId: '', password: '' });
-  const handleChange = (event) => {
-    const targetId = event.target.id;
-    setLoginData((prev) => ({ ...prev, [targetId]: event.target.value }));
-  };
+  const { loading, loginData, updateLoginFormData, login } = useLogin();
 
   return (
     <div className='flex flex-col justify-center items-center gap-y-[42px] mt-[124px]'>
@@ -24,7 +21,7 @@ export default function Login() {
               id='userId'
               type='text'
               value={loginData.userId}
-              onChange={handleChange}
+              onChange={updateLoginFormData}
               placeholder='아이디'
               icon='person'
             >
@@ -34,14 +31,20 @@ export default function Login() {
               id='password'
               type='password'
               value={loginData.password}
-              onChange={handleChange}
+              onChange={updateLoginFormData}
               placeholder='비밀번호'
               icon='key'
             >
               <ResetIcon />
             </Input>
           </div>
-          <OrangeButton text='로그인' textSize={22} py={22} />
+          <OrangeButton
+            text='로그인'
+            textSize={22}
+            py={22}
+            onClick={login}
+            disabled={loading}
+          />
         </form>
         <div className='flex justify-between text-gray-scale-3 text-[17px] m-4'>
           <div className='flex gap-2'>
