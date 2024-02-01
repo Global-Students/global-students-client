@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ShowButton from './Button/ShowButton';
 
-export default function MyProfileControl() {
+export default function UserInfoControl() {
   const [isLogin, setIsLogin] = useState(true);
 
-  function handleLooutClick() {
+  function handleLogutClick() {
     setIsLogin(!isLogin);
   }
 
@@ -29,7 +29,7 @@ export default function MyProfileControl() {
             </div>
             <button
               type='button'
-              onClick={handleLooutClick}
+              onClick={handleLogutClick}
               className='flex mt-[10px] justify-center items-center text-gray-scale-4 text-[13px] font-light'
             >
               로그아웃

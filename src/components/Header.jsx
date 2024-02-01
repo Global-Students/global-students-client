@@ -8,15 +8,15 @@ export default function Header() {
   const [currentItem, setCurrentItem] = useState(0);
 
   useEffect(() => {
-    if (currentItem === 1 || pathname.includes('/NoticeBoard/All/')) {
+    if (currentItem === 1 || pathname.includes('/board/All/')) {
       navRectangle.current.style.width = '140px';
       navRectangle.current.style.left = '-13px';
     }
-    if (currentItem === 2 || pathname.includes('/NoticeBoard/International/')) {
+    if (currentItem === 2 || pathname.includes('/board/International/')) {
       navRectangle.current.style.width = '164px';
       navRectangle.current.style.left = '137px';
     }
-    if (currentItem === 3 || pathname.includes('/NoticeBoard/SouthKorea/')) {
+    if (currentItem === 3 || pathname.includes('/board/SouthKorea/')) {
       navRectangle.current.style.width = '132px';
       navRectangle.current.style.left = '317px';
     }
@@ -24,10 +24,7 @@ export default function Header() {
       navRectangle.current.style.width = '99px';
       navRectangle.current.style.left = '464px';
     }
-    if (
-      pathname.includes('/NoticeBoard/') ||
-      pathname.includes('/SearchingFriend')
-    ) {
+    if (pathname.includes('/board') || pathname.includes('/SearchingFriend')) {
       navRectangle.current.style.opacity = '1';
     } else {
       navRectangle.current.style.opacity = '0';
@@ -50,7 +47,7 @@ export default function Header() {
             />
             <div className='w-[114px] h-[60px] p-2.5'>
               <NavLink
-                to='/NoticeBoard/All'
+                to='/board/All'
                 onClick={() => {
                   setCurrentItem(1);
                 }}
@@ -66,7 +63,7 @@ export default function Header() {
             </div>
             <div className='w-[138x] h-[60px] p-2.5'>
               <NavLink
-                to='/NoticeBoard/International'
+                to='/board/International'
                 onClick={() => {
                   setCurrentItem(2);
                 }}
@@ -82,7 +79,7 @@ export default function Header() {
             </div>
             <div className='w-[106x] h-[60px] p-2.5'>
               <NavLink
-                to='/NoticeBoard/SouthKorea'
+                to='/board/SouthKorea'
                 onClick={() => {
                   setCurrentItem(3);
                 }}
