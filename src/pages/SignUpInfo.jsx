@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import DuplicateCheckButton from '../components/Button/DuplicateCheckButton';
 import OrangeButton from '../components/Button/OrangeButton';
+import DuplicateCheckInput from '../components/DuplicateCheckInput';
 import FieldSet from '../components/FieldSet';
 import Input from '../components/Input';
 import Label from '../components/Label';
@@ -50,15 +50,14 @@ export default function SignUpInfo({ moveStep }) {
         <FieldSet legend='아이디/비밀번호 설정'>
           <div>
             <Label label='아이디' required />
-            <Input
+            <DuplicateCheckInput
               id='userId'
-              type='text'
               value={signUpInfo.userId}
               onChange={updateSignUpInfo}
               placeholder='영문소문자숫자, 4~16자'
-            >
-              <DuplicateCheckButton />
-            </Input>
+              apiUrl={`/auth/join/check-id/${signUpInfo.useId}`}
+              target='아이디'
+            />
           </div>
           <div className='flex flex-col gap-[20px]'>
             <div>
@@ -154,15 +153,14 @@ export default function SignUpInfo({ moveStep }) {
             </div>
             <div>
               <Label label='닉네임' required />
-              <Input
+              <DuplicateCheckInput
                 id='nickname'
-                type='text'
                 value={signUpInfo.nickname}
                 onChange={updateSignUpInfo}
                 placeholder='닉네임을 입력해 주세요'
-              >
-                <DuplicateCheckButton />
-              </Input>
+                apiUrl={`/auth/join/check-nickname/${signUpInfo.nickname}`}
+                target='닉네임'
+              />
             </div>
           </div>
           <div className='flex flex-col gap-[20px]'>
