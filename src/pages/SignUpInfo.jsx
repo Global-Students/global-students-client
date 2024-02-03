@@ -1,4 +1,5 @@
 import React from 'react';
+import BirthDayInput from '../components/BirthDayInput';
 import OrangeButton from '../components/Button/OrangeButton';
 import DuplicateCheckInput from '../components/DuplicateCheckInput';
 import FieldSet from '../components/FieldSet';
@@ -6,6 +7,7 @@ import Input from '../components/Input';
 import Label from '../components/Label';
 import ResetIcon from '../components/ResetIcon';
 import ValidationMessage from '../components/ValidationMessage';
+import useDuplicateCheck from '../hooks/useDuplicateCheck';
 
 export default function SignUpInfo({
   moveStep,
@@ -26,13 +28,24 @@ export default function SignUpInfo({
   },
   updateSignUpInfo,
 }) {
+  const {
+    result: userIdResult,
+    message: userIdMessage,
+    checkDuplicate: checkUserId,
+  } = useDuplicateCheck();
+  const {
+    result: nicknameResult,
+    message: nicknameMessage,
+    checkDuplicate: checkNickname,
+  } = useDuplicateCheck();
   const checkPasswordPattern = () =>
     /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
       password,
     );
   const checkPasswordReEnter = () => password === confirmPassword;
+
   const isPassed =
-    userId &&
+    userIdResult &&
     checkPasswordPattern() &&
     checkPasswordReEnter() &&
     firstName &&
@@ -40,10 +53,88 @@ export default function SignUpInfo({
     birthYear &&
     birthMonth &&
     birthDate &&
-    nickname &&
+    nicknameResult &&
     nationality &&
     hostCountry &&
+    homeUniversity &&
     hostUniversity;
+
+  const years = [
+    '2024',
+    '2023',
+    '2022',
+    '2021',
+    '2020',
+    '2019',
+    '2018',
+    '2017',
+    '2016',
+    '2015',
+    '2014',
+    '2013',
+    '2012',
+    '2010',
+    '2009',
+    '2008',
+    '2007',
+    '2006',
+    '2005',
+    '2004',
+    '2003',
+    '2002',
+    '2001',
+    '2000',
+    '1999',
+    '1998',
+    '1997',
+  ];
+  const months = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    '11',
+    '12',
+  ];
+  const dates = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    '11',
+    '12',
+    '13',
+    '14',
+    '15',
+    '16',
+    '17',
+    '18',
+    '19',
+    '20',
+    '21',
+    '22',
+    '23',
+    '24',
+    '25',
+    '26',
+    '27',
+    '28',
+    '29',
+    '30',
+    '31',
+  ];
 
   return (
     <section className='flex flex-col items-center mt-[94px]'>
@@ -56,8 +147,10 @@ export default function SignUpInfo({
               value={userId}
               onChange={updateSignUpInfo}
               placeholder='영문소문자숫자, 4~16자'
-              apiUrl={`/auth/join/check-id/${userId}`}
-              target='아이디'
+              message={userIdMessage}
+              onClick={() =>
+                checkUserId(`/auth/join/check-id/${userId}`, '아이디')
+              }
             />
           </div>
           <div className='flex flex-col gap-[20px]'>
@@ -126,40 +219,31 @@ export default function SignUpInfo({
               <Label label='생년월일' required />
               <div className='flex justify-between gap-[16px]'>
                 <div className='flex-[2_1_0%]'>
-                  <Input
+                  <BirthDayInput
                     id='birthYear'
-                    type='text'
                     value={birthYear}
+                    options={years}
                     onChange={updateSignUpInfo}
-                  >
-                    <p className=' bg-white text-gray-scale-4 font-light pl-[4px] mr-[19px]'>
-                      년
-                    </p>
-                  </Input>
+                    placeholder='년'
+                  />
                 </div>
                 <div className='flex-1'>
-                  <Input
+                  <BirthDayInput
                     id='birthMonth'
-                    type='text'
                     value={birthMonth}
+                    options={months}
                     onChange={updateSignUpInfo}
-                  >
-                    <p className='bg-white text-gray-scale-4 font-light pl-[4px] mr-[19px]'>
-                      월
-                    </p>
-                  </Input>
+                    placeholder='월'
+                  />
                 </div>
                 <div className='flex-1'>
-                  <Input
+                  <BirthDayInput
                     id='birthDate'
-                    type='text'
                     value={birthDate}
+                    options={dates}
                     onChange={updateSignUpInfo}
-                  >
-                    <p className='bg-white text-gray-scale-4 font-light pl-[4px] mr-[19px]'>
-                      일
-                    </p>
-                  </Input>
+                    placeholder='일'
+                  />
                 </div>
               </div>
             </div>
@@ -170,8 +254,13 @@ export default function SignUpInfo({
                 value={nickname}
                 onChange={updateSignUpInfo}
                 placeholder='닉네임을 입력해 주세요'
-                apiUrl={`/auth/join/check-nickname/${nickname}`}
-                target='닉네임'
+                message={nicknameMessage}
+                onClick={() =>
+                  checkNickname(
+                    `/auth/join/check-nickname/${nickname}`,
+                    '닉네임',
+                  )
+                }
               />
             </div>
           </div>

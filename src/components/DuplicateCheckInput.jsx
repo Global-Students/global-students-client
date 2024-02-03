@@ -1,5 +1,4 @@
 import React from 'react';
-import useDuplicateCheck from '../hooks/useDuplicateCheck';
 import DuplicateCheckButton from './Button/DuplicateCheckButton';
 import Input from './Input';
 import ValidationMessage from './ValidationMessage';
@@ -9,11 +8,9 @@ export default function DuplicateCheckInput({
   value,
   onChange,
   placeholder,
-  apiUrl,
-  target,
+  message,
+  onClick,
 }) {
-  const { message, checkDuplicate } = useDuplicateCheck();
-
   return (
     <>
       <Input
@@ -23,7 +20,7 @@ export default function DuplicateCheckInput({
         onChange={onChange}
         placeholder={placeholder}
       >
-        <DuplicateCheckButton onClick={() => checkDuplicate(apiUrl, target)} />
+        <DuplicateCheckButton onClick={onClick} />
       </Input>
       <ValidationMessage isShowed message={message} value={message} />
     </>
