@@ -43,6 +43,24 @@ const handlers = [
     //     { status: 400 },
     //   ),
   ),
+  http.post(
+    `/auth/join/information`,
+    () =>
+      HttpResponse.json({
+        isSuccess: true,
+        message: '회원가입 성공',
+      }),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON500',
+    //       // code: 'COMMON503',
+    //       message: 'fail - signUp',
+    //     },
+    //     { status: 500 },
+    //   ),
+  ),
 ];
 
 export default handlers;

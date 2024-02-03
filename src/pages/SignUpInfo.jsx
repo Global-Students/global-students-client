@@ -1,4 +1,5 @@
 import React from 'react';
+import submitSignUpInfo from '../apis/signUp';
 import BirthDayInput from '../components/BirthDayInput';
 import OrangeButton from '../components/Button/OrangeButton';
 import DuplicateCheckInput from '../components/DuplicateCheckInput';
@@ -19,9 +20,8 @@ import {
 } from '../constants';
 import useDuplicateCheck from '../hooks/useDuplicateCheck';
 
-export default function SignUpInfo({
-  moveStep,
-  signUpInfo: {
+export default function SignUpInfo({ moveStep, signUpInfo, updateSignUpInfo }) {
+  const {
     userId,
     password,
     confirmPassword,
@@ -35,9 +35,7 @@ export default function SignUpInfo({
     hostCountry,
     homeUniversity,
     hostUniversity,
-  },
-  updateSignUpInfo,
-}) {
+  } = signUpInfo;
   const {
     result: userIdResult,
     message: userIdMessage,
@@ -264,7 +262,9 @@ export default function SignUpInfo({
           textSize={18}
           py={14}
           width={148}
-          onClick={() => moveStep('welcome')}
+          onClick={() => {
+            submitSignUpInfo(signUpInfo, moveStep);
+          }}
           disabled={!isPassed}
         />
       </div>
