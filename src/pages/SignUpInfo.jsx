@@ -7,6 +7,7 @@ import Input from '../components/Input';
 import Label from '../components/Label';
 import ResetIcon from '../components/ResetIcon';
 import ValidationMessage from '../components/ValidationMessage';
+import { checkIdApi, checkNicknameApi } from '../constants';
 import useDuplicateCheck from '../hooks/useDuplicateCheck';
 
 export default function SignUpInfo({
@@ -148,9 +149,7 @@ export default function SignUpInfo({
               onChange={updateSignUpInfo}
               placeholder='영문소문자숫자, 4~16자'
               message={userIdMessage}
-              onClick={() =>
-                checkUserId(`/auth/join/check-id/${userId}`, '아이디')
-              }
+              onClick={() => checkUserId(checkIdApi(userId), '아이디')}
             />
           </div>
           <div className='flex flex-col gap-[20px]'>
@@ -256,10 +255,7 @@ export default function SignUpInfo({
                 placeholder='닉네임을 입력해 주세요'
                 message={nicknameMessage}
                 onClick={() =>
-                  checkNickname(
-                    `/auth/join/check-nickname/${nickname}`,
-                    '닉네임',
-                  )
+                  checkNickname(checkNicknameApi(nickname), '닉네임')
                 }
               />
             </div>
