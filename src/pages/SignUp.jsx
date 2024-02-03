@@ -8,6 +8,44 @@ import Welcome from './Welcome';
 export default function SignUp() {
   const [step, setStep] = useState('terms');
   const moveStep = (nextStep) => setStep(nextStep);
+  const [signUpInfo, setSignUpInfo] = useState({
+    terms: false,
+    privacy: false,
+    marketing: false,
+    userId: '',
+    password: '',
+    confirmPassword: '',
+    firstName: '',
+    lastName: '',
+    birthYear: '',
+    birthMonth: '',
+    birthDate: '',
+    nickname: '',
+    nationality: '',
+    hostCountry: '',
+    homeUniversity: '',
+    hostUniversity: '',
+  });
+  const updateSignUpInfo = (event) => {
+    const { id, value, checked } = event.target;
+    if (id === 'all') {
+      setSignUpInfo((prev) => ({
+        ...prev,
+        terms: checked,
+        privacy: checked,
+        marketing: checked,
+      }));
+      return;
+    }
+
+    if (id === 'terms' || id === 'privacy' || id === 'marketing') {
+      setSignUpInfo((prev) => ({ ...prev, [id]: checked }));
+      return;
+    }
+
+    setSignUpInfo((prev) => ({ ...prev, [id]: value }));
+  };
+
   return (
     <section className='flex flex-col items-center mt-[25px]'>
       <div className='self-start mb-[25px]'>
@@ -23,8 +61,20 @@ export default function SignUp() {
           <RightPoint name='signUpInfo' step={step} text='기본정보 기입' />
           <RightPoint name='welcome' step={step} text='회원가입 완료' />
         </div>
-        {step === 'terms' && <TermsAndPrivacy moveStep={moveStep} />}
-        {step === 'signUpInfo' && <SignUpInfo moveStep={moveStep} />}
+        {step === 'terms' && (
+          <TermsAndPrivacy
+            moveStep={moveStep}
+            signUpInfo={signUpInfo}
+            updateSignUpInfo={updateSignUpInfo}
+          />
+        )}
+        {step === 'signUpInfo' && (
+          <SignUpInfo
+            moveStep={moveStep}
+            signUpInfo={signUpInfo}
+            updateSignUpInfo={updateSignUpInfo}
+          />
+        )}
         {step === 'welcome' && <Welcome />}
       </div>
     </section>

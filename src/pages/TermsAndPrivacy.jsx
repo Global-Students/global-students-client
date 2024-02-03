@@ -3,24 +3,13 @@ import OrangeButton from '../components/Button/OrangeButton';
 import CheckForm from '../components/CheckForm';
 import Checkbox from '../components/Checkbox';
 
-export default function TermsAndPrivacy({ moveStep }) {
-  const [check, setCheck] = useState({
-    all: false,
-    terms: false,
-    privacy: false,
-    event: false,
-  });
-  const updateCheck = (id) => {
-    if (id === 'all') {
-      setCheck((prev) => {
-        const entries = Object.keys(prev).map((key) => [key, !prev.all]);
-        return Object.fromEntries(entries);
-      });
-      return;
-    }
-    setCheck((prev) => ({ ...prev, [id]: !prev[id] }));
-  };
-  const isPassed = check.terms && check.privacy;
+export default function TermsAndPrivacy({
+  moveStep,
+  signUpInfo: { terms, privacy, marketing },
+  updateSignUpInfo,
+}) {
+  const [all, setAll] = useState(false);
+  const isPassed = terms && privacy;
   const text = {
     terms: `제1조 (목적)
 제2조 (미용자의 정의)
@@ -42,15 +31,18 @@ export default function TermsAndPrivacy({ moveStep }) {
     <section className='flex flex-col gap-[25px] mt-[74px]'>
       <Checkbox
         id='all'
-        isChecked={check}
-        updateCheck={updateCheck}
+        isChecked={all}
+        onChange={(event) => {
+          setAll((prev) => !prev);
+          updateSignUpInfo(event);
+        }}
         text='전체동의하기'
       />
       <CheckForm>
         <Checkbox
           id='terms'
-          isChecked={check}
-          updateCheck={updateCheck}
+          isChecked={terms}
+          onChange={updateSignUpInfo}
           tag='필수'
           text='글로벌스튜던트 이용약관'
         />
@@ -59,8 +51,8 @@ export default function TermsAndPrivacy({ moveStep }) {
       <CheckForm>
         <Checkbox
           id='privacy'
-          isChecked={check}
-          updateCheck={updateCheck}
+          isChecked={privacy}
+          onChange={updateSignUpInfo}
           tag='필수'
           text='개인정보 수집 및 이용'
         />
@@ -68,9 +60,9 @@ export default function TermsAndPrivacy({ moveStep }) {
       </CheckForm>
       <CheckForm>
         <Checkbox
-          id='event'
-          isChecked={check}
-          updateCheck={updateCheck}
+          id='marketing'
+          isChecked={marketing}
+          onChange={updateSignUpInfo}
           tag='선택'
           text='이벤트・혜택 정보 수신'
         />
