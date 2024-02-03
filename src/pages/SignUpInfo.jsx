@@ -8,7 +8,6 @@ import ResetIcon from '../components/ResetIcon';
 import ValidationMessage from '../components/ValidationMessage';
 
 export default function SignUpInfo({ moveStep }) {
-  const isPassed = true;
   const [signUpInfo, setSignUpInfo] = useState({
     userId: '',
     password: '',
@@ -32,6 +31,18 @@ export default function SignUpInfo({ moveStep }) {
     );
   const checkPasswordReEnter = () =>
     signUpInfo.password === signUpInfo.passwordConfirmation;
+  const isPassed =
+    signUpInfo.userId &&
+    checkPasswordPattern() &&
+    checkPasswordReEnter() &&
+    signUpInfo.name &&
+    signUpInfo.birthYear &&
+    signUpInfo.birthMonth &&
+    signUpInfo.birthDate &&
+    signUpInfo.nickname &&
+    signUpInfo.nationality &&
+    signUpInfo.hostCountry &&
+    signUpInfo.hostUniversity;
 
   return (
     <section className='flex flex-col items-center mt-[94px]'>
