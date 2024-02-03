@@ -7,7 +7,16 @@ import Input from '../components/Input';
 import Label from '../components/Label';
 import ResetIcon from '../components/ResetIcon';
 import ValidationMessage from '../components/ValidationMessage';
-import { checkIdApi, checkNicknameApi } from '../constants';
+import {
+  API_PATH,
+  DATES,
+  LABEL,
+  LEGEND,
+  MONTHS,
+  PLACEHOLDER,
+  REGEX,
+  YEARS,
+} from '../constants';
 import useDuplicateCheck from '../hooks/useDuplicateCheck';
 
 export default function SignUpInfo({
@@ -39,10 +48,7 @@ export default function SignUpInfo({
     message: nicknameMessage,
     checkDuplicate: checkNickname,
   } = useDuplicateCheck();
-  const checkPasswordPattern = () =>
-    /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
-      password,
-    );
+  const checkPasswordPattern = () => REGEX.passwordPattern.test(password);
   const checkPasswordReEnter = () => password === confirmPassword;
 
   const isPassed =
@@ -60,107 +66,32 @@ export default function SignUpInfo({
     homeUniversity &&
     hostUniversity;
 
-  const years = [
-    '2024',
-    '2023',
-    '2022',
-    '2021',
-    '2020',
-    '2019',
-    '2018',
-    '2017',
-    '2016',
-    '2015',
-    '2014',
-    '2013',
-    '2012',
-    '2010',
-    '2009',
-    '2008',
-    '2007',
-    '2006',
-    '2005',
-    '2004',
-    '2003',
-    '2002',
-    '2001',
-    '2000',
-    '1999',
-    '1998',
-    '1997',
-  ];
-  const months = [
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '10',
-    '11',
-    '12',
-  ];
-  const dates = [
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '10',
-    '11',
-    '12',
-    '13',
-    '14',
-    '15',
-    '16',
-    '17',
-    '18',
-    '19',
-    '20',
-    '21',
-    '22',
-    '23',
-    '24',
-    '25',
-    '26',
-    '27',
-    '28',
-    '29',
-    '30',
-    '31',
-  ];
-
   return (
     <section className='flex flex-col items-center mt-[94px]'>
       <form className='w-[460px] flex flex-col gap-[90px]'>
-        <FieldSet legend='아이디/비밀번호 설정'>
+        <FieldSet legend={LEGEND.idPassword}>
           <div>
-            <Label label='아이디' required />
+            <Label label={LABEL.id} required />
             <DuplicateCheckInput
               id='userId'
               value={userId}
               onChange={updateSignUpInfo}
-              placeholder='영문소문자숫자, 4~16자'
+              placeholder={PLACEHOLDER.id}
               message={userIdMessage}
-              onClick={() => checkUserId(checkIdApi(userId), '아이디')}
+              onClick={() =>
+                checkUserId(API_PATH.checkUserId(userId), '아이디')
+              }
             />
           </div>
           <div className='flex flex-col gap-[20px]'>
             <div>
-              <Label label='비밀번호' required />
+              <Label label={LABEL.password} required />
               <Input
                 id='password'
                 type='password'
                 value={password}
                 onChange={updateSignUpInfo}
-                placeholder='8자 이상의 영문 대소문자/숫자/특수문자'
+                placeholder={PLACEHOLDER.password}
               >
                 <ResetIcon />
               </Input>
@@ -171,13 +102,13 @@ export default function SignUpInfo({
               />
             </div>
             <div>
-              <Label label='비밀번호 재입력' required />
+              <Label label={LABEL.confirmPassword} required />
               <Input
                 id='confirmPassword'
                 type='password'
                 value={confirmPassword}
                 onChange={updateSignUpInfo}
-                placeholder='8자 이상의 영문 대소문자/숫자/특수문자'
+                placeholder={PLACEHOLDER.password}
               >
                 <ResetIcon />
               </Input>
@@ -189,17 +120,17 @@ export default function SignUpInfo({
             </div>
           </div>
         </FieldSet>
-        <FieldSet legend='기본정보 입력'>
+        <FieldSet legend={LEGEND.defaultInfo}>
           <div className='flex flex-col gap-[20px]'>
             <div>
-              <Label label='이름' required />
+              <Label label={LABEL.name} required />
               <div className='flex gap-4'>
                 <Input
                   id='firstName'
                   type='text'
                   value={firstName}
                   onChange={updateSignUpInfo}
-                  placeholder='이름'
+                  placeholder={PLACEHOLDER.firstName}
                 >
                   <ResetIcon />
                 </Input>
@@ -208,103 +139,103 @@ export default function SignUpInfo({
                   type='text'
                   value={lastName}
                   onChange={updateSignUpInfo}
-                  placeholder='성'
+                  placeholder={PLACEHOLDER.lastName}
                 >
                   <ResetIcon />
                 </Input>
               </div>
             </div>
             <div>
-              <Label label='생년월일' required />
+              <Label label={LABEL.birthDay} required />
               <div className='flex justify-between gap-[16px]'>
                 <div className='flex-[2_1_0%]'>
                   <BirthDayInput
                     id='birthYear'
                     value={birthYear}
-                    options={years}
+                    options={YEARS}
                     onChange={updateSignUpInfo}
-                    placeholder='년'
+                    placeholder={PLACEHOLDER.year}
                   />
                 </div>
                 <div className='flex-1'>
                   <BirthDayInput
                     id='birthMonth'
                     value={birthMonth}
-                    options={months}
+                    options={MONTHS}
                     onChange={updateSignUpInfo}
-                    placeholder='월'
+                    placeholder={PLACEHOLDER.month}
                   />
                 </div>
                 <div className='flex-1'>
                   <BirthDayInput
                     id='birthDate'
                     value={birthDate}
-                    options={dates}
+                    options={DATES}
                     onChange={updateSignUpInfo}
-                    placeholder='일'
+                    placeholder={PLACEHOLDER.date}
                   />
                 </div>
               </div>
             </div>
             <div>
-              <Label label='닉네임' required />
+              <Label label={LABEL.nickname} required />
               <DuplicateCheckInput
                 id='nickname'
                 value={nickname}
                 onChange={updateSignUpInfo}
-                placeholder='닉네임을 입력해 주세요'
+                placeholder={PLACEHOLDER.nickname}
                 message={nicknameMessage}
                 onClick={() =>
-                  checkNickname(checkNicknameApi(nickname), '닉네임')
+                  checkNickname(API_PATH.checkNickname(nickname), '닉네임')
                 }
               />
             </div>
           </div>
           <div className='flex flex-col gap-[20px]'>
             <div>
-              <Label label='본국' required />
+              <Label label={LABEL.nationality} required />
               <Input
                 id='nationality'
                 type='text'
                 value={nationality}
                 onChange={updateSignUpInfo}
-                placeholder='본국명을 입력해 주세요'
+                placeholder={PLACEHOLDER.nationality}
               >
                 <ResetIcon />
               </Input>
             </div>
             <div>
-              <Label label='유학국' required />
+              <Label label={LABEL.hostCountry} required />
               <Input
                 id='hostCountry'
                 type='text'
                 value={hostCountry}
                 onChange={updateSignUpInfo}
-                placeholder='유학국명을 입력해 주세요'
+                placeholder={PLACEHOLDER.hostCountry}
               >
                 <ResetIcon />
               </Input>
             </div>
             <div>
-              <Label label='학교설정(본교)' required />
+              <Label label={LABEL.homeUniversity} required />
               <Input
                 id='homeUniversity'
                 type='text'
                 value={homeUniversity}
                 onChange={updateSignUpInfo}
-                placeholder='본교명을 입력해 주세요'
+                placeholder={PLACEHOLDER.homeUniversity}
               >
                 <ResetIcon />
               </Input>
             </div>
             <div>
-              <Label label='학교설정(교환학생)' required />
+              <Label label={LABEL.hostUniversity} required />
               <Input
                 id='hostUniversity'
                 type='text'
                 value={hostUniversity}
                 onChange={updateSignUpInfo}
-                placeholder='교환학교명을 입력해 주세요'
+                placeholder={PLACEHOLDER.hostUniversity}
               >
                 <ResetIcon />
               </Input>

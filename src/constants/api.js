@@ -1,4 +1,6 @@
-const checkIdApi = (userId) => `/auth/join/check-id/${userId}`;
-const checkNicknameApi = (nickname) => `/auth/join/check-nickname/${nickname}`;
+const API_PATH = Object.freeze({
+  checkUserId: (userId) => `/auth/join/check-id/${userId}`,
+  checkNickname: (nickname) => `/auth/join/check-nickname/${nickname}`,
+});
 
-export { checkIdApi, checkNicknameApi };
+export default API_PATH;
