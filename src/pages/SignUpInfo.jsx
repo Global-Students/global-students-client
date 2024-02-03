@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DuplicateCheckButton from '../components/Button/DuplicateCheckButton';
 import OrangeButton from '../components/Button/OrangeButton';
 import FieldSet from '../components/FieldSet';
@@ -8,13 +8,37 @@ import ResetIcon from '../components/ResetIcon';
 
 export default function SignUpInfo({ moveStep }) {
   const isPassed = true;
+  const [signUpInfo, setSignUpInfo] = useState({
+    userId: '',
+    password: '',
+    passwordConfirmation: '',
+    name: '',
+    birthYear: '',
+    birthMonth: '',
+    birthDate: '',
+    nickname: '',
+    nationality: '',
+    hostCountry: '',
+    hostUniversity: '',
+  });
+  const updateSignUpInfo = (event) => {
+    const { id, value } = event.target;
+    setSignUpInfo((prev) => ({ ...prev, [id]: value }));
+  };
+
   return (
     <section className='flex flex-col items-center mt-[94px]'>
       <form className='w-[460px] flex flex-col gap-[90px]'>
         <FieldSet legend='아이디/비밀번호 설정'>
           <div>
             <Label label='아이디' required />
-            <Input id='id' type='text' placeholder='영문소문자숫자, 4~16자'>
+            <Input
+              id='userId'
+              type='text'
+              value={signUpInfo.userId}
+              onChange={updateSignUpInfo}
+              placeholder='영문소문자숫자, 4~16자'
+            >
               <DuplicateCheckButton />
             </Input>
           </div>
@@ -24,6 +48,8 @@ export default function SignUpInfo({ moveStep }) {
               <Input
                 id='password'
                 type='password'
+                value={signUpInfo.password}
+                onChange={updateSignUpInfo}
                 placeholder='8자 이상의 영문 대소문자/숫자/특수문자'
               >
                 <ResetIcon />
@@ -32,8 +58,10 @@ export default function SignUpInfo({ moveStep }) {
             <div>
               <Label label='비밀번호 재입력' required />
               <Input
-                id='check_password'
+                id='passwordConfirmation'
                 type='password'
+                value={signUpInfo.passwordConfirmation}
+                onChange={updateSignUpInfo}
                 placeholder='8자 이상의 영문 대소문자/숫자/특수문자'
               >
                 <ResetIcon />
@@ -45,7 +73,13 @@ export default function SignUpInfo({ moveStep }) {
           <div className='flex flex-col gap-[20px]'>
             <div>
               <Label label='이름' required />
-              <Input id='name' type='text' placeholder='이름을 입력해 주세요'>
+              <Input
+                id='name'
+                type='text'
+                value={signUpInfo.name}
+                onChange={updateSignUpInfo}
+                placeholder='이름을 입력해 주세요'
+              >
                 <ResetIcon />
               </Input>
             </div>
@@ -53,21 +87,36 @@ export default function SignUpInfo({ moveStep }) {
               <Label label='생년월일' required />
               <div className='flex justify-between gap-[16px]'>
                 <div className='flex-[2_1_0%]'>
-                  <Input id='name' type='number'>
+                  <Input
+                    id='birthYear'
+                    type='text'
+                    value={signUpInfo.birthYear}
+                    onChange={updateSignUpInfo}
+                  >
                     <p className=' bg-white text-gray-scale-4 font-light pl-[4px] mr-[19px]'>
                       년
                     </p>
                   </Input>
                 </div>
                 <div className='flex-1'>
-                  <Input id='name' type='number'>
+                  <Input
+                    id='birthMonth'
+                    type='text'
+                    value={signUpInfo.birthMonth}
+                    onChange={updateSignUpInfo}
+                  >
                     <p className='bg-white text-gray-scale-4 font-light pl-[4px] mr-[19px]'>
                       월
                     </p>
                   </Input>
                 </div>
                 <div className='flex-1'>
-                  <Input id='name' type='number'>
+                  <Input
+                    id='birthDate'
+                    type='text'
+                    value={signUpInfo.birthDate}
+                    onChange={updateSignUpInfo}
+                  >
                     <p className='bg-white text-gray-scale-4 font-light pl-[4px] mr-[19px]'>
                       일
                     </p>
@@ -80,6 +129,8 @@ export default function SignUpInfo({ moveStep }) {
               <Input
                 id='nickname'
                 type='text'
+                value={signUpInfo.nickname}
+                onChange={updateSignUpInfo}
                 placeholder='닉네임을 입력해 주세요'
               >
                 <DuplicateCheckButton />
@@ -90,8 +141,10 @@ export default function SignUpInfo({ moveStep }) {
             <div>
               <Label label='유학국' required />
               <Input
-                id='exchangeCountry'
+                id='nationality'
                 type='text'
+                value={signUpInfo.nationality}
+                onChange={updateSignUpInfo}
                 placeholder='유학국명을 입력해 주세요'
               >
                 <ResetIcon />
@@ -100,8 +153,10 @@ export default function SignUpInfo({ moveStep }) {
             <div>
               <Label label='학교설정(본교)' required />
               <Input
-                id='mainUniv'
+                id='hostCountry'
                 type='text'
+                value={signUpInfo.hostCountry}
+                onChange={updateSignUpInfo}
                 placeholder='본교명을 입력해 주세요'
               >
                 <ResetIcon />
@@ -110,8 +165,10 @@ export default function SignUpInfo({ moveStep }) {
             <div>
               <Label label='학교설정(교환학생)' required />
               <Input
-                id='exchangeUchool'
+                id='hostUniversity'
                 type='text'
+                value={signUpInfo.hostUniversity}
+                onChange={updateSignUpInfo}
                 placeholder='교환학교명을 입력해 주세요'
               >
                 <ResetIcon />
