@@ -24,12 +24,8 @@ export default function Login() {
           <OrangeButton text='로그인' textSize={22} py={22} />
         </form>
         <div className='flex justify-between text-gray-scale-3 text-[17px] m-4'>
-          <div className='flex gap-2'>
-            <a href='/'>아이디</a>
-            <span>|</span>
-            <a href='/'>비밀번호</a>
-          </div>
-          <a href='/'>회원가입</a>
+          <a href='/findAccount'>아이디 | 비밀번호 찾기</a>
+          <a href='/signUp'>회원가입</a>
         </div>
       </div>
     </div>
