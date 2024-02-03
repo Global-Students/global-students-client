@@ -2,7 +2,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 export default function Pagination() {
-  const boardId = 'All';
   const commonStyle = `flex w-7 h-7 justify-center items-center rounded-full border border-gray-scale-7-main text-center text-gray-scale-2 text-xs font-light hover:bg-gray-scale-7-main duration-500`;
   const activeStyle = `flex w-7 h-7 justify-center items-center rounded-full bg-orange-main text-center text-gray-scale-9 text-xs font-light duration-500`;
   return (
@@ -20,7 +19,7 @@ export default function Pagination() {
           </li>
           <div className='flex flex-row w-[340px] justify-between'>
             <NavLink
-              to={`/NoticeBoard/${boardId}`}
+              to='/'
               className={({ isActive }) =>
                 isActive ? activeStyle : commonStyle
               }

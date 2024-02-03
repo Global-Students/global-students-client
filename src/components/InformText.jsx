@@ -5,7 +5,7 @@ export default function InformText({ mb, school, borderId, text, translate }) {
   return (
     <div
       className={`flex flex-row w-[953px] h-[60px] justify-between ${
-        mb ? `mb-[${mb}px]` : 'mb-[35px]'
+        mb ? 'mb-[80px]' : 'mb-[35px]'
       }`}
     >
       <div className='flex flex-col'>

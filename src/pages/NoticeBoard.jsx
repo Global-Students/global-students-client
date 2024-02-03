@@ -12,8 +12,8 @@ export default function NoticeBoard() {
         <UserInfoControl />
         <div className='flex flex-col w-[953px] items-center'>
           <InformText
+            mb
             translate
-            mb={80}
             school='Hanyang'
             borderId='All'
             text='우리 학교에 재학 중인 모든 유학생을 만날 수 있습니다.'

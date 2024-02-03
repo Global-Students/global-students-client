@@ -24,7 +24,7 @@ export default function Header() {
       navRectangle.current.style.width = '99px';
       navRectangle.current.style.left = '464px';
     }
-    if (pathname.includes('/board') || pathname.includes('/SearchingFriend')) {
+    if (pathname.includes('/board/') || pathname.includes('/SearchingFriend')) {
       navRectangle.current.style.opacity = '1';
     } else {
       navRectangle.current.style.opacity = '0';
