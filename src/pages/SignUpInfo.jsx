@@ -48,6 +48,7 @@ export default function SignUpInfo({
     message: nicknameMessage,
     checkDuplicate: checkNickname,
   } = useDuplicateCheck();
+  const checkUserIdPattern = () => REGEX.userIdPattern.test(userId);
   const checkPasswordPattern = () => REGEX.passwordPattern.test(password);
   const checkPasswordReEnter = () => password === confirmPassword;
 
@@ -78,9 +79,16 @@ export default function SignUpInfo({
               onChange={updateSignUpInfo}
               placeholder={PLACEHOLDER.id}
               message={userIdMessage}
-              onClick={() =>
-                checkUserId(API_PATH.checkUserId(userId), '아이디')
-              }
+              onClick={() => {
+                if (checkUserIdPattern()) {
+                  checkUserId(API_PATH.checkUserId(userId), '아이디');
+                }
+              }}
+            />
+            <ValidationMessage
+              isShowed={!checkUserIdPattern()}
+              message='4자 이상 16자 이하의 영소문사/숫자를 사용해주세요.'
+              value={userId}
             />
           </div>
           <div className='flex flex-col gap-[20px]'>
