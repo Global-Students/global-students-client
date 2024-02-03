@@ -5,6 +5,7 @@ import FieldSet from '../components/FieldSet';
 import Input from '../components/Input';
 import Label from '../components/Label';
 import ResetIcon from '../components/ResetIcon';
+import ValidationMessage from '../components/ValidationMessage';
 
 export default function SignUpInfo({ moveStep }) {
   const isPassed = true;
@@ -25,6 +26,12 @@ export default function SignUpInfo({ moveStep }) {
     const { id, value } = event.target;
     setSignUpInfo((prev) => ({ ...prev, [id]: value }));
   };
+  const checkPasswordPattern = () =>
+    /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
+      signUpInfo.password,
+    );
+  const checkPasswordReEnter = () =>
+    signUpInfo.password === signUpInfo.passwordConfirmation;
 
   return (
     <section className='flex flex-col items-center mt-[94px]'>
@@ -54,6 +61,11 @@ export default function SignUpInfo({ moveStep }) {
               >
                 <ResetIcon />
               </Input>
+              <ValidationMessage
+                isShowed={!checkPasswordPattern()}
+                message='8자 이상의 영문 대소문자/숫자/특수문자를 사용해주세요.'
+                value={signUpInfo.password}
+              />
             </div>
             <div>
               <Label label='비밀번호 재입력' required />
@@ -66,6 +78,11 @@ export default function SignUpInfo({ moveStep }) {
               >
                 <ResetIcon />
               </Input>
+              <ValidationMessage
+                isShowed={!checkPasswordReEnter()}
+                message='비밀번호가 틀립니다. 다시 입력해주세요.'
+                value={signUpInfo.passwordConfirmation}
+              />
             </div>
           </div>
         </FieldSet>
