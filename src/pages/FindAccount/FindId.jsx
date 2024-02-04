@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Input from '../../components/Input';
+import REGEX from '../../constants';
 
 export default function FindId() {
   const [email, setEmail] = useState('');
@@ -22,8 +23,13 @@ export default function FindId() {
         </div>
       </div>
       <button
-        className='self-center w-[194px] rounded border border-gray-scale-5 text-gray-scale-1 text-[18px] font-medium leading-[20px] tracking-[0.36px] py-[14px] shadow-prev-btn'
+        className={`self-center w-[194px] rounded border ${
+          REGEX.email.test(email)
+            ? 'border-gray-scale-5 text-gray-scale-1'
+            : 'border-gray-scale-6 text-gray-scale-5 bg-gray-scale-8'
+        } text-[18px] font-medium leading-[20px] tracking-[0.36px] py-[14px] shadow-prev-btn`}
         type='submit'
+        disabled={!REGEX.email.test(email)}
       >
         아이디 찾기
       </button>
