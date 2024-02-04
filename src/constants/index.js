@@ -1,3 +1,4 @@
+import API_PATH from './api';
 import REGEX from './regex';
 
-export default REGEX;
+export { API_PATH, REGEX };
