@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { findPassword } from '../../apis/findAccount';
 import Input from '../../components/Input';
 import { REGEX } from '../../constants';
 
@@ -11,6 +12,11 @@ export default function FindPassword() {
   const updateDate = (event) => {
     const { id, value } = event.target;
     setData((prev) => ({ ...prev, [id]: value }));
+  };
+  const submitData = (event) => {
+    event.preventDefault();
+    findPassword(data);
+    setData({ name: '', email: '' });
   };
 
   return (
@@ -48,6 +54,7 @@ export default function FindPassword() {
             : 'border-gray-scale-6 text-gray-scale-5 bg-gray-scale-8'
         } text-[18px] font-medium leading-[20px] tracking-[0.36px] py-[14px] shadow-prev-btn`}
         type='submit'
+        onClick={submitData}
         disabled={name === '' || !REGEX.email.test(email)}
       >
         비밀번호 찾기

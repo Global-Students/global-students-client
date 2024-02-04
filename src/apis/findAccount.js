@@ -11,4 +11,12 @@ const findId = (body) =>
     .then((response) => console.log(response))
     .catch((error) => console.log(error));
 
-export default findId;
+const findPassword = (body) =>
+  axios
+    .post(API_PATH.findPassword, body, {
+      headers: { 'Content-Type': 'application/json' },
+    })
+    .then((response) => console.log(response))
+    .catch((error) => console.log(error));
+
+export { findId, findPassword };

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import findId from '../../apis/findId';
+import { findId } from '../../apis/findAccount';
 import Input from '../../components/Input';
 import { REGEX } from '../../constants';
 
