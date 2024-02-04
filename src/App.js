@@ -6,6 +6,7 @@ import FindAccountPage from './pages/FindAccount/FindAccountPage';
 import Login from './pages/Login';
 import NoticeBoard from './pages/NoticeBoard';
 import SignUp from './pages/SignUp';
+import UpdateInfo from './pages/Update/UpdateInfo';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/signUp' element={<SignUp />} />
             <Route path='/findAccount' element={<FindAccountPage />} />
+            <Route path='/updateInfo'element={<UpdateInfo />} />
           </Routes>
         </div>
         <Footer />
