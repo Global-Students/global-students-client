@@ -1,13 +1,13 @@
 import React from 'react';
-import submitSignUpInfo from '../apis/signUp';
-import BirthDayInput from '../components/BirthDayInput';
-import OrangeButton from '../components/Button/OrangeButton';
-import DuplicateCheckInput from '../components/DuplicateCheckInput';
-import FieldSet from '../components/FieldSet';
-import Input from '../components/Input';
-import Label from '../components/Label';
-import ResetIcon from '../components/ResetIcon';
-import ValidationMessage from '../components/ValidationMessage';
+import submitSignUpInfo from '../../apis/signUp';
+import BirthDayInput from '../../components/BirthDayInput';
+import OrangeButton from '../../components/Button/OrangeButton';
+import DuplicateCheckInput from '../../components/DuplicateCheckInput';
+import FieldSet from '../../components/FieldSet';
+import Input from '../../components/Input';
+import Label from '../../components/Label';
+import ResetIcon from '../../components/ResetIcon';
+import ValidationMessage from '../../components/ValidationMessage';
 import {
   API_PATH,
   DATES,
@@ -17,8 +17,8 @@ import {
   PLACEHOLDER,
   REGEX,
   YEARS,
-} from '../constants';
-import useDuplicateCheck from '../hooks/useDuplicateCheck';
+} from '../../constants';
+import useDuplicateCheck from '../../hooks/useDuplicateCheck';
 
 export default function SignUpInfo({ moveStep, signUpInfo, updateSignUpInfo }) {
   const {

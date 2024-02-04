@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import TranslateButton from '../components/Button/TranslateButton';
-import RightPoint from '../components/RightPoint';
+import TranslateButton from '../../components/Button/TranslateButton';
+import RightPoint from '../../components/RightPoint';
 import SignUpInfo from './SignUpInfo';
 import TermsAndPrivacy from './TermsAndPrivacy';
 import Welcome from './Welcome';
