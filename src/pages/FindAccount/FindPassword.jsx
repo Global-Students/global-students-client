@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Input from '../../components/Input';
+import { REGEX } from '../../constants';
 
 export default function FindPassword() {
   const [data, setData] = useState({
@@ -41,8 +42,13 @@ export default function FindPassword() {
         </div>
       </div>
       <button
-        className='self-center w-[194px] rounded border border-gray-scale-5 text-gray-scale-1 text-[18px] font-medium leading-[20px] tracking-[0.36px] py-[14px] shadow-prev-btn'
+        className={`self-center w-[194px] rounded border ${
+          name && REGEX.email.test(email)
+            ? 'border-gray-scale-5 text-gray-scale-1'
+            : 'border-gray-scale-6 text-gray-scale-5 bg-gray-scale-8'
+        } text-[18px] font-medium leading-[20px] tracking-[0.36px] py-[14px] shadow-prev-btn`}
         type='submit'
+        disabled={name === '' || !REGEX.email.test(email)}
       >
         비밀번호 찾기
       </button>
