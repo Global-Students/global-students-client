@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Input from '../../components/Input';
 
 export default function FindId() {
+  const [email, setEmail] = useState('');
+  const updatedEmail = (event) => setEmail(event.target.value);
+
   return (
     <form className='w-[460px] flex flex-col gap-[36px] rounded-b-[14px] border border-gray-scale-7-main px-[25px] py-[40px] shadow'>
       <div className='flex flex-col gap-[18px]'>
@@ -9,7 +12,13 @@ export default function FindId() {
           <p className='text-gray-scale-2 text-[18px] font-medium leading mb-[6px]'>
             이메일
           </p>
-          <Input id='email' type='email' placeholder='이메일을 입력해주세요' />
+          <Input
+            id='email'
+            type='email'
+            value={email}
+            onChange={updatedEmail}
+            placeholder='이메일을 입력해주세요'
+          />
         </div>
       </div>
       <button
