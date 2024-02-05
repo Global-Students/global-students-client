@@ -1,7 +1,7 @@
 import React from 'react';
 import OrangeButton from '../components/Button/OrangeButton';
 import TranslateButton from '../components/Button/TranslateButton';
-import Input from '../components/Input';
+import Input from '../components/Input/Input';
 import ResetIcon from '../components/ResetIcon';
 
 export default function Login() {

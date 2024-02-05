@@ -1,7 +1,7 @@
 import React from 'react';
-import DuplicateCheckButton from './Button/DuplicateCheckButton';
+import DuplicateCheckButton from '../Button/DuplicateCheckButton';
+import ValidationMessage from '../ValidationMessage';
 import Input from './Input';
-import ValidationMessage from './ValidationMessage';
 
 export default function DuplicateCheckInput({
   id,

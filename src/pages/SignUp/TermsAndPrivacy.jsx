@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import OrangeButton from '../../components/Button/OrangeButton';
 import CheckForm from '../../components/CheckForm';
-import Checkbox from '../../components/Checkbox';
+import Checkbox from '../../components/Input/Checkbox';
 
 export default function TermsAndPrivacy({
   moveStep,
