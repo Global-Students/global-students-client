@@ -1,8 +1,8 @@
 import React from 'react';
 import OrangeButton from '../components/Button/OrangeButton';
+import ResetButton from '../components/Button/ResetButton';
 import TranslateButton from '../components/Button/TranslateButton';
 import Input from '../components/Input/Input';
-import ResetIcon from '../components/ResetIcon';
 
 export default function Login() {
   return (
@@ -15,10 +15,10 @@ export default function Login() {
         <form className='flex flex-col border border-gray-scale-7-main rounded p-[25px] shadow'>
           <div className='flex flex-col gap-[10px] mb-[52px]'>
             <Input id='id' type='text' placeholder='아이디' icon='person'>
-              <ResetIcon />
+              <ResetButton />
             </Input>
             <Input id='pw' type='password' placeholder='비밀번호' icon='key'>
-              <ResetIcon />
+              <ResetButton />
             </Input>
           </div>
           <OrangeButton text='로그인' textSize={22} py={22} />

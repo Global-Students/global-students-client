@@ -1,5 +1,5 @@
 import React from 'react';
-import ResetIcon from '../ResetIcon';
+import ResetButton from '../Button/ResetButton';
 import Input from './Input';
 
 export default function ResetButtonInput({
@@ -18,7 +18,7 @@ export default function ResetButtonInput({
       onChange={onChange}
       placeholder={placeholder}
     >
-      <ResetIcon id={id} onReset={onReset} />
+      <ResetButton id={id} onReset={onReset} />
     </Input>
   );
 }
