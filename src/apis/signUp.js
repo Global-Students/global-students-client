@@ -1,6 +1,22 @@
 import axios from 'axios';
 import { API_PATH } from '../constants';
 
+const checkIdDuplicate = (userId) =>
+  axios
+    .get(API_PATH.checkUserId(userId), {
+      'Content-Type': 'application/json',
+    })
+    .then(() => true)
+    .catch(() => false);
+
+const checkNicknameDuplicate = (nickname) =>
+  axios
+    .get(API_PATH.checkNickname(nickname), {
+      'Content-Type': 'application/json',
+    })
+    .then(() => true)
+    .catch(() => false);
+
 const submitSignUpInfo = (signUpInfo, moveStep) => {
   axios
     .post(API_PATH.sumbitSignUpInfo, signUpInfo, {
@@ -12,4 +28,4 @@ const submitSignUpInfo = (signUpInfo, moveStep) => {
     .catch(() => alert('회원가입을 진행할 수 없습니다. 다시 시도해주세요.'));
 };
 
-export default submitSignUpInfo;
+export { checkIdDuplicate, checkNicknameDuplicate, submitSignUpInfo };

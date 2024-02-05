@@ -1,5 +1,9 @@
-import React from 'react';
-import submitSignUpInfo from '../../apis/signUp';
+import React, { useState } from 'react';
+import {
+  checkIdDuplicate,
+  checkNicknameDuplicate,
+  submitSignUpInfo,
+} from '../../apis/signUp';
 import OrangeButton from '../../components/Button/OrangeButton';
 import FieldSet from '../../components/FieldSet';
 import BirthDayInput from '../../components/Input/BirthDayInput';
@@ -8,7 +12,6 @@ import ResetButtonInput from '../../components/Input/ResetButtonInput';
 import Label from '../../components/Label';
 import ValidationMessage from '../../components/ValidationMessage';
 import {
-  API_PATH,
   DATES,
   LABEL,
   LEGEND,
@@ -17,7 +20,6 @@ import {
   REGEX,
   YEARS,
 } from '../../constants';
-import useDuplicateCheck from '../../hooks/useDuplicateCheck';
 
 export default function SignUpInfo({
   moveStep,
@@ -40,22 +42,17 @@ export default function SignUpInfo({
     homeUniversity,
     hostUniversity,
   } = signUpInfo;
-  const {
-    result: userIdResult,
-    message: userIdMessage,
-    checkDuplicate: checkUserId,
-  } = useDuplicateCheck();
-  const {
-    result: nicknameResult,
-    message: nicknameMessage,
-    checkDuplicate: checkNickname,
-  } = useDuplicateCheck();
+  const [isUniqued, setIsUniqued] = useState({
+    userId: false,
+    nickname: false,
+  });
+  const [message, setMesaage] = useState({ userId: '', password: '' });
   const checkUserIdPattern = () => REGEX.userIdPattern.test(userId);
   const checkPasswordPattern = () => REGEX.passwordPattern.test(password);
   const checkPasswordReEnter = () => password === confirmPassword;
 
   const isPassed =
-    userIdResult &&
+    isUniqued.userId &&
     checkPasswordPattern() &&
     checkPasswordReEnter() &&
     firstName &&
@@ -63,7 +60,7 @@ export default function SignUpInfo({
     birthYear &&
     birthMonth &&
     birthDate &&
-    nicknameResult &&
+    isUniqued.nickname &&
     nationality &&
     hostCountry &&
     homeUniversity &&
@@ -78,12 +75,33 @@ export default function SignUpInfo({
             <DuplicateCheckInput
               id='userId'
               value={userId}
-              onChange={updateSignUpInfo}
               placeholder={PLACEHOLDER.id}
-              message={userIdMessage}
+              message={message.userId}
+              onChange={(event) => {
+                updateSignUpInfo(event);
+                setIsUniqued((prev) => ({ ...prev, userId: false }));
+                setMesaage((prev) => ({
+                  ...prev,
+                  userId: '',
+                }));
+              }}
               onClick={() => {
                 if (checkUserIdPattern()) {
-                  checkUserId(API_PATH.checkUserId(userId), '아이디');
+                  checkIdDuplicate(userId).then((result) => {
+                    if (result) {
+                      setIsUniqued((prev) => ({ ...prev, userId: true }));
+                      setMesaage((prev) => ({
+                        ...prev,
+                        userId: '사용할 수 있는 아이디입니다.',
+                      }));
+                      return;
+                    }
+                    setIsUniqued((prev) => ({ ...prev, userId: false }));
+                    setMesaage((prev) => ({
+                      ...prev,
+                      userId: '사용할 수 없는 아이디입니다.',
+                    }));
+                  });
                 }
               }}
             />
@@ -192,11 +210,32 @@ export default function SignUpInfo({
               <DuplicateCheckInput
                 id='nickname'
                 value={nickname}
-                onChange={updateSignUpInfo}
                 placeholder={PLACEHOLDER.nickname}
-                message={nicknameMessage}
+                message={message.nickname}
+                onChange={(event) => {
+                  updateSignUpInfo(event);
+                  setIsUniqued((prev) => ({ ...prev, nickname: false }));
+                  setMesaage((prev) => ({
+                    ...prev,
+                    nickname: '',
+                  }));
+                }}
                 onClick={() =>
-                  checkNickname(API_PATH.checkNickname(nickname), '닉네임')
+                  checkNicknameDuplicate(nickname).then((result) => {
+                    if (result) {
+                      setIsUniqued((prev) => ({ ...prev, nickname: true }));
+                      setMesaage((prev) => ({
+                        ...prev,
+                        nickname: '사용할 수 있는 닉네임입니다.',
+                      }));
+                      return;
+                    }
+                    setIsUniqued((prev) => ({ ...prev, nickname: false }));
+                    setMesaage((prev) => ({
+                      ...prev,
+                      nickname: '사용할 수 없는 닉네임입니다.',
+                    }));
+                  })
                 }
               />
             </div>

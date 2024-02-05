@@ -6,9 +6,9 @@ import Input from './Input';
 export default function DuplicateCheckInput({
   id,
   value,
-  onChange,
   placeholder,
   message,
+  onChange,
   onClick,
 }) {
   return (
