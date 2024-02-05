@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function useLogin() {
   const [loading, setLoading] = useState(false);
-  const [loginData, setLoginData] = useState({ userId: '', password: '' });
+  const [loginData, setLoginData] = useState({ username: '', password: '' });
   const updateLoginFormData = (event) => {
     const targetId = event.target.id;
     setLoginData((prev) => ({ ...prev, [targetId]: event.target.value }));

@@ -18,9 +18,9 @@ export default function Login() {
         <form className='flex flex-col border border-gray-scale-7-main rounded p-[25px] shadow'>
           <div className='flex flex-col gap-[10px] mb-[52px]'>
             <Input
-              id='userId'
+              id='username'
               type='text'
-              value={loginData.userId}
+              value={loginData.username}
               onChange={updateLoginFormData}
               placeholder='아이디'
               icon='person'
