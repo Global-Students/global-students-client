@@ -16,7 +16,13 @@ const findPassword = (body) =>
     .post(API_PATH.findPassword, body, {
       headers: { 'Content-Type': 'application/json' },
     })
-    .then((response) => console.log(response))
-    .catch((error) => console.log(error));
+    .then((response) => {
+      console.log(response);
+      return true;
+    })
+    .catch((error) => {
+      console.log(error);
+      return false;
+    });
 
 export { findId, findPassword };

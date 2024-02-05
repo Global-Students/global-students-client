@@ -8,12 +8,25 @@ const handlers = [
       message: 'find id - ok',
     }),
   ),
-  http.post('user/find-password', () =>
-    HttpResponse.json({
-      isSuccess: true,
-      code: 'LOGIN201_1',
-      message: 'find password - ok',
-    }),
+  http.post(
+    'user/find-password',
+    () =>
+      HttpResponse.json({
+        isSuccess: true,
+        code: 'LOGIN201_1',
+        message: 'find password - ok',
+      }),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'VERIFY400_3',
+    //       message: 'find password - fail',
+    //     },
+    //     {
+    //       status: 400,
+    //     },
+    //   ),
   ),
 ];
 
