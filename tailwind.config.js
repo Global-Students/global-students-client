@@ -21,7 +21,7 @@ module.exports = {
       },
       backgroundImage: {
         translate: "url('/src/assets/translate.svg')",
-        cancel: "url('/src/assets/cancel.svg')",
+        reset: "url('/src/assets/reset.svg')",
         like: "url('/src/assets/thumbUp.svg')",
         'check-circle': "url('/src/assets/check_circle.svg')",
         'check-true-circle': "url('/src/assets/check_true_circle.svg')",

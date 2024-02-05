@@ -73,6 +73,7 @@ export default function SignUp() {
             moveStep={moveStep}
             signUpInfo={signUpInfo}
             updateSignUpInfo={updateSignUpInfo}
+            setSignUpInfo={setSignUpInfo}
           />
         )}
         {step === 'welcome' && <Welcome />}

@@ -4,9 +4,8 @@ import OrangeButton from '../../components/Button/OrangeButton';
 import FieldSet from '../../components/FieldSet';
 import BirthDayInput from '../../components/Input/BirthDayInput';
 import DuplicateCheckInput from '../../components/Input/DuplicateCheckInput';
-import Input from '../../components/Input/Input';
+import ResetButtonInput from '../../components/Input/ResetButtonInput';
 import Label from '../../components/Label';
-import ResetIcon from '../../components/ResetIcon';
 import ValidationMessage from '../../components/ValidationMessage';
 import {
   API_PATH,
@@ -20,7 +19,12 @@ import {
 } from '../../constants';
 import useDuplicateCheck from '../../hooks/useDuplicateCheck';
 
-export default function SignUpInfo({ moveStep, signUpInfo, updateSignUpInfo }) {
+export default function SignUpInfo({
+  moveStep,
+  signUpInfo,
+  updateSignUpInfo,
+  setSignUpInfo,
+}) {
   const {
     userId,
     password,
@@ -92,15 +96,14 @@ export default function SignUpInfo({ moveStep, signUpInfo, updateSignUpInfo }) {
           <div className='flex flex-col gap-[20px]'>
             <div>
               <Label label={LABEL.password} required />
-              <Input
+              <ResetButtonInput
                 id='password'
                 type='password'
                 value={password}
-                onChange={updateSignUpInfo}
                 placeholder={PLACEHOLDER.password}
-              >
-                <ResetIcon />
-              </Input>
+                onChange={updateSignUpInfo}
+                onReset={setSignUpInfo}
+              />
               <ValidationMessage
                 isShowed={!checkPasswordPattern()}
                 message='8자 이상의 영문 대소문자/숫자/특수문자를 사용해주세요.'
@@ -109,15 +112,14 @@ export default function SignUpInfo({ moveStep, signUpInfo, updateSignUpInfo }) {
             </div>
             <div>
               <Label label={LABEL.confirmPassword} required />
-              <Input
+              <ResetButtonInput
                 id='confirmPassword'
                 type='password'
                 value={confirmPassword}
-                onChange={updateSignUpInfo}
                 placeholder={PLACEHOLDER.password}
-              >
-                <ResetIcon />
-              </Input>
+                onChange={updateSignUpInfo}
+                onReset={setSignUpInfo}
+              />
               <ValidationMessage
                 isShowed={!checkPasswordReEnter()}
                 message='비밀번호가 틀립니다. 다시 입력해주세요.'
@@ -132,26 +134,24 @@ export default function SignUpInfo({ moveStep, signUpInfo, updateSignUpInfo }) {
               <Label label={LABEL.name} required />
               <div className='flex gap-4'>
                 <div className='flex-1'>
-                  <Input
+                  <ResetButtonInput
                     id='firstName'
                     type='text'
                     value={firstName}
-                    onChange={updateSignUpInfo}
                     placeholder={PLACEHOLDER.firstName}
-                  >
-                    <ResetIcon />
-                  </Input>
+                    onChange={updateSignUpInfo}
+                    onReset={setSignUpInfo}
+                  />
                 </div>
                 <div className='flex-1'>
-                  <Input
+                  <ResetButtonInput
                     id='lastName'
                     type='text'
                     value={lastName}
-                    onChange={updateSignUpInfo}
                     placeholder={PLACEHOLDER.lastName}
-                  >
-                    <ResetIcon />
-                  </Input>
+                    onChange={updateSignUpInfo}
+                    onReset={setSignUpInfo}
+                  />
                 </div>
               </div>
             </div>
@@ -204,51 +204,47 @@ export default function SignUpInfo({ moveStep, signUpInfo, updateSignUpInfo }) {
           <div className='flex flex-col gap-[20px]'>
             <div>
               <Label label={LABEL.nationality} required />
-              <Input
+              <ResetButtonInput
                 id='nationality'
                 type='text'
                 value={nationality}
-                onChange={updateSignUpInfo}
                 placeholder={PLACEHOLDER.nationality}
-              >
-                <ResetIcon />
-              </Input>
+                onChange={updateSignUpInfo}
+                onReset={setSignUpInfo}
+              />
             </div>
             <div>
               <Label label={LABEL.hostCountry} required />
-              <Input
+              <ResetButtonInput
                 id='hostCountry'
                 type='text'
                 value={hostCountry}
-                onChange={updateSignUpInfo}
                 placeholder={PLACEHOLDER.hostCountry}
-              >
-                <ResetIcon />
-              </Input>
+                onChange={updateSignUpInfo}
+                onReset={setSignUpInfo}
+              />
             </div>
             <div>
               <Label label={LABEL.homeUniversity} required />
-              <Input
+              <ResetButtonInput
                 id='homeUniversity'
                 type='text'
                 value={homeUniversity}
-                onChange={updateSignUpInfo}
                 placeholder={PLACEHOLDER.homeUniversity}
-              >
-                <ResetIcon />
-              </Input>
+                onChange={updateSignUpInfo}
+                onReset={setSignUpInfo}
+              />
             </div>
             <div>
               <Label label={LABEL.hostUniversity} required />
-              <Input
+              <ResetButtonInput
                 id='hostUniversity'
                 type='text'
                 value={hostUniversity}
-                onChange={updateSignUpInfo}
                 placeholder={PLACEHOLDER.hostUniversity}
-              >
-                <ResetIcon />
-              </Input>
+                onChange={updateSignUpInfo}
+                onReset={setSignUpInfo}
+              />
             </div>
           </div>
         </FieldSet>
