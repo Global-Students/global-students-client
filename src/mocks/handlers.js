@@ -28,6 +28,26 @@ const handlers = [
     //     },
     //   ),
   ),
+  http.get(
+    'user/find-password',
+    () =>
+      HttpResponse.json({
+        isSuccess: true,
+        code: 'VERIFY200_1',
+        message: 'code verification - ok',
+      }),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'VERIFY403_3',
+    //       message: 'code verification - fail',
+    //     },
+    //     {
+    //       status: 400,
+    //     },
+    //   ),
+  ),
 ];
 
 export default handlers;

@@ -11,18 +11,23 @@ const findId = (body) =>
     .then((response) => console.log(response))
     .catch((error) => console.log(error));
 
-const findPassword = (body) =>
+const sendCode = (body) =>
   axios
     .post(API_PATH.findPassword, body, {
       headers: { 'Content-Type': 'application/json' },
     })
-    .then((response) => {
-      console.log(response);
-      return true;
-    })
-    .catch((error) => {
-      console.log(error);
-      return false;
-    });
+    .then(() => true)
+    .catch(() => false);
 
-export { findId, findPassword };
+const verifyCode = (code) =>
+  axios
+    .get(API_PATH.findPassword, {
+      params: {
+        code,
+      },
+      headers: { 'Content-Type': 'application/json' },
+    })
+    .then(() => true)
+    .catch(() => false);
+
+export { findId, sendCode, verifyCode };

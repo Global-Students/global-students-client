@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { findPassword } from '../../apis/findAccount';
+import { useNavigate } from 'react-router-dom';
+import { sendCode, verifyCode } from '../../apis/findAccount';
 import Input from '../../components/Input';
 import { REGEX } from '../../constants';
 
@@ -9,14 +10,24 @@ export default function FindPassword() {
     email: '',
     code: '',
   });
-  const { code, email } = data;
-  const updateDate = (event) => {
+  const { email, code } = data;
+  const updateData = (event) => {
     const { id, value } = event.target;
     setData((prev) => ({ ...prev, [id]: value }));
   };
-  const submitData = (event) => {
+  const requestCode = (event) => {
     event.preventDefault();
-    findPassword(data).then((result) => setIsEmailVerified(result));
+    sendCode(data).then((result) => setIsEmailVerified(result));
+  };
+  const navigator = useNavigate();
+  const verifyAuthCode = () => {
+    verifyCode(code).then((result) => {
+      if (result) {
+        navigator('/');
+        return;
+      }
+      alert('인증 코드를 틀렸습니다. 다시 입력해주세요.');
+    });
   };
 
   return (
@@ -30,7 +41,7 @@ export default function FindPassword() {
             id='email'
             type='email'
             value={email}
-            onChange={updateDate}
+            onChange={updateData}
             placeholder='이메일을 입력해주세요'
           />
         </div>
@@ -42,10 +53,10 @@ export default function FindPassword() {
             : 'border-gray-scale-6 text-gray-scale-5 bg-gray-scale-8'
         } text-[18px] font-medium leading-[20px] tracking-[0.36px] py-[14px] shadow-prev-btn`}
         type='submit'
-        onClick={submitData}
+        onClick={requestCode}
         disabled={!REGEX.email.test(email)}
       >
-        비밀번호 찾기
+        인증 코드 전송
       </button>
       {isEmailVerified && (
         <>
@@ -57,16 +68,14 @@ export default function FindPassword() {
               id='code'
               type='text'
               value={code}
-              onChange={updateDate}
+              onChange={updateData}
               placeholder='인증 코드'
             />
           </div>
           <button
             className='self-center w-[194px] rounded border border-gray-scale-5 text-gray-scale-1 text-[18px] font-medium leading-[20px] tracking-[0.36px] py-[14px] shadow-prev-btn'
             type='button'
-            onClick={() => {
-              console.log('비밀번호 변경 페이지로 이동');
-            }}
+            onClick={verifyAuthCode}
           >
             비밀번호 재설정
           </button>
