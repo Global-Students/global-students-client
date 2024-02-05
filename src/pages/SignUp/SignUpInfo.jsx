@@ -131,24 +131,28 @@ export default function SignUpInfo({ moveStep, signUpInfo, updateSignUpInfo }) {
             <div>
               <Label label={LABEL.name} required />
               <div className='flex gap-4'>
-                <Input
-                  id='firstName'
-                  type='text'
-                  value={firstName}
-                  onChange={updateSignUpInfo}
-                  placeholder={PLACEHOLDER.firstName}
-                >
-                  <ResetIcon />
-                </Input>
-                <Input
-                  id='lastName'
-                  type='text'
-                  value={lastName}
-                  onChange={updateSignUpInfo}
-                  placeholder={PLACEHOLDER.lastName}
-                >
-                  <ResetIcon />
-                </Input>
+                <div className='flex-1'>
+                  <Input
+                    id='firstName'
+                    type='text'
+                    value={firstName}
+                    onChange={updateSignUpInfo}
+                    placeholder={PLACEHOLDER.firstName}
+                  >
+                    <ResetIcon />
+                  </Input>
+                </div>
+                <div className='flex-1'>
+                  <Input
+                    id='lastName'
+                    type='text'
+                    value={lastName}
+                    onChange={updateSignUpInfo}
+                    placeholder={PLACEHOLDER.lastName}
+                  >
+                    <ResetIcon />
+                  </Input>
+                </div>
               </div>
             </div>
             <div>

@@ -20,8 +20,6 @@ module.exports = {
         DEFAULT: '14px',
       },
       backgroundImage: {
-        person: "url('/src/assets/person.svg')",
-        key: "url('/src/assets/key.svg')",
         translate: "url('/src/assets/translate.svg')",
         cancel: "url('/src/assets/cancel.svg')",
         like: "url('/src/assets/thumbUp.svg')",

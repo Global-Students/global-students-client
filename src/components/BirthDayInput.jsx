@@ -8,9 +8,9 @@ export default function BirthDayInput({
   placeholder,
 }) {
   return (
-    <div className='relative'>
+    <div className='flex border border-gray-scale-7-main rounded px-[19px] py-5 shadow-[0px_5px_30px_-15px_rgba(0, 0, 0, 0.12)]'>
       <select
-        className='appearance-none w-full h-[64px] border border-gray-scale-7-main rounded outline-none px-[19px] py-5 shadow-[0px_5px_30px_-15px_rgba(0, 0, 0, 0.12)] placeholder:gray-scale-4 placeholder:font-light'
+        className='flex-1 appearance-none outline-none'
         id={id}
         value={value}
         onChange={onChange}
@@ -20,9 +20,7 @@ export default function BirthDayInput({
           <option value={option}>{option}</option>
         ))}
       </select>
-      <p className='absolute top-1/2 right-0 -translate-y-1/2 flex justify-end items-centerbg-white text-gray-scale-4 font-light pl-[4px] mr-[19px]'>
-        {placeholder}
-      </p>
+      <p className='text-gray-scale-4 font-light'>{placeholder}</p>
     </div>
   );
 }

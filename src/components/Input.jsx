@@ -6,21 +6,14 @@ export default function Input({
   value,
   onChange,
   placeholder,
-  icon,
   children,
+  icon,
 }) {
-  const icons = {
-    person:
-      'w-full h-[64px] border border-gray-scale-7-main rounded outline-none bg-person bg-[22px_center] bg-no-repeat placeholder:gray-scale-4 placeholder:text-[18px] pl-[52px] pr-[44px] py-5 shadow',
-    key: 'w-full h-[64px] border border-gray-scale-7-main rounded outline-none bg-key bg-[22px_center] bg-no-repeat placeholder:gray-scale-4 placeholder:text-[18px] pl-[52px] pr-[44px] py-5 shadow',
-    [undefined]:
-      'w-full h-[64px] border border-gray-scale-7-main rounded outline-none px-[19px] py-5 shadow-[0px_5px_30px_-15px_rgba(0, 0, 0, 0.12)] placeholder:gray-scale-4 placeholder:font-light',
-  };
-
   return (
-    <div className='relative'>
+    <div className='flex items-center gap-[8px] border border-gray-scale-7-main rounded outline-none pl-[22px] shadow-[0px_5px_30px_-15px_rgba(0, 0, 0, 0.12)]'>
+      {icon && <img src={`/assets/${icon}.svg`} alt='icon' />}
       <input
-        className={icons[icon]}
+        className='w-0 h-[64px] flex-1 outline-none bg-transparent py-5 placeholder:gray-scale-4 placeholder:font-light'
         id={id}
         type={type}
         value={value}
@@ -28,9 +21,7 @@ export default function Input({
         placeholder={placeholder}
         autoComplete={type === 'password' ? 'current-password' : 'off'}
       />
-      <div className='absolute top-1/2 right-0 -translate-y-1/2 flex justify-end items-center'>
-        {children}
-      </div>
+      {children}
     </div>
   );
 }
