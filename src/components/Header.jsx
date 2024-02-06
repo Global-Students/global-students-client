@@ -8,32 +8,28 @@ export default function Header() {
   const [currentItem, setCurrentItem] = useState(0);
 
   useEffect(() => {
-    if (currentItem === 1 || pathname === '/NoticeBoard/All') {
+    if (currentItem === 1 || pathname.includes('/NoticeBoard/All/')) {
       navRectangle.current.style.width = '140px';
       navRectangle.current.style.left = '-13px';
-      navRectangle.current.style.opacity = '1';
     }
-    if (currentItem === 2 || pathname === '/NoticeBoard/International') {
+    if (currentItem === 2 || pathname.includes('/NoticeBoard/International/')) {
       navRectangle.current.style.width = '164px';
       navRectangle.current.style.left = '137px';
-      navRectangle.current.style.opacity = '1';
     }
-    if (currentItem === 3 || pathname === '/NoticeBoard/SouthKorea') {
+    if (currentItem === 3 || pathname.includes('/NoticeBoard/SouthKorea/')) {
       navRectangle.current.style.width = '132px';
       navRectangle.current.style.left = '317px';
-      navRectangle.current.style.opacity = '1';
     }
-    if (currentItem === 4 || pathname === '/SearchingFriend') {
+    if (currentItem === 4 || pathname.includes('/SearchingFriend/')) {
       navRectangle.current.style.width = '99px';
       navRectangle.current.style.left = '464px';
-      navRectangle.current.style.opacity = '1';
     }
     if (
-      pathname !== '/NoticeBoard/All' &&
-      pathname !== '/NoticeBoard/International' &&
-      pathname !== '/NoticeBoard/SouthKorea' &&
-      pathname !== '/SearchingFriend'
+      pathname.includes('/NoticeBoard/') ||
+      pathname.includes('/SearchingFriend')
     ) {
+      navRectangle.current.style.opacity = '1';
+    } else {
       navRectangle.current.style.opacity = '0';
     }
   });
