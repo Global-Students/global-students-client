@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import NoticeBoard from './pages/NoticeBoard';
 import SignUp from './pages/SignUp';
 import MyPage from './pages/MyPage';
+import DashBoard from './pages/DashBoard';
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
             <Route path='/signUp' element={<SignUp />} />
             <Route path='/myPage' element={<MyPage />} />
             <Route path='/findAccount' element={<FindAccountPage />} />
+            <Route path='/dashboard/myPosts' element={<DashBoard isMyPosts / >} />
+            <Route path='/dashboard/bookmarkPosts' element={<DashBoard/ >} />
           </Routes>
         </div>
         <Footer />
