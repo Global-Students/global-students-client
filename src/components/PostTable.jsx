@@ -16,8 +16,8 @@ function PostPreview( {title, comments, date, author, likes, views} ) {
             >
               <line y1="0.5" x2={953} y2="0.5" stroke="#E7EAF2" />
             </svg>
-            <div className="flex justify-start items-center w-[892px] absolute left-[31px] top-[25px] gap-[480px]">
-              <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[23px]">
+            <div className="flex justify-start items-center h-[71px] relative">
+              <div className="flex justify-start items-center absolute inset-y-0 left-[30px] gap-[23px]">
                 <p className="flex-grow-0 flex-shrink-0 text-lg text-left text-[#1e1e1e]">
                   {title}
                 </p>
@@ -28,7 +28,7 @@ function PostPreview( {title, comments, date, author, likes, views} ) {
                   {date}
                 </p>
               </div>
-              <div className="flex justify-end items-start flex-grow-0 flex-shrink-0 w-[220px] relative gap-[60px]">
+              <div className="flex justify-end items-center flex-grow-0 flex-shrink-0 absolute inset-y-0 right-[30px] w-[220px] gap-[60px]">
                 <p className="flex-grow-0 flex-shrink-0 text-sm font-light text-left text-[#808593]">
                     {author}
                 </p>
@@ -73,7 +73,7 @@ function PostPreview( {title, comments, date, author, likes, views} ) {
     );
 }
 
-export default function PostTable({ tablename }) {
+export default function PostTable({ tablename, link}) {
     return(
         <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 relative">
         <div className="flex-grow-0 flex-shrink-0 w-[953px] h-[69px]">
@@ -83,7 +83,7 @@ export default function PostTable({ tablename }) {
                 {tablename}
               </p>
               <PrivacyButton />
-              <Link to='/'>
+              <a href={link}>
               <div className="flex flex-nowrap items-center absolute right-[0px] gap-1">
                 <p className="text-lg text-left text-[#808593]">
                   전체보기
@@ -116,11 +116,14 @@ export default function PostTable({ tablename }) {
                   </g>
                 </svg>
               </div>
-              </Link>
+              </a>
             </div>
           </div>
         </div>
         <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[953px] relative overflow-hidden rounded-bl-[14px] rounded-br-[14px] border-t-0 border-r border-b border-l border-[#e7eaf2]">
+          <Link to='/'>
+          <PostPreview title="게시글 제목" comments="0" date="1월 1일" author="작성자" likes="0" views="조회수"/>
+          </Link>
           <Link to='/'>
           <PostPreview title="게시글 제목" comments="0" date="1월 1일" author="작성자" likes="0" views="조회수"/>
           </Link>
