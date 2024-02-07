@@ -21,7 +21,7 @@ export default function FindPassword() {
   };
   const navigator = useNavigate();
   const verifyAuthCode = () => {
-    verifyCode(code).then((result) => {
+    verifyCode(data).then((result) => {
       if (result) {
         navigator('/');
         return;

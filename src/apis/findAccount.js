@@ -19,12 +19,9 @@ const sendCode = (body) =>
     .then(() => true)
     .catch(() => false);
 
-const verifyCode = (code) =>
+const verifyCode = (body) =>
   axios
-    .get(API_PATH.findPassword, {
-      params: {
-        code,
-      },
+    .post(API_PATH.findPasswordCode, body, {
       headers: { 'Content-Type': 'application/json' },
     })
     .then(() => true)

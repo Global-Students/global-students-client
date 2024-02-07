@@ -82,8 +82,8 @@ const handlers = [
     //   },
     // ),
   ),
-  http.get(
-    'user/find-password',
+  http.post(
+    'user/find-password/code',
     () =>
       HttpResponse.json({
         isSuccess: true,
