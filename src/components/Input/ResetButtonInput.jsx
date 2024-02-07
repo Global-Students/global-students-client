@@ -9,6 +9,7 @@ export default function ResetButtonInput({
   placeholder,
   onChange,
   onReset,
+  icon,
 }) {
   return (
     <Input
@@ -17,6 +18,7 @@ export default function ResetButtonInput({
       value={value}
       onChange={onChange}
       placeholder={placeholder}
+      icon={icon}
     >
       <ResetButton id={id} onReset={onReset} />
     </Input>
