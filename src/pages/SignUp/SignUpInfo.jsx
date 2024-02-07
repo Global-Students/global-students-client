@@ -7,8 +7,8 @@ import {
 } from '../../apis/signUp';
 import OrangeButton from '../../components/Button/OrangeButton';
 import FieldSet from '../../components/FieldSet';
-import BirthDayInput from '../../components/Input/BirthDayInput';
 import DuplicateCheckInput from '../../components/Input/DuplicateCheckInput';
+import OptionInput from '../../components/Input/OptionInput';
 import ResetButtonInput from '../../components/Input/ResetButtonInput';
 import Label from '../../components/Label';
 import ValidationMessage from '../../components/ValidationMessage';
@@ -179,31 +179,37 @@ export default function SignUpInfo({
               <Label label={LABEL.birthDay} required />
               <div className='flex justify-between gap-[16px]'>
                 <div className='flex-[2_1_0%]'>
-                  <BirthDayInput
+                  <OptionInput
                     id='birthYear'
                     value={birthYear}
                     options={YEARS}
+                    placeholder='----'
                     onChange={updateSignUpInfo}
-                    placeholder={PLACEHOLDER.year}
-                  />
+                  >
+                    {PLACEHOLDER.year}
+                  </OptionInput>
                 </div>
                 <div className='flex-1'>
-                  <BirthDayInput
+                  <OptionInput
                     id='birthMonth'
                     value={birthMonth}
                     options={MONTHS}
+                    placeholder='----'
                     onChange={updateSignUpInfo}
-                    placeholder={PLACEHOLDER.month}
-                  />
+                  >
+                    {PLACEHOLDER.month}
+                  </OptionInput>
                 </div>
                 <div className='flex-1'>
-                  <BirthDayInput
+                  <OptionInput
                     id='birthDate'
                     value={birthDate}
                     options={DATES}
+                    placeholder='----'
                     onChange={updateSignUpInfo}
-                    placeholder={PLACEHOLDER.date}
-                  />
+                  >
+                    {PLACEHOLDER.date}
+                  </OptionInput>
                 </div>
               </div>
             </div>
