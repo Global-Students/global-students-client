@@ -298,7 +298,10 @@ export default function SignUpInfo({
                 type='email'
                 value={universityEmail}
                 placeholder={PLACEHOLDER.universityEmail}
-                onChange={(event) => setUniversityEmail(event.target.value)}
+                onChange={(event) => {
+                  setUniversityEmail(event.target.value);
+                  setSignUpInfo((prev) => ({ ...prev, verified: false }));
+                }}
                 onReset={setSignUpInfo}
               />
             </div>
