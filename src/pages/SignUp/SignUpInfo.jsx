@@ -46,7 +46,7 @@ export default function SignUpInfo({
     userId: false,
     nickname: false,
   });
-  const [message, setMesaage] = useState({ userId: '', password: '' });
+  const [message, setMessage] = useState({ userId: '', password: '' });
   const checkUserIdPattern = () => REGEX.userIdPattern.test(userId);
   const checkPasswordPattern = () => REGEX.passwordPattern.test(password);
   const checkPasswordReEnter = () => password === confirmPassword;
@@ -80,7 +80,7 @@ export default function SignUpInfo({
               onChange={(event) => {
                 updateSignUpInfo(event);
                 setIsUniqued((prev) => ({ ...prev, userId: false }));
-                setMesaage((prev) => ({
+                setMessage((prev) => ({
                   ...prev,
                   userId: '',
                 }));
@@ -90,14 +90,14 @@ export default function SignUpInfo({
                   checkIdDuplicate(userId).then((result) => {
                     if (result) {
                       setIsUniqued((prev) => ({ ...prev, userId: true }));
-                      setMesaage((prev) => ({
+                      setMessage((prev) => ({
                         ...prev,
                         userId: '사용할 수 있는 아이디입니다.',
                       }));
                       return;
                     }
                     setIsUniqued((prev) => ({ ...prev, userId: false }));
-                    setMesaage((prev) => ({
+                    setMessage((prev) => ({
                       ...prev,
                       userId: '사용할 수 없는 아이디입니다.',
                     }));
@@ -215,7 +215,7 @@ export default function SignUpInfo({
                 onChange={(event) => {
                   updateSignUpInfo(event);
                   setIsUniqued((prev) => ({ ...prev, nickname: false }));
-                  setMesaage((prev) => ({
+                  setMessage((prev) => ({
                     ...prev,
                     nickname: '',
                   }));
@@ -224,14 +224,14 @@ export default function SignUpInfo({
                   checkNicknameDuplicate(nickname).then((result) => {
                     if (result) {
                       setIsUniqued((prev) => ({ ...prev, nickname: true }));
-                      setMesaage((prev) => ({
+                      setMessage((prev) => ({
                         ...prev,
                         nickname: '사용할 수 있는 닉네임입니다.',
                       }));
                       return;
                     }
                     setIsUniqued((prev) => ({ ...prev, nickname: false }));
-                    setMesaage((prev) => ({
+                    setMessage((prev) => ({
                       ...prev,
                       nickname: '사용할 수 없는 닉네임입니다.',
                     }));
