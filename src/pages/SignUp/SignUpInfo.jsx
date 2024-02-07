@@ -48,10 +48,16 @@ export default function SignUpInfo({
     userId: false,
     nickname: false,
   });
-  const [message, setMessage] = useState({ userId: '', password: '' });
-  const checkUserIdPattern = () => REGEX.userIdPattern.test(userId);
-  const checkPasswordPattern = () => REGEX.passwordPattern.test(password);
-  const checkPasswordReEnter = () => password === confirmPassword;
+  const [message, setMessage] = useState({
+    userIdPattern: '',
+    userIdDuplication: '',
+    passwordPattern: '',
+    passwordReEntry: '',
+    nicknameDuplication: '',
+  });
+  const checkUserIdPattern = (value) => REGEX.userIdPattern.test(value);
+  const checkPasswordPattern = (value) => REGEX.passwordPattern.test(value);
+  const checkPasswordReEnter = (value) => password === value;
 
   const isPassed =
     isUniqued.userId &&
@@ -78,40 +84,42 @@ export default function SignUpInfo({
               id='userId'
               value={userId}
               placeholder={PLACEHOLDER.id}
-              message={message.userId}
+              message={message.userIdDuplication}
               onChange={(event) => {
                 updateSignUpInfo(event);
-                setIsUniqued((prev) => ({ ...prev, userId: false }));
                 setMessage((prev) => ({
                   ...prev,
-                  userId: '',
+                  userIdPattern: `${
+                    checkUserIdPattern(event.target.value) ||
+                    event.target.value === ''
+                      ? ''
+                      : '4자 이상 16자 이하의 영소문사/숫자를 사용해주세요.'
+                  }`,
+                  userIdDuplication: '',
                 }));
+                setIsUniqued((prev) => ({ ...prev, userId: false }));
               }}
               onClick={() => {
-                if (checkUserIdPattern()) {
+                if (checkUserIdPattern(userId)) {
                   checkIdDuplicate(userId).then((result) => {
                     if (result) {
                       setIsUniqued((prev) => ({ ...prev, userId: true }));
                       setMessage((prev) => ({
                         ...prev,
-                        userId: '사용할 수 있는 아이디입니다.',
+                        userIdDuplication: '사용할 수 있는 아이디입니다.',
                       }));
                       return;
                     }
                     setIsUniqued((prev) => ({ ...prev, userId: false }));
                     setMessage((prev) => ({
                       ...prev,
-                      userId: '사용할 수 없는 아이디입니다.',
+                      userIdDuplication: '사용할 수 없는 아이디입니다.',
                     }));
                   });
                 }
               }}
             />
-            <ValidationMessage
-              isShowed={!checkUserIdPattern()}
-              message='4자 이상 16자 이하의 영소문사/숫자를 사용해주세요.'
-              value={userId}
-            />
+            <ValidationMessage message={message.userIdPattern} />
           </div>
           <div className='flex flex-col gap-[20px]'>
             <div>
@@ -121,14 +129,21 @@ export default function SignUpInfo({
                 type='password'
                 value={password}
                 placeholder={PLACEHOLDER.password}
-                onChange={updateSignUpInfo}
+                onChange={(event) => {
+                  updateSignUpInfo(event);
+                  setMessage((prev) => ({
+                    ...prev,
+                    passwordPattern: `${
+                      checkPasswordPattern(event.target.value) ||
+                      event.target.value === ''
+                        ? ''
+                        : '8자 이상의 영문 대소문자/숫자/특수문자를 사용해주세요.'
+                    }`,
+                  }));
+                }}
                 onReset={setSignUpInfo}
               />
-              <ValidationMessage
-                isShowed={!checkPasswordPattern()}
-                message='8자 이상의 영문 대소문자/숫자/특수문자를 사용해주세요.'
-                value={password}
-              />
+              <ValidationMessage message={message.passwordPattern} />
             </div>
             <div>
               <Label label={LABEL.confirmPassword} required />
@@ -137,14 +152,21 @@ export default function SignUpInfo({
                 type='password'
                 value={confirmPassword}
                 placeholder={PLACEHOLDER.password}
-                onChange={updateSignUpInfo}
+                onChange={(event) => {
+                  updateSignUpInfo(event);
+                  setMessage((prev) => ({
+                    ...prev,
+                    passwordReEntry: `${
+                      checkPasswordReEnter(event.target.value) ||
+                      event.target.value === ''
+                        ? ''
+                        : '비밀번호가 틀립니다. 다시 입력해주세요.'
+                    }`,
+                  }));
+                }}
                 onReset={setSignUpInfo}
               />
-              <ValidationMessage
-                isShowed={!checkPasswordReEnter()}
-                message='비밀번호가 틀립니다. 다시 입력해주세요.'
-                value={confirmPassword}
-              />
+              <ValidationMessage message={message.passwordReEntry} />
             </div>
           </div>
         </FieldSet>
@@ -219,13 +241,13 @@ export default function SignUpInfo({
                 id='nickname'
                 value={nickname}
                 placeholder={PLACEHOLDER.nickname}
-                message={message.nickname}
+                message={message.nicknameDuplication}
                 onChange={(event) => {
                   updateSignUpInfo(event);
                   setIsUniqued((prev) => ({ ...prev, nickname: false }));
                   setMessage((prev) => ({
                     ...prev,
-                    nickname: '',
+                    nicknameDuplication: '',
                   }));
                 }}
                 onClick={() =>
@@ -234,14 +256,14 @@ export default function SignUpInfo({
                       setIsUniqued((prev) => ({ ...prev, nickname: true }));
                       setMessage((prev) => ({
                         ...prev,
-                        nickname: '사용할 수 있는 닉네임입니다.',
+                        nicknameDuplication: '사용할 수 있는 닉네임입니다.',
                       }));
                       return;
                     }
                     setIsUniqued((prev) => ({ ...prev, nickname: false }));
                     setMessage((prev) => ({
                       ...prev,
-                      nickname: '사용할 수 없는 닉네임입니다.',
+                      nicknameDuplication: '사용할 수 없는 닉네임입니다.',
                     }));
                   })
                 }
