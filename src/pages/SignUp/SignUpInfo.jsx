@@ -3,6 +3,7 @@ import {
   checkIdDuplicate,
   checkNicknameDuplicate,
   submitSignUpInfo,
+  verifyUniversityEmail,
 } from '../../apis/signUp';
 import OrangeButton from '../../components/Button/OrangeButton';
 import FieldSet from '../../components/FieldSet';
@@ -42,6 +43,7 @@ export default function SignUpInfo({
     homeUniversity,
     hostUniversity,
   } = signUpInfo;
+  const [universityEmail, setUniversityEmail] = useState('');
   const [isUniqued, setIsUniqued] = useState({
     userId: false,
     nickname: false,
@@ -253,23 +255,25 @@ export default function SignUpInfo({
               />
             </div>
             <div>
-              <Label label={LABEL.hostCountry} required />
-              <ResetButtonInput
-                id='hostCountry'
-                type='text'
-                value={hostCountry}
-                placeholder={PLACEHOLDER.hostCountry}
-                onChange={updateSignUpInfo}
-                onReset={setSignUpInfo}
-              />
-            </div>
-            <div>
               <Label label={LABEL.homeUniversity} required />
               <ResetButtonInput
                 id='homeUniversity'
                 type='text'
                 value={homeUniversity}
                 placeholder={PLACEHOLDER.homeUniversity}
+                onChange={updateSignUpInfo}
+                onReset={setSignUpInfo}
+              />
+            </div>
+          </div>
+          <div className='flex flex-col gap-[20px]'>
+            <div>
+              <Label label={LABEL.hostCountry} required />
+              <ResetButtonInput
+                id='hostCountry'
+                type='text'
+                value={hostCountry}
+                placeholder={PLACEHOLDER.hostCountry}
                 onChange={updateSignUpInfo}
                 onReset={setSignUpInfo}
               />
@@ -285,6 +289,34 @@ export default function SignUpInfo({
                 onReset={setSignUpInfo}
               />
             </div>
+            <div>
+              <Label label={LABEL.universityEmail} />
+              <ResetButtonInput
+                id='emailVerification'
+                type='email'
+                value={universityEmail}
+                placeholder={PLACEHOLDER.universityEmail}
+                onChange={(event) => setUniversityEmail(event.target.value)}
+                onReset={setSignUpInfo}
+              />
+            </div>
+            <OrangeButton
+              text='학교 이메일 인증하기'
+              textSize={16}
+              py={16}
+              onClick={() => {
+                verifyUniversityEmail({
+                  email: universityEmail,
+                  university: hostUniversity,
+                }).then((result) => {
+                  if (result) {
+                    setSignUpInfo((prev) => ({ ...prev, verified: true }));
+                    return;
+                  }
+                  setSignUpInfo((prev) => ({ ...prev, verified: false }));
+                });
+              }}
+            />
           </div>
         </FieldSet>
       </form>

@@ -25,6 +25,7 @@ export default function SignUp() {
     hostCountry: '',
     homeUniversity: '',
     hostUniversity: '',
+    verified: false,
   });
   const updateSignUpInfo = (event) => {
     const { id, value, checked } = event.target;
