@@ -329,7 +329,7 @@ export default function SignUpInfo({
                     emailVerification: '',
                   }));
                 }}
-                onReset={setSignUpInfo}
+                onReset={() => setUniversityEmail('')}
               />
               <ValidationMessage message={message.emailVerification} />
             </div>
