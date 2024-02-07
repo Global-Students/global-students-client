@@ -251,48 +251,44 @@ export default function SignUpInfo({
           <div className='flex flex-col gap-[20px]'>
             <div>
               <Label label={LABEL.nationality} required />
-              <ResetButtonInput
+              <OptionInput
                 id='nationality'
-                type='text'
                 value={nationality}
+                options={['나라1', '나라2', '나라3']}
                 placeholder={PLACEHOLDER.nationality}
                 onChange={updateSignUpInfo}
-                onReset={setSignUpInfo}
               />
             </div>
             <div>
               <Label label={LABEL.homeUniversity} required />
-              <ResetButtonInput
+              <OptionInput
                 id='homeUniversity'
-                type='text'
                 value={homeUniversity}
+                options={['학교1', '학교2', '학교3']}
                 placeholder={PLACEHOLDER.homeUniversity}
                 onChange={updateSignUpInfo}
-                onReset={setSignUpInfo}
               />
             </div>
           </div>
           <div className='flex flex-col gap-[20px]'>
             <div>
               <Label label={LABEL.hostCountry} required />
-              <ResetButtonInput
+              <OptionInput
                 id='hostCountry'
-                type='text'
                 value={hostCountry}
+                options={['나라1', '나라2', '나라3']}
                 placeholder={PLACEHOLDER.hostCountry}
                 onChange={updateSignUpInfo}
-                onReset={setSignUpInfo}
               />
             </div>
             <div>
               <Label label={LABEL.hostUniversity} required />
-              <ResetButtonInput
+              <OptionInput
                 id='hostUniversity'
-                type='text'
                 value={hostUniversity}
+                options={['학교1', '학교2', '학교3']}
                 placeholder={PLACEHOLDER.hostUniversity}
                 onChange={updateSignUpInfo}
-                onReset={setSignUpInfo}
               />
             </div>
             <div>
