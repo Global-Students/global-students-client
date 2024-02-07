@@ -1,8 +1,7 @@
 import React from 'react';
 import OrangeButton from '../components/Button/OrangeButton';
 import TranslateButton from '../components/Button/TranslateButton';
-import Input from '../components/Input';
-import ResetIcon from '../components/ResetIcon';
+import ResetButtonInput from '../components/Input/ResetButtonInput';
 import useLogin from '../hooks/useLogin';
 
 export default function Login() {
@@ -17,26 +16,24 @@ export default function Login() {
         </div>
         <form className='flex flex-col border border-gray-scale-7-main rounded p-[25px] shadow'>
           <div className='flex flex-col gap-[10px] mb-[52px]'>
-            <Input
+            <ResetButtonInput
               id='username'
               type='text'
               value={loginData.username}
-              onChange={updateLoginFormData}
               placeholder='아이디'
+              onChange={updateLoginFormData}
+              onReset={() => {}}
               icon='person'
-            >
-              <ResetIcon />
-            </Input>
-            <Input
+            />
+            <ResetButtonInput
               id='password'
               type='password'
               value={loginData.password}
-              onChange={updateLoginFormData}
               placeholder='비밀번호'
+              onChange={updateLoginFormData}
+              onReset={() => {}}
               icon='key'
-            >
-              <ResetIcon />
-            </Input>
+            />
           </div>
           <OrangeButton
             text='로그인'

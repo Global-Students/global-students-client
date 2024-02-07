@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { sendCode, verifyCode } from '../../apis/findAccount';
-import Input from '../../components/Input';
+import Input from '../../components/Input/Input';
 import { REGEX } from '../../constants';
 
 export default function FindPassword() {

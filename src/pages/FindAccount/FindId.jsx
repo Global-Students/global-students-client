@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { findId } from '../../apis/findAccount';
-import Input from '../../components/Input';
+import Input from '../../components/Input/Input';
 import { REGEX } from '../../constants';
 
 export default function FindId() {

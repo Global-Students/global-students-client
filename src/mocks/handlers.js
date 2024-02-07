@@ -13,6 +13,48 @@ const handlers = [
       ),
     // HttpResponse.json({ message: '로그인 실패' }, { status: 400 }),
   ),
+  http.get(`/auth/join/check-id/:userId`, () =>
+    HttpResponse.json({
+      isSuccess: true,
+      message: 'OK - user id',
+    }),
+  ),
+  http.get(
+    `/auth/join/check-nickname/:nickname`,
+    () =>
+      HttpResponse.json({
+        isSuccess: true,
+        message: 'OK - nickname',
+      }),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'CHECK409_2',
+    //       message: 'fail - nickname',
+    //     },
+    //     { status: 400 },
+    //   ),
+  ),
+  http.post(
+    `/auth/join/information`,
+    () =>
+      HttpResponse.json({
+        isSuccess: true,
+        message: '회원가입 성공',
+      }),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON500',
+    //       // code: 'COMMON503',
+    //       message: 'fail - signUp',
+    //     },
+    //     { status: 500 },
+    //   ),
+    // const baseUrl = ' http://localhost';
+  ),
   http.post('/user/find-id', () =>
     HttpResponse.json({
       isSuccess: true,
@@ -29,16 +71,16 @@ const handlers = [
         message: 'find password - ok',
       }),
     // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'VERIFY400_3',
-    //       message: 'find password - fail',
-    //     },
-    //     {
-    //       status: 400,
-    //     },
-    //   ),
+    // HttpResponse.json(
+    //   {
+    //     isSuccess: false,
+    //     code: 'VERIFY400_3',
+    //     message: 'find password - fail',
+    //   },
+    //   {
+    //     status: 400,
+    //   },
+    // ),
   ),
   http.get(
     'user/find-password',
@@ -52,14 +94,13 @@ const handlers = [
     //   HttpResponse.json(
     //     {
     //       isSuccess: false,
-    //       code: 'VERIFY403_3',
+    //       code: 'CHECK403_2',
     //       message: 'code verification - fail',
     //     },
     //     {
     //       status: 400,
     //     },
     //   ),
-    // const baseUrl = ' http://localhost';
   ),
 ];
 
