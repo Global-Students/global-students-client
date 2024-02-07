@@ -54,6 +54,7 @@ export default function SignUpInfo({
     passwordPattern: '',
     passwordReEntry: '',
     nicknameDuplication: '',
+    emailVerification: '',
   });
   const checkUserIdPattern = (value) => REGEX.userIdPattern.test(value);
   const checkPasswordPattern = (value) => REGEX.passwordPattern.test(value);
@@ -323,9 +324,14 @@ export default function SignUpInfo({
                 onChange={(event) => {
                   setUniversityEmail(event.target.value);
                   setSignUpInfo((prev) => ({ ...prev, verified: false }));
+                  setMessage((prev) => ({
+                    ...prev,
+                    emailVerification: '',
+                  }));
                 }}
                 onReset={setSignUpInfo}
               />
+              <ValidationMessage message={message.emailVerification} />
             </div>
             <OrangeButton
               text='학교 이메일 인증하기'
@@ -338,9 +344,17 @@ export default function SignUpInfo({
                 }).then((result) => {
                   if (result) {
                     setSignUpInfo((prev) => ({ ...prev, verified: true }));
+                    setMessage((prev) => ({
+                      ...prev,
+                      emailVerification: '인증에 성공했습니다.',
+                    }));
                     return;
                   }
                   setSignUpInfo((prev) => ({ ...prev, verified: false }));
+                  setMessage((prev) => ({
+                    ...prev,
+                    emailVerification: '인증에 실패했습니다.',
+                  }));
                 });
               }}
             />
