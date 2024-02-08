@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import HeaderIcon from './HeaderIcon';
+import ChatModal from './Chat/ChatModal';
 
 export default function LoginControl() {
   // const [isLogin, setIsLogin] = useState(false);
@@ -12,13 +13,23 @@ export default function LoginControl() {
     setIsLogin(!isLogin);
   } */
 
+  // for chat modal
+  const [isChatModalOpen, setIsChatModalOpen] = useState(false);
+  function handleClick() {
+    setIsChatModalOpen(!isChatModalOpen);
+  }
+  function handleKeyDown() {
+    console.log('keydown');
+  }
+
   return (
     <div>
       {isLogin ? (
         <div className='flex flex-row w-[131px] items-center justify-between'>
-          <Link to='/Message'>
+          <div onClick={handleClick} onKeyDown={handleKeyDown} role="button" tabIndex={0}>
             <HeaderIcon label='message' />
-          </Link>
+            <ChatModal _isChatModalOpen={isChatModalOpen} />
+          </div>
           <Link to='/MyPage'>
             <HeaderIcon label='mypage' />
           </Link>
