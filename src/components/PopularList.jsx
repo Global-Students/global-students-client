@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-export default function PopularList() {
+export default function PopularList({ baseurl, popular }) {
   const [isClick, setIsClick] = useState(false);
 
   function handleToggle() {
@@ -47,22 +48,30 @@ export default function PopularList() {
               <img src='/assets/arrowNew.svg' alt='arrowNew' />
             </div>
           </button>
-          <table className='w-[953px] h-[351px] table-fixed rounded-b-[14px] border border-separate	border-spacing-0 hover:overflow-hidden border-gray-scale-8'>
+          <table className='w-[953px] h-[351px] table-fixed rounded-b-[14px] border border-separate	border-spacing-0 overflow-hidden border-gray-scale-7 '>
             <tbody>
-              <tr className='h-[71px] border-b border-gray-scale-7-main hover:bg-gray-scale-8'>
-                <td className='w-[77px] text-center text-orange-main text-xl font-bold'>
-                  1
-                </td>
-                <td className='w-[806px] text-gray-scale-1 text-lg font-normal'>
-                  게시글 제목
-                </td>
-                <td className='w-[70px]'>
-                  <div className='flex flex-row w-[70px] items-center text-gray-scale-4 text-base font-light'>
-                    <img src='/assets/thumbUp.svg' alt='thumbUp' />
-                    &nbsp;00
-                  </div>
-                </td>
-              </tr>
+              {popular.popular &&
+                popular.popular.map((populars, index) => (
+                  <Link to={`${baseurl}/${populars.postId}`}>
+                    <tr
+                      key={populars.postId}
+                      className='flex h-[71px] justify-center items-center border-b border-gray-scale-7-main hover:bg-gray-scale-8 '
+                    >
+                      <td className='w-[77px] text-center text-orange-main text-xl font-bold'>
+                        {index + 1}
+                      </td>
+                      <td className='w-[806px] text-gray-scale-1 text-lg font-normal'>
+                        {populars.title}
+                      </td>
+                      <td className='w-[70px]'>
+                        <div className='flex flex-row w-[70px] items-center text-gray-scale-4 text-base font-light'>
+                          <img src='/assets/thumbUp.svg' alt='thumbUp' />
+                          &nbsp;{populars.likes}
+                        </div>
+                      </td>
+                    </tr>
+                  </Link>
+                ))}
             </tbody>
           </table>
         </div>

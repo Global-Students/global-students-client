@@ -1,0 +1,150 @@
+{
+  "isSuccess": true,
+  "code": "BOARD200_1",
+  "message": "OK",
+  "result": [
+    {
+      "page": 1,
+      "size": 10,
+      "totalPage": 10,
+      "totalPost": 100
+    },
+    {
+      "notice": "공지 게시글 제목",
+      "postId": "게시글 ID"
+    },
+    {
+      "popular": [
+        {
+          "title": "인기 게시글1 제목",
+          "likes": 12,
+          "postId": "게시글 ID"
+        },
+        {
+          "title": "인기 게시글2 제목",
+          "likes": 10,
+          "postId": "게시글 ID"
+        },
+        {
+          "title": "인기 게시글3 제목",
+          "likes": 11,
+          "postId": "게시글 ID"
+        },
+        {
+          "title": "인기 게시글4 제목",
+          "likes": 35,
+          "postId": "게시글 ID"
+        },
+        {
+          "title": "인기 게시글5 제목",
+          "likes": 40,
+          "postId": "게시글 ID"
+        }
+      ]
+    },
+    {
+      "posts": [
+        {
+          "title": "게시글1 제목",
+          "numberOfComments": 1,
+          "date": "작성일",
+          "author": "작성자",
+          "likes": 20,
+          "views": 15,
+          "hasImage": false,
+          "postId": "게시글 ID"
+        },
+        {
+          "title": "게시글2 제목",
+          "numberOfComments": 0,
+          "date": "작성일",
+          "author": "작성자",
+          "likes": 20,
+          "views": 10,
+          "hasImage": false,
+          "postId": "게시글 ID"
+        },
+        {
+          "title": "게시글3 제목",
+          "numberOfComments": 0,
+          "date": "작성일",
+          "author": "작성자",
+          "likes": 20,
+          "views": 22,
+          "hasImage": true,
+          "postId": "게시글 ID"
+        },
+        {
+          "title": "게시글4 제목",
+          "numberOfComments": 4,
+          "date": "작성일",
+          "author": "작성자",
+          "likes": 20,
+          "views": 39,
+          "hasImage": false,
+          "postId": "게시글 ID"
+        },
+        {
+          "title": "게시글5 제목",
+          "numberOfComments": 7,
+          "date": "작성일",
+          "author": "작성자",
+          "likes": 20,
+          "views": 101,
+          "hasImage": true,
+          "postId": "게시글 ID"
+        },
+        {
+          "title": "게시글6 제목",
+          "numberOfComments": 0,
+          "date": "작성일",
+          "author": "작성자",
+          "likes": 20,
+          "views": 10,
+          "hasImage": false,
+          "postId": "게시글 ID"
+        },
+        {
+          "title": "게시글7 제목",
+          "numberOfComments": 0,
+          "date": "작성일",
+          "author": "작성자",
+          "likes": 20,
+          "views": 10,
+          "hasImage": false,
+          "postId": "게시글 ID"
+        },
+        {
+          "title": "게시글8 제목",
+          "numberOfComments": 0,
+          "date": "작성일",
+          "author": "작성자",
+          "likes": 20,
+          "views": 10,
+          "hasImage": false,
+          "postId": "게시글 ID"
+        },
+        {
+          "title": "게시글9 제목",
+          "numberOfComments": 0,
+          "date": "작성일",
+          "author": "작성자",
+          "likes": 20,
+          "views": 10,
+          "hasImage": false,
+          "postId": "게시글 ID"
+        },
+        {
+          "title": "게시글10 제목",
+          "numberOfComments": 0,
+          "date": "작성일",
+          "author": "작성자",
+          "likes": 20,
+          "views": 10,
+          "hasImage": false,
+          "postId": "게시글 ID"
+        }
+      ]
+    }
+  ]
+}
