@@ -1,5 +1,5 @@
 import React from 'react';
-import SuspensionButton from './Button/SuspensionButton';
+import SuspensionButton from '../Button/SuspensionButton';
 
 export default function MemberListTable() {
   const schema = [

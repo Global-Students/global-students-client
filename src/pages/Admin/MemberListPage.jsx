@@ -1,6 +1,6 @@
 import React from 'react';
-import MemberListTable from '../../components/MemberListTable';
 import SearchBox from '../../components/SearchBox';
+import MemberListTable from '../../components/Table/MemberListTable';
 
 export default function MemberList() {
   const layoutStyle = 'flex flex-col items-center';
