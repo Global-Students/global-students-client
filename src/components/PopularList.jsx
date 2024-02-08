@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-export default function PopularList({ baseurl, popular }) {
+export default function PopularList({ baseurl, populars }) {
   const [isClick, setIsClick] = useState(false);
 
   function handleToggle() {
@@ -50,23 +50,23 @@ export default function PopularList({ baseurl, popular }) {
           </button>
           <table className='w-[953px] h-[351px] table-fixed rounded-b-[14px] border border-separate	border-spacing-0 overflow-hidden border-gray-scale-7 '>
             <tbody>
-              {popular.popular &&
-                popular.popular.map((populars, index) => (
-                  <Link to={`${baseurl}/${populars.postId}`}>
+              {populars &&
+                populars.map((popular, index) => (
+                  <Link to={`${baseurl}/${popular.postId}`}>
                     <tr
-                      key={populars.postId}
+                      key={popular.postId}
                       className='flex h-[71px] justify-center items-center border-b border-gray-scale-7-main hover:bg-gray-scale-8 '
                     >
                       <td className='w-[77px] text-center text-orange-main text-xl font-bold'>
                         {index + 1}
                       </td>
                       <td className='w-[806px] text-gray-scale-1 text-lg font-normal'>
-                        {populars.title}
+                        {popular.title}
                       </td>
                       <td className='w-[70px]'>
                         <div className='flex flex-row w-[70px] items-center text-gray-scale-4 text-base font-light'>
                           <img src='/assets/thumbUp.svg' alt='thumbUp' />
-                          &nbsp;{populars.likes}
+                          &nbsp;{popular.likes}
                         </div>
                       </td>
                     </tr>

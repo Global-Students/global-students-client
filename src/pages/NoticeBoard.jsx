@@ -7,9 +7,9 @@ import PopularList from '../components/PopularList';
 import Posts from '../components/Posts';
 
 export default function NoticeBoard() {
-  const [pageInfo, setPageInfo] = useState([]);
-  const [notice, setNotice] = useState([]);
-  const [popular, setPopular] = useState([]);
+  const [pageInfo, setPageInfo] = useState({});
+  const [notice, setNotice] = useState({});
+  const [populars, setPopulars] = useState([]);
   const [posts, setPosts] = useState([]);
 
   const [currentPage, setCurrPage] = useState(1);
@@ -37,11 +37,11 @@ export default function NoticeBoard() {
         url: requrl,
         header: { Authorization: accessToken },
       });
-      if (res.status === 200) {
-        setPageInfo(res.data.result[0]);
-        setNotice(res.data.result[1]);
-        setPopular(res.data.result[2]);
-        setPosts(res.data.result[3]);
+      if (res.data.code === 'COMMON200') {
+        setPageInfo(res.data.result.pageInfo);
+        setNotice(res.data.result.noticePost);
+        setPopulars(res.data.result.popular);
+        setPosts(res.data.result.posts);
       }
     } catch (error) {
       console.log(error);
@@ -81,7 +81,7 @@ export default function NoticeBoard() {
           />
           <Inform baseurl={baseurl} notice={notice} />
           <div className='flex flex-col items-center'>
-            <PopularList baseurl={baseurl} popular={popular} />
+            <PopularList baseurl={baseurl} populars={populars} />
             <Posts
               baseurl={baseurl}
               posts={posts}

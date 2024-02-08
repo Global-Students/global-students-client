@@ -16,8 +16,8 @@ export default function PostList({ baseurl, posts }) {
           </tr>
         </thead>
         <tbody className='flex flex-col bg-gray-scale-9'>
-          {posts.posts &&
-            posts.posts.map((post) => (
+          {posts &&
+            posts.map((post) => (
               <Link to={`${baseurl}/${post.postId}`}>
                 <tr
                   key={post.postId}

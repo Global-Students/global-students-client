@@ -1,150 +1,141 @@
 {
   "isSuccess": true,
-  "code": "BOARD200_1",
-  "message": "OK",
-  "result": [
-    {
+  "code": "COMMON200",
+  "message": "성공입니다",
+  "result": {
+    "pageInfo": {
       "page": 1,
       "size": 10,
       "totalPage": 10,
       "totalPost": 100
     },
-    {
-      "notice": "공지 게시글 제목",
-      "postId": "게시글 ID"
+    "noticePost": {
+      "title": "공지글입니다",
+      "postId": "20"
     },
-    {
-      "popular": [
-        {
-          "title": "인기 게시글1 제목",
-          "likes": 12,
-          "postId": "게시글 ID"
-        },
-        {
-          "title": "인기 게시글2 제목",
-          "likes": 10,
-          "postId": "게시글 ID"
-        },
-        {
-          "title": "인기 게시글3 제목",
-          "likes": 11,
-          "postId": "게시글 ID"
-        },
-        {
-          "title": "인기 게시글4 제목",
-          "likes": 35,
-          "postId": "게시글 ID"
-        },
-        {
-          "title": "인기 게시글5 제목",
-          "likes": 40,
-          "postId": "게시글 ID"
-        }
-      ]
-    },
-    {
-      "posts": [
-        {
-          "title": "게시글1 제목",
-          "numberOfComments": 1,
-          "date": "작성일",
-          "author": "작성자",
-          "likes": 20,
-          "views": 15,
-          "hasImage": false,
-          "postId": "게시글 ID"
-        },
-        {
-          "title": "게시글2 제목",
-          "numberOfComments": 0,
-          "date": "작성일",
-          "author": "작성자",
-          "likes": 20,
-          "views": 10,
-          "hasImage": false,
-          "postId": "게시글 ID"
-        },
-        {
-          "title": "게시글3 제목",
-          "numberOfComments": 0,
-          "date": "작성일",
-          "author": "작성자",
-          "likes": 20,
-          "views": 22,
-          "hasImage": true,
-          "postId": "게시글 ID"
-        },
-        {
-          "title": "게시글4 제목",
-          "numberOfComments": 4,
-          "date": "작성일",
-          "author": "작성자",
-          "likes": 20,
-          "views": 39,
-          "hasImage": false,
-          "postId": "게시글 ID"
-        },
-        {
-          "title": "게시글5 제목",
-          "numberOfComments": 7,
-          "date": "작성일",
-          "author": "작성자",
-          "likes": 20,
-          "views": 101,
-          "hasImage": true,
-          "postId": "게시글 ID"
-        },
-        {
-          "title": "게시글6 제목",
-          "numberOfComments": 0,
-          "date": "작성일",
-          "author": "작성자",
-          "likes": 20,
-          "views": 10,
-          "hasImage": false,
-          "postId": "게시글 ID"
-        },
-        {
-          "title": "게시글7 제목",
-          "numberOfComments": 0,
-          "date": "작성일",
-          "author": "작성자",
-          "likes": 20,
-          "views": 10,
-          "hasImage": false,
-          "postId": "게시글 ID"
-        },
-        {
-          "title": "게시글8 제목",
-          "numberOfComments": 0,
-          "date": "작성일",
-          "author": "작성자",
-          "likes": 20,
-          "views": 10,
-          "hasImage": false,
-          "postId": "게시글 ID"
-        },
-        {
-          "title": "게시글9 제목",
-          "numberOfComments": 0,
-          "date": "작성일",
-          "author": "작성자",
-          "likes": 20,
-          "views": 10,
-          "hasImage": false,
-          "postId": "게시글 ID"
-        },
-        {
-          "title": "게시글10 제목",
-          "numberOfComments": 0,
-          "date": "작성일",
-          "author": "작성자",
-          "likes": 20,
-          "views": 10,
-          "hasImage": false,
-          "postId": "게시글 ID"
-        }
-      ]
-    }
-  ]
+    "popular": [
+      {
+        "title": "아이유",
+        "likes": 1,
+        "postId": "19"
+      },
+      {
+        "title": "영화",
+        "likes": 1,
+        "postId": "5"
+      },
+      {
+        "title": "이미지 첨부 게시글",
+        "likes": 1,
+        "postId": "3"
+      },
+      {
+        "title": "수강신청",
+        "likes": 1,
+        "postId": "2"
+      }
+    ],
+    "posts": [
+      {
+        "title": "아이유",
+        "numberOfComments": 2,
+        "date": "2024-02-08 15:16:14",
+        "author": "global",
+        "likes": 1,
+        "views": 1,
+        "hasImage": true,
+        "postId": "19"
+      },
+      {
+        "title": "페이징 테스트",
+        "numberOfComments": 0,
+        "date": "2024-02-08 03:48:50",
+        "author": "익명",
+        "likes": 0,
+        "views": 0,
+        "hasImage": false,
+        "postId": "18"
+      },
+      {
+        "title": "페이징 테스트",
+        "numberOfComments": 0,
+        "date": "2024-02-08 03:48:40",
+        "author": "익명",
+        "likes": 0,
+        "views": 0,
+        "hasImage": false,
+        "postId": "17"
+      },
+      {
+        "title": "페이징 테스트",
+        "numberOfComments": 0,
+        "date": "2024-02-08 03:48:34",
+        "author": "익명",
+        "likes": 0,
+        "views": 0,
+        "hasImage": false,
+        "postId": "16"
+      },
+      {
+        "title": "페이징 테스트",
+        "numberOfComments": 0,
+        "date": "2024-02-08 03:48:29",
+        "author": "익명",
+        "likes": 0,
+        "views": 0,
+        "hasImage": false,
+        "postId": "15"
+      },
+      {
+        "title": "페이징 테스트",
+        "numberOfComments": 0,
+        "date": "2024-02-08 03:48:24",
+        "author": "익명",
+        "likes": 0,
+        "views": 0,
+        "hasImage": false,
+        "postId": "14"
+      },
+      {
+        "title": "페이징 테스트",
+        "numberOfComments": 0,
+        "date": "2024-02-08 03:48:14",
+        "author": "익명",
+        "likes": 0,
+        "views": 0,
+        "hasImage": false,
+        "postId": "13"
+      },
+      {
+        "title": "페이징 테스트",
+        "numberOfComments": 0,
+        "date": "2024-02-08 03:48:07",
+        "author": "익명",
+        "likes": 0,
+        "views": 0,
+        "hasImage": false,
+        "postId": "12"
+      },
+      {
+        "title": "페이징 테스트",
+        "numberOfComments": 0,
+        "date": "2024-02-08 03:48:02",
+        "author": "익명",
+        "likes": 0,
+        "views": 0,
+        "hasImage": false,
+        "postId": "11"
+      },
+      {
+        "title": "페이징 테스트",
+        "numberOfComments": 0,
+        "date": "2024-02-08 03:47:58",
+        "author": "익명",
+        "likes": 0,
+        "views": 0,
+        "hasImage": false,
+        "postId": "10"
+      }
+    ]
+  }
 }

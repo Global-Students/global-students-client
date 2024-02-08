@@ -10,7 +10,7 @@ export default function Inform({ baseurl, notice }) {
           to={`${baseurl}/${notice.postId}`}
           className='text-gray-scale-4 text-lg font-normal'
         >
-          {notice.notice}
+          {notice.title}
         </Link>
       </div>
     </div>
