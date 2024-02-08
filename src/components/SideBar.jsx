@@ -37,7 +37,7 @@ export default function SideBar() {
           className={`${listLayout} ${makerColor(MENU_ID.universityApproval)}`}
         >
           <Link
-            to='/admin'
+            to='/admin/universityApproval'
             className={listStyle(MENU_ID.universityApproval)}
             id={MENU_ID.universityApproval}
             onClick={changeMenu}
