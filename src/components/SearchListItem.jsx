@@ -1,6 +1,7 @@
 import React from "react";
 
-export default function SearchListItem({nickname, country, major, bio}) {
+export default function SearchListItem({userId, nickname, country, major, bio}) {
+    const link = `/Friend/${userId}`;
     return (
         <div className="flex w-[954px] h-[146px] px-[18px] py-[27.5px] border border-gray-scale-7-main rounded-[14px] gap-[449px]">
                 <div className="flex items-center gap-[30px]">
@@ -8,7 +9,9 @@ export default function SearchListItem({nickname, country, major, bio}) {
                     <div className="flex flex-col justify-center gap-[15px] h-[87px]">
                     <div className="flex items-center gap-2">
                         <p className="text-gray-scale-1 text-[22px] leading-[22px] font-semibold"> {nickname} </p>
-                        <img src="assets/expand_circle_right.svg" alt="expand icon" />
+                        <a href={link}>
+                            <img src="assets/expand_circle_right.svg" alt="expand icon" />
+                        </a>
                     </div>
                     <div className="flex flex-col gap-2 leading-5 text-align-center"> 
                         <div className="flex gap-[30px]">
