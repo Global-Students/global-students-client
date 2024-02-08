@@ -25,7 +25,7 @@ export default function SideBar() {
         <span className={`${titleStyle}`}>회원관리</span>
         <li className={`${listLayout} ${makerColor(MENU_ID.member)}`}>
           <Link
-            to='/admin'
+            to='/admin/memberList'
             className={`${listStyle(MENU_ID.member)}`}
             id={MENU_ID.member}
             onClick={changeMenu}
