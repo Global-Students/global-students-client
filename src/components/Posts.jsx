@@ -22,7 +22,12 @@ export default function Posts() {
       <PostList />
       <div className='flex flex-col items-center'>
         <Pagination />
-        <SearchInput />
+        <SearchInput
+          width={496}
+          height={50}
+          divWidth
+          placeholder='검색어를 입력해주세요.'
+        />
       </div>
     </div>
   );
