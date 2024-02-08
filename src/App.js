@@ -5,7 +5,7 @@ import Header from './components/Header';
 import FindAccountPage from './pages/FindAccount/FindAccountPage';
 import Login from './pages/Login';
 import NoticeBoard from './pages/NoticeBoard';
-import SignUp from './pages/SignUp';
+import SignUp from './pages/SignUp/SignUp';
 
 function App() {
   return (

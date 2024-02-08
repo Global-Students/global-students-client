@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-export default function DropDown() {
+export default function DropDown({ setCurrSort }) {
   const [isClick, setIsClick] = useState(true);
-  const [sort, setSort] = useState('인기순');
+  const [sort, setSort] = useState('최신순');
 
   function handleToggle() {
     setIsClick(!isClick);
@@ -12,6 +12,10 @@ export default function DropDown() {
     e.preventDefault();
     return sort === '최신순' ? setSort('인기순') : setSort('최신순');
   };
+
+  useEffect(() =>
+    sort === '인기순' ? setCurrSort('popular') : setCurrSort('latest'),
+  );
 
   return (
     <div className='relative'>
