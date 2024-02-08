@@ -1,6 +1,6 @@
 import React from 'react';
 import { MEMBER_LIST, SCHEMA } from '../../constants';
-import SuspensionButton from '../Button/SuspensionButton';
+import ManagementButton from '../Button/ManagementButton';
 
 export default function MemberListTable() {
   const tableStyle =
@@ -40,7 +40,7 @@ export default function MemberListTable() {
                   {`~${record.accountSuspension.period}`}
                 </span>
               ) : (
-                <SuspensionButton />
+                <ManagementButton text='계정정지' onClick={() => {}} />
               )}
             </td>
           </tr>

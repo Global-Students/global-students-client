@@ -1,6 +1,6 @@
 import React from 'react';
 import { SCHEMA, UNIVERSITY_APPROVAL_LIST } from '../../constants';
-import UniversityAuthButton from '../Button/UniversityAuthButton';
+import ManagementButton from '../Button/ManagementButton';
 
 export default function UniversityApprovalTable() {
   const tableStyle =
@@ -29,7 +29,7 @@ export default function UniversityApprovalTable() {
             <td className={cellStyle}>{record.university}</td>
             <td className={cellStyle}>{`[${record.file.name}].png`}</td>
             <td className={cellStyle} aria-label='aa'>
-              <UniversityAuthButton />
+              <ManagementButton text='인증하기' onClick={() => {}} />
             </td>
           </tr>
         ))}
