@@ -15,24 +15,28 @@ export default function UniversityApprovalTable() {
     <table className={tableStyle}>
       <thead className={tableHeadStyle}>
         <tr className={rowStyle}>
-          {SCHEMA.universityApprovalList.map((field) => (
-            <th className={`${cellStyle} ${schemaStyle}`}>{field}</th>
+          {SCHEMA.universityApprovalList.map(({ id, head }) => (
+            <th key={id} className={`${cellStyle} ${schemaStyle}`}>
+              {head}
+            </th>
           ))}
         </tr>
       </thead>
       <tbody>
-        {UNIVERSITY_APPROVAL_LIST.map((record) => (
-          <tr className={rowStyle}>
-            <td className={cellStyle}>{record.uniqueId}</td>
-            <td className={cellStyle}>{record.memberId}</td>
-            <td className={cellStyle}>{record.joinDate}</td>
-            <td className={cellStyle}>{record.university}</td>
-            <td className={cellStyle}>{`[${record.file.name}].png`}</td>
-            <td className={cellStyle} aria-label='aa'>
-              <ManagementButton text='인증하기' onClick={() => {}} />
-            </td>
-          </tr>
-        ))}
+        {UNIVERSITY_APPROVAL_LIST.map(
+          ({ uniqueId, memberId, joinDate, university, file: { name } }) => (
+            <tr key={uniqueId} className={rowStyle}>
+              <td className={cellStyle}>{uniqueId}</td>
+              <td className={cellStyle}>{memberId}</td>
+              <td className={cellStyle}>{joinDate}</td>
+              <td className={cellStyle}>{university}</td>
+              <td className={cellStyle}>{`[${name}].png`}</td>
+              <td className={cellStyle} aria-label='aa'>
+                <ManagementButton text='인증하기' onClick={() => {}} />
+              </td>
+            </tr>
+          ),
+        )}
       </tbody>
     </table>
   );

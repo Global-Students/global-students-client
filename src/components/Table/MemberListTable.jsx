@@ -15,36 +15,51 @@ export default function MemberListTable() {
     <table className={tableStyle}>
       <thead className={tableHeadStyle}>
         <tr>
-          {SCHEMA.memberList.map((field) => (
-            <th className={`${cellStyle} ${schemaStyle}`}>{field}</th>
+          {SCHEMA.memberList.map(({ id, head }) => (
+            <th key={id} className={`${cellStyle} ${schemaStyle}`}>
+              {head}
+            </th>
           ))}
         </tr>
       </thead>
       <tbody>
-        {MEMBER_LIST.map((record) => (
-          <tr>
-            <td className={cellStyle}>{record.uniqueId}</td>
-            <td className={cellStyle}>{record.memberId}</td>
-            <td className={cellStyle}>{record.name}</td>
-            <td className={cellStyle}>{record.nickname}</td>
-            <td className={cellStyle}>{record.birthDay}</td>
-            <td className={cellStyle}>{record.nationality}</td>
-            <td className={cellStyle}>{record.hostCountry}</td>
-            <td className={cellStyle}>{record.hostUniversity}</td>
-            <td className={cellStyle}>{record.joinDate}</td>
-            <td className={cellStyle}>{record.authentication}</td>
-            <td className={cellStyle}>{record.reportCount}</td>
-            <td className={cellStyle}>
-              {record.accountSuspension.isSuspension ? (
-                <span className={suspensionStyle}>
-                  {`~${record.accountSuspension.period}`}
-                </span>
-              ) : (
-                <ManagementButton text='계정정지' onClick={() => {}} />
-              )}
-            </td>
-          </tr>
-        ))}
+        {MEMBER_LIST.map(
+          ({
+            uniqueId,
+            memberId,
+            name,
+            nickname,
+            birthDay,
+            nationality,
+            hostCountry,
+            hostUniversity,
+            joinDate,
+            authentication,
+            reportCount,
+            accountSuspension: { isSuspension, period },
+          }) => (
+            <tr key={uniqueId}>
+              <td className={cellStyle}>{uniqueId}</td>
+              <td className={cellStyle}>{memberId}</td>
+              <td className={cellStyle}>{name}</td>
+              <td className={cellStyle}>{nickname}</td>
+              <td className={cellStyle}>{birthDay}</td>
+              <td className={cellStyle}>{nationality}</td>
+              <td className={cellStyle}>{hostCountry}</td>
+              <td className={cellStyle}>{hostUniversity}</td>
+              <td className={cellStyle}>{joinDate}</td>
+              <td className={cellStyle}>{authentication}</td>
+              <td className={cellStyle}>{reportCount}</td>
+              <td className={cellStyle}>
+                {isSuspension ? (
+                  <span className={suspensionStyle}>{`~${period}`}</span>
+                ) : (
+                  <ManagementButton text='계정정지' onClick={() => {}} />
+                )}
+              </td>
+            </tr>
+          ),
+        )}
       </tbody>
     </table>
   );
