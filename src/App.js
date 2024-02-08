@@ -23,7 +23,7 @@ function App() {
             <Route path='/signUp' element={<SignUp />} />
             <Route path='/findAccount' element={<FindAccountPage />} />
             <Route path='/admin' element={<AdminPage />}>
-              <Route path='/admin' element={<MemberListPage />} />
+              <Route index path='/admin' element={<MemberListPage />} />
               <Route path='/admin/memberList' element={<MemberListPage />} />
               <Route
                 path='/admin/universityApproval'

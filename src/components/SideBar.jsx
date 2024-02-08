@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { MENU_ID } from '../constants';
 
 export default function SideBar() {
-  const [selectedMenu, setSelectedMenu] = useState(MENU_ID.member);
+  const { pathname } = useLocation();
+  const menu = pathname.split('/').pop();
+  const [selectedMenu, setSelectedMenu] = useState(
+    menu === 'admin' || menu === '' ? MENU_ID.member : menu,
+  );
   const changeMenu = (event) => setSelectedMenu(event.target.id);
 
   const makerStyle = 'list-inside list-disc marker:text-sm';
-  const makerColor = (menu) =>
-    menu === selectedMenu ? 'marker:text-orange-1' : 'marker:text-gray-scale-2';
-  const listStyle = (menu) =>
+  const makerColor = (menuId) =>
+    menuId === selectedMenu
+      ? 'marker:text-orange-1'
+      : 'marker:text-gray-scale-2';
+  const listStyle = (menuId) =>
     `${
-      menu === selectedMenu
+      menuId === selectedMenu
         ? 'text-orange-1 font-medium'
         : 'text-gray-scale-2 font-normal'
     } text-[18px] tracking-[0.36px] align-middle inline-block ml-[-3px]`;
@@ -25,7 +31,7 @@ export default function SideBar() {
         <span className={`${titleStyle}`}>회원관리</span>
         <li className={`${listLayout} ${makerColor(MENU_ID.member)}`}>
           <Link
-            to='/admin/memberList'
+            to={`/admin/${MENU_ID.member}`}
             className={`${listStyle(MENU_ID.member)}`}
             id={MENU_ID.member}
             onClick={changeMenu}
@@ -37,7 +43,7 @@ export default function SideBar() {
           className={`${listLayout} ${makerColor(MENU_ID.universityApproval)}`}
         >
           <Link
-            to='/admin/universityApproval'
+            to={`/admin/${MENU_ID.universityApproval}`}
             className={listStyle(MENU_ID.universityApproval)}
             id={MENU_ID.universityApproval}
             onClick={changeMenu}
@@ -50,7 +56,7 @@ export default function SideBar() {
         <span className={`${titleStyle}`}>신고 및 문의</span>
         <li className={`${listLayout} ${makerColor(MENU_ID.report)}`}>
           <Link
-            to='/admin'
+            to={`/admin/${MENU_ID.report}`}
             className={listStyle(MENU_ID.report)}
             id={MENU_ID.report}
             onClick={changeMenu}
@@ -60,7 +66,7 @@ export default function SideBar() {
         </li>
         <li className={`${listLayout} ${makerColor(MENU_ID.inquiry)}`}>
           <Link
-            to='/admin'
+            to={`/admin/${MENU_ID.inquiry}`}
             className={listStyle(MENU_ID.inquiry)}
             id={MENU_ID.inquiry}
             onClick={changeMenu}
@@ -73,7 +79,7 @@ export default function SideBar() {
         <span className={`${titleStyle}`}>양식 관리</span>
         <li className={`${listLayout} ${makerColor(MENU_ID.emailTemplate)}`}>
           <Link
-            to='/admin'
+            to={`/admin/${MENU_ID.emailTemplate}`}
             className={listStyle(MENU_ID.emailTemplate)}
             id={MENU_ID.emailTemplate}
             onClick={changeMenu}
@@ -83,7 +89,7 @@ export default function SideBar() {
         </li>
         <li className={`${listLayout} ${makerColor(MENU_ID.notice)}`}>
           <Link
-            to='/admin'
+            to={`/admin/${MENU_ID.notice}`}
             className={listStyle(MENU_ID.notice)}
             id={MENU_ID.notice}
             onClick={changeMenu}
