@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import AdminPage from './pages/Admin/AdminPage';
-import MemberList from './pages/Admin/MemberList';
+import MemberListPage from './pages/Admin/MemberListPage';
 import FindAccountPage from './pages/FindAccount/FindAccountPage';
 import Login from './pages/Login';
 import NoticeBoard from './pages/NoticeBoard';
@@ -22,7 +22,7 @@ function App() {
             <Route path='/signUp' element={<SignUp />} />
             <Route path='/findAccount' element={<FindAccountPage />} />
             <Route path='/admin' element={<AdminPage />}>
-              <Route path='/admin/memberList' element={<MemberList />} />
+              <Route path='/admin/memberList' element={<MemberListPage />} />
             </Route>
           </Routes>
         </div>
