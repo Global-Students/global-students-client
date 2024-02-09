@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import OrangeButton from '../../components/Button/OrangeButton';
 import CheckForm from '../../components/CheckForm';
 import Checkbox from '../../components/Input/Checkbox';
+import Modal from '../../components/Modal';
 import { SCRIPTS } from '../../constants';
 
 export default function TermsAndPrivacy({
@@ -10,6 +11,7 @@ export default function TermsAndPrivacy({
   updateSignUpInfo,
 }) {
   const [all, setAll] = useState(false);
+  const [isShow, setIsShow] = useState(true);
   const isPassed = terms && privacy;
 
   return (
@@ -30,6 +32,7 @@ export default function TermsAndPrivacy({
         tag='필수'
         label='글로벌스튜던트 이용약관'
         script={SCRIPTS.terms}
+        onClick={() => setIsShow(true)}
       />
       <CheckForm
         id='privacy'
@@ -56,6 +59,17 @@ export default function TermsAndPrivacy({
           />
         </div>
       </div>
+      {isShow && (
+        <Modal
+          id='terms'
+          isChecked={terms}
+          onChange={updateSignUpInfo}
+          tag='필수'
+          label='글로벌스튜던트 이용약관'
+          script={SCRIPTS.event}
+          onClick={() => setIsShow(false)}
+        />
+      )}
     </section>
   );
 }

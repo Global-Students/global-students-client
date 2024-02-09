@@ -8,6 +8,7 @@ export default function CheckForm({
   tag,
   label,
   script,
+  onClick,
 }) {
   return (
     <article className='font-light'>
@@ -19,9 +20,13 @@ export default function CheckForm({
           tag={tag}
           label={label}
         />
-        <a className='text-[18px] text-gray-scale-4' href='/'>
+        <button
+          className='text-[18px] text-gray-scale-4'
+          type='button'
+          onClick={onClick}
+        >
           {'전체>'}
-        </a>
+        </button>
       </div>
       <div className='max-h-[219px] overflow-hidden border border-gray-scale-6 rounded-[8px] p-[26px] pb-0'>
         <pre className='whitespace-pre-wrap font-["Pretendard_Variable"] text-gray-scale-3'>
