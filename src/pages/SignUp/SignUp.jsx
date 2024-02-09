@@ -75,14 +75,15 @@ export default function SignUp() {
           <SignUpInfo
             moveStep={moveStep}
             signUpInfo={signUpInfo}
-            updateSignUpInfo={updateSignUpInfo}
             setSignUpInfo={setSignUpInfo}
+            updateSignUpInfo={updateSignUpInfo}
           />
         )}
         {step === 'universityApproval' && (
           <UniversityApproval
             moveStep={moveStep}
             signUpInfo={signUpInfo}
+            setSignUpInfo={setSignUpInfo}
             updateSignUpInfo={updateSignUpInfo}
           />
         )}
