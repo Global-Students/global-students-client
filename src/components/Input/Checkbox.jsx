@@ -10,7 +10,10 @@ export default function Checkbox({ id, isChecked, onChange, tag, label }) {
         checked={isChecked}
         onChange={onChange}
       />
-      <label className='flex items-center gap-[5px] font-medium' htmlFor={id}>
+      <label
+        className='flex items-center gap-[5px] font-medium cursor-pointer'
+        htmlFor={id}
+      >
         {tag && (
           <span
             className={`text-[16px] ${
