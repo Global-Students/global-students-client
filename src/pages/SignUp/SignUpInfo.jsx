@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-import {
-  checkIdDuplicate,
-  checkNicknameDuplicate,
-  verifyUniversityEmail,
-} from '../../apis/signUp';
+import { checkIdDuplicate, checkNicknameDuplicate } from '../../apis/signUp';
 import OrangeButton from '../../components/Button/OrangeButton';
 import FieldSet from '../../components/FieldSet';
 import DuplicateCheckInput from '../../components/Input/DuplicateCheckInput';
@@ -42,7 +38,6 @@ export default function SignUpInfo({
     homeUniversity,
     hostUniversity,
   } = signUpInfo;
-  const [universityEmail, setUniversityEmail] = useState('');
   const [isUniqued, setIsUniqued] = useState({
     userId: false,
     nickname: false,
@@ -173,29 +168,26 @@ export default function SignUpInfo({
         <FieldSet legend={LEGEND.defaultInfo}>
           <div className='flex flex-col gap-[20px]'>
             <div>
-              <Label label={LABEL.name} required />
-              <div className='flex gap-4'>
-                <div className='flex-1'>
-                  <ResetButtonInput
-                    id='firstName'
-                    type='text'
-                    value={firstName}
-                    placeholder={PLACEHOLDER.firstName}
-                    onChange={updateSignUpInfo}
-                    onReset={setSignUpInfo}
-                  />
-                </div>
-                <div className='flex-1'>
-                  <ResetButtonInput
-                    id='lastName'
-                    type='text'
-                    value={lastName}
-                    placeholder={PLACEHOLDER.lastName}
-                    onChange={updateSignUpInfo}
-                    onReset={setSignUpInfo}
-                  />
-                </div>
-              </div>
+              <Label label={LABEL.lastName} required />
+              <ResetButtonInput
+                id='lastName'
+                type='text'
+                value={lastName}
+                placeholder={PLACEHOLDER.lastName}
+                onChange={updateSignUpInfo}
+                onReset={setSignUpInfo}
+              />
+            </div>
+            <div>
+              <Label label={LABEL.firstName} required />
+              <ResetButtonInput
+                id='firstName'
+                type='text'
+                value={firstName}
+                placeholder={PLACEHOLDER.firstName}
+                onChange={updateSignUpInfo}
+                onReset={setSignUpInfo}
+              />
             </div>
             <div>
               <Label label={LABEL.birthDay} required />
@@ -291,8 +283,6 @@ export default function SignUpInfo({
                 onChange={updateSignUpInfo}
               />
             </div>
-          </div>
-          <div className='flex flex-col gap-[20px]'>
             <div>
               <Label label={LABEL.hostCountry} required />
               <OptionInput
@@ -313,50 +303,6 @@ export default function SignUpInfo({
                 onChange={updateSignUpInfo}
               />
             </div>
-            <div>
-              <Label label={LABEL.universityEmail} />
-              <ResetButtonInput
-                id='emailVerification'
-                type='email'
-                value={universityEmail}
-                placeholder={PLACEHOLDER.universityEmail}
-                onChange={(event) => {
-                  setUniversityEmail(event.target.value);
-                  setSignUpInfo((prev) => ({ ...prev, verified: false }));
-                  setMessage((prev) => ({
-                    ...prev,
-                    emailVerification: '',
-                  }));
-                }}
-                onReset={() => setUniversityEmail('')}
-              />
-              <ValidationMessage message={message.emailVerification} />
-            </div>
-            <OrangeButton
-              text='학교 이메일 인증하기'
-              textSize={16}
-              py={16}
-              onClick={() => {
-                verifyUniversityEmail({
-                  email: universityEmail,
-                  university: hostUniversity,
-                }).then((result) => {
-                  if (result) {
-                    setSignUpInfo((prev) => ({ ...prev, verified: true }));
-                    setMessage((prev) => ({
-                      ...prev,
-                      emailVerification: '인증에 성공했습니다.',
-                    }));
-                    return;
-                  }
-                  setSignUpInfo((prev) => ({ ...prev, verified: false }));
-                  setMessage((prev) => ({
-                    ...prev,
-                    emailVerification: '인증에 실패했습니다.',
-                  }));
-                });
-              }}
-            />
           </div>
         </FieldSet>
       </form>

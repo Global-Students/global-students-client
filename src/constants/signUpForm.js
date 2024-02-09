@@ -51,14 +51,15 @@ const LABEL = Object.freeze({
   id: '아이디',
   password: '비밀번호',
   confirmPassword: '비밀번호 재입력',
-  name: '이름',
+  firstName: '이름',
+  lastName: '성',
   birthDay: '생년월일',
   nickname: '닉네임',
   universityEmail: '학교 이메일 인증',
-  nationality: '본국',
+  nationality: '국적',
   hostCountry: '유학국',
-  homeUniversity: '학교설정(본교)',
-  hostUniversity: '학교설정(교환학생)',
+  homeUniversity: '본교',
+  hostUniversity: '교환학교',
 });
 
 const PLACEHOLDER = Object.freeze({
@@ -71,10 +72,10 @@ const PLACEHOLDER = Object.freeze({
   date: '일',
   nickname: '닉네임을 입력해 주세요',
   universityEmail: '학교 이메일을 입력해주세요',
-  nationality: '본국명을 입력해 주세요',
-  hostCountry: '유학국명을 입력해 주세요',
-  homeUniversity: '본교명을 입력해 주세요',
-  hostUniversity: '교환학교명을 입력해 주세요',
+  nationality: '국적을 선택해주세요',
+  hostCountry: '유학국을 선택해주세요',
+  homeUniversity: '본교를 선택해주세요',
+  hostUniversity: '교환학교를 선택해주세요',
 });
 
 export { CONSENTS, LABEL, LEGEND, PLACEHOLDER };
