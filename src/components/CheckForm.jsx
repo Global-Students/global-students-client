@@ -23,7 +23,7 @@ export default function CheckForm({
           {'전체>'}
         </a>
       </div>
-      <div className='border border-gray-scale-6 rounded-[8px] p-[26px]'>
+      <div className='max-h-[223px] border border-gray-scale-6 rounded-[8px] p-[26px]'>
         <pre className='font-["Pretendard_Variable"] text-gray-scale-3 line-clamp-6'>
           {script}
         </pre>
