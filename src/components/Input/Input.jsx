@@ -10,7 +10,7 @@ export default function Input({
   icon,
 }) {
   return (
-    <div className='flex items-center gap-[8px] border border-gray-scale-7-main rounded outline-none pl-[22px] shadow-[0px_5px_30px_-15px_rgba(0, 0, 0, 0.12)]'>
+    <div className='flex items-center gap-[8px] border border-gray-scale-7-main rounded outline-none pl-[19px] shadow-[0px_5px_30px_-15px_rgba(0, 0, 0, 0.12)]'>
       {icon && <img src={`/assets/${icon}.svg`} alt='icon' />}
       <input
         className='w-0 h-[64px] flex-1 outline-none bg-transparent py-5 placeholder:text-gray-scale-4 placeholder:font-light'
