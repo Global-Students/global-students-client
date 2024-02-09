@@ -7,7 +7,7 @@ export default function UniversityApprovalTable() {
     'block w-[954px] max-h-[777px] overflow-auto border-separate border-spacing-0 border-r border-b border-gray-sacle-7-main whitespace-nowrap rounded-[4px] text-center text-[13px] pb-[1px] mb-[40px]';
   const tableHeadStyle = 'sticky top-0 bg-gray-scale-8 rounded-[4px]';
   const schemaStyle = 'text-gray-scale-1 font-semibold';
-  const rowStyle = 'w-[953px] flex';
+  const rowStyle = 'w-[935px] flex';
   const cellStyle =
     'inline-block flex-1 h-[37px] leading-[37px] border-l border-t border-gray-sacle-7-main text-gray-scale-2 font-normal p-0';
 
