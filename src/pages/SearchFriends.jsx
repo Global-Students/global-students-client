@@ -3,9 +3,10 @@ import UserInfoControl from "../components/UserInfoControl";
 import SearchInput from "../components/SearchInput";
 import TranslateButton from "../components/Button/TranslateButton";
 import SearchListItem from "../components/SearchListItem";
+import IsPublicModal from "../components/IsPublicModal";
 
-export default function SearchFriends() {
-  return (
+export default function SearchFriends( {isPublic} ) {
+  return ( isPublic ? 
     <div className="flex relative top-[69px] gap-[23px]">
       <UserInfoControl />
       <div className="flex flex-col w-[953px] gap-[50px] pb-[103px]">
@@ -35,5 +36,6 @@ export default function SearchFriends() {
         </div>
       </div>
     </div>
+    : <IsPublicModal />
   );
 }
