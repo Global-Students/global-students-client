@@ -5,10 +5,11 @@ import Input from './Input';
 
 export default function LightOrangeButtonInput({
   id,
-  buttonText,
   value,
   placeholder,
+  buttonText,
   message,
+  isValid,
   onChange,
   onClick,
 }) {
@@ -23,7 +24,7 @@ export default function LightOrangeButtonInput({
       >
         <LightOrangeButton text={buttonText} onClick={onClick} />
       </Input>
-      <ValidationMessage message={message} />
+      <ValidationMessage message={message} isValid={isValid} />
     </>
   );
 }

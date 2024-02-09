@@ -77,10 +77,11 @@ export default function SignUpInfo({
             <Label label={LABEL.id} required />
             <LightOrangeButtonInput
               id='userId'
-              buttonText='중복확인'
               value={userId}
               placeholder={PLACEHOLDER.id}
+              buttonText='중복확인'
               message={message.userIdDuplication}
+              isValid={isUniqued.userId}
               onChange={(event) => {
                 updateSignUpInfo(event);
                 setMessage((prev) => ({
@@ -232,10 +233,11 @@ export default function SignUpInfo({
               <Label label={LABEL.nickname} required />
               <LightOrangeButtonInput
                 id='nickname'
-                buttonText='중복확인'
                 value={nickname}
                 placeholder={PLACEHOLDER.nickname}
+                buttonText='중복확인'
                 message={message.nicknameDuplication}
+                isValid={isUniqued.nickname}
                 onChange={(event) => {
                   updateSignUpInfo(event);
                   setIsUniqued((prev) => ({ ...prev, nickname: false }));
