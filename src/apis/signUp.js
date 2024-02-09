@@ -25,6 +25,14 @@ const verifyUniversityEmail = (body) =>
     .then(() => true)
     .catch(() => false);
 
+const verifyAuthCode = (body) =>
+  axios
+    .post(API_PATH.emailVarificationCode, body, {
+      'Content-Type': 'application/json',
+    })
+    .then(() => true)
+    .catch(() => false);
+
 const submitSignUpInfo = (signUpInfo, moveStep) => {
   axios
     .post(API_PATH.sumbitSignUpInfo, signUpInfo, {
@@ -40,5 +48,6 @@ export {
   checkIdDuplicate,
   checkNicknameDuplicate,
   submitSignUpInfo,
+  verifyAuthCode,
   verifyUniversityEmail,
 };

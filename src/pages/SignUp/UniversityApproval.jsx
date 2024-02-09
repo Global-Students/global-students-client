@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { submitSignUpInfo, verifyUniversityEmail } from '../../apis/signUp';
+import {
+  submitSignUpInfo,
+  verifyAuthCode,
+  verifyUniversityEmail,
+} from '../../apis/signUp';
 import { ReactComponent as EmailIcon } from '../../assets/outgoingMail.svg';
 import { ReactComponent as FileIcon } from '../../assets/uploadFile.svg';
 import AutnButton from '../../components/Button/AuthButton';
@@ -9,16 +13,21 @@ import LightOrangeButtonInput from '../../components/Input/LightOrangeButtonInpu
 import Label from '../../components/Label';
 import { LABEL, PLACEHOLDER } from '../../constants';
 
-export default function UniversityApproval({ moveStep, signUpInfo }) {
+export default function UniversityApproval({
+  moveStep,
+  signUpInfo,
+  setSignUpInfo,
+}) {
+  const [messgae, setMessage] = useState('');
   const [isSelected, setIsSleceted] = useState('');
   const changeMenu = (event) => setIsSleceted(event.currentTarget.id);
-  const isPassed = true;
   const [authData, setAuthData] = useState({ email: '', code: '' });
   const handleChange = (event) => {
     const { id, value } = event.target;
     setAuthData((prev) => ({ ...prev, [id]: value }));
   };
   const { email, code } = authData;
+  const isPassed = true;
 
   return (
     <section className='flex flex-col items-center mt-[93px]'>
@@ -55,7 +64,7 @@ export default function UniversityApproval({ moveStep, signUpInfo }) {
                 onChange={handleChange}
                 onClick={() => {
                   verifyUniversityEmail({
-                    email: authData.email,
+                    email,
                     university: signUpInfo.hostUniversity,
                   }).then((result) => {
                     if (result) {
@@ -74,8 +83,24 @@ export default function UniversityApproval({ moveStep, signUpInfo }) {
                 value={code}
                 buttonText='확인'
                 placeholder={PLACEHOLDER.code}
+                message={messgae}
                 isValid={signUpInfo.verified}
                 onChange={handleChange}
+                onClick={() => {
+                  verifyAuthCode({
+                    email,
+                    code,
+                    university: signUpInfo.hostUniversity,
+                  }).then((result) => {
+                    if (result) {
+                      setSignUpInfo((prev) => ({ ...prev, verified: true }));
+                      setMessage('인증에 성공했습니다.');
+                      return;
+                    }
+                    setSignUpInfo((prev) => ({ ...prev, verified: false }));
+                    setMessage('인증번호가 유효하지 않습니다.');
+                  });
+                }}
               />
             </div>
           </div>
