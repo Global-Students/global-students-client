@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   checkIdDuplicate,
   checkNicknameDuplicate,
-  submitSignUpInfo,
   verifyUniversityEmail,
 } from '../../apis/signUp';
 import OrangeButton from '../../components/Button/OrangeButton';
@@ -374,9 +373,7 @@ export default function SignUpInfo({
           textSize={18}
           py={14}
           width={148}
-          onClick={() => {
-            submitSignUpInfo(signUpInfo, moveStep);
-          }}
+          onClick={() => moveStep('universityApproval')}
           disabled={!isPassed}
         />
       </div>

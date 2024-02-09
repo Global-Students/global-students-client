@@ -3,6 +3,7 @@ import TranslateButton from '../../components/Button/TranslateButton';
 import RightPoint from '../../components/RightPoint';
 import SignUpInfo from './SignUpInfo';
 import TermsAndPrivacy from './TermsAndPrivacy';
+import UniversityApproval from './UniversityApproval';
 import Welcome from './Welcome';
 
 export default function SignUp() {
@@ -52,16 +53,17 @@ export default function SignUp() {
       <div className='self-start mb-[25px]'>
         <TranslateButton />
       </div>
+      <div className='flex justify-between gap-[25px]'>
+        <RightPoint name='terms' step={step} text='이용약관 및 정보처리방침' />
+        <RightPoint name='signUpInfo' step={step} text='기본정보 기입' />
+        <RightPoint
+          name='universityApproval'
+          step={step}
+          text='학교 인증하기'
+        />
+        <RightPoint name='welcome' step={step} text='회원가입 완료' />
+      </div>
       <div className='w-[850px]'>
-        <div className='flex justify-between'>
-          <RightPoint
-            name='terms'
-            step={step}
-            text='이용약관 및 정보처리방침'
-          />
-          <RightPoint name='signUpInfo' step={step} text='기본정보 기입' />
-          <RightPoint name='welcome' step={step} text='회원가입 완료' />
-        </div>
         {step === 'terms' && (
           <TermsAndPrivacy
             moveStep={moveStep}
@@ -75,6 +77,13 @@ export default function SignUp() {
             signUpInfo={signUpInfo}
             updateSignUpInfo={updateSignUpInfo}
             setSignUpInfo={setSignUpInfo}
+          />
+        )}
+        {step === 'universityApproval' && (
+          <UniversityApproval
+            moveStep={moveStep}
+            signUpInfo={signUpInfo}
+            updateSignUpInfo={updateSignUpInfo}
           />
         )}
         {step === 'welcome' && <Welcome />}
