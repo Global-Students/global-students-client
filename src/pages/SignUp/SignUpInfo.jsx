@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { checkIdDuplicate, checkNicknameDuplicate } from '../../apis/signUp';
 import OrangeButton from '../../components/Button/OrangeButton';
 import FieldSet from '../../components/FieldSet';
-import DuplicateCheckInput from '../../components/Input/DuplicateCheckInput';
+import LightOrangeButtonInput from '../../components/Input/LightOrangeButtonInput';
 import OptionInput from '../../components/Input/OptionInput';
 import ResetButtonInput from '../../components/Input/ResetButtonInput';
 import Label from '../../components/Label';
@@ -75,8 +75,9 @@ export default function SignUpInfo({
         <FieldSet legend={LEGEND.idPassword}>
           <div>
             <Label label={LABEL.id} required />
-            <DuplicateCheckInput
+            <LightOrangeButtonInput
               id='userId'
+              text='중복확인'
               value={userId}
               placeholder={PLACEHOLDER.id}
               message={message.userIdDuplication}
@@ -229,8 +230,9 @@ export default function SignUpInfo({
             </div>
             <div>
               <Label label={LABEL.nickname} required />
-              <DuplicateCheckInput
+              <LightOrangeButtonInput
                 id='nickname'
+                text='중복확인'
                 value={nickname}
                 placeholder={PLACEHOLDER.nickname}
                 message={message.nicknameDuplication}

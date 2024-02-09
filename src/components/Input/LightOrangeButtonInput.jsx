@@ -1,10 +1,11 @@
 import React from 'react';
-import DuplicateCheckButton from '../Button/DuplicateCheckButton';
+import LightOrangeButton from '../Button/LightOrangeButton';
 import ValidationMessage from '../ValidationMessage';
 import Input from './Input';
 
-export default function DuplicateCheckInput({
+export default function LightOrangeButtonInput({
   id,
+  text,
   value,
   placeholder,
   message,
@@ -20,7 +21,7 @@ export default function DuplicateCheckInput({
         onChange={onChange}
         placeholder={placeholder}
       >
-        <DuplicateCheckButton onClick={onClick} />
+        <LightOrangeButton text={text} onClick={onClick} />
       </Input>
       <ValidationMessage isShowed message={message} value={message} />
     </>
