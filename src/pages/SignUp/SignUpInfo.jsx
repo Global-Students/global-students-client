@@ -368,14 +368,15 @@ export default function SignUpInfo({
         >
           이전
         </button>
-        <OrangeButton
-          text='다음'
-          textSize={18}
-          py={14}
-          width={148}
-          onClick={() => moveStep('universityApproval')}
-          disabled={!isPassed}
-        />
+        <div className='flex justify-end'>
+          <div className='w-[148px] h-[51px] text-[18px]'>
+            <OrangeButton
+              text='다음'
+              onClick={() => moveStep('universityApproval')}
+              disabled={!isPassed}
+            />
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -48,14 +48,13 @@ export default function TermsAndPrivacy({
         script={SCRIPTS.event}
       />
       <div className='flex justify-end my-[46px]'>
-        <OrangeButton
-          text='다음'
-          textSize={18}
-          py={14}
-          width={148}
-          onClick={() => moveStep('signUpInfo')}
-          disabled={!isPassed}
-        />
+        <div className='w-[148px] h-[51px] text-[18px]'>
+          <OrangeButton
+            text='다음'
+            onClick={() => moveStep('signUpInfo')}
+            disabled={!isPassed}
+          />
+        </div>
       </div>
     </section>
   );

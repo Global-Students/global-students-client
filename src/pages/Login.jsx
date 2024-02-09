@@ -35,13 +35,9 @@ export default function Login() {
               icon='key'
             />
           </div>
-          <OrangeButton
-            text='로그인'
-            textSize={22}
-            py={22}
-            onClick={login}
-            disabled={loading}
-          />
+          <div className='h-[70px] flex text-[22px] leading'>
+            <OrangeButton text='로그인' onClick={login} disabled={loading} />
+          </div>
         </form>
         <div className='flex justify-between text-gray-scale-3 text-[17px] m-4'>
           <a href='/findAccount'>아이디 | 비밀번호 찾기</a>
