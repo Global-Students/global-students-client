@@ -20,7 +20,7 @@ export default function OptionInput({
       >
         <option value=''>{placeholder}</option>
         {options.map((option) => (
-          <option className='text-black' value={option}>
+          <option key={option} className='text-black' value={option}>
             {option}
           </option>
         ))}
