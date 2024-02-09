@@ -3,16 +3,18 @@ import OrangeButton from '../../components/Button/OrangeButton';
 import CheckForm from '../../components/CheckForm';
 import Checkbox from '../../components/Input/Checkbox';
 import Modal from '../../components/Modal';
-import { SCRIPTS } from '../../constants';
+import { CONSENTS } from '../../constants';
 
 export default function TermsAndPrivacy({
   moveStep,
-  signUpInfo: { terms, privacy, marketing },
+  signUpInfo,
   updateSignUpInfo,
 }) {
   const [all, setAll] = useState(false);
-  const [isShow, setIsShow] = useState(true);
+  const [isShow, setIsShow] = useState(false);
+  const { terms, privacy } = signUpInfo;
   const isPassed = terms && privacy;
+  const [modalId, setModalId] = useState('');
 
   return (
     <section className='flex flex-col gap-[25px] mt-[74px]'>
@@ -25,31 +27,25 @@ export default function TermsAndPrivacy({
         }}
         label='전체동의하기'
       />
-      <CheckForm
-        id='terms'
-        isChecked={terms}
-        onChange={updateSignUpInfo}
-        tag='필수'
-        label='글로벌스튜던트 이용약관'
-        script={SCRIPTS.terms}
-        onClick={() => setIsShow(true)}
-      />
-      <CheckForm
-        id='privacy'
-        isChecked={privacy}
-        onChange={updateSignUpInfo}
-        tag='필수'
-        label='개인정보 수집 및 이용'
-        script={SCRIPTS.privacy}
-      />
-      <CheckForm
-        id='marketing'
-        isChecked={marketing}
-        onChange={updateSignUpInfo}
-        tag='선택'
-        label='이벤트・혜택 정보 수신'
-        script={SCRIPTS.event}
-      />
+      {CONSENTS.map((conesnt) => {
+        const { id, tag, label, script } = conesnt;
+        return (
+          <CheckForm
+            key={id}
+            id={id}
+            isChecked={signUpInfo[id]}
+            onChange={updateSignUpInfo}
+            tag={tag}
+            label={label}
+            script={script}
+            onClick={() => {
+              setModalId(id);
+              setIsShow(true);
+            }}
+          />
+        );
+      })}
+
       <div className='flex justify-end my-[46px]'>
         <div className='w-[148px] h-[51px] text-[18px]'>
           <OrangeButton
@@ -61,12 +57,9 @@ export default function TermsAndPrivacy({
       </div>
       {isShow && (
         <Modal
-          id='terms'
-          isChecked={terms}
+          id={modalId}
+          signUpInfo={signUpInfo}
           onChange={updateSignUpInfo}
-          tag='필수'
-          label='글로벌스튜던트 이용약관'
-          script={SCRIPTS.event}
           onClick={() => setIsShow(false)}
         />
       )}
