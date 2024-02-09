@@ -6,6 +6,8 @@ import FindAccountPage from './pages/FindAccount/FindAccountPage';
 import Login from './pages/Login';
 import NoticeBoard from './pages/NoticeBoard';
 import SignUp from './pages/SignUp/SignUp';
+import SearchFriends from './pages/SearchFriends';
+import Friend from './pages/Friend';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/signUp' element={<SignUp />} />
             <Route path='/findAccount' element={<FindAccountPage />} />
+            <Route path='/searchingFriend' element={<SearchFriends isPublic/>} />
+            <Route path='/Friend' element={<Friend />} />
           </Routes>
         </div>
         <Footer />
