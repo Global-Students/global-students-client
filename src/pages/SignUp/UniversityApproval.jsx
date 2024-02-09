@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { submitSignUpInfo } from '../../apis/signUp';
+import { submitSignUpInfo, verifyUniversityEmail } from '../../apis/signUp';
 import { ReactComponent as EmailIcon } from '../../assets/outgoingMail.svg';
 import { ReactComponent as FileIcon } from '../../assets/uploadFile.svg';
 import AutnButton from '../../components/Button/AuthButton';
@@ -53,6 +53,18 @@ export default function UniversityApproval({ moveStep, signUpInfo }) {
                 buttonText='입력완료'
                 placeholder={PLACEHOLDER.universityEmail}
                 onChange={handleChange}
+                onClick={() => {
+                  verifyUniversityEmail({
+                    email: authData.email,
+                    university: signUpInfo.hostUniversity,
+                  }).then((result) => {
+                    if (result) {
+                      alert('메일을 보냈습니다.');
+                      return;
+                    }
+                    alert('메일 전송에 실패했습니다.');
+                  });
+                }}
               />
             </div>
             <div>
