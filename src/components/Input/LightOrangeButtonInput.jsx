@@ -23,7 +23,7 @@ export default function LightOrangeButtonInput({
       >
         <LightOrangeButton text={buttonText} onClick={onClick} />
       </Input>
-      <ValidationMessage isShowed message={message} value={message} />
+      <ValidationMessage message={message} />
     </>
   );
 }
