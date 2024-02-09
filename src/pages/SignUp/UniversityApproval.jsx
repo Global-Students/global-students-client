@@ -11,7 +11,7 @@ export default function UniversityApproval({ moveStep, signUpInfo }) {
         <button
           className='rounded border border-gray-scale-5 py-[14px] w-[148px] shadow-prev-btn text-[18px] text-gray-scale-4 font-semibold leading hover:bg-gray-scale-8'
           type='button'
-          onClick={() => moveStep('terms')}
+          onClick={() => moveStep('signUpInfo')}
         >
           이전
         </button>
