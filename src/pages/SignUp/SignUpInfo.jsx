@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { checkIdDuplicate, checkNicknameDuplicate } from '../../apis/signUp';
 import OrangeButton from '../../components/Button/OrangeButton';
+import WhiteButton from '../../components/Button/WhiteButton';
 import FieldSet from '../../components/FieldSet';
 import LightOrangeButtonInput from '../../components/Input/LightOrangeButtonInput';
 import OptionInput from '../../components/Input/OptionInput';
@@ -311,13 +312,7 @@ export default function SignUpInfo({
         </FieldSet>
       </form>
       <div className='w-full flex justify-between my-[46px]'>
-        <button
-          className='rounded border border-gray-scale-5 py-[14px] w-[148px] shadow-prev-btn text-[18px] text-gray-scale-4 font-semibold leading hover:bg-gray-scale-8'
-          type='button'
-          onClick={() => moveStep('terms')}
-        >
-          이전
-        </button>
+        <WhiteButton text='이전' onClick={() => moveStep('terms')} />
         <div className='flex justify-end'>
           <div className='w-[148px] h-[51px] text-[18px]'>
             <OrangeButton
