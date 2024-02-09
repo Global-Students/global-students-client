@@ -61,8 +61,8 @@ export default function SignUpInfo({
 
   const isPassed =
     isUniqued.userId &&
-    checkPasswordPattern() &&
-    checkPasswordReEnter() &&
+    checkPasswordPattern(password) &&
+    checkPasswordReEnter(confirmPassword) &&
     firstName &&
     lastName &&
     birthYear &&
