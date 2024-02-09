@@ -77,7 +77,7 @@ export default function SignUpInfo({
             <Label label={LABEL.id} required />
             <LightOrangeButtonInput
               id='userId'
-              text='중복확인'
+              buttonText='중복확인'
               value={userId}
               placeholder={PLACEHOLDER.id}
               message={message.userIdDuplication}
@@ -232,7 +232,7 @@ export default function SignUpInfo({
               <Label label={LABEL.nickname} required />
               <LightOrangeButtonInput
                 id='nickname'
-                text='중복확인'
+                buttonText='중복확인'
                 value={nickname}
                 placeholder={PLACEHOLDER.nickname}
                 message={message.nicknameDuplication}
