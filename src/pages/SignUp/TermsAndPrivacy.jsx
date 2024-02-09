@@ -36,38 +36,32 @@ export default function TermsAndPrivacy({
           setAll((prev) => !prev);
           updateSignUpInfo(event);
         }}
-        text='전체동의하기'
+        label='전체동의하기'
       />
-      <CheckForm>
-        <Checkbox
-          id='terms'
-          isChecked={terms}
-          onChange={updateSignUpInfo}
-          tag='필수'
-          text='글로벌스튜던트 이용약관'
-        />
-        {text.terms}
-      </CheckForm>
-      <CheckForm>
-        <Checkbox
-          id='privacy'
-          isChecked={privacy}
-          onChange={updateSignUpInfo}
-          tag='필수'
-          text='개인정보 수집 및 이용'
-        />
-        {text.privacy}
-      </CheckForm>
-      <CheckForm>
-        <Checkbox
-          id='marketing'
-          isChecked={marketing}
-          onChange={updateSignUpInfo}
-          tag='선택'
-          text='이벤트・혜택 정보 수신'
-        />
-        {text.event}
-      </CheckForm>
+      <CheckForm
+        id='terms'
+        isChecked={terms}
+        onChange={updateSignUpInfo}
+        tag='필수'
+        label='글로벌스튜던트 이용약관'
+        script={text.terms}
+      />
+      <CheckForm
+        id='privacy'
+        isChecked={privacy}
+        onChange={updateSignUpInfo}
+        tag='필수'
+        label='개인정보 수집 및 이용'
+        script={text.privacy}
+      />
+      <CheckForm
+        id='marketing'
+        isChecked={marketing}
+        onChange={updateSignUpInfo}
+        tag='선택'
+        label='이벤트・혜택 정보 수신'
+        script={text.event}
+      />
       <div className='flex justify-end my-[46px]'>
         <OrangeButton
           text='다음'

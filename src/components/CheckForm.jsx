@@ -1,17 +1,31 @@
 import React from 'react';
+import Checkbox from './Input/Checkbox';
 
-export default function CheckForm({ children }) {
+export default function CheckForm({
+  id,
+  isChecked,
+  onChange,
+  tag,
+  label,
+  script,
+}) {
   return (
     <article className='font-light'>
       <div className='flex justify-between mb-[10px]'>
-        {children[0]}
+        <Checkbox
+          id={id}
+          isChecked={isChecked}
+          onChange={onChange}
+          tag={tag}
+          label={label}
+        />
         <a className='text-[18px] text-gray-scale-4' href='/'>
           {'전체>'}
         </a>
       </div>
       <div className='border border-gray-scale-6 rounded-[8px] p-[26px]'>
         <pre className='font-["Pretendard_Variable"] text-gray-scale-3 line-clamp-6'>
-          {children[1]}
+          {script}
         </pre>
       </div>
     </article>
