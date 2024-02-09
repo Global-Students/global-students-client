@@ -61,6 +61,7 @@ const LABEL = Object.freeze({
   hostUniversity: '교환학교',
   universityEmail: '학교 이메일',
   code: '인증 코드',
+  uploadFile: '서류 업로드',
 });
 
 const PLACEHOLDER = Object.freeze({
