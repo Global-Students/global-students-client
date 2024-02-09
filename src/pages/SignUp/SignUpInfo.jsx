@@ -44,14 +44,11 @@ export default function SignUpInfo({
     nickname: false,
   });
   const [message, setMessage] = useState({
-    userIdPattern: '',
     userIdDuplication: '',
     passwordPattern: '',
     passwordReEntry: '',
     nicknameDuplication: '',
-    emailVerification: '',
   });
-  const checkUserIdPattern = (value) => REGEX.userIdPattern.test(value);
   const checkPasswordPattern = (value) => REGEX.passwordPattern.test(value);
   const checkPasswordReEnter = (value) => password === value;
 
@@ -81,43 +78,35 @@ export default function SignUpInfo({
               value={userId}
               placeholder={PLACEHOLDER.id}
               buttonText='중복확인'
+              disabled={!REGEX.userIdPattern.test(userId)}
               message={message.userIdDuplication}
               isValid={isUniqued.userId}
               onChange={(event) => {
                 updateSignUpInfo(event);
+                setIsUniqued((prev) => ({ ...prev, userId: false }));
                 setMessage((prev) => ({
                   ...prev,
-                  userIdPattern: `${
-                    checkUserIdPattern(event.target.value) ||
-                    event.target.value === ''
-                      ? ''
-                      : '4자 이상 16자 이하의 영소문사/숫자를 사용해주세요.'
-                  }`,
                   userIdDuplication: '',
                 }));
-                setIsUniqued((prev) => ({ ...prev, userId: false }));
               }}
               onClick={() => {
-                if (checkUserIdPattern(userId)) {
-                  checkIdDuplicate(userId).then((result) => {
-                    if (result) {
-                      setIsUniqued((prev) => ({ ...prev, userId: true }));
-                      setMessage((prev) => ({
-                        ...prev,
-                        userIdDuplication: '사용할 수 있는 아이디입니다.',
-                      }));
-                      return;
-                    }
-                    setIsUniqued((prev) => ({ ...prev, userId: false }));
+                checkIdDuplicate(userId).then((result) => {
+                  if (result) {
+                    setIsUniqued((prev) => ({ ...prev, userId: true }));
                     setMessage((prev) => ({
                       ...prev,
-                      userIdDuplication: '사용할 수 없는 아이디입니다.',
+                      userIdDuplication: '사용할 수 있는 아이디입니다.',
                     }));
-                  });
-                }
+                    return;
+                  }
+                  setIsUniqued((prev) => ({ ...prev, userId: false }));
+                  setMessage((prev) => ({
+                    ...prev,
+                    userIdDuplication: '사용할 수 없는 아이디입니다.',
+                  }));
+                });
               }}
             />
-            <ValidationMessage message={message.userIdPattern} />
           </div>
           <div className='flex flex-col gap-[20px]'>
             <div>
