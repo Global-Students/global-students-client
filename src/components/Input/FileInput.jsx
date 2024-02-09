@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function FileInput({ onChange }) {
   return (
-    <div className='flex items-center gap-[8px] border border-gray-scale-7-main rounded outline-none pl-[19px] py-[9px] shadow-[0px_5px_30px_-15px_rgba(0, 0, 0, 0.12)]'>
+    <div className='flex items-center gap-[8px] border border-gray-scale-7-main rounded outline-none pl-[19px] py-[9px] shadow-[0px_5px_30px_-15px_rgba(0, 0, 0, 0.12)] focus-within:border-orange-1'>
       <p className='flex-1 text-gray-scale-4 text-[16px] font-light leading'>
         00MB 이하의 JPG, PNG, PDF 파일
       </p>
