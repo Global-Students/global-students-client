@@ -25,6 +25,7 @@ module.exports = {
         like: "url('/src/assets/thumbUp.svg')",
         'check-circle': "url('/src/assets/check_circle.svg')",
         'check-true-circle': "url('/src/assets/check_true_circle.svg')",
+        bubbleName: "url('/src/assets/bubbleName.svg')",
       },
       boxShadow: {
         DEFAULT: '0px 5px 30px -15px rgba(0, 0, 0, 0.20)',

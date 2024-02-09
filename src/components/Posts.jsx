@@ -3,7 +3,7 @@ import DropDown from './DropDown';
 import OrangeButton from './Button/OrangeButton';
 import PostList from './PostList';
 import Pagination from './Pagination';
-import SearchInput from './SearchInput';
+import SearchInput from './Input/SearchInputKeyword';
 
 export default function Posts() {
   return (
@@ -16,18 +16,13 @@ export default function Posts() {
           <DropDown />
         </div>
         <div className='flex justify-end'>
-          <OrangeButton text='글쓰기' textSize={15} py={8} width={115} />
+          <OrangeButton text='글쓰기' width={115} textSize={15} py={8} />
         </div>
       </div>
       <PostList />
       <div className='flex flex-col items-center'>
         <Pagination />
-        <SearchInput
-          width={496}
-          height={50}
-          divWidth
-          placeholder='검색어를 입력해주세요.'
-        />
+        <SearchInput />
       </div>
     </div>
   );
