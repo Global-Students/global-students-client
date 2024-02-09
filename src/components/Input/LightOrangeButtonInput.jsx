@@ -8,6 +8,7 @@ export default function LightOrangeButtonInput({
   value,
   placeholder,
   buttonText,
+  disabled,
   message,
   isValid,
   onChange,
@@ -22,7 +23,11 @@ export default function LightOrangeButtonInput({
         onChange={onChange}
         placeholder={placeholder}
       >
-        <LightOrangeButton text={buttonText} onClick={onClick} />
+        <LightOrangeButton
+          text={buttonText}
+          onClick={onClick}
+          disabled={disabled}
+        />
       </Input>
       <ValidationMessage message={message} isValid={isValid} />
     </>

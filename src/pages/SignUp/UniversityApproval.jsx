@@ -11,7 +11,7 @@ import OrangeButton from '../../components/Button/OrangeButton';
 import WhiteButton from '../../components/Button/WhiteButton';
 import LightOrangeButtonInput from '../../components/Input/LightOrangeButtonInput';
 import Label from '../../components/Label';
-import { LABEL, PLACEHOLDER } from '../../constants';
+import { LABEL, PLACEHOLDER, REGEX } from '../../constants';
 
 export default function UniversityApproval({
   moveStep,
@@ -59,8 +59,9 @@ export default function UniversityApproval({
               <LightOrangeButtonInput
                 id='email'
                 value={email}
-                buttonText='입력완료'
                 placeholder={PLACEHOLDER.universityEmail}
+                buttonText='입력완료'
+                disabled={!REGEX.email.test(email)}
                 onChange={handleChange}
                 onClick={() => {
                   verifyUniversityEmail({
