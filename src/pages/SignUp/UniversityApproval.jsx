@@ -5,6 +5,7 @@ import { ReactComponent as FileIcon } from '../../assets/uploadFile.svg';
 import AutnButton from '../../components/Button/AuthButton';
 import OrangeButton from '../../components/Button/OrangeButton';
 import WhiteButton from '../../components/Button/WhiteButton';
+import EmailApproval from './EmailApproval';
 import FileApproval from './FileApproval';
 
 export default function UniversityApproval({
@@ -41,11 +42,24 @@ export default function UniversityApproval({
                 onClick={changeMenu}
               />
             </div>
-            <p className='text-orange-1 text-[15px] text-center font-normal leading mt-[15px]'>
-              서류로 인증할 경우 인증 완료까지 2~3일이 소요될 수 있습니다.
-            </p>
+            {isSelected === 'file' && (
+              <p className='text-orange-1 text-[15px] text-center font-normal leading mt-[15px]'>
+                서류로 인증할 경우 인증 완료까지 2~3일이 소요될 수 있습니다.
+              </p>
+            )}
           </div>
-          <FileApproval signUpInfo={signUpInfo} setSignUpInfo={setSignUpInfo} />
+          {isSelected === 'email' && (
+            <EmailApproval
+              signUpInfo={signUpInfo}
+              setSignUpInfo={setSignUpInfo}
+            />
+          )}
+          {isSelected === 'file' && (
+            <FileApproval
+              signUpInfo={signUpInfo}
+              setSignUpInfo={setSignUpInfo}
+            />
+          )}
         </div>
       </div>
       <div className='w-full flex justify-between my-[56px] text'>
