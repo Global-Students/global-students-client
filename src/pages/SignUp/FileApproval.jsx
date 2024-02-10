@@ -13,7 +13,7 @@ export default function FileApproval({ signUpInfo: { file }, setSignUpInfo }) {
         <Label label={LABEL.uploadFile} />
         <FileInput onChange={handleFile} />
       </div>
-      <div className='flex justify-between rounded bg-gray-scale-8 px-[19px] py-[10px]'>
+      <div className='flex justify-between items-center rounded bg-gray-scale-8 px-[19px] py-[10px]'>
         <span className='text-gray-scale-4 text-[16px] font-light leading'>
           {file?.name || '파일명'}
         </span>
