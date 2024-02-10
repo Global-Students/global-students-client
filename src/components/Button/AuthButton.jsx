@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function AuthButton({
-  id,
+  name,
   text,
   subText,
   icon: Icon,
@@ -20,7 +20,7 @@ export default function AuthButton({
         isSelected ? selectButtonStyle : unSelectButtonStyle
       }`}
       type='button'
-      id={id}
+      name={name}
       onClick={onClick}
     >
       <Icon fill={isSelected ? '#FFFFFF' : '#808593'} />

@@ -13,7 +13,7 @@ export default function UniversityApproval({
   setSignUpInfo,
 }) {
   const [isSelected, setIsSleceted] = useState('');
-  const changeMenu = (event) => setIsSleceted(event.currentTarget.id);
+  const changeMenu = (event) => setIsSleceted(event.currentTarget.name);
   const isPassed = true;
 
   return (
@@ -26,14 +26,14 @@ export default function UniversityApproval({
           <div className=' mb-[60px]'>
             <div className='flex justify-between'>
               <AutnButton
-                id='email'
+                name='email'
                 text='학교 이메일로 인증하기'
                 icon={EmailIcon}
                 isSelected={isSelected === 'email'}
                 onClick={changeMenu}
               />
               <AutnButton
-                id='file'
+                name='file'
                 text='서류로 인증하기'
                 subText='재학증명서, 학생증'
                 icon={FileIcon}
