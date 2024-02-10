@@ -6,13 +6,13 @@ export default function FileInput({ onChange }) {
       <p className='flex-1 text-gray-scale-4 text-[16px] font-light leading'>
         00MB 이하의 JPG, PNG, PDF 파일
       </p>
-      <labal
+      <label
         className='min-w-[88px] rounded-[9px] px-[16px] py-[12px] mr-[10px] bg-orange-2 bg-opacity-25 text-orange-main hover:brightness-110 cursor-pointer'
         htmlFor='file'
       >
         파일선택
-      </labal>
-      <input className='hidden' id='file' type='file' onChange={onChange} />
+        <input className='hidden' id='file' type='file' onChange={onChange} />
+      </label>
     </div>
   );
 }
