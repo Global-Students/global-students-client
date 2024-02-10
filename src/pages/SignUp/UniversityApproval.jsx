@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import uploadAuthImage from '../../apis/authImageUploader';
 import { submitSignUpInfo } from '../../apis/signUp';
 import { ReactComponent as EmailIcon } from '../../assets/outgoingMail.svg';
 import { ReactComponent as FileIcon } from '../../assets/uploadFile.svg';
@@ -69,6 +70,11 @@ export default function UniversityApproval({
             <OrangeButton
               text='다음'
               onClick={() => {
+                if (signUpInfo.file.type === 'image/png') {
+                  uploadAuthImage(signUpInfo.file).then((url) =>
+                    setSignUpInfo((prev) => ({ ...prev, imgUrl: url })),
+                  );
+                }
                 submitSignUpInfo(signUpInfo, moveStep);
               }}
               disabled={!isPassed}
