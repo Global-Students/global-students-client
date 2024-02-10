@@ -11,7 +11,13 @@ export default function FileInput({ onChange }) {
         htmlFor='file'
       >
         파일선택
-        <input className='hidden' id='file' type='file' onChange={onChange} />
+        <input
+          className='hidden'
+          id='file'
+          type='file'
+          accept='image/png, .pdf'
+          onChange={onChange}
+        />
       </label>
     </div>
   );
