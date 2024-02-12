@@ -3,9 +3,19 @@ import { Link } from 'react-router-dom';
 
 export default function PopularList({ baseurl, populars }) {
   const [isClick, setIsClick] = useState(false);
+  const [popularInfo, setPopularInfo] = useState([]);
   function handleToggle() {
     setIsClick(!isClick);
   }
+
+  let i = 0;
+  setInterval(() => {
+    setPopularInfo(populars[i]);
+    i += 1;
+    if (i === 4) {
+      i = 0;
+    }
+  }, 2500);
 
   return (
     <div className='pb-[60px]'>
@@ -20,7 +30,7 @@ export default function PopularList({ baseurl, populars }) {
               <div className='flex flex-row gap-x-[30px]'>
                 <p className='text-orange-main text-lg font-medium'>인기글</p>
                 <p className='text-gray-scale-3 text-lg font-normal'>
-                  인기글 제목
+                  {popularInfo.title}
                 </p>
               </div>
               <div className='flex flex-row w-[91px] justify-between'>
