@@ -28,6 +28,7 @@ export default function NoticeBoard() {
       page: currentPage,
       q: keyword,
     };
+
     const queryStr = new URLSearchParams(params).toString();
     const requrl = `${baseurl}/?${queryStr}`;
 

@@ -6,8 +6,8 @@
     "pageInfo": {
       "page": 1,
       "size": 10,
-      "totalPage": 10,
-      "totalPost": 100
+      "totalPage": 2,
+      "totalPost": 18
     },
     "noticePost": {
       "title": "공지글입니다",

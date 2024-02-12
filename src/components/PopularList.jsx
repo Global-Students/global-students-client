@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 export default function PopularList({ baseurl, populars }) {
   const [isClick, setIsClick] = useState(false);
-
   function handleToggle() {
     setIsClick(!isClick);
   }
@@ -11,17 +10,17 @@ export default function PopularList({ baseurl, populars }) {
   return (
     <div className='pb-[60px]'>
       {isClick ? (
-        <div className='h-[72px] duration-500'>
+        <div className='relative h-[72px] duration-500'>
           <button
             onClick={handleToggle}
-            className='flex flex-row w-[953px] h-[72px] rounded-[14px] justify-center items-center bg-[#FFA77B] bg-opacity-20 border border-[#FFA77B] border-opacity-25'
+            className='popular flex flex-row w-[953px] h-[72px] rounded-[14px] justify-center items-center bg-[#FFA77B] bg-opacity-20 border border-[#FFA77B] border-opacity-25'
             type='button'
           >
             <div className='flex flex-row w-[891px] h-[22px] justify-between items-center'>
-              <div className='flex flex-row w-[155px] justify-between'>
+              <div className='flex flex-row gap-x-[30px]'>
                 <p className='text-orange-main text-lg font-medium'>인기글</p>
                 <p className='text-gray-scale-3 text-lg font-normal'>
-                  게시글 제목
+                  인기글 제목
                 </p>
               </div>
               <div className='flex flex-row w-[91px] justify-between'>
