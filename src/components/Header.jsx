@@ -113,7 +113,7 @@ export default function Header() {
             </div>
           </div>
           <div className='flex flex-row w-[215px] h-[47px] justify-between items-center'>
-            <Link to='/Search'>
+            <Link to='/search'>
               <div className='group w-[47px] h-[47px] relative'>
                 <img src='/assets/search.svg' alt='search' />
                 <img
