@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SearchInputSchool from '../Input/SearchInputSchool';
+import SearchInput from '../Input/SearchInput';
 
 export default function FindSchoolBox() {
   const [isClick, setIsClick] = useState(false);
@@ -31,7 +31,13 @@ export default function FindSchoolBox() {
           </div>
         </div>
         <img src='/assets/group.svg' alt='group' />
-        <SearchInputSchool />
+        <SearchInput
+          width={272}
+          height={51}
+          pl={19}
+          pr={3}
+          placeholder='학교명을 입력해주세요'
+        />
       </div>
     </div>
   );

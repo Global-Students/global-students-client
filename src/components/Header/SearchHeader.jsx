@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SearchInput from '../Input/SearchInputKeyword';
+import SearchInput from '../Input/SearchInput';
 import FindSchool from './FindSchoolBox';
 import RealTimePopularPosts from './RealTimePopularPosts';
 
@@ -14,7 +14,13 @@ export default function SearchHeader({ searchClick, setSearchClick }) {
               <img src='/assets/logoHeader.svg' alt='logo' />
             </Link>
             <div className='flex flex-row w-[888px] h-[60px] justify-between items-center'>
-              <SearchInput header />
+              <SearchInput
+                width={803}
+                height={59}
+                pl={19}
+                pr={7}
+                placeholder='검색어를 입력해주세요'
+              />
               <button
                 onClick={() => setSearchClick(!searchClick)}
                 type='button'
