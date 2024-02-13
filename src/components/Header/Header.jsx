@@ -38,16 +38,7 @@ export default function Header() {
 
   return (
     <div className='relative'>
-      {searchClick ? (
-        <div className='absolute z-50'>
-          <SearchHeader
-            searchClick={searchClick}
-            setSearchClick={setSearchClick}
-          />
-        </div>
-      ) : (
-        ''
-      )}
+      <SearchHeader searchClick={searchClick} setSearchClick={setSearchClick} />
       <div className='flex h-[130px] justify-center items-center'>
         <div className='flex w-[1280px] h-[130px] justify-center items-center border-b border-gray-scale-8'>
           <div className='flex flex-row w-[1280px] h-[76px] py-[27px] justify-between items-center'>

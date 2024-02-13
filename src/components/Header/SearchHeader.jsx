@@ -6,10 +6,14 @@ import RealTimePopularPosts from './RealTimePopularPosts';
 
 export default function SearchHeader({ searchClick, setSearchClick }) {
   return (
-    <div className='flex flex-col justify-center items-center'>
+    <div
+      className={`flex flex-col justify-center items-center absolute z-10 ${
+        searchClick ? 'animate-slider block' : 'hidden'
+      }`}
+    >
       <div className='flex w-[1280px] h-[525px] bg-white justify-center items-center'>
         <div className='flex flex-col w-[1280px] h-[457px] justify-between'>
-          <div className='flex flex-row w-[1213px] h-[61px] bg-gray-scale-9 justify-between items-center'>
+          <div className='flex flex-row w-[1213px] h-[61px] bg-gray-scale-9 gap-x-[109px] items-center'>
             <Link to='/' className='flex w-[216px]'>
               <img src='/assets/logoHeader.svg' alt='logo' />
             </Link>
@@ -18,7 +22,7 @@ export default function SearchHeader({ searchClick, setSearchClick }) {
                 width='w-[803px]'
                 height='h-[59px]'
                 pl='pl-[19px]'
-                pr='pr-[7px]'
+                pr='pr-[15px]'
                 placeholder='검색어를 입력해주세요'
               />
               <button
