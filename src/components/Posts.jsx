@@ -23,9 +23,9 @@ export default function Posts() {
       <div className='flex flex-col items-center'>
         <Pagination />
         <SearchInput
-          width={496}
-          height={50}
-          px={24}
+          width='w-[496px]'
+          height='h-[50px]'
+          px='px-[24px]'
           placeholder='검색어를 입력해주세요'
           searchInBox
         />

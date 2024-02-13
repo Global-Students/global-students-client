@@ -32,10 +32,10 @@ export default function FindSchoolBox() {
         </div>
         <img src='/assets/group.svg' alt='group' />
         <SearchInput
-          width={272}
-          height={51}
-          pl={19}
-          pr={3}
+          width='w-[272px]'
+          height='h-[51px]'
+          pl='pl-[19px]'
+          pr='pr-[3px]'
           placeholder='학교명을 입력해주세요'
         />
       </div>
