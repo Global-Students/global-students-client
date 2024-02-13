@@ -5,7 +5,7 @@ export default function DropDown() {
   const [sort, setSort] = useState('인기순');
 
   function handleToggle() {
-    setIsClick(!isClick);
+    setIsClick((prev) => !prev);
   }
 
   const listChangeHandler = (e) => {
