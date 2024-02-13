@@ -3,7 +3,9 @@ import SearchInput from '../Input/SearchInput';
 
 export default function FindSchoolBox() {
   const [isClick, setIsClick] = useState(false);
-
+  function handleToggle() {
+    setIsClick((prev) => !prev);
+  }
   return (
     <div className='flex flex-col w-[302px] h-[354px] bg-white rounded-[20px] border border-gray-scale-8 items-center justify-center'>
       <div className='flex flex-col h-[308px] items-center justify-between'>
@@ -11,7 +13,7 @@ export default function FindSchoolBox() {
           <p className='text-gray-scale-2 text-lg font-semibold'>
             다른 학교 탐방하기
           </p>
-          <button type='button' onClick={() => setIsClick(!isClick)}>
+          <button type='button' onClick={handleToggle}>
             <img src='/assets/help.svg' alt='help' />
           </button>
           <div
@@ -24,7 +26,7 @@ export default function FindSchoolBox() {
                 학교탐방기능에 대한 설명 학교탐방기능에 대한 설명 학교탐방기능에
                 대한 설명
               </p>
-              <button type='button' onClick={() => setIsClick(!isClick)}>
+              <button type='button' onClick={handleToggle}>
                 <img src='/assets/close_small.svg' alt='close_small' />
               </button>
             </div>

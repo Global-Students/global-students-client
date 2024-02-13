@@ -9,6 +9,10 @@ export default function Header() {
   const [currentItem, setCurrentItem] = useState(0);
   const [searchClick, setSearchClick] = useState(false);
 
+  function handleToggle() {
+    setSearchClick((prev) => !prev);
+  }
+
   useEffect(() => {
     if (currentItem === 1 || pathname.includes('/NoticeBoard/All/')) {
       navRectangle.current.style.width = '140px';
@@ -117,10 +121,7 @@ export default function Header() {
               </div>
             </div>
             <div className='flex flex-row w-[215px] h-[47px] justify-between items-center'>
-              <button
-                type='button'
-                onClick={() => setSearchClick(!searchClick)}
-              >
+              <button type='button' onClick={handleToggle}>
                 <div className='group w-[47px] h-[47px] relative'>
                   <img src='/assets/search.svg' alt='search' />
                   <img
