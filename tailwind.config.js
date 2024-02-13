@@ -54,20 +54,6 @@ module.exports = {
       lineHeight: {
         DEFAULT: 'normal',
       },
-      keyframes: {
-        slider: {
-          '0%': {
-            transform: 'translateY(-100%)',
-          },
-          '100%': {
-            transform: 'translateY(0)',
-          },
-        },
-      },
-      animation: {
-        slider: 'slider 0.5s ease',
-        sliderOut: 'slider 0.5s ease reverse',
-      },
     },
   },
   plugins: [

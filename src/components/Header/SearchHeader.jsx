@@ -7,8 +7,8 @@ import RealTimePopularPosts from './RealTimePopularPosts';
 export default function SearchHeader({ searchClick, setSearchClick }) {
   return (
     <div
-      className={`flex flex-col justify-center items-center absolute z-10 ${
-        searchClick ? 'animate-slider block' : 'hidden'
+      className={`flex flex-col justify-center items-center absolute z-10 -translate-y-full transition-all duration-500 ${
+        searchClick ? 'translate-y-0' : ''
       }`}
     >
       <div className='flex w-[1280px] h-[525px] bg-white justify-center items-center'>
@@ -26,7 +26,7 @@ export default function SearchHeader({ searchClick, setSearchClick }) {
                 placeholder='검색어를 입력해주세요'
               />
               <button
-                onClick={() => setSearchClick(!searchClick)}
+                onClick={() => setSearchClick((prev) => !prev)}
                 type='button'
                 className='flex w-[60px] h-[60px] justify-center items-center rounded-full bg-gray-scale-8 hover:bg-[#EBEBEB]'
               >
