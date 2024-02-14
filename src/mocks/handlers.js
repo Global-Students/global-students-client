@@ -13,6 +13,14 @@ const handlers = [
       ),
     // HttpResponse.json({ message: '로그인 실패' }, { status: 400 }),
   ),
+  http.post('/auth/logout', () =>
+    HttpResponse.json({
+      isSuccess: true,
+      code: 'LOGIN201_2',
+      message: '로그아웃 성공',
+      result: {},
+    }),
+  ),
   http.get(`/auth/join/check-id/:userId`, () =>
     HttpResponse.json({
       isSuccess: true,
