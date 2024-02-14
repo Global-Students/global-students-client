@@ -5,10 +5,6 @@ import ShowButton from './Button/ShowButton';
 export default function UserInfoControl() {
   const [isLogin, setIsLogin] = useState(true);
 
-  function handleLogutClick() {
-    setIsLogin(!isLogin);
-  }
-
   return (
     <div>
       {isLogin ? (
@@ -29,7 +25,7 @@ export default function UserInfoControl() {
             </div>
             <button
               type='button'
-              onClick={handleLogutClick}
+              onClick={() => setIsLogin(!isLogin)}
               className='flex mt-[10px] justify-center items-center text-gray-scale-4 text-[13px] font-light'
             >
               로그아웃

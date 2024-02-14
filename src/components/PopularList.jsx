@@ -4,7 +4,7 @@ export default function PopularList() {
   const [isClick, setIsClick] = useState(false);
 
   function handleToggle() {
-    setIsClick(!isClick);
+    setIsClick((prev) => !prev);
   }
 
   return (
