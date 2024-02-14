@@ -19,7 +19,46 @@ const handlers = [
           headers: { Authorization: 'Bearer {JWT_TOKEN}' },
         },
       ),
-    // HttpResponse.json({ message: '로그인 실패' }, { status: 400 }),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'LOGIN400_1',
+    //       message: '아이디 혹은 비밀번호를 재입력하세요',
+    //       result: {},
+    //     },
+    //     { status: 400 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'LOGIN403_1',
+    //       message: '접근이 거부되었습니다',
+    //       result: {},
+    //     },
+    //     { status: 403 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON500',
+    //       message: '서버 에러',
+    //       result: {},
+    //     },
+    //     { status: 500 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON503',
+    //       message: '일시적인 서버 오류',
+    //       result: {},
+    //     },
+    //     { status: 503 },
+    //   ),
   ),
   http.post('/auth/refresh', () =>
     HttpResponse.json({
