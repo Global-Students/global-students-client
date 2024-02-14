@@ -11,6 +11,8 @@ import NoticeBoard from './pages/NoticeBoard';
 import MyPage from './pages/MyPage';
 import DashBoard from './pages/DashBoard';
 import SignUp from './pages/SignUp/SignUp';
+import UpdateInfo from './pages/Update/UpdateInfo';
+import UpdateProfile from './pages/Update/UpdateProfile';
 
 function App() {
   return (
@@ -25,7 +27,7 @@ function App() {
             <Route path='/signUp' element={<SignUp />} />
             <Route path='/myPage' element={<MyPage />} />
             <Route path='/findAccount' element={<FindAccountPage />} />
-            <Route path='/dashboard/myPosts' element={<DashBoard isMyPosts / >} />
+            <Route path='/dashboard/myPosts' element={<DashBoard isMyPosts />} />
             <Route path='/dashboard/bookmarkPosts' element={<DashBoard/ >} />
             <Route path='/admin' element={<AdminPage />}>
               <Route index path='/admin' element={<MemberListPage />} />
@@ -35,6 +37,8 @@ function App() {
                 element={<UniversityApprovalPage />}
               />
             </Route>
+            <Route path='/updateInfo'element={<UpdateInfo />} />
+            <Route path='/updateProfile' element={<UpdateProfile />} />
           </Routes>
         </div>
         <Footer />
