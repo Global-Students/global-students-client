@@ -12,7 +12,6 @@ import SignUp from './pages/SignUp/SignUp';
 import Search from './pages/Search/Search';
 import SearchListPage from './pages/Search/SearchListPage';
 import SearchDetailListPage from './pages/Search/SearchDetailListPage';
-// import SearchList from './components/SearchList';
 
 function App() {
   return (
@@ -27,9 +26,9 @@ function App() {
             <Route path='/signUp' element={<SignUp />} />
             <Route path='/findAccount' element={<FindAccountPage />} />
             <Route path='/search' element={<Search />}>
-              <Route path='/search' element={<SearchListPage />} />
+              <Route path='/search/:keyword' element={<SearchListPage />} />
               <Route
-                path='/search/:boardName'
+                path='/search/:keyword/:boardName'
                 element={<SearchDetailListPage />}
               />
             </Route>
