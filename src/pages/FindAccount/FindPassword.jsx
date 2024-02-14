@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { sendCode, verifyCode } from '../../apis/findAccount';
 import Input from '../../components/Input/Input';
 import { REGEX } from '../../constants';
 
-export default function FindPassword() {
+export default function FindPassword({ setIsPasswordResettable }) {
   const [isEmailVerified, setIsEmailVerified] = useState(false);
   const [data, setData] = useState({
     email: '',
@@ -19,11 +18,10 @@ export default function FindPassword() {
     event.preventDefault();
     sendCode(data).then((result) => setIsEmailVerified(result));
   };
-  const navigator = useNavigate();
   const verifyAuthCode = () => {
     verifyCode(data).then((result) => {
       if (result) {
-        navigator('/');
+        setIsPasswordResettable(true);
         return;
       }
       alert('인증 코드를 틀렸습니다. 다시 입력해주세요.');
