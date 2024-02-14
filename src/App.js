@@ -1,13 +1,16 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer';
-import Header from './components/Header';
+import Header from './components/Header/Header';
+import AdminPage from './pages/Admin/AdminPage';
+import MemberListPage from './pages/Admin/MemberListPage';
+import UniversityApprovalPage from './pages/Admin/UniversityApprovalPage';
 import FindAccountPage from './pages/FindAccount/FindAccountPage';
 import Login from './pages/Login';
 import NoticeBoard from './pages/NoticeBoard';
-import SignUp from './pages/SignUp';
 import MyPage from './pages/MyPage';
 import DashBoard from './pages/DashBoard';
+import SignUp from './pages/SignUp/SignUp';
 
 function App() {
   return (
@@ -24,6 +27,14 @@ function App() {
             <Route path='/findAccount' element={<FindAccountPage />} />
             <Route path='/dashboard/myPosts' element={<DashBoard isMyPosts / >} />
             <Route path='/dashboard/bookmarkPosts' element={<DashBoard/ >} />
+            <Route path='/admin' element={<AdminPage />}>
+              <Route index path='/admin' element={<MemberListPage />} />
+              <Route path='/admin/memberList' element={<MemberListPage />} />
+              <Route
+                path='/admin/universityApproval'
+                element={<UniversityApprovalPage />}
+              />
+            </Route>
           </Routes>
         </div>
         <Footer />
