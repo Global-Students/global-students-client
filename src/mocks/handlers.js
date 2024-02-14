@@ -138,6 +138,28 @@ const handlers = [
     //     },
     //   ),
   ),
+  http.patch(
+    '/user/find-password/reset',
+    () =>
+      HttpResponse.json({
+        isSuccess: true,
+        code: 'LOGIN201_1',
+        message: '비밀번호 재설정 성공',
+        result: {},
+      }),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'LOGIN400_6',
+    //       message: '잘못된 형식입니다',
+    //       result: {},
+    //     },
+    //     {
+    //       status: 400,
+    //     },
+    //   ),
+  ),
 ];
 
 export default handlers;

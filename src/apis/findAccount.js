@@ -27,4 +27,10 @@ const verifyCode = (body) =>
     .then(() => true)
     .catch(() => false);
 
-export { findId, sendCode, verifyCode };
+const resetPassword = (body) =>
+  axios
+    .patch(API_PATH.resetPassword, body)
+    .then(() => true)
+    .catch(() => false);
+
+export { findId, resetPassword, sendCode, verifyCode };
