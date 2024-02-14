@@ -26,7 +26,7 @@ export default function SideBar() {
   const listLayout = 'ml-[14px] leading-[20px]';
 
   return (
-    <section className='flex flex-col gap-[23px] border rounded border-gray-scale-8 bg-gray-scale-9 shadow py-[48px] pl-[38px] pr-[79px] mr-[42px]'>
+    <section className='w-[287px] flex flex-col gap-[23px] border rounded border-gray-scale-8 bg-gray-scale-9 shadow py-[48px] pl-[38px] pr-[79px] mr-[42px]'>
       <ul className={`flex flex-col gap-[23px] ${makerStyle}`}>
         <span className={`${titleStyle}`}>회원관리</span>
         <li className={`${listLayout} ${makerColor(MENU_ID.member)}`}>
