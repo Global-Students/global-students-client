@@ -1,13 +1,24 @@
 import React from 'react';
 
-export default function ValidationMessage({ message, isShowed, value }) {
+export default function ValidationMessage({ message, isValid }) {
+  const textStyle = 'text-orange-1 text-[14px] font-normal leading';
+
   return (
     <div
       className={`${
-        isShowed === false || value === '' ? 'hidden' : 'block'
-      } text-orange-main p-3`}
+        !!message === false ? 'hidden' : 'block'
+      } flex items-center gap-[8px] mt-[6px]`}
     >
-      {message}
+      {isValid ? (
+        <img
+          className='w-[20px] h-[20px]'
+          src='/assets/success.png'
+          alt='success'
+        />
+      ) : (
+        <img src='/assets/error.svg' alt='error' />
+      )}
+      <span className={textStyle}>{message}</span>
     </div>
   );
 }

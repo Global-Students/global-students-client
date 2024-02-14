@@ -8,7 +8,7 @@ module.exports = {
       colors: {
         'orange-main': '#FF743D',
         'orange-1': '#FF5500',
-        'orange-2': '##FFA77B',
+        'orange-2': '#FFA77B',
         'orange-5': '#FFF2EB',
         'gray-scale-1': '#1E1E1E',
         'gray-scale-2': '#414244',
@@ -34,13 +34,15 @@ module.exports = {
           'linear-gradient(0deg, rgba(255, 167, 123, 0.15) 0%, rgba(255, 167, 123, 0.15) 100%)',
       },
       boxShadow: {
-        // DEFAULT: '0px 5px 30px -15px rgba(0, 0, 0, 0.20)',
+        DEFAULT: '0px 5px 30px -15px rgba(0, 0, 0, 0.20)',
         'inner-orange':
           '-12px -12px 14.3px 1px rgba(255, 85, 0, 0.20) inset, -2px -2px 6.7px 0px rgba(255, 255, 255, 0.25) inset, 3px 3px 5px -2px rgba(255, 255, 255, 0.25) inset',
         welcome:
           '-12px -12px 14.3px 1px rgba(255, 85, 0, 0.20) inset, -2px -2px 6.7px 0px rgba(255, 255, 255, 0.25) inset, 3px 3px 5px -2px rgba(255, 255, 255, 0.25) inset, 0px 4px 15px 0px rgba(0, 0, 0, 0.10)',
         'prev-btn':
           '4px 4px 10px -3px rgba(0, 0, 0, 0.06), -4px -4px 9.8px -9px rgba(0, 0, 0, 0.03) inset, -1px -1px 30px 0px #FFF inset',
+        authBtn:
+          '1px 2px 8.3px -3px rgba(0, 0, 0, 0.15), -4px -4px 17.9px -9px rgba(0, 0, 0, 0.05) inset',
         managementBtn:
           '-1px -1px 30px 0px #FFF inset, -4px -4px 17.9px -9px rgba(0, 0, 0, 0.20) inset, 1px 2px 8.3px -3px rgba(0, 0, 0, 0.15)',
       },
