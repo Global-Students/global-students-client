@@ -10,8 +10,7 @@ const handlers = [
           code: 'COMMON201',
           message: '생성하였습니다',
           result: {
-            accessToken:
-              'Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzA3NDk2OTIyLCJleHAiOjE3MDc0OTY5NTh9.zt4cEybMk6SDDxNh34pgSx5yjXnui1ZWL1JFhW1TPH4',
+            accessToken: 'Bearer Token',
             refreshToken: '9c8b3ad5-50e1-4db1-b180-3f4a11212d1d',
             expireAt: '2023-03-02T11:44:30.327959',
           },
@@ -21,6 +20,18 @@ const handlers = [
         },
       ),
     // HttpResponse.json({ message: '로그인 실패' }, { status: 400 }),
+  ),
+  http.post('/auth/refresh', () =>
+    HttpResponse.json({
+      isSuccess: true,
+      code: 'COMMON201',
+      message: '생성하였습니다',
+      result: {
+        accessToken:
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzA3NDk4NzQ0LCJleHAiOjE3MDc0OTg3ODB9.nq2JmdT4ydYulq6DUM-b0b9ofBjbKPm_rvg_k7ErZJE',
+        expireAt: '2024-02-20T03:21:19',
+      },
+    }),
   ),
   http.get(`/auth/join/check-id/:userId`, () =>
     HttpResponse.json({
