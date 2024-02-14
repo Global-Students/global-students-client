@@ -33,9 +33,13 @@ const verifyAuthCode = (body) =>
     .then(() => true)
     .catch(() => false);
 
-const submitSignUpInfo = (signUpInfo, moveStep) => {
+const submitSignUpInfo = (file, signUpInfo, moveStep) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('join', signUpInfo);
+
   axios
-    .post(API_PATH.sumbitSignUpInfo, signUpInfo, {
+    .post(API_PATH.sumbitSignUpInfo, formData, {
       'Content-Type': 'multipart/form-data',
     })
     .then(() => moveStep('welcome'))

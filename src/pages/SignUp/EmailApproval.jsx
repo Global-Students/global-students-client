@@ -3,8 +3,10 @@ import { verifyAuthCode, verifyUniversityEmail } from '../../apis/signUp';
 import LightOrangeButtonInput from '../../components/Input/LightOrangeButtonInput';
 import Label from '../../components/Label';
 import { LABEL, PLACEHOLDER, REGEX } from '../../constants';
+import { useSignUpContext } from '../../contexts/SignUpContext';
 
-export default function EmailApproval({ signUpInfo, setSignUpInfo }) {
+export default function EmailApproval() {
+  const { signUpInfo, setSignUpInfo } = useSignUpContext();
   const [messgae, setMessage] = useState('');
   const [authData, setAuthData] = useState({ email: '', code: '' });
   const handleChange = (event) => {

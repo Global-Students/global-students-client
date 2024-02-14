@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
-import uploadAuthImage from '../../apis/authImageUploader';
 import { submitSignUpInfo } from '../../apis/signUp';
 import { ReactComponent as EmailIcon } from '../../assets/outgoingMail.svg';
 import { ReactComponent as FileIcon } from '../../assets/uploadFile.svg';
 import AutnButton from '../../components/Button/AuthButton';
 import OrangeButton from '../../components/Button/OrangeButton';
 import WhiteButton from '../../components/Button/WhiteButton';
+import { useSignUpContext } from '../../contexts/SignUpContext';
 import EmailApproval from './EmailApproval';
 import FileApproval from './FileApproval';
 
-export default function UniversityApproval({
-  moveStep,
-  signUpInfo,
-  setSignUpInfo,
-}) {
+export default function UniversityApproval({ moveStep }) {
+  const { signUpInfo } = useSignUpContext();
+  const [file, setFile] = useState();
   const [isSelected, setIsSleceted] = useState('');
   const changeMenu = (event) => setIsSleceted(event.currentTarget.name);
   const isPassed = true;
@@ -49,17 +47,9 @@ export default function UniversityApproval({
               </p>
             )}
           </div>
-          {isSelected === 'email' && (
-            <EmailApproval
-              signUpInfo={signUpInfo}
-              setSignUpInfo={setSignUpInfo}
-            />
-          )}
+          {isSelected === 'email' && <EmailApproval />}
           {isSelected === 'file' && (
-            <FileApproval
-              signUpInfo={signUpInfo}
-              setSignUpInfo={setSignUpInfo}
-            />
+            <FileApproval file={file} changeFile={setFile} />
           )}
         </div>
       </div>
@@ -69,14 +59,7 @@ export default function UniversityApproval({
           <div className='w-[148px] h-[51px] text-[18px]'>
             <OrangeButton
               text='다음'
-              onClick={() => {
-                if (signUpInfo.file.type === 'image/png') {
-                  uploadAuthImage(signUpInfo.file).then((url) =>
-                    setSignUpInfo((prev) => ({ ...prev, imgUrl: url })),
-                  );
-                }
-                submitSignUpInfo(signUpInfo, moveStep);
-              }}
+              onClick={() => submitSignUpInfo(file, signUpInfo, moveStep)}
               disabled={!isPassed}
             />
           </div>

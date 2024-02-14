@@ -17,28 +17,28 @@ import {
   REGEX,
   YEARS,
 } from '../../constants';
+import { useSignUpContext } from '../../contexts/SignUpContext';
 
-export default function SignUpInfo({
-  moveStep,
-  signUpInfo,
-  updateSignUpInfo,
-  setSignUpInfo,
-}) {
+export default function SignUpInfo({ moveStep }) {
   const {
-    userId,
-    password,
-    confirmPassword,
-    firstName,
-    lastName,
-    birthYear,
-    birthMonth,
-    birthDate,
-    nickname,
-    nationality,
-    hostCountry,
-    homeUniversity,
-    hostUniversity,
-  } = signUpInfo;
+    signUpInfo: {
+      userId,
+      password,
+      confirmPassword,
+      firstName,
+      lastName,
+      birthYear,
+      birthMonth,
+      birthDate,
+      nickname,
+      nationality,
+      hostCountry,
+      homeUniversity,
+      hostUniversity,
+    },
+    updateSignUpInfo,
+    setSignUpInfo,
+  } = useSignUpContext();
   const [isUniqued, setIsUniqued] = useState({
     userId: false,
     nickname: false,

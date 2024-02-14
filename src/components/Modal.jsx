@@ -1,9 +1,11 @@
 import React from 'react';
 import { CONSENTS } from '../constants';
+import { useSignUpContext } from '../contexts/SignUpContext';
 import OrangeButton from './Button/OrangeButton';
 import Checkbox from './Input/Checkbox';
 
-export default function Modal({ id, signUpInfo, onChange, onClick }) {
+export default function Modal({ id, onClick }) {
+  const { signUpInfo, updateSignUpInfo } = useSignUpContext();
   const { tag, label, script } = CONSENTS.find((consent) => consent.id === id);
 
   return (
@@ -12,7 +14,7 @@ export default function Modal({ id, signUpInfo, onChange, onClick }) {
         <Checkbox
           id={id}
           isChecked={signUpInfo[id]}
-          onChange={onChange}
+          onChange={updateSignUpInfo}
           tag={tag}
           label={label}
         />

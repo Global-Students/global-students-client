@@ -4,17 +4,15 @@ import CheckForm from '../../components/CheckForm';
 import Checkbox from '../../components/Input/Checkbox';
 import Modal from '../../components/Modal';
 import { CONSENTS } from '../../constants';
+import { useSignUpContext } from '../../contexts/SignUpContext';
 
-export default function TermsAndPrivacy({
-  moveStep,
-  signUpInfo,
-  updateSignUpInfo,
-}) {
+export default function TermsAndPrivacy({ moveStep }) {
+  const { signUpInfo, updateSignUpInfo } = useSignUpContext();
+  const { terms, privacy } = signUpInfo;
   const [all, setAll] = useState(false);
   const [isShow, setIsShow] = useState(false);
-  const { terms, privacy } = signUpInfo;
-  const isPassed = terms && privacy;
   const [modalId, setModalId] = useState('');
+  const isPassed = terms && privacy;
 
   return (
     <section className='flex flex-col gap-[25px] mt-[74px]'>
@@ -55,14 +53,7 @@ export default function TermsAndPrivacy({
           />
         </div>
       </div>
-      {isShow && (
-        <Modal
-          id={modalId}
-          signUpInfo={signUpInfo}
-          onChange={updateSignUpInfo}
-          onClick={() => setIsShow(false)}
-        />
-      )}
+      {isShow && <Modal id={modalId} onClick={() => setIsShow(false)} />}
     </section>
   );
 }

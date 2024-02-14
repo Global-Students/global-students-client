@@ -3,9 +3,8 @@ import FileInput from '../../components/Input/FileInput';
 import Label from '../../components/Label';
 import { LABEL } from '../../constants';
 
-export default function FileApproval({ signUpInfo: { file }, setSignUpInfo }) {
-  const handleFile = (event) =>
-    setSignUpInfo((prev) => ({ ...prev, file: event.target.files[0] }));
+export default function FileApproval({ file, changeFile }) {
+  const handleFile = (event) => changeFile(event.target.files[0]);
 
   return (
     <div>
