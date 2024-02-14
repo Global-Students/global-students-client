@@ -7,8 +7,8 @@ export default function Footer() {
         <div className='w-[255px] flex justify-between'>
           <div className='text-footerFont'>개인정보 처리방침</div>
           <div className='text-footerFont'>이용약관</div>
-          <div className='text-footerFont'>운영정책</div>
           <div className='text-footerFont'>공지사항</div>
+          <div className='text-footerFont'>문의하기</div>
         </div>
       </div>
     </div>
