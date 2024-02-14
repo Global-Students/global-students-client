@@ -17,9 +17,13 @@ import {
   LEGEND,
   MONTHS,
   PLACEHOLDER,
-  REGEX,
   YEARS,
 } from '../../constants';
+import {
+  checkPasswordPattern,
+  checkPasswordReEnter,
+  checkUserIdPattern,
+} from '../../utils/checkPattern';
 
 export default function SignUpInfo({
   moveStep,
@@ -47,14 +51,11 @@ export default function SignUpInfo({
     nickname: false,
   });
   const [message, setMessage] = useState({ userId: '', password: '' });
-  const checkUserIdPattern = () => REGEX.userIdPattern.test(userId);
-  const checkPasswordPattern = () => REGEX.passwordPattern.test(password);
-  const checkPasswordReEnter = () => password === confirmPassword;
 
   const isPassed =
     isUniqued.userId &&
-    checkPasswordPattern() &&
-    checkPasswordReEnter() &&
+    checkPasswordPattern(password) &&
+    checkPasswordReEnter(password, confirmPassword) &&
     firstName &&
     lastName &&
     birthYear &&
@@ -86,7 +87,7 @@ export default function SignUpInfo({
                 }));
               }}
               onClick={() => {
-                if (checkUserIdPattern()) {
+                if (checkUserIdPattern(userId)) {
                   checkIdDuplicate(userId).then((result) => {
                     if (result) {
                       setIsUniqued((prev) => ({ ...prev, userId: true }));
@@ -106,7 +107,7 @@ export default function SignUpInfo({
               }}
             />
             <ValidationMessage
-              isShowed={!checkUserIdPattern()}
+              isShowed={!checkUserIdPattern(userId)}
               message='4자 이상 16자 이하의 영소문사/숫자를 사용해주세요.'
               value={userId}
             />
@@ -123,7 +124,7 @@ export default function SignUpInfo({
                 onReset={setSignUpInfo}
               />
               <ValidationMessage
-                isShowed={!checkPasswordPattern()}
+                isShowed={!checkPasswordPattern(password)}
                 message='8자 이상의 영문 대소문자/숫자/특수문자를 사용해주세요.'
                 value={password}
               />
@@ -139,7 +140,7 @@ export default function SignUpInfo({
                 onReset={setSignUpInfo}
               />
               <ValidationMessage
-                isShowed={!checkPasswordReEnter()}
+                isShowed={!checkPasswordReEnter(password, confirmPassword)}
                 message='비밀번호가 틀립니다. 다시 입력해주세요.'
                 value={confirmPassword}
               />
