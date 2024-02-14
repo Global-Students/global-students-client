@@ -9,6 +9,7 @@ import FindAccountPage from './pages/FindAccount/FindAccountPage';
 import Login from './pages/Login';
 import NoticeBoard from './pages/NoticeBoard';
 import SignUp from './pages/SignUp/SignUp';
+import PrivacyPolicy from './pages/Footer/PrivacyPolicy';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
                 element={<UniversityApprovalPage />}
               />
             </Route>
+            <Route path='/privacyPolicy' element={<PrivacyPolicy />} />
           </Routes>
         </div>
         <Footer />
