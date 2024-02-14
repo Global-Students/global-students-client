@@ -5,9 +5,18 @@ const handlers = [
     `/auth/login`,
     () =>
       HttpResponse.json(
-        { message: '로그인 성공' },
         {
-          status: 201,
+          isSuccess: true,
+          code: 'COMMON201',
+          message: '생성하였습니다',
+          result: {
+            accessToken:
+              'Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzA3NDk2OTIyLCJleHAiOjE3MDc0OTY5NTh9.zt4cEybMk6SDDxNh34pgSx5yjXnui1ZWL1JFhW1TPH4',
+            refreshToken: '9c8b3ad5-50e1-4db1-b180-3f4a11212d1d',
+            expireAt: '2023-03-02T11:44:30.327959',
+          },
+        },
+        {
           headers: { Authorization: 'Bearer {JWT_TOKEN}' },
         },
       ),

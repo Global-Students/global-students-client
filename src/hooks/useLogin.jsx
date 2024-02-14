@@ -17,7 +17,8 @@ export default function useLogin() {
         'Content-Type': 'application/json',
       })
       .then((res) => {
-        localStorage.setItem('token', res.headers.authorization);
+        localStorage.setItem('accessToken', res.data.result.accessToken);
+        localStorage.setItem('expireAt', res.data.result.expireAt);
         navigate('/');
       })
       .catch((error) => {
