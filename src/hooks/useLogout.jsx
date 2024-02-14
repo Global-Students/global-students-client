@@ -11,6 +11,10 @@ export default function useLogout() {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('expireAt');
         navigate('/');
+      })
+      .catch((error) => {
+        const { message } = error.response.data;
+        alert(message);
       });
 
   return { logout };
