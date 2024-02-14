@@ -4,10 +4,11 @@ import { MEMBER_LIST, UNIVERSITY_APPROVAL_LIST } from './dummy';
 import MENU_ID from './id';
 import REGEX from './regex';
 import SCHEMA from './schema';
-import { LABEL, LEGEND, PLACEHOLDER } from './signUpForm';
+import { CONSENTS, LABEL, LEGEND, PLACEHOLDER } from './signUpForm';
 
 export {
   API_PATH,
+  CONSENTS,
   DATES,
   LABEL,
   LEGEND,

@@ -37,6 +37,42 @@ const handlers = [
     //   ),
   ),
   http.post(
+    '/auth/join/university-verification/email',
+    () =>
+      HttpResponse.json({
+        isSuccess: true,
+        code: 'JOIN201_3',
+        message: '인증번호 전송 성공',
+      }),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'VERIFY400_2',
+    //       message: '학생 혹은 교육기관의 이메일이 아닙니다',
+    //     },
+    //     { status: 400 },
+    //   ),
+  ),
+  http.post(
+    '/auth/join/university-verification/email/code',
+    () =>
+      HttpResponse.json({
+        isSuccess: true,
+        code: 'JOIN200_5',
+        message: '인증번호 전송 성공',
+      }),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'VERIFY400_2',
+    //       message: '잘못된 인증번호입니다',
+    //     },
+    //     { status: 400 },
+    //   ),
+  ),
+  http.post(
     `/auth/join/information`,
     () =>
       HttpResponse.json({
