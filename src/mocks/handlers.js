@@ -72,6 +72,56 @@ const handlers = [
       },
     }),
   ),
+  http.post(
+    '/auth/logout',
+    () =>
+      HttpResponse.json({
+        isSuccess: true,
+        code: 'LOGIN201_2',
+        message: '로그아웃 성공',
+        result: {},
+      }),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON401',
+    //       message: '인증이 필요합니다',
+    //       result: {},
+    //     },
+    //     { status: 401 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'LOGIN403_1',
+    //       message: '접근이 거부되었습니다',
+    //       result: {},
+    //     },
+    //     { status: 403 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON500',
+    //       message: '서버 에러',
+    //       result: {},
+    //     },
+    //     { status: 500 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON503',
+    //       message: '일시적인 서버 오류',
+    //       result: {},
+    //     },
+    //     { status: 503 },
+    //   ),
+  ),
   http.get(`/auth/join/check-id/:userId`, () =>
     HttpResponse.json({
       isSuccess: true,

@@ -1,6 +1,7 @@
 const API_PATH = Object.freeze({
   login: '/auth/login',
   refresh: '/auth/refresh',
+  logout: '/auth/logout',
   checkUserId: (userId) => `/auth/join/check-id/${userId}`,
   checkNickname: (nickname) => `/auth/join/check-nickname/${nickname}`,
   emailVarification: '/auth/join/university-verification/email',
