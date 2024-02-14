@@ -21,6 +21,17 @@ const SCHEMA = Object.freeze({
     { id: '4', head: '인증파일' },
     { id: '5', head: '인증확인' },
   ],
+  postReport: [
+    { id: '0', head: 'No' },
+    { id: '1', head: '게시글 제목' },
+    { id: '2', head: '작성자 id' },
+    { id: '3', head: '최초 신고일' },
+    { id: '4', head: '게시글 작성일' },
+    { id: '5', head: '신고 횟수' },
+    { id: '6', head: '이유' },
+    { id: '7', head: '처리 여부' },
+    { id: '8', head: '처리 방법' },
+  ],
 });
 
 export default SCHEMA;

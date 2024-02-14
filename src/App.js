@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import AdminPage from './pages/Admin/AdminPage';
 import MemberListPage from './pages/Admin/MemberListPage';
+import ReportPage from './pages/Admin/ReportPage';
 import UniversityApprovalPage from './pages/Admin/UniversityApprovalPage';
 import FindAccountPage from './pages/FindAccount/FindAccountPage';
 import Login from './pages/Login';
@@ -29,6 +30,7 @@ function App() {
                 path='/admin/universityApproval'
                 element={<UniversityApprovalPage />}
               />
+              <Route path='/admin/report' element={<ReportPage />} />
             </Route>
           </Routes>
         </div>

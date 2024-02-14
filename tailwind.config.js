@@ -29,6 +29,8 @@ module.exports = {
         like: "url('/src/assets/thumbUp.svg')",
         'check-circle': "url('/src/assets/check_circle.svg')",
         'check-true-circle': "url('/src/assets/check_true_circle.svg')",
+        'square-check': "url('/src/assets/squareCheck.svg')",
+        'square-uncheck': "url('/src/assets/squareUncheck.svg')",
         'orange-5-gradient':
           'linear-gradient(0deg, rgba(255, 167, 123, 0.15) 0%, rgba(255, 167, 123, 0.15) 100%)',
       },
