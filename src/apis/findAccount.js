@@ -4,8 +4,8 @@ import { API_PATH } from '../constants';
 const findId = (body) =>
   axios
     .post(API_PATH.findId, body)
-    .then((response) => console.log(response))
-    .catch((error) => console.log(error));
+    .then(() => alert('메일로 아이디를 전송했습니다.'))
+    .catch((error) => alert(error.response.data.message));
 
 const sendCode = (body) =>
   axios

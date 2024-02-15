@@ -395,12 +395,56 @@ const handlers = [
     //     { status: 503 },
     //   ),
   ),
-  http.post('/user/find-id', () =>
-    HttpResponse.json({
-      isSuccess: true,
-      code: 'LOGIN200_2',
-      message: 'find id - ok',
-    }),
+  http.post(
+    '/user/find-id',
+    () =>
+      HttpResponse.json({
+        isSuccess: true,
+        code: 'LOGIN200_2',
+        message: 'OK',
+        result: {},
+      }),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'LOGIN400_2',
+    //       message: '등록된 이메일이 존재하지 않습니다',
+    //       result: {},
+    //     },
+    //     { status: 400 },
+    //   ),
+
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'LOGIN400_3',
+    //       message: '잘못된 형식입니다.',
+    //       result: {},
+    //     },
+    //     { status: 400 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON500',
+    //       message: '서버 에러',
+    //       result: {},
+    //     },
+    //     { status: 500 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON503',
+    //       message: '일시적인 서버 오류',
+    //       result: {},
+    //     },
+    //     { status: 503 },
+    //   ),
   ),
   http.post(
     'user/find-password',
