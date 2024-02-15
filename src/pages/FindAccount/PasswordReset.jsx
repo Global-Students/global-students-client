@@ -8,7 +8,7 @@ import {
   checkPasswordReEnter,
 } from '../../utils/checkPattern';
 
-export default function PasswordReset() {
+export default function PasswordReset({ email }) {
   const [data, setData] = useState({
     password: '',
     confirmPassword: '',
@@ -60,7 +60,7 @@ export default function PasswordReset() {
         className='self-center w-[194px] rounded border border-gray-scale-5 text-gray-scale-1 text-[18px] font-medium leading-[20px] tracking-[0.36px] py-[14px] shadow-prev-btn'
         type='button'
         onClick={() => {
-          resetPassword(data).then(() => {
+          resetPassword({ email, password }).then(() => {
             alert('비밀번호가 변경됐습니다.');
             navigator('/login');
           });

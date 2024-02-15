@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { sendCode, verifyCode } from '../../apis/findAccount';
 import Input from '../../components/Input/Input';
 import { REGEX } from '../../constants';
+import PasswordReset from './PasswordReset';
 
-export default function FindPassword({ setIsPasswordResettable }) {
+export default function FindPassword() {
+  const [isPasswordResettable, setIsPasswordResettable] = useState(false);
   const [isEmailVerified, setIsEmailVerified] = useState(false);
   const [data, setData] = useState({
     email: '',
@@ -18,6 +20,10 @@ export default function FindPassword({ setIsPasswordResettable }) {
     event.preventDefault();
     sendCode({ email }, setIsEmailVerified);
   };
+
+  if (isPasswordResettable) {
+    return <PasswordReset email={email} />;
+  }
 
   return (
     <form className='w-[460px] flex flex-col gap-[36px] rounded-b-[14px] border border-gray-scale-7-main px-[25px] py-[40px] shadow'>

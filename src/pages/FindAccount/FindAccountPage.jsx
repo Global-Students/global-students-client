@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import TranslateButton from '../../components/Button/TranslateButton';
 import FindId from './FindId';
 import FindPassword from './FindPassword';
-import PasswordReset from './PasswordReset';
 
 export default function FindAccountPage() {
   const [tabState, setTabState] = useState('id');
-  const [isPasswordResettable, setIsPasswordResettable] = useState(false);
   const selectedStyle =
     'w-full bg-[rgba(255,116,61,0.75)] rounded-t-[14px] border-b-[3px] border-orange-1 text-white text-[18px] font-semibold leading py-[18px]';
   const defaultStyle =
@@ -35,10 +33,7 @@ export default function FindAccountPage() {
           </button>
         </div>
         {tabState === 'id' && <FindId />}
-        {tabState === 'pw' && isPasswordResettable === false && (
-          <FindPassword setIsPasswordResettable={setIsPasswordResettable} />
-        )}
-        {tabState === 'pw' && isPasswordResettable && <PasswordReset />}
+        {tabState === 'pw' && <FindPassword />}
       </div>
     </section>
   );
