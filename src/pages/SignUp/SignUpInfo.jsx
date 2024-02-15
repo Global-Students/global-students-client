@@ -99,8 +99,10 @@ export default function SignUpInfo({ moveStep }) {
                 value={password}
                 placeholder={PLACEHOLDER.password}
                 onChange={(event) => {
+                  const { value } = event.target;
                   updateSignUpInfo(event);
-                  updatePasswordMessage(event);
+                  updatePasswordMessage(value);
+                  updateConfirmPasswordMessage(value, confirmPassword);
                 }}
                 onReset={setSignUpInfo}
               />
@@ -114,8 +116,9 @@ export default function SignUpInfo({ moveStep }) {
                 value={confirmPassword}
                 placeholder={PLACEHOLDER.password}
                 onChange={(event) => {
+                  const { value } = event.target;
                   updateSignUpInfo(event);
-                  updateConfirmPasswordMessage(event);
+                  updateConfirmPasswordMessage(password, value);
                 }}
                 onReset={setSignUpInfo}
               />

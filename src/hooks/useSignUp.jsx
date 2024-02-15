@@ -5,7 +5,6 @@ import { useSignUpContext } from '../contexts/SignUpContext';
 
 export default function useSignUp() {
   const { signUpInfo, setSignUpInfo } = useSignUpContext();
-  const { password } = signUpInfo;
   const [isUniqued, setIsUniqued] = useState({
     userId: false,
     nickname: false,
@@ -62,22 +61,21 @@ export default function useSignUp() {
     }));
   };
 
-  const updatePasswordMessage = (event) =>
+  const updatePasswordMessage = (value) =>
     setMessage((prev) => ({
       ...prev,
       password: `${
-        REGEX.passwordPattern.test(event.target.value) ||
-        event.target.value === ''
+        REGEX.passwordPattern.test(value) || value === ''
           ? ''
           : '8자 이상의 영문 대소문자/숫자/특수문자를 사용해주세요.'
       }`,
     }));
 
-  const updateConfirmPasswordMessage = (event) =>
+  const updateConfirmPasswordMessage = (pw, confirmPw) =>
     setMessage((prev) => ({
       ...prev,
       confirmPassword: `${
-        password === event.target.value || event.target.value === ''
+        pw === confirmPw || confirmPw === ''
           ? ''
           : '비밀번호가 틀립니다. 다시 입력해주세요.'
       }`,
