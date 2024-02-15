@@ -1,8 +1,32 @@
 import axios from 'axios';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { API_PATH } from '../constants';
+import { API_PATH, REGEX } from '../constants';
 
 export default function useFindAccount() {
+  const [message, setMessage] = useState({ password: '', confirmPassword: '' });
+  const updatePasswordMessage = (event) =>
+    setMessage((prev) => ({
+      ...prev,
+      password: `${
+        REGEX.passwordPattern.test(event.target.value) ||
+        event.target.value === ''
+          ? ''
+          : '8자 이상의 영문 대소문자/숫자/특수문자를 사용해주세요.'
+      }`,
+    }));
+
+  const updateConfirmPasswordMessage = (event, password) => {
+    setMessage((prev) => ({
+      ...prev,
+      confirmPassword: `${
+        password === event.target.value || event.target.value === ''
+          ? ''
+          : '비밀번호가 틀립니다. 다시 입력해주세요.'
+      }`,
+    }));
+  };
+
   const findId = (body) =>
     axios
       .post(API_PATH.findId, body)
@@ -37,5 +61,13 @@ export default function useFindAccount() {
       })
       .catch(() => false);
 
-  return { findId, resetPassword, sendCode, verifyCode };
+  return {
+    message,
+    updatePasswordMessage,
+    updateConfirmPasswordMessage,
+    findId,
+    resetPassword,
+    sendCode,
+    verifyCode,
+  };
 }
