@@ -11,6 +11,9 @@ import NoticeBoard from './pages/NoticeBoard';
 import MyPage from './pages/MyPage';
 import DashBoard from './pages/DashBoard';
 import SignUp from './pages/SignUp/SignUp';
+import Search from './pages/Search/Search';
+import SearchListPage from './pages/Search/SearchListPage';
+import SearchDetailListPage from './pages/Search/SearchDetailListPage';
 
 function App() {
   return (
@@ -25,6 +28,13 @@ function App() {
             <Route path='/signUp' element={<SignUp />} />
             <Route path='/myPage' element={<MyPage />} />
             <Route path='/findAccount' element={<FindAccountPage />} />
+            <Route path='/search' element={<Search />}>
+              <Route path='/search/:keyword' element={<SearchListPage />} />
+              <Route
+                path='/search/:keyword/:boardName'
+                element={<SearchDetailListPage />}
+              />
+            </Route>
             <Route path='/dashboard/myPosts' element={<DashBoard isMyPosts / >} />
             <Route path='/dashboard/bookmarkPosts' element={<DashBoard/ >} />
             <Route path='/admin' element={<AdminPage />}>
