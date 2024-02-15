@@ -151,11 +151,55 @@ const handlers = [
     //     { status: 503 },
     //   ),
   ),
-  http.get(`/auth/join/check-id/:userId`, () =>
-    HttpResponse.json({
-      isSuccess: true,
-      message: 'OK - user id',
-    }),
+  http.get(
+    `/auth/join/check-id/:userId`,
+    () =>
+      HttpResponse.json({
+        isSuccess: true,
+        code: 'JOIN200_1',
+        message: 'OK',
+        result: {},
+      }),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'CHECK403_1',
+    //       message: '접근이 거부되었습니다',
+    //       result: {},
+    //     },
+    //     { status: 403 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'CHECK409_1',
+    //       message: '이미 존재하는 아이디입니다',
+    //       result: {},
+    //     },
+    //     { status: 409 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON500',
+    //       message: '서버 에러',
+    //       result: {},
+    //     },
+    //     { status: 500 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON503',
+    //       message: '일시적인 서버 오류',
+    //       result: {},
+    //     },
+    //     { status: 503 },
+    //   ),
   ),
   http.get(
     `/auth/join/check-nickname/:nickname`,

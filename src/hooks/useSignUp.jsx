@@ -28,11 +28,11 @@ export default function useSignUp() {
           userId: '사용할 수 있는 아이디입니다.',
         }));
       })
-      .catch(() => {
+      .catch((error) => {
         setIsUniqued((prev) => ({ ...prev, userId: false }));
         setMessage((prev) => ({
           ...prev,
-          userId: '사용할 수 없는 아이디입니다.',
+          userId: error.response.data.message,
         }));
       });
 
