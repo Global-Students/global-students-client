@@ -2,10 +2,11 @@ import axios from 'axios';
 import { useState } from 'react';
 import { API_PATH, REGEX } from '../constants';
 import { useSignUpContext } from '../contexts/SignUpContext';
+import useLogin from './useLogin';
 
 export default function useSignUp() {
+  const { login } = useLogin();
   const { signUpInfo, setSignUpInfo } = useSignUpContext();
-  const { password } = signUpInfo;
   const [isUniqued, setIsUniqued] = useState({
     userId: false,
     nickname: false,
@@ -62,32 +63,37 @@ export default function useSignUp() {
     }));
   };
 
-  const updatePasswordMessage = (event) =>
+  const updatePasswordMessage = (value) =>
     setMessage((prev) => ({
       ...prev,
       password: `${
-        REGEX.passwordPattern.test(event.target.value) ||
-        event.target.value === ''
+        REGEX.passwordPattern.test(value) || value === ''
           ? ''
           : '8자 이상의 영문 대소문자/숫자/특수문자를 사용해주세요.'
       }`,
     }));
 
-  const updateConfirmPasswordMessage = (event) =>
+  const updateConfirmPasswordMessage = (pw, confirmPw) =>
     setMessage((prev) => ({
       ...prev,
       confirmPassword: `${
-        password === event.target.value || event.target.value === ''
+        pw === confirmPw || confirmPw === ''
           ? ''
           : '비밀번호가 틀립니다. 다시 입력해주세요.'
       }`,
     }));
 
-  const verifyUniversityEmail = (body) =>
+  const verifyUniversityEmail = (body, setIsSent) =>
     axios
       .post(API_PATH.emailVarification, body)
-      .then(() => alert('메일을 보냈습니다.'))
-      .catch((error) => alert(error.response.data.message));
+      .then(() => {
+        alert('메일을 보냈습니다.');
+        setIsSent(true);
+      })
+      .catch((error) => {
+        alert(error.response.data.message);
+        setIsSent(false);
+      });
 
   const verifyAuthCode = (body) =>
     axios
@@ -113,7 +119,13 @@ export default function useSignUp() {
       .post(API_PATH.sumbitSignUpInfo, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
-      .then(() => moveStep('welcome'))
+      .then(() => {
+        login(
+          { username: signUpInfo.userId, password: signUpInfo.password },
+          '',
+        );
+        moveStep('welcome');
+      })
       .catch((error) => alert(error.response.data.message));
   };
 
