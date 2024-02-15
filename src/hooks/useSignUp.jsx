@@ -111,10 +111,10 @@ export default function useSignUp() {
 
     axios
       .post(API_PATH.sumbitSignUpInfo, formData, {
-        'Content-Type': 'multipart/form-data',
+        headers: { 'Content-Type': 'multipart/form-data' },
       })
       .then(() => moveStep('welcome'))
-      .catch(() => alert('회원가입을 진행할 수 없습니다. 다시 시도해주세요.'));
+      .catch((error) => alert(error.response.data.message));
   };
 
   return {

@@ -368,19 +368,32 @@ const handlers = [
     () =>
       HttpResponse.json({
         isSuccess: true,
-        message: '회원가입 성공',
+        code: 'JOIN201_1',
+        message: '기본 정보 입력 성공',
+        result: {
+          complete: true,
+        },
       }),
     // () =>
     //   HttpResponse.json(
     //     {
     //       isSuccess: false,
     //       code: 'COMMON500',
-    //       // code: 'COMMON503',
-    //       message: 'fail - signUp',
+    //       message: '서버 에러',
+    //       result: {},
     //     },
     //     { status: 500 },
     //   ),
-    // const baseUrl = ' http://localhost';
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON503',
+    //       message: '일시적인 서버 오류',
+    //       result: {},
+    //     },
+    //     { status: 503 },
+    //   ),
   ),
   http.post('/user/find-id', () =>
     HttpResponse.json({
