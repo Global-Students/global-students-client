@@ -16,11 +16,14 @@ const sendCode = (body, setIsEmailVerified) =>
     })
     .catch((error) => alert(error.response.data.message));
 
-const verifyCode = (body) =>
+const verifyCode = (body, setIsPasswordResettable) =>
   axios
     .post(API_PATH.findPasswordCode, body)
-    .then(() => true)
-    .catch(() => false);
+    .then(() => setIsPasswordResettable(true))
+    .catch((error) => {
+      alert(error.response.data.message);
+      setIsPasswordResettable(error.response.data.result.verified);
+    });
 
 const resetPassword = (body) =>
   axios

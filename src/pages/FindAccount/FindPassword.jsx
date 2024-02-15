@@ -18,15 +18,6 @@ export default function FindPassword({ setIsPasswordResettable }) {
     event.preventDefault();
     sendCode({ email }, setIsEmailVerified);
   };
-  const verifyAuthCode = () => {
-    verifyCode(data).then((result) => {
-      if (result) {
-        setIsPasswordResettable(true);
-        return;
-      }
-      alert('인증 코드를 틀렸습니다. 다시 입력해주세요.');
-    });
-  };
 
   return (
     <form className='w-[460px] flex flex-col gap-[36px] rounded-b-[14px] border border-gray-scale-7-main px-[25px] py-[40px] shadow'>
@@ -73,7 +64,7 @@ export default function FindPassword({ setIsPasswordResettable }) {
           <button
             className='self-center w-[194px] rounded border border-gray-scale-5 text-gray-scale-1 text-[18px] font-medium leading-[20px] tracking-[0.36px] py-[14px] shadow-prev-btn'
             type='button'
-            onClick={verifyAuthCode}
+            onClick={() => verifyCode(data, setIsPasswordResettable)}
           >
             비밀번호 재설정
           </button>

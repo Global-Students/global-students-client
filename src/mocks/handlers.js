@@ -509,18 +509,64 @@ const handlers = [
     () =>
       HttpResponse.json({
         isSuccess: true,
-        code: 'VERIFY200_1',
-        message: 'code verification - ok',
+        code: 'JOIN200_5',
+        message: 'OK',
+        result: {},
       }),
     // () =>
     //   HttpResponse.json(
     //     {
     //       isSuccess: false,
-    //       code: 'CHECK403_2',
-    //       message: 'code verification - fail',
+    //       code: 'VERIFY400_2',
+    //       message: '잘못된 인증번호입니다',
+    //       result: {
+    //         verified: false,
+    //       },
     //     },
     //     {
     //       status: 400,
+    //     },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'VERIFY403_3',
+    //       message: '접근이 거부되었습니다',
+    //       result: {
+    //         verified: false,
+    //       },
+    //     },
+    //     {
+    //       status: 403,
+    //     },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON500',
+    //       message: '서버 에러',
+    //       result: {
+    //         verified: false,
+    //       },
+    //     },
+    //     {
+    //       status: 500,
+    //     },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON503',
+    //       message: '일시적인 서버 오류',
+    //       result: {
+    //         verified: false,
+    //       },
+    //     },
+    //     {
+    //       status: 503,
     //     },
     //   ),
   ),
