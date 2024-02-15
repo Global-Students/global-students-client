@@ -16,6 +16,8 @@ import SignUp from './pages/SignUp/SignUp';
 import Search from './pages/Search/Search';
 import SearchListPage from './pages/Search/SearchListPage';
 import SearchDetailListPage from './pages/Search/SearchDetailListPage';
+import SearchFriends from './pages/SearchFriends';
+import Friend from './pages/Friend';
 
 function App() {
   return (
@@ -49,6 +51,8 @@ function App() {
                 element={<UniversityApprovalPage />}
               />
             </Route>
+            <Route path='/searchingFriend' element={<SearchFriends isPublic/>} />
+            <Route path='/Friend' element={<Friend />} />
           </Routes>
         </div>
         <Footer />
