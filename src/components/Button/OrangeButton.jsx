@@ -1,22 +1,12 @@
 import React from 'react';
 
-export default function OrangeButton({
-  text,
-  textSize,
-  width,
-  py = 0,
-  onClick,
-  disabled = false,
-}) {
-  const commonStyle = `rounded leading font-semibold ${`text-[${textSize}px]`} ${`py-[${py}px]`} ${
-    width ? `w-[${width}px]` : ''
-  }`;
-  const defaultStyle = `${commonStyle} bg-orange-main shadow-inner-orange text-white hover:bg-orange-1`;
-  const disabledStyle = `${commonStyle} bg-gray-scale-8 border border-gray-scale-6 text-gray-scale-5`;
+export default function OrangeButton({ text, onClick, disabled = false }) {
+  const buttonStyle = `w-full h-full rounded bg-orange-main shadow-inner-orange text-gray-scale-9 font-semibold hover:bg-orange-1`;
+  const disabledStyle = `w-full h-full rounded bg-gray-scale-8 border border-gray-scale-6 text-gray-scale-5`;
 
   return (
     <button
-      className={disabled ? disabledStyle : defaultStyle}
+      className={disabled ? disabledStyle : buttonStyle}
       type='button'
       onClick={onClick}
       disabled={disabled}
