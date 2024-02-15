@@ -7,6 +7,7 @@ import useSignUp from '../../hooks/useSignUp';
 
 export default function EmailApproval() {
   const { signUpInfo } = useSignUpContext();
+  const [isSent, setIsSent] = useState(false);
   const { message, verifyUniversityEmail, verifyAuthCode } = useSignUp();
   const [authData, setAuthData] = useState({ email: '', code: '' });
   const handleChange = (event) => {
@@ -27,10 +28,13 @@ export default function EmailApproval() {
           disabled={!REGEX.email.test(email)}
           onChange={handleChange}
           onClick={() =>
-            verifyUniversityEmail({
-              email,
-              university: signUpInfo.hostUniversity,
-            })
+            verifyUniversityEmail(
+              {
+                email,
+                university: signUpInfo.hostUniversity,
+              },
+              setIsSent,
+            )
           }
         />
       </div>
@@ -40,6 +44,7 @@ export default function EmailApproval() {
           id='code'
           value={code}
           buttonText='확인'
+          disabled={!isSent}
           placeholder={PLACEHOLDER.code}
           message={message.code}
           isValid={signUpInfo.verified}

@@ -81,11 +81,17 @@ export default function useSignUp() {
       }`,
     }));
 
-  const verifyUniversityEmail = (body) =>
+  const verifyUniversityEmail = (body, setIsSent) =>
     axios
       .post(API_PATH.emailVarification, body)
-      .then(() => alert('메일을 보냈습니다.'))
-      .catch((error) => alert(error.response.data.message));
+      .then(() => {
+        alert('메일을 보냈습니다.');
+        setIsSent(true);
+      })
+      .catch((error) => {
+        alert(error.response.data.message);
+        setIsSent(false);
+      });
 
   const verifyAuthCode = (body) =>
     axios
