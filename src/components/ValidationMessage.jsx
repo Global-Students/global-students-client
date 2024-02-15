@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function ValidationMessage({ message, isValid }) {
-  const textStyle = 'text-orange-1 text-[14px] font-normal leading';
+  const textStyle = 'text-[14px] font-normal leading';
 
   return (
     <div
@@ -18,7 +18,13 @@ export default function ValidationMessage({ message, isValid }) {
       ) : (
         <img src='/assets/error.svg' alt='error' />
       )}
-      <span className={textStyle}>{message}</span>
+      <span
+        className={`${textStyle} ${
+          isValid ? 'text-[#0FC02C]' : 'text-orange-1'
+        }`}
+      >
+        {message}
+      </span>
     </div>
   );
 }
