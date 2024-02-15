@@ -92,14 +92,20 @@ export default function PostTable({ tablename, link }) {
           // headers: { Authorization: accessToken }
         });
         setPrivacy(response.data.result.privacy);
-        setPosts(response.data.result.posts);
-        console.log(response.data.result.posts);
+        setPosts(response.data.result.posts.slice(0, 5));
+        console.log(posts);
       } catch (error) {
         console.error(error);
       }
     }
     fetchData();
   }, []);
+
+  // 날짜를 원하는 형식으로 변환하는 함수
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('ko-KR', { month: 'long', day: 'numeric' });
+  };
 
     return(
         <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 relative">
@@ -148,12 +154,18 @@ export default function PostTable({ tablename, link }) {
           </div>
         </div>
         <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[953px] relative overflow-hidden rounded-bl-[14px] rounded-br-[14px] border-t-0 border-r border-b border-l border-[#e7eaf2]">
-          <Link to='/'>
-          <PostPreview title={posts[0].title} comments="0" date="1월 1일" author="작성자" likes={posts[0].likes} views="조회수"/>
+        {posts.map((post) => (
+          <Link to="/" >
+            <PostPreview
+              title={post.title}
+              comments={post.numberOfComments}
+              date={formatDate(post.date)}
+              author={post.author}
+              likes={post.likes}
+              views={post.views}
+            />
           </Link>
-          <Link to='/'>
-          <PostPreview title="게시글 제목" comments="0" date="1월 1일" author="작성자" likes="0" views="조회수"/>
-          </Link>
+        ))}
         </div>
       </div>
     );

@@ -1,5 +1,6 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import URL from "../constants/testServer";
 
 function PostPreview( {title, comments, date, author, likes, views} ) {
   return(
@@ -65,7 +66,36 @@ className="accent-[#FF743D]"
   );
 }
 
-export default function MyPosts() {
+export default function MyPosts({tablename}) {
+  const [posts, setPosts] = useState([""]);
+
+  // const userId = localStorage.getItem('userId');
+  const userId = "00";
+  // const accessToken = localStorage.getItem('token');
+
+  const pathname = tablename === "내가 쓴 글" ? "writepost" : "favoritepost";
+
+  useEffect(() => { 
+    async function fetchData() {
+      try {
+        const response = await axios.get(`${URL}/mypage/${pathname}?userId=${userId}`, {
+          // headers: { Authorization: accessToken }
+        });
+        setPosts(response.data.result.posts.slice(0, 5));
+        console.log(posts);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, []);
+
+  // 날짜를 원하는 형식으로 변환하는 함수
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('ko-KR', { month: 'long', day: 'numeric' });
+  };
+
     return (
       <div className="flex flex-col justify-start items-end flex-grow-0 flex-shrink-0 gap-[23px]">
       <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0">
@@ -96,12 +126,18 @@ export default function MyPosts() {
             </div>
           </div>
           <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[953px] relative overflow-hidden rounded-bl-[14px] rounded-br-[14px] border-t-0 border-r border-b border-l border-[#e7eaf2]">
-          <a href='/' aria-label="link">
-          <PostPreview title="게시글 제목" comments="0" date="1월 1일" author="작성자" likes="0" views="조회수"/>
-          </a>
-          <a href='/' aria-label="link">
-          <PostPreview title="게시글 제목" comments="0" date="1월 1일" author="작성자" likes="0" views="조회수"/>
-          </a>
+            {posts.map((post) => (
+            <a href="/" aria-label="link">
+              <PostPreview
+                title={post.title}
+                comments={post.numberOfComments}
+                date={formatDate(post.date)}
+                author={post.author}
+                likes={post.likes}
+                views={post.views}
+              />
+            </a>
+          ))}
         </div>
         </div>
       </div>

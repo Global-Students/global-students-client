@@ -1,8 +1,8 @@
 import React from "react";
 import TranslateButton from "../components/Button/TranslateButton";
-import PageNavigation from "../components/PageNavigation";
 import MyPosts from "./MyPosts";
 import BookmarkPosts from "./BookmarkPosts";
+import Pagination from "../components/Pagination";
 
 export default function DashBoard({isMyPosts}) {
     return (
@@ -42,7 +42,7 @@ export default function DashBoard({isMyPosts}) {
   </div>
   <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 overflow-hidden gap-[65px]">
     {isMyPosts ? <MyPosts /> : <BookmarkPosts />}
-    <PageNavigation />
+    <Pagination/>
   </div>
 </div>
     );
