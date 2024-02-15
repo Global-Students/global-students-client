@@ -1,5 +1,6 @@
 import { http, HttpResponse } from 'msw';
 import board from './board.json';
+import searchPop from './searchPop.json';
 
 const boardId = 123;
 
@@ -302,6 +303,7 @@ const handlers = [
     //     },
     //   ),
   ),
+  http.get(`/search/popular-post`, () => HttpResponse.json(searchPop)),
 ];
 
 export default handlers;
