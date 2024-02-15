@@ -16,7 +16,7 @@ export default function FindPassword({ setIsPasswordResettable }) {
   };
   const requestCode = (event) => {
     event.preventDefault();
-    sendCode(data).then((result) => setIsEmailVerified(result));
+    sendCode({ email }, setIsEmailVerified);
   };
   const verifyAuthCode = () => {
     verifyCode(data).then((result) => {

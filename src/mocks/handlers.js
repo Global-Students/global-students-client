@@ -451,20 +451,58 @@ const handlers = [
     () =>
       HttpResponse.json({
         isSuccess: true,
-        code: 'LOGIN201_1',
-        message: 'find password - ok',
+        code: 'VERIFY201_1',
+        message: '인증번호 전송 성공',
+        result: {},
       }),
     // () =>
-    // HttpResponse.json(
-    //   {
-    //     isSuccess: false,
-    //     code: 'VERIFY400_3',
-    //     message: 'find password - fail',
-    //   },
-    //   {
-    //     status: 400,
-    //   },
-    // ),
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'VERIFY400_3',
+    //       message: '등록된 이메일이 존재하지 않습니다',
+    //       result: {},
+    //     },
+    //     {
+    //       status: 400,
+    //     },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'VERIFY403_2',
+    //       message: '접근이 거부되었습니다',
+    //       result: {},
+    //     },
+    //     {
+    //       status: 403,
+    //     },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON500',
+    //       message: '서버 에러',
+    //       result: {},
+    //     },
+    //     {
+    //       status: 500,
+    //     },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON503',
+    //       message: '일시적인 서버 오류',
+    //       result: {},
+    //     },
+    //     {
+    //       status: 503,
+    //     },
+    //   ),
   ),
   http.post(
     'user/find-password/code',

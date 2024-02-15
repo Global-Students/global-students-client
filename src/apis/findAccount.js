@@ -7,11 +7,14 @@ const findId = (body) =>
     .then(() => alert('메일로 아이디를 전송했습니다.'))
     .catch((error) => alert(error.response.data.message));
 
-const sendCode = (body) =>
+const sendCode = (body, setIsEmailVerified) =>
   axios
     .post(API_PATH.findPassword, body)
-    .then(() => true)
-    .catch(() => false);
+    .then((response) => {
+      setIsEmailVerified(true);
+      alert(response.data.message);
+    })
+    .catch((error) => alert(error.response.data.message));
 
 const verifyCode = (body) =>
   axios
