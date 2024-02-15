@@ -50,7 +50,7 @@ export default function useSignUp() {
         setIsUniqued((prev) => ({ ...prev, nickname: false }));
         setMessage((prev) => ({
           ...prev,
-          nicknameDuplication: '사용할 수 없는 닉네임입니다.',
+          nickname: '사용할 수 없는 닉네임입니다.',
         }));
       });
 
