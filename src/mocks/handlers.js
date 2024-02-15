@@ -60,17 +60,46 @@ const handlers = [
     //     { status: 503 },
     //   ),
   ),
-  http.post('/auth/refresh', () =>
-    HttpResponse.json({
-      isSuccess: true,
-      code: 'COMMON201',
-      message: '생성하였습니다',
-      result: {
-        accessToken:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzA3NDk4NzQ0LCJleHAiOjE3MDc0OTg3ODB9.nq2JmdT4ydYulq6DUM-b0b9ofBjbKPm_rvg_k7ErZJE',
-        expireAt: '2024-02-20T03:21:19',
-      },
-    }),
+  http.post(
+    '/auth/refresh',
+    () =>
+      HttpResponse.json({
+        isSuccess: true,
+        code: 'COMMON201',
+        message: '생성하였습니다',
+        result: {
+          accessToken:
+            'Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzA3NDk4NzQ0LCJleHAiOjE3MDc0OTg3ODB9.nq2JmdT4ydYulq6DUM-b0b9ofBjbKPm_rvg_k7ErZJE',
+          expireAt: '2024-02-20T03:21:19',
+        },
+      }),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'TOKEN401_4',
+    //       message: '만료된 refresh 토큰입니다',
+    //     },
+    //     { status: 401 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COOKIE400_1',
+    //       message: 'Cookie에 refresh 토큰이 없습니다',
+    //     },
+    //     { status: 400 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'TOKEN400_1',
+    //       message: '유효한 토큰입니다',
+    //     },
+    //     { status: 400 },
+    //   ),
   ),
   http.post(
     '/auth/logout',

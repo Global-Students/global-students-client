@@ -40,15 +40,24 @@ authAxios.interceptors.response.use(
       return Promise.reject(error);
     }
 
-    prevRequest.sent = true;
-    const response = await authAxios.post(API_PATH.refresh);
-    const { accessToken: newAccessToken, expireAt: newExpireAt } =
-      response.data.result;
-    localStorage.setItem('accessToken', newAccessToken);
-    localStorage.setItem('expireAt', newExpireAt);
-    prevRequest.headers.authorization = `${newAccessToken}`;
-
-    return authAxios(prevRequest);
+    try {
+      const response = await axios.post(API_PATH.refresh, {
+        headers: { Authorization: accessToken },
+      });
+      const { accessToken: newAccessToken, expireAt: newExpireAt } =
+        response.data.result;
+      localStorage.setItem('accessToken', newAccessToken);
+      localStorage.setItem('expireAt', newExpireAt);
+      prevRequest.sent = true;
+      prevRequest.headers.authorization = `${newAccessToken}`;
+      return authAxios(prevRequest);
+    } catch (refreshError) {
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('expireAt');
+      window.location.href = '/';
+      refreshError.response.data.message = '로그인 정보가 만료되었습니다.';
+      return Promise.reject(refreshError);
+    }
   },
 );
 
