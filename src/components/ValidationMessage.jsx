@@ -12,7 +12,7 @@ export default function ValidationMessage({ message, isValid }) {
       {isValid ? (
         <img
           className='w-[20px] h-[20px]'
-          src='/assets/success.png'
+          src='/assets/success.svg'
           alt='success'
         />
       ) : (
