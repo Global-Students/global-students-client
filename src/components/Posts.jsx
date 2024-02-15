@@ -9,11 +9,13 @@ export default function Posts() {
   return (
     <div className='flex flex-col w-[953px]'>
       <div className='flex flex-row h-[34px] justify-between items-center mb-[16px]'>
-        <div className='flex flex-row gap-x-[16px] justify-between items-center'>
+        <div className='flex flex-row gap-x-[16px] justify-between items-center relative'>
           <p className='text-gray-scale-1 text-2xl font-medium text-center mr-[16px]'>
             게시글
           </p>
-          <DropDown />
+          <div className='absolute left-[79px] top-[2px]'>
+            <DropDown />
+          </div>
         </div>
         <div className='flex justify-end'>
           <OrangeButton text='글쓰기' width={115} textSize={15} py={8} />
