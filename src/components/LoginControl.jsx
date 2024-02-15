@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
-import HeaderIcon from './HeaderIcon';
+import HeaderIcon from './Header/HeaderIcon';
 import ChatModal from './Chat/ChatModal';
 
 export default function LoginControl() {
