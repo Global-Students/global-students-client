@@ -16,7 +16,7 @@ export default function ChatRoom({username}) {
         </p>
       </div>
       <div className="w-6 h-6 rounded-full bg-gray-scale_7_main">
-        <img src="assets/close.svg" alt="close icon" />
+        <img src="assets/close_chat.svg" alt="close icon" />
         </div>
     </div>
     <div className="flex-grow-0 flex-shrink-0 w-[369px] h-[445px] relative rounded-[14px] bg-gray-scale-9">
