@@ -258,15 +258,57 @@ const handlers = [
         isSuccess: true,
         code: 'JOIN201_3',
         message: '인증번호 전송 성공',
+        result: {},
       }),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'VERIFY400_1',
+    //       message: '잘못된 이메일 형식입니다',
+    //       result: {},
+    //     },
+    //     { status: 400 },
+    //   ),
     // () =>
     //   HttpResponse.json(
     //     {
     //       isSuccess: false,
     //       code: 'VERIFY400_2',
     //       message: '학생 혹은 교육기관의 이메일이 아닙니다',
+    //       result: {},
     //     },
     //     { status: 400 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'VERIFY403_1',
+    //       message: '접근이 거부되었습니다',
+    //       result: {},
+    //     },
+    //     { status: 403 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON500',
+    //       message: '서버 에러',
+    //       result: {},
+    //     },
+    //     { status: 500 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON503',
+    //       message: '일시적인 서버 오류',
+    //       result: {},
+    //     },
+    //     { status: 503 },
     //   ),
   ),
   http.post(

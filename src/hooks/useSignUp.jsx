@@ -87,7 +87,7 @@ export default function useSignUp() {
     axios
       .post(API_PATH.emailVarification, body)
       .then(() => alert('메일을 보냈습니다.'))
-      .catch(() => alert('메일 전송에 실패했습니다.'));
+      .catch((error) => alert(error.response.data.message));
 
   const verifyAuthCode = (body) =>
     axios
