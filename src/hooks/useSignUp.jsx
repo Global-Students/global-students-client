@@ -46,11 +46,11 @@ export default function useSignUp() {
           nickname: '사용할 수 있는 닉네임입니다.',
         }));
       })
-      .catch(() => {
+      .catch((error) => {
         setIsUniqued((prev) => ({ ...prev, nickname: false }));
         setMessage((prev) => ({
           ...prev,
-          nickname: '사용할 수 없는 닉네임입니다.',
+          nickname: error.response.data.message,
         }));
       });
 

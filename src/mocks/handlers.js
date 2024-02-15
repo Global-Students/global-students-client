@@ -206,16 +206,49 @@ const handlers = [
     () =>
       HttpResponse.json({
         isSuccess: true,
-        message: 'OK - nickname',
+        code: 'JOIN200_2',
+        message: 'OK',
+        result: {},
       }),
     // () =>
     //   HttpResponse.json(
     //     {
     //       isSuccess: false,
-    //       code: 'CHECK409_2',
-    //       message: 'fail - nickname',
+    //       code: 'CHECK403_2',
+    //       message: '접근이 거부되었습니다',
+    //       result: {},
     //     },
-    //     { status: 400 },
+    //     { status: 403 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'CHECK409_2',
+    //       message: '이미 존재하는 닉네임입니다',
+    //       result: {},
+    //     },
+    //     { status: 409 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON500',
+    //       message: '서버 에러',
+    //       result: {},
+    //     },
+    //     { status: 500 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON503',
+    //       message: '일시적인 서버 오류',
+    //       result: {},
+    //     },
+    //     { status: 503 },
     //   ),
   ),
   http.post(
