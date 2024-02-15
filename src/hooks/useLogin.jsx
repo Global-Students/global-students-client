@@ -31,5 +31,5 @@ export default function useLogin() {
       .finally(() => setLoading(false));
   };
 
-  return { loading, loginData, updateLoginFormData, login };
+  return { loading, loginData, setLoginData, updateLoginFormData, login };
 }

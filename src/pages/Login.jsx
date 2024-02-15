@@ -8,6 +8,7 @@ export default function Login() {
   const {
     loading,
     loginData: { username, password },
+    setLoginData,
     updateLoginFormData,
     login,
   } = useLogin();
@@ -27,7 +28,7 @@ export default function Login() {
               value={username}
               placeholder='아이디'
               onChange={updateLoginFormData}
-              onReset={() => {}}
+              onReset={setLoginData}
               icon='person'
             />
             <ResetButtonInput
@@ -36,7 +37,7 @@ export default function Login() {
               value={password}
               placeholder='비밀번호'
               onChange={updateLoginFormData}
-              onReset={() => {}}
+              onReset={setLoginData}
               icon='key'
             />
           </div>
