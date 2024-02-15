@@ -16,6 +16,11 @@ import {
   REGEX,
   YEARS,
 } from '../../constants';
+import {
+  COUNTRY_LIST,
+  HOME_UNIVERSITY_LIST,
+  HOST_UNIVERSITY_LIST,
+} from '../../constants/belongTo';
 import { useSignUpContext } from '../../contexts/SignUpContext';
 import useSignUp from '../../hooks/useSignUp';
 
@@ -203,7 +208,7 @@ export default function SignUpInfo({ moveStep }) {
               <OptionInput
                 id='nationality'
                 value={nationality}
-                options={['나라1', '나라2', '나라3']}
+                options={COUNTRY_LIST}
                 placeholder={PLACEHOLDER.nationality}
                 onChange={updateSignUpInfo}
               />
@@ -213,7 +218,7 @@ export default function SignUpInfo({ moveStep }) {
               <OptionInput
                 id='homeUniversity'
                 value={homeUniversity}
-                options={['학교1', '학교2', '학교3']}
+                options={HOME_UNIVERSITY_LIST}
                 placeholder={PLACEHOLDER.homeUniversity}
                 onChange={updateSignUpInfo}
               />
@@ -223,7 +228,7 @@ export default function SignUpInfo({ moveStep }) {
               <OptionInput
                 id='hostCountry'
                 value={hostCountry}
-                options={['나라1', '나라2', '나라3']}
+                options={COUNTRY_LIST}
                 placeholder={PLACEHOLDER.hostCountry}
                 onChange={updateSignUpInfo}
               />
@@ -233,7 +238,7 @@ export default function SignUpInfo({ moveStep }) {
               <OptionInput
                 id='hostUniversity'
                 value={hostUniversity}
-                options={['학교1', '학교2', '학교3']}
+                options={HOST_UNIVERSITY_LIST}
                 placeholder={PLACEHOLDER.hostUniversity}
                 onChange={updateSignUpInfo}
               />

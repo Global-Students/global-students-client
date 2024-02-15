@@ -1,4 +1,9 @@
 import API_PATH from './api';
+import {
+  COUNTRY_LIST,
+  HOME_UNIVERSITY_LIST,
+  HOST_UNIVERSITY_LIST,
+} from './belongTo';
 import { DATES, MONTHS, YEARS } from './date';
 import { MEMBER_LIST, UNIVERSITY_APPROVAL_LIST } from './dummy';
 import MENU_ID from './id';
@@ -9,7 +14,10 @@ import { CONSENTS, LABEL, LEGEND, PLACEHOLDER } from './signUpForm';
 export {
   API_PATH,
   CONSENTS,
+  COUNTRY_LIST,
   DATES,
+  HOME_UNIVERSITY_LIST,
+  HOST_UNIVERSITY_LIST,
   LABEL,
   LEGEND,
   MEMBER_LIST,
