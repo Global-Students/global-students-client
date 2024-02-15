@@ -1,6 +1,6 @@
 import React from "react";
 import UserInfoControl from "../components/UserInfoControl";
-import SearchInput from "../components/SearchInput";
+import SearchInput from "../components/Input/SearchInput";
 import TranslateButton from "../components/Button/TranslateButton";
 import SearchListItem from "../components/SearchListItem";
 import IsPublicModal from "../components/IsPublicModal";
