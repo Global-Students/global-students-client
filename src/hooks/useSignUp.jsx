@@ -96,11 +96,11 @@ export default function useSignUp() {
         setSignUpInfo((prev) => ({ ...prev, verified: true }));
         setMessage((prev) => ({ ...prev, code: '인증에 성공했습니다.' }));
       })
-      .catch(() => {
+      .catch((error) => {
         setSignUpInfo((prev) => ({ ...prev, verified: false }));
         setMessage((prev) => ({
           ...prev,
-          code: '인증번호가 유효하지 않습니다.',
+          code: error.response.data.message,
         }));
       });
 

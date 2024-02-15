@@ -317,7 +317,10 @@ const handlers = [
       HttpResponse.json({
         isSuccess: true,
         code: 'JOIN200_5',
-        message: '인증번호 전송 성공',
+        message: 'OK',
+        result: {
+          university: '00 대학교',
+        },
       }),
     // () =>
     //   HttpResponse.json(
@@ -325,8 +328,39 @@ const handlers = [
     //       isSuccess: false,
     //       code: 'VERIFY400_2',
     //       message: '잘못된 인증번호입니다',
+    //       result: {},
     //     },
     //     { status: 400 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'VERIFY403_1',
+    //       message: '접근이 거부되었습니다',
+    //       result: {},
+    //     },
+    //     { status: 403 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON500',
+    //       message: '서버 에러',
+    //       result: {},
+    //     },
+    //     { status: 500 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON503',
+    //       message: '일시적인 서버 오류',
+    //       result: {},
+    //     },
+    //     { status: 503 },
     //   ),
   ),
   http.post(
