@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { submitSignUpInfo } from '../../apis/signUp';
 import { ReactComponent as EmailIcon } from '../../assets/outgoingMail.svg';
 import { ReactComponent as FileIcon } from '../../assets/uploadFile.svg';
 import AutnButton from '../../components/Button/AuthButton';
 import OrangeButton from '../../components/Button/OrangeButton';
 import WhiteButton from '../../components/Button/WhiteButton';
-import { useSignUpContext } from '../../contexts/SignUpContext';
+import useSignUp from '../../hooks/useSignUp';
 import EmailApproval from './EmailApproval';
 import FileApproval from './FileApproval';
 
 export default function UniversityApproval({ moveStep }) {
-  const { signUpInfo } = useSignUpContext();
+  const { submitSignUpInfo } = useSignUp();
   const [file, setFile] = useState();
   const [isSelected, setIsSleceted] = useState('');
   const changeMenu = (event) => setIsSleceted(event.currentTarget.name);
@@ -23,7 +22,7 @@ export default function UniversityApproval({ moveStep }) {
           인증수단을 선택하세요
         </h2>
         <div className='rounded border border-gray-scale-7-main px-[24px] py-[26px] mb-[15px]'>
-          <div className=' mb-[60px]'>
+          <div>
             <div className='flex justify-between'>
               <AutnButton
                 name='email'
@@ -59,7 +58,7 @@ export default function UniversityApproval({ moveStep }) {
           <div className='w-[148px] h-[51px] text-[18px]'>
             <OrangeButton
               text='다음'
-              onClick={() => submitSignUpInfo(file, signUpInfo, moveStep)}
+              onClick={() => submitSignUpInfo(file, moveStep)}
               disabled={!isPassed}
             />
           </div>

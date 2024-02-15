@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { checkIdDuplicate, checkNicknameDuplicate } from '../../apis/signUp';
+import React from 'react';
 import OrangeButton from '../../components/Button/OrangeButton';
 import WhiteButton from '../../components/Button/WhiteButton';
 import FieldSet from '../../components/FieldSet';
@@ -17,7 +16,13 @@ import {
   REGEX,
   YEARS,
 } from '../../constants';
+import {
+  COUNTRY_LIST,
+  HOME_UNIVERSITY_LIST,
+  HOST_UNIVERSITY_LIST,
+} from '../../constants/belongTo';
 import { useSignUpContext } from '../../contexts/SignUpContext';
+import useSignUp from '../../hooks/useSignUp';
 
 export default function SignUpInfo({ moveStep }) {
   const {
@@ -39,32 +44,29 @@ export default function SignUpInfo({ moveStep }) {
     updateSignUpInfo,
     setSignUpInfo,
   } = useSignUpContext();
-  const [isUniqued, setIsUniqued] = useState({
-    userId: false,
-    nickname: false,
-  });
-  const [message, setMessage] = useState({
-    userIdDuplication: '',
-    passwordPattern: '',
-    passwordReEntry: '',
-    nicknameDuplication: '',
-  });
-  const checkPasswordPattern = (value) => REGEX.passwordPattern.test(value);
-  const checkPasswordReEnter = (value) => password === value;
+  const {
+    isUniqued,
+    message,
+    checkIdDuplicate,
+    checkNicknameDuplicate,
+    resetValidation,
+    updatePasswordMessage,
+    updateConfirmPasswordMessage,
+  } = useSignUp();
 
   const isPassed =
     isUniqued.userId &&
-    checkPasswordPattern(password) &&
-    checkPasswordReEnter(confirmPassword) &&
+    isUniqued.nickname &&
+    REGEX.passwordPattern.test(password) &&
+    password === confirmPassword &&
     firstName &&
     lastName &&
     birthYear &&
     birthMonth &&
     birthDate &&
-    isUniqued.nickname &&
     nationality &&
-    hostCountry &&
     homeUniversity &&
+    hostCountry &&
     hostUniversity;
 
   return (
@@ -79,33 +81,13 @@ export default function SignUpInfo({ moveStep }) {
               placeholder={PLACEHOLDER.id}
               buttonText='중복확인'
               disabled={!REGEX.userIdPattern.test(userId)}
-              message={message.userIdDuplication}
+              message={message.userId}
               isValid={isUniqued.userId}
               onChange={(event) => {
                 updateSignUpInfo(event);
-                setIsUniqued((prev) => ({ ...prev, userId: false }));
-                setMessage((prev) => ({
-                  ...prev,
-                  userIdDuplication: '',
-                }));
+                resetValidation(event.target.id);
               }}
-              onClick={() => {
-                checkIdDuplicate(userId).then((result) => {
-                  if (result) {
-                    setIsUniqued((prev) => ({ ...prev, userId: true }));
-                    setMessage((prev) => ({
-                      ...prev,
-                      userIdDuplication: '사용할 수 있는 아이디입니다.',
-                    }));
-                    return;
-                  }
-                  setIsUniqued((prev) => ({ ...prev, userId: false }));
-                  setMessage((prev) => ({
-                    ...prev,
-                    userIdDuplication: '사용할 수 없는 아이디입니다.',
-                  }));
-                });
-              }}
+              onClick={() => checkIdDuplicate(userId)}
             />
           </div>
           <div className='flex flex-col gap-[20px]'>
@@ -117,20 +99,14 @@ export default function SignUpInfo({ moveStep }) {
                 value={password}
                 placeholder={PLACEHOLDER.password}
                 onChange={(event) => {
+                  const { value } = event.target;
                   updateSignUpInfo(event);
-                  setMessage((prev) => ({
-                    ...prev,
-                    passwordPattern: `${
-                      checkPasswordPattern(event.target.value) ||
-                      event.target.value === ''
-                        ? ''
-                        : '8자 이상의 영문 대소문자/숫자/특수문자를 사용해주세요.'
-                    }`,
-                  }));
+                  updatePasswordMessage(value);
+                  updateConfirmPasswordMessage(value, confirmPassword);
                 }}
                 onReset={setSignUpInfo}
               />
-              <ValidationMessage message={message.passwordPattern} />
+              <ValidationMessage message={message.password} />
             </div>
             <div>
               <Label label={LABEL.confirmPassword} required />
@@ -140,20 +116,13 @@ export default function SignUpInfo({ moveStep }) {
                 value={confirmPassword}
                 placeholder={PLACEHOLDER.password}
                 onChange={(event) => {
+                  const { value } = event.target;
                   updateSignUpInfo(event);
-                  setMessage((prev) => ({
-                    ...prev,
-                    passwordReEntry: `${
-                      checkPasswordReEnter(event.target.value) ||
-                      event.target.value === ''
-                        ? ''
-                        : '비밀번호가 틀립니다. 다시 입력해주세요.'
-                    }`,
-                  }));
+                  updateConfirmPasswordMessage(password, value);
                 }}
                 onReset={setSignUpInfo}
               />
-              <ValidationMessage message={message.passwordReEntry} />
+              <ValidationMessage message={message.confirmPassword} />
             </div>
           </div>
         </FieldSet>
@@ -226,33 +195,13 @@ export default function SignUpInfo({ moveStep }) {
                 value={nickname}
                 placeholder={PLACEHOLDER.nickname}
                 buttonText='중복확인'
-                message={message.nicknameDuplication}
+                message={message.nickname}
                 isValid={isUniqued.nickname}
                 onChange={(event) => {
                   updateSignUpInfo(event);
-                  setIsUniqued((prev) => ({ ...prev, nickname: false }));
-                  setMessage((prev) => ({
-                    ...prev,
-                    nicknameDuplication: '',
-                  }));
+                  resetValidation(event.target.id);
                 }}
-                onClick={() =>
-                  checkNicknameDuplicate(nickname).then((result) => {
-                    if (result) {
-                      setIsUniqued((prev) => ({ ...prev, nickname: true }));
-                      setMessage((prev) => ({
-                        ...prev,
-                        nicknameDuplication: '사용할 수 있는 닉네임입니다.',
-                      }));
-                      return;
-                    }
-                    setIsUniqued((prev) => ({ ...prev, nickname: false }));
-                    setMessage((prev) => ({
-                      ...prev,
-                      nicknameDuplication: '사용할 수 없는 닉네임입니다.',
-                    }));
-                  })
-                }
+                onClick={() => checkNicknameDuplicate(nickname)}
               />
             </div>
           </div>
@@ -262,7 +211,7 @@ export default function SignUpInfo({ moveStep }) {
               <OptionInput
                 id='nationality'
                 value={nationality}
-                options={['나라1', '나라2', '나라3']}
+                options={COUNTRY_LIST}
                 placeholder={PLACEHOLDER.nationality}
                 onChange={updateSignUpInfo}
               />
@@ -272,7 +221,7 @@ export default function SignUpInfo({ moveStep }) {
               <OptionInput
                 id='homeUniversity'
                 value={homeUniversity}
-                options={['학교1', '학교2', '학교3']}
+                options={HOME_UNIVERSITY_LIST}
                 placeholder={PLACEHOLDER.homeUniversity}
                 onChange={updateSignUpInfo}
               />
@@ -282,7 +231,7 @@ export default function SignUpInfo({ moveStep }) {
               <OptionInput
                 id='hostCountry'
                 value={hostCountry}
-                options={['나라1', '나라2', '나라3']}
+                options={COUNTRY_LIST}
                 placeholder={PLACEHOLDER.hostCountry}
                 onChange={updateSignUpInfo}
               />
@@ -292,7 +241,7 @@ export default function SignUpInfo({ moveStep }) {
               <OptionInput
                 id='hostUniversity'
                 value={hostUniversity}
-                options={['학교1', '학교2', '학교3']}
+                options={HOST_UNIVERSITY_LIST}
                 placeholder={PLACEHOLDER.hostUniversity}
                 onChange={updateSignUpInfo}
               />
