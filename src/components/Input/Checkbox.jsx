@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Checkbox({ id, isChecked, onChange, tag, text }) {
+export default function Checkbox({ id, isChecked, onChange, tag, label }) {
   return (
     <div className='flex items-center gap-[10px]'>
       <input
@@ -10,7 +10,10 @@ export default function Checkbox({ id, isChecked, onChange, tag, text }) {
         checked={isChecked}
         onChange={onChange}
       />
-      <label className='flex items-center gap-[5px] font-medium' htmlFor={id}>
+      <label
+        className='flex items-center gap-[5px] font-medium cursor-pointer'
+        htmlFor={id}
+      >
         {tag && (
           <span
             className={`text-[16px] ${
@@ -19,7 +22,7 @@ export default function Checkbox({ id, isChecked, onChange, tag, text }) {
           >{`[${tag}]`}</span>
         )}
         <p className={`${id === 'all' ? 'text-[22px]' : 'text-[20px]'}`}>
-          {text}
+          {label}
         </p>
       </label>
     </div>

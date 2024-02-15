@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { sendCode, verifyCode } from '../../apis/findAccount';
+import FindAccountButton from '../../components/Button/FindAccountButton';
 import Input from '../../components/Input/Input';
 import { REGEX } from '../../constants';
+import useFindAccount from '../../hooks/useFindAccount';
+import PasswordReset from './PasswordReset';
 
 export default function FindPassword() {
+  const { sendCode, verifyCode } = useFindAccount();
+  const [isPasswordResettable, setIsPasswordResettable] = useState(false);
   const [isEmailVerified, setIsEmailVerified] = useState(false);
   const [data, setData] = useState({
     email: '',
@@ -17,18 +20,12 @@ export default function FindPassword() {
   };
   const requestCode = (event) => {
     event.preventDefault();
-    sendCode(data).then((result) => setIsEmailVerified(result));
+    sendCode({ email }, setIsEmailVerified);
   };
-  const navigator = useNavigate();
-  const verifyAuthCode = () => {
-    verifyCode(data).then((result) => {
-      if (result) {
-        navigator('/');
-        return;
-      }
-      alert('인증 코드를 틀렸습니다. 다시 입력해주세요.');
-    });
-  };
+
+  if (isPasswordResettable) {
+    return <PasswordReset email={email} />;
+  }
 
   return (
     <form className='w-[460px] flex flex-col gap-[36px] rounded-b-[14px] border border-gray-scale-7-main px-[25px] py-[40px] shadow'>
@@ -46,18 +43,11 @@ export default function FindPassword() {
           />
         </div>
       </div>
-      <button
-        className={`self-center w-[194px] rounded border ${
-          REGEX.email.test(email)
-            ? 'border-gray-scale-5 text-gray-scale-1'
-            : 'border-gray-scale-6 text-gray-scale-5 bg-gray-scale-8'
-        } text-[18px] font-medium leading-[20px] tracking-[0.36px] py-[14px] shadow-prev-btn`}
-        type='submit'
+      <FindAccountButton
+        text='인증 코드 전송'
         onClick={requestCode}
         disabled={!REGEX.email.test(email)}
-      >
-        인증 코드 전송
-      </button>
+      />
       {isEmailVerified && (
         <>
           <div>
@@ -72,13 +62,10 @@ export default function FindPassword() {
               placeholder='인증 코드'
             />
           </div>
-          <button
-            className='self-center w-[194px] rounded border border-gray-scale-5 text-gray-scale-1 text-[18px] font-medium leading-[20px] tracking-[0.36px] py-[14px] shadow-prev-btn'
-            type='button'
-            onClick={verifyAuthCode}
-          >
-            비밀번호 재설정
-          </button>
+          <FindAccountButton
+            text='비밀번호 재설정'
+            onClick={() => verifyCode(data, setIsPasswordResettable)}
+          />
         </>
       )}
     </form>

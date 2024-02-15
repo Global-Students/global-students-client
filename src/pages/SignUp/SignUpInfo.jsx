@@ -1,13 +1,9 @@
-import React, { useState } from 'react';
-import {
-  checkIdDuplicate,
-  checkNicknameDuplicate,
-  submitSignUpInfo,
-} from '../../apis/signUp';
+import React from 'react';
 import OrangeButton from '../../components/Button/OrangeButton';
+import WhiteButton from '../../components/Button/WhiteButton';
 import FieldSet from '../../components/FieldSet';
-import BirthDayInput from '../../components/Input/BirthDayInput';
-import DuplicateCheckInput from '../../components/Input/DuplicateCheckInput';
+import LightOrangeButtonInput from '../../components/Input/LightOrangeButtonInput';
+import OptionInput from '../../components/Input/OptionInput';
 import ResetButtonInput from '../../components/Input/ResetButtonInput';
 import Label from '../../components/Label';
 import ValidationMessage from '../../components/ValidationMessage';
@@ -20,50 +16,57 @@ import {
   REGEX,
   YEARS,
 } from '../../constants';
+import {
+  COUNTRY_LIST,
+  HOME_UNIVERSITY_LIST,
+  HOST_UNIVERSITY_LIST,
+} from '../../constants/belongTo';
+import { useSignUpContext } from '../../contexts/SignUpContext';
+import useSignUp from '../../hooks/useSignUp';
 
-export default function SignUpInfo({
-  moveStep,
-  signUpInfo,
-  updateSignUpInfo,
-  setSignUpInfo,
-}) {
+export default function SignUpInfo({ moveStep }) {
   const {
-    userId,
-    password,
-    confirmPassword,
-    firstName,
-    lastName,
-    birthYear,
-    birthMonth,
-    birthDate,
-    nickname,
-    nationality,
-    hostCountry,
-    homeUniversity,
-    hostUniversity,
-  } = signUpInfo;
-  const [isUniqued, setIsUniqued] = useState({
-    userId: false,
-    nickname: false,
-  });
-  const [message, setMessage] = useState({ userId: '', password: '' });
-  const checkUserIdPattern = () => REGEX.userIdPattern.test(userId);
-  const checkPasswordPattern = () => REGEX.passwordPattern.test(password);
-  const checkPasswordReEnter = () => password === confirmPassword;
+    signUpInfo: {
+      userId,
+      password,
+      confirmPassword,
+      firstName,
+      lastName,
+      birthYear,
+      birthMonth,
+      birthDate,
+      nickname,
+      nationality,
+      hostCountry,
+      homeUniversity,
+      hostUniversity,
+    },
+    updateSignUpInfo,
+    setSignUpInfo,
+  } = useSignUpContext();
+  const {
+    isUniqued,
+    message,
+    checkIdDuplicate,
+    checkNicknameDuplicate,
+    resetValidation,
+    updatePasswordMessage,
+    updateConfirmPasswordMessage,
+  } = useSignUp();
 
   const isPassed =
     isUniqued.userId &&
-    checkPasswordPattern() &&
-    checkPasswordReEnter() &&
+    isUniqued.nickname &&
+    REGEX.passwordPattern.test(password) &&
+    password === confirmPassword &&
     firstName &&
     lastName &&
     birthYear &&
     birthMonth &&
     birthDate &&
-    isUniqued.nickname &&
     nationality &&
-    hostCountry &&
     homeUniversity &&
+    hostCountry &&
     hostUniversity;
 
   return (
@@ -72,43 +75,19 @@ export default function SignUpInfo({
         <FieldSet legend={LEGEND.idPassword}>
           <div>
             <Label label={LABEL.id} required />
-            <DuplicateCheckInput
+            <LightOrangeButtonInput
               id='userId'
               value={userId}
               placeholder={PLACEHOLDER.id}
+              buttonText='중복확인'
+              disabled={!REGEX.userIdPattern.test(userId)}
               message={message.userId}
+              isValid={isUniqued.userId}
               onChange={(event) => {
                 updateSignUpInfo(event);
-                setIsUniqued((prev) => ({ ...prev, userId: false }));
-                setMessage((prev) => ({
-                  ...prev,
-                  userId: '',
-                }));
+                resetValidation(event.target.id);
               }}
-              onClick={() => {
-                if (checkUserIdPattern()) {
-                  checkIdDuplicate(userId).then((result) => {
-                    if (result) {
-                      setIsUniqued((prev) => ({ ...prev, userId: true }));
-                      setMessage((prev) => ({
-                        ...prev,
-                        userId: '사용할 수 있는 아이디입니다.',
-                      }));
-                      return;
-                    }
-                    setIsUniqued((prev) => ({ ...prev, userId: false }));
-                    setMessage((prev) => ({
-                      ...prev,
-                      userId: '사용할 수 없는 아이디입니다.',
-                    }));
-                  });
-                }
-              }}
-            />
-            <ValidationMessage
-              isShowed={!checkUserIdPattern()}
-              message='4자 이상 16자 이하의 영소문사/숫자를 사용해주세요.'
-              value={userId}
+              onClick={() => checkIdDuplicate(userId)}
             />
           </div>
           <div className='flex flex-col gap-[20px]'>
@@ -119,14 +98,15 @@ export default function SignUpInfo({
                 type='password'
                 value={password}
                 placeholder={PLACEHOLDER.password}
-                onChange={updateSignUpInfo}
+                onChange={(event) => {
+                  const { value } = event.target;
+                  updateSignUpInfo(event);
+                  updatePasswordMessage(value);
+                  updateConfirmPasswordMessage(value, confirmPassword);
+                }}
                 onReset={setSignUpInfo}
               />
-              <ValidationMessage
-                isShowed={!checkPasswordPattern()}
-                message='8자 이상의 영문 대소문자/숫자/특수문자를 사용해주세요.'
-                value={password}
-              />
+              <ValidationMessage message={message.password} />
             </div>
             <div>
               <Label label={LABEL.confirmPassword} required />
@@ -135,177 +115,151 @@ export default function SignUpInfo({
                 type='password'
                 value={confirmPassword}
                 placeholder={PLACEHOLDER.password}
-                onChange={updateSignUpInfo}
+                onChange={(event) => {
+                  const { value } = event.target;
+                  updateSignUpInfo(event);
+                  updateConfirmPasswordMessage(password, value);
+                }}
                 onReset={setSignUpInfo}
               />
-              <ValidationMessage
-                isShowed={!checkPasswordReEnter()}
-                message='비밀번호가 틀립니다. 다시 입력해주세요.'
-                value={confirmPassword}
-              />
+              <ValidationMessage message={message.confirmPassword} />
             </div>
           </div>
         </FieldSet>
         <FieldSet legend={LEGEND.defaultInfo}>
           <div className='flex flex-col gap-[20px]'>
             <div>
-              <Label label={LABEL.name} required />
-              <div className='flex gap-4'>
-                <div className='flex-1'>
-                  <ResetButtonInput
-                    id='firstName'
-                    type='text'
-                    value={firstName}
-                    placeholder={PLACEHOLDER.firstName}
-                    onChange={updateSignUpInfo}
-                    onReset={setSignUpInfo}
-                  />
-                </div>
-                <div className='flex-1'>
-                  <ResetButtonInput
-                    id='lastName'
-                    type='text'
-                    value={lastName}
-                    placeholder={PLACEHOLDER.lastName}
-                    onChange={updateSignUpInfo}
-                    onReset={setSignUpInfo}
-                  />
-                </div>
-              </div>
+              <Label label={LABEL.lastName} required />
+              <ResetButtonInput
+                id='lastName'
+                type='text'
+                value={lastName}
+                placeholder={PLACEHOLDER.lastName}
+                onChange={updateSignUpInfo}
+                onReset={setSignUpInfo}
+              />
+            </div>
+            <div>
+              <Label label={LABEL.firstName} required />
+              <ResetButtonInput
+                id='firstName'
+                type='text'
+                value={firstName}
+                placeholder={PLACEHOLDER.firstName}
+                onChange={updateSignUpInfo}
+                onReset={setSignUpInfo}
+              />
             </div>
             <div>
               <Label label={LABEL.birthDay} required />
               <div className='flex justify-between gap-[16px]'>
                 <div className='flex-[2_1_0%]'>
-                  <BirthDayInput
+                  <OptionInput
                     id='birthYear'
                     value={birthYear}
                     options={YEARS}
+                    placeholder='----'
                     onChange={updateSignUpInfo}
-                    placeholder={PLACEHOLDER.year}
-                  />
+                  >
+                    {PLACEHOLDER.year}
+                  </OptionInput>
                 </div>
                 <div className='flex-1'>
-                  <BirthDayInput
+                  <OptionInput
                     id='birthMonth'
                     value={birthMonth}
                     options={MONTHS}
+                    placeholder='----'
                     onChange={updateSignUpInfo}
-                    placeholder={PLACEHOLDER.month}
-                  />
+                  >
+                    {PLACEHOLDER.month}
+                  </OptionInput>
                 </div>
                 <div className='flex-1'>
-                  <BirthDayInput
+                  <OptionInput
                     id='birthDate'
                     value={birthDate}
                     options={DATES}
+                    placeholder='----'
                     onChange={updateSignUpInfo}
-                    placeholder={PLACEHOLDER.date}
-                  />
+                  >
+                    {PLACEHOLDER.date}
+                  </OptionInput>
                 </div>
               </div>
             </div>
             <div>
               <Label label={LABEL.nickname} required />
-              <DuplicateCheckInput
+              <LightOrangeButtonInput
                 id='nickname'
                 value={nickname}
                 placeholder={PLACEHOLDER.nickname}
+                buttonText='중복확인'
                 message={message.nickname}
+                isValid={isUniqued.nickname}
                 onChange={(event) => {
                   updateSignUpInfo(event);
-                  setIsUniqued((prev) => ({ ...prev, nickname: false }));
-                  setMessage((prev) => ({
-                    ...prev,
-                    nickname: '',
-                  }));
+                  resetValidation(event.target.id);
                 }}
-                onClick={() =>
-                  checkNicknameDuplicate(nickname).then((result) => {
-                    if (result) {
-                      setIsUniqued((prev) => ({ ...prev, nickname: true }));
-                      setMessage((prev) => ({
-                        ...prev,
-                        nickname: '사용할 수 있는 닉네임입니다.',
-                      }));
-                      return;
-                    }
-                    setIsUniqued((prev) => ({ ...prev, nickname: false }));
-                    setMessage((prev) => ({
-                      ...prev,
-                      nickname: '사용할 수 없는 닉네임입니다.',
-                    }));
-                  })
-                }
+                onClick={() => checkNicknameDuplicate(nickname)}
               />
             </div>
           </div>
           <div className='flex flex-col gap-[20px]'>
             <div>
               <Label label={LABEL.nationality} required />
-              <ResetButtonInput
+              <OptionInput
                 id='nationality'
-                type='text'
                 value={nationality}
+                options={COUNTRY_LIST}
                 placeholder={PLACEHOLDER.nationality}
                 onChange={updateSignUpInfo}
-                onReset={setSignUpInfo}
-              />
-            </div>
-            <div>
-              <Label label={LABEL.hostCountry} required />
-              <ResetButtonInput
-                id='hostCountry'
-                type='text'
-                value={hostCountry}
-                placeholder={PLACEHOLDER.hostCountry}
-                onChange={updateSignUpInfo}
-                onReset={setSignUpInfo}
               />
             </div>
             <div>
               <Label label={LABEL.homeUniversity} required />
-              <ResetButtonInput
+              <OptionInput
                 id='homeUniversity'
-                type='text'
                 value={homeUniversity}
+                options={HOME_UNIVERSITY_LIST}
                 placeholder={PLACEHOLDER.homeUniversity}
                 onChange={updateSignUpInfo}
-                onReset={setSignUpInfo}
+              />
+            </div>
+            <div>
+              <Label label={LABEL.hostCountry} required />
+              <OptionInput
+                id='hostCountry'
+                value={hostCountry}
+                options={COUNTRY_LIST}
+                placeholder={PLACEHOLDER.hostCountry}
+                onChange={updateSignUpInfo}
               />
             </div>
             <div>
               <Label label={LABEL.hostUniversity} required />
-              <ResetButtonInput
+              <OptionInput
                 id='hostUniversity'
-                type='text'
                 value={hostUniversity}
+                options={HOST_UNIVERSITY_LIST}
                 placeholder={PLACEHOLDER.hostUniversity}
                 onChange={updateSignUpInfo}
-                onReset={setSignUpInfo}
               />
             </div>
           </div>
         </FieldSet>
       </form>
       <div className='w-full flex justify-between my-[46px]'>
-        <button
-          className='rounded border border-gray-scale-5 py-[14px] w-[148px] shadow-prev-btn text-[18px] text-gray-scale-4 font-semibold leading hover:bg-gray-scale-8'
-          type='button'
-          onClick={() => moveStep('terms')}
-        >
-          이전
-        </button>
-        <OrangeButton
-          text='다음'
-          textSize={18}
-          py={14}
-          width={148}
-          onClick={() => {
-            submitSignUpInfo(signUpInfo, moveStep);
-          }}
-          disabled={!isPassed}
-        />
+        <WhiteButton text='이전' onClick={() => moveStep('terms')} />
+        <div className='flex justify-end'>
+          <div className='w-[148px] h-[51px] text-[18px]'>
+            <OrangeButton
+              text='다음'
+              onClick={() => moveStep('universityApproval')}
+              disabled={!isPassed}
+            />
+          </div>
+        </div>
       </div>
     </section>
   );

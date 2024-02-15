@@ -13,6 +13,9 @@ import DashBoard from './pages/DashBoard';
 import SignUp from './pages/SignUp/SignUp';
 import UpdateInfo from './pages/Update/UpdateInfo';
 import UpdateProfile from './pages/Update/UpdateProfile';
+import Search from './pages/Search/Search';
+import SearchListPage from './pages/Search/SearchListPage';
+import SearchDetailListPage from './pages/Search/SearchDetailListPage';
 
 function App() {
   return (
@@ -29,6 +32,13 @@ function App() {
             <Route path='/findAccount' element={<FindAccountPage />} />
             <Route path='/dashboard/myPosts' element={<DashBoard isMyPosts />} />
             <Route path='/dashboard/bookmarkPosts' element={<DashBoard/ >} />
+            <Route path='/search' element={<Search />}>
+              <Route path='/search/:keyword' element={<SearchListPage />} />
+              <Route
+                path='/search/:keyword/:boardName'
+                element={<SearchDetailListPage />}
+              />
+            </Route>
             <Route path='/admin' element={<AdminPage />}>
               <Route index path='/admin' element={<MemberListPage />} />
               <Route path='/admin/memberList' element={<MemberListPage />} />
