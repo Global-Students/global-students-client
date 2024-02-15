@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import HeaderIcon from './HeaderIcon';
+import HeaderIcon from './Header/HeaderIcon';
 
 export default function LoginControl() {
   // const [isLogin, setIsLogin] = useState(false);
