@@ -4,9 +4,8 @@ import { API_PATH, REGEX } from '../constants';
 import { useSignUpContext } from '../contexts/SignUpContext';
 
 export default function useSignUp() {
-  const {
-    signUpInfo: { password },
-  } = useSignUpContext();
+  const { signUpInfo, setSignUpInfo } = useSignUpContext();
+  const { password } = signUpInfo;
   const [isUniqued, setIsUniqued] = useState({
     userId: false,
     nickname: false,
@@ -16,6 +15,7 @@ export default function useSignUp() {
     password: '',
     confirmPassword: '',
     nickname: '',
+    code: '',
   });
 
   const checkIdDuplicate = (userId) =>
@@ -83,6 +83,40 @@ export default function useSignUp() {
       }`,
     }));
 
+  const verifyUniversityEmail = (body) =>
+    axios
+      .post(API_PATH.emailVarification, body)
+      .then(() => alert('메일을 보냈습니다.'))
+      .catch(() => alert('메일 전송에 실패했습니다.'));
+
+  const verifyAuthCode = (body) =>
+    axios
+      .post(API_PATH.emailVarificationCode, body)
+      .then(() => {
+        setSignUpInfo((prev) => ({ ...prev, verified: true }));
+        setMessage((prev) => ({ ...prev, code: '인증에 성공했습니다.' }));
+      })
+      .catch(() => {
+        setSignUpInfo((prev) => ({ ...prev, verified: false }));
+        setMessage((prev) => ({
+          ...prev,
+          code: '인증번호가 유효하지 않습니다.',
+        }));
+      });
+
+  const submitSignUpInfo = (file, moveStep) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('join', signUpInfo);
+
+    axios
+      .post(API_PATH.sumbitSignUpInfo, formData, {
+        'Content-Type': 'multipart/form-data',
+      })
+      .then(() => moveStep('welcome'))
+      .catch(() => alert('회원가입을 진행할 수 없습니다. 다시 시도해주세요.'));
+  };
+
   return {
     isUniqued,
     message,
@@ -91,5 +125,8 @@ export default function useSignUp() {
     resetValidation,
     updatePasswordMessage,
     updateConfirmPasswordMessage,
+    verifyUniversityEmail,
+    verifyAuthCode,
+    submitSignUpInfo,
   };
 }

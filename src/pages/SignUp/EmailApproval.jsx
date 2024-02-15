@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { verifyAuthCode, verifyUniversityEmail } from '../../apis/signUp';
 import LightOrangeButtonInput from '../../components/Input/LightOrangeButtonInput';
 import Label from '../../components/Label';
 import { LABEL, PLACEHOLDER, REGEX } from '../../constants';
 import { useSignUpContext } from '../../contexts/SignUpContext';
+import useSignUp from '../../hooks/useSignUp';
 
 export default function EmailApproval() {
-  const { signUpInfo, setSignUpInfo } = useSignUpContext();
-  const [messgae, setMessage] = useState('');
+  const { signUpInfo } = useSignUpContext();
+  const { message, verifyUniversityEmail, verifyAuthCode } = useSignUp();
   const [authData, setAuthData] = useState({ email: '', code: '' });
   const handleChange = (event) => {
     const { id, value } = event.target;
@@ -26,18 +26,12 @@ export default function EmailApproval() {
           buttonText='입력완료'
           disabled={!REGEX.email.test(email)}
           onChange={handleChange}
-          onClick={() => {
+          onClick={() =>
             verifyUniversityEmail({
               email,
               university: signUpInfo.hostUniversity,
-            }).then((result) => {
-              if (result) {
-                alert('메일을 보냈습니다.');
-                return;
-              }
-              alert('메일 전송에 실패했습니다.');
-            });
-          }}
+            })
+          }
         />
       </div>
       <div>
@@ -47,24 +41,16 @@ export default function EmailApproval() {
           value={code}
           buttonText='확인'
           placeholder={PLACEHOLDER.code}
-          message={messgae}
+          message={message.code}
           isValid={signUpInfo.verified}
           onChange={handleChange}
-          onClick={() => {
+          onClick={() =>
             verifyAuthCode({
               email,
               code,
               university: signUpInfo.hostUniversity,
-            }).then((result) => {
-              if (result) {
-                setSignUpInfo((prev) => ({ ...prev, verified: true }));
-                setMessage('인증에 성공했습니다.');
-                return;
-              }
-              setSignUpInfo((prev) => ({ ...prev, verified: false }));
-              setMessage('인증번호가 유효하지 않습니다.');
-            });
-          }}
+            })
+          }
         />
       </div>
     </div>
