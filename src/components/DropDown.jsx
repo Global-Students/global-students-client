@@ -5,7 +5,7 @@ export default function DropDown({ setCurrSort }) {
   const [sort, setSort] = useState('최신순');
 
   function handleToggle() {
-    setIsClick(!isClick);
+    setIsClick((prev) => !prev);
   }
 
   const listChangeHandler = (e) => {

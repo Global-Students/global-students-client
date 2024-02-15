@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import API_PATH from '../constants/api';
 
 export default function useLogin() {
   const [loading, setLoading] = useState(false);
@@ -13,16 +14,19 @@ export default function useLogin() {
   const login = () => {
     setLoading(true);
     axios
-      .post('/auth/login', loginData, {
-        'Content-Type': 'application/json',
-      })
+      .post(API_PATH.login, loginData)
       .then((res) => {
-        localStorage.setItem('token', res.headers.authorization);
+        localStorage.setItem('accessToken', res.data.result.accessToken);
+        localStorage.setItem('expireAt', res.data.result.expireAt);
         navigate('/');
       })
       .catch((error) => {
         const { message } = error.response.data;
         window.alert(message);
+        if (error.response.status === 400) {
+          return;
+        }
+        navigate('/');
       })
       .finally(() => setLoading(false));
   };

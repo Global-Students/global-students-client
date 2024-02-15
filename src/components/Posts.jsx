@@ -3,7 +3,7 @@ import DropDown from './DropDown';
 import OrangeButton from './Button/OrangeButton';
 import PostList from './PostList';
 import Pagination from './Pagination';
-import SearchInput from './SearchInput';
+import SearchInput from './Input/SearchInput';
 
 export default function Posts({
   pageInfo,
@@ -23,13 +23,22 @@ export default function Posts({
           <DropDown setCurrSort={setCurrSort} />
         </div>
         <div className='flex justify-end'>
-          <OrangeButton text='글쓰기' textSize={15} py={8} width={115} />
+          <div className='w-[115px] h-[34px]'>
+            <OrangeButton text='글쓰기' />
+          </div>
         </div>
       </div>
       <PostList posts={posts} baseurl={baseurl} />
       <div className='flex flex-col items-center'>
         <Pagination pageInfo={pageInfo} setCurrPage={setCurrPage} />
-        <SearchInput setKeyword={setKeyword} />
+        <SearchInput
+          width='w-[496px]'
+          height='h-[50px]'
+          px='px-[24px]'
+          placeholder='검색어를 입력해주세요'
+          searchInBox
+          setKeyword={setKeyword}
+        />
       </div>
     </div>
   );
