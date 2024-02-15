@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { resetPassword } from '../../apis/findAccount';
 import Input from '../../components/Input/Input';
 import ValidationMessage from '../../components/ValidationMessage';
+import useFindAccount from '../../hooks/useFindPassword';
 import {
   checkPasswordPattern,
   checkPasswordReEnter,
 } from '../../utils/checkPattern';
 
 export default function PasswordReset({ email }) {
+  const { resetPassword } = useFindAccount();
   const [data, setData] = useState({
     password: '',
     confirmPassword: '',
@@ -18,7 +18,6 @@ export default function PasswordReset({ email }) {
     setData((prev) => ({ ...prev, [id]: value }));
   };
   const { password, confirmPassword } = data;
-  const navigator = useNavigate();
 
   return (
     <form className='w-[460px] flex flex-col gap-[36px] rounded-b-[14px] border border-gray-scale-7-main px-[25px] py-[40px] shadow'>
@@ -59,12 +58,7 @@ export default function PasswordReset({ email }) {
       <button
         className='self-center w-[194px] rounded border border-gray-scale-5 text-gray-scale-1 text-[18px] font-medium leading-[20px] tracking-[0.36px] py-[14px] shadow-prev-btn'
         type='button'
-        onClick={() => {
-          resetPassword({ email, password }).then(() => {
-            alert('비밀번호가 변경됐습니다.');
-            navigator('/login');
-          });
-        }}
+        onClick={() => resetPassword({ email, password })}
         disabled={
           !checkPasswordPattern(password) ||
           !checkPasswordReEnter(password, confirmPassword)

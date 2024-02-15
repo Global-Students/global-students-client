@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { sendCode, verifyCode } from '../../apis/findAccount';
 import Input from '../../components/Input/Input';
 import { REGEX } from '../../constants';
 import PasswordReset from './PasswordReset';
+import useFindAccount from '../../hooks/useFindPassword';
 
 export default function FindPassword() {
+  const { sendCode, verifyCode } = useFindAccount();
   const [isPasswordResettable, setIsPasswordResettable] = useState(false);
   const [isEmailVerified, setIsEmailVerified] = useState(false);
   const [data, setData] = useState({

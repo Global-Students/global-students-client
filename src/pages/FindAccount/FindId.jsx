@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { findId } from '../../apis/findAccount';
 import Input from '../../components/Input/Input';
 import { REGEX } from '../../constants';
+import useFindAccount from '../../hooks/useFindPassword';
 
 export default function FindId() {
+  const { findId } = useFindAccount();
   const [email, setEmail] = useState('');
   const updatedEmail = (event) => setEmail(event.target.value);
   const submitEmail = (event) => {
