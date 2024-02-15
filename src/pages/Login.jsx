@@ -1,10 +1,18 @@
 import React from 'react';
 import OrangeButton from '../components/Button/OrangeButton';
 import TranslateButton from '../components/Button/TranslateButton';
-import Input from '../components/Input';
-import ResetIcon from '../components/ResetIcon';
+import ResetButtonInput from '../components/Input/ResetButtonInput';
+import useLogin from '../hooks/useLogin';
 
 export default function Login() {
+  const {
+    loading,
+    loginData: { username, password },
+    setLoginData,
+    updateLoginFormData,
+    login,
+  } = useLogin();
+
   return (
     <div className='flex flex-col justify-center items-center gap-y-[42px] mt-[124px]'>
       <img src='/assets/logo.svg' alt='logo' />
@@ -14,14 +22,32 @@ export default function Login() {
         </div>
         <form className='flex flex-col border border-gray-scale-7-main rounded p-[25px] shadow'>
           <div className='flex flex-col gap-[10px] mb-[52px]'>
-            <Input id='id' type='text' placeholder='아이디' icon='person'>
-              <ResetIcon />
-            </Input>
-            <Input id='pw' type='password' placeholder='비밀번호' icon='key'>
-              <ResetIcon />
-            </Input>
+            <ResetButtonInput
+              id='username'
+              type='text'
+              value={username}
+              placeholder='아이디'
+              onChange={updateLoginFormData}
+              onReset={setLoginData}
+              icon='person'
+            />
+            <ResetButtonInput
+              id='password'
+              type='password'
+              value={password}
+              placeholder='비밀번호'
+              onChange={updateLoginFormData}
+              onReset={setLoginData}
+              icon='key'
+            />
           </div>
-          <OrangeButton text='로그인' textSize={22} py={22} />
+          <div className='h-[70px] flex text-[22px] leading'>
+            <OrangeButton
+              text='로그인'
+              onClick={() => login({ username, password })}
+              disabled={loading}
+            />
+          </div>
         </form>
         <div className='flex justify-between text-gray-scale-3 text-[17px] m-4'>
           <a href='/findAccount'>아이디 | 비밀번호 찾기</a>
