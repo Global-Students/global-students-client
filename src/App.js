@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer';
 import Header from './components/Header/Header';
@@ -10,13 +10,19 @@ import Login from './pages/Login';
 import NoticeBoard from './pages/NoticeBoard';
 import SignUp from './pages/SignUp/SignUp';
 import PrivacyPolicy from './pages/Footer/PrivacyPolicy';
+import Inquiry from './pages/Footer/Inquiry';
 
 function App() {
+  const [isInquiryClick, setIsInquiryClick] = useState(false);
+  const handleToggle = () => {
+    setIsInquiryClick((prev) => !prev);
+  };
   return (
     <BrowserRouter>
       <section className='w-[1280px] h-screen flex flex-col m-auto'>
         <Header />
-        <div className='flex-1'>
+        <Inquiry isInquiryClick={isInquiryClick} onClick={handleToggle} />
+        <div className={`flex-1 ${isInquiryClick ? 'overflow-hidden' : ''}`}>
           <Routes>
             <Route path='/' element={<NoticeBoard />} />
             <Route path='/board/all' element={<NoticeBoard />} />
@@ -34,7 +40,7 @@ function App() {
             <Route path='/privacyPolicy' element={<PrivacyPolicy />} />
           </Routes>
         </div>
-        <Footer />
+        <Footer onClick={handleToggle} />
       </section>
     </BrowserRouter>
   );
