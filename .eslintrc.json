@@ -23,11 +23,5 @@
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     }
-  },
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@package-name/*": ["packages/package-name/src/*"]
-    }
   }
 }
