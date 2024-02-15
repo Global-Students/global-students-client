@@ -8,6 +8,8 @@ import UniversityApprovalPage from './pages/Admin/UniversityApprovalPage';
 import FindAccountPage from './pages/FindAccount/FindAccountPage';
 import Login from './pages/Login';
 import NoticeBoard from './pages/NoticeBoard';
+import UpdateInfo from './pages/Update/UpdateInfo';
+import UpdateProfile from './pages/Update/UpdateProfile';
 import SignUp from './pages/SignUp/SignUp';
 import Search from './pages/Search/Search';
 import SearchListPage from './pages/Search/SearchListPage';
@@ -25,6 +27,8 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/signUp' element={<SignUp />} />
             <Route path='/findAccount' element={<FindAccountPage />} />
+            <Route path='/updateInfo'element={<UpdateInfo />} />
+            <Route path='/updateProfile' element={<UpdateProfile />} />
             <Route path='/search' element={<Search />}>
               <Route path='/search/:keyword' element={<SearchListPage />} />
               <Route
