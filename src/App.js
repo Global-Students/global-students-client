@@ -8,6 +8,10 @@ import UniversityApprovalPage from './pages/Admin/UniversityApprovalPage';
 import FindAccountPage from './pages/FindAccount/FindAccountPage';
 import Login from './pages/Login';
 import NoticeBoard from './pages/NoticeBoard';
+import UpdateInfo from './pages/Update/UpdateInfo';
+import UpdateProfile from './pages/Update/UpdateProfile';
+import MyPage from './pages/MyPage';
+import DashBoard from './pages/DashBoard';
 import SignUp from './pages/SignUp/SignUp';
 import Search from './pages/Search/Search';
 import SearchListPage from './pages/Search/SearchListPage';
@@ -26,7 +30,10 @@ function App() {
             <Route path='/board/all' element={<NoticeBoard />} />
             <Route path='/login' element={<Login />} />
             <Route path='/signUp' element={<SignUp />} />
+            <Route path='/myPage' element={<MyPage />} />
             <Route path='/findAccount' element={<FindAccountPage />} />
+            <Route path='/updateInfo'element={<UpdateInfo />} />
+            <Route path='/updateProfile' element={<UpdateProfile />} />
             <Route path='/search' element={<Search />}>
               <Route path='/search/:keyword' element={<SearchListPage />} />
               <Route
@@ -34,6 +41,8 @@ function App() {
                 element={<SearchDetailListPage />}
               />
             </Route>
+            <Route path='/dashboard/myPosts' element={<DashBoard isMyPosts / >} />
+            <Route path='/dashboard/bookmarkPosts' element={<DashBoard/ >} />
             <Route path='/admin' element={<AdminPage />}>
               <Route index path='/admin' element={<MemberListPage />} />
               <Route path='/admin/memberList' element={<MemberListPage />} />
