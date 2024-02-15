@@ -7,7 +7,7 @@ export default function FileApproval({ file, changeFile }) {
   const handleFile = (event) => changeFile(event.target.files[0]);
 
   return (
-    <div>
+    <div className='mt-[60px]'>
       <div className='mb-[13px]'>
         <Label label={LABEL.uploadFile} />
         <FileInput onChange={handleFile} />

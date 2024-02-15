@@ -17,7 +17,7 @@ export default function EmailApproval() {
   const { email, code } = authData;
 
   return (
-    <div className='flex flex-col gap-[20px]'>
+    <div className='flex flex-col gap-[20px] mt-[60px]'>
       <div>
         <Label label={LABEL.universityEmail} />
         <LightOrangeButtonInput

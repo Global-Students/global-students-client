@@ -22,7 +22,7 @@ export default function UniversityApproval({ moveStep }) {
           인증수단을 선택하세요
         </h2>
         <div className='rounded border border-gray-scale-7-main px-[24px] py-[26px] mb-[15px]'>
-          <div className=' mb-[60px]'>
+          <div>
             <div className='flex justify-between'>
               <AutnButton
                 name='email'
