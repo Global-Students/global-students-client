@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import authAxios from "../axios/authAxios";
 import PrivacyButton from "./Button/PrivacyButton";
 import URL from "../constants/testServer";
 
@@ -82,18 +81,16 @@ export default function PostTable({ tablename, link }) {
   // const userId = localStorage.getItem('userId');
   const userId = "00";
   // const accessToken = localStorage.getItem('token');
+  const boardId = "00";
 
   const pathname = tablename === "내가 쓴 글" ? "writepost" : "favoritepost";
 
   useEffect(() => { 
     async function fetchData() {
       try {
-        const response = await axios.get(`${URL}/mypage/${pathname}?userId=${userId}`, {
-          // headers: { Authorization: accessToken }
-        });
+        const response = await authAxios.get(`${URL}/mypage/${pathname}?userId=${userId}`);
         setPrivacy(response.data.result.privacy);
         setPosts(response.data.result.posts.slice(0, 5));
-        console.log(posts);
       } catch (error) {
         console.error(error);
       }
@@ -155,7 +152,7 @@ export default function PostTable({ tablename, link }) {
         </div>
         <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[953px] relative overflow-hidden rounded-bl-[14px] rounded-br-[14px] border-t-0 border-r border-b border-l border-[#e7eaf2]">
         {posts.map((post) => (
-          <Link to="/" >
+          <a href={`/boards/${boardId}/posts/${post.postId}`} aria-label="link">
             <PostPreview
               title={post.title}
               comments={post.numberOfComments}
@@ -164,7 +161,7 @@ export default function PostTable({ tablename, link }) {
               likes={post.likes}
               views={post.views}
             />
-          </Link>
+          </a>
         ))}
         </div>
       </div>

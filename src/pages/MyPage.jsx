@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import authAxios from '../axios/authAxios';
 import ProfileBox from '../components/ProfileBox';
 import PostTable from '../components/PostTable';
 import Infobox from '../components/Infobox';
@@ -9,14 +9,11 @@ export default function MyPage() {
   const [data, setData] = useState([]);
   // const userId = localStorage.getItem('userId');
   const userId = "00";
-  // const accessToken = localStorage.getItem('token');
 
   useEffect(() => { 
     async function fetchData() {
       try {
-        const response = await axios.get(`${URL}/mypage?userId=${userId}`, {
-          // headers: { Authorization: accessToken }
-        });
+        const response = await authAxios.get(`${URL}/mypage?userId=${userId}`);
         setData(response.data.result);
       } catch (error) {
         console.error(error);

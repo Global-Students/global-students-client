@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import authAxios from "../axios/authAxios";
 import URL from "../constants/testServer";
 
 function PostPreview( {title, comments, date, author, likes, views} ) {
@@ -21,11 +21,11 @@ className="accent-[#FF743D]"
                 {date}
               </p>
             </div>
-            <div className="flex justify-end items-center flex-grow-0 flex-shrink-0 absolute left-[678px] inset-y-0 w-[220px] gap-[60px]">
-              <p className="flex-grow-0 flex-shrink-0 text-sm font-light text-left text-[#808593]">
+            <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 absolute left-[678px] inset-y-0">
+              <p className="flex-grow-0 flex-shrink-0 text-sm font-light text-left text-[#808593] w-[67px]">
                   {author}
               </p>
-              <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1">
+              <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-1 w-[90px]">
                 <svg
                   width={13}
                   height={13}
@@ -57,7 +57,7 @@ className="accent-[#FF743D]"
                   {likes}
                 </p>
               </div>
-              <p className="flex-grow-0 flex-shrink-0 text-sm font-light text-left text-[#808593]">
+              <p className="flex-grow-0 flex-shrink-0 text-sm font-light text-right text-[#808593] w-[50px]">
                   {views}
               </p>
             </div>
@@ -71,18 +71,15 @@ export default function MyPosts({tablename}) {
 
   // const userId = localStorage.getItem('userId');
   const userId = "00";
-  // const accessToken = localStorage.getItem('token');
+  const boardId = "00";
 
   const pathname = tablename === "내가 쓴 글" ? "writepost" : "favoritepost";
 
   useEffect(() => { 
     async function fetchData() {
       try {
-        const response = await axios.get(`${URL}/mypage/${pathname}?userId=${userId}`, {
-          // headers: { Authorization: accessToken }
-        });
+        const response = await authAxios.get(`${URL}/mypage/${pathname}?userId=${userId}`);
         setPosts(response.data.result.posts.slice(0, 5));
-        console.log(posts);
       } catch (error) {
         console.error(error);
       }
@@ -127,7 +124,7 @@ export default function MyPosts({tablename}) {
           </div>
           <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[953px] relative overflow-hidden rounded-bl-[14px] rounded-br-[14px] border-t-0 border-r border-b border-l border-[#e7eaf2]">
             {posts.map((post) => (
-            <a href="/" aria-label="link">
+            <a href={`/boards/${boardId}/posts/${post.postId}`} aria-label="link">
               <PostPreview
                 title={post.title}
                 comments={post.numberOfComments}
