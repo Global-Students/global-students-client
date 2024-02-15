@@ -5,7 +5,12 @@ import ResetButtonInput from '../components/Input/ResetButtonInput';
 import useLogin from '../hooks/useLogin';
 
 export default function Login() {
-  const { loading, loginData, updateLoginFormData, login } = useLogin();
+  const {
+    loading,
+    loginData: { username, password },
+    updateLoginFormData,
+    login,
+  } = useLogin();
 
   return (
     <div className='flex flex-col justify-center items-center gap-y-[42px] mt-[124px]'>
@@ -19,7 +24,7 @@ export default function Login() {
             <ResetButtonInput
               id='username'
               type='text'
-              value={loginData.username}
+              value={username}
               placeholder='아이디'
               onChange={updateLoginFormData}
               onReset={() => {}}
@@ -28,7 +33,7 @@ export default function Login() {
             <ResetButtonInput
               id='password'
               type='password'
-              value={loginData.password}
+              value={password}
               placeholder='비밀번호'
               onChange={updateLoginFormData}
               onReset={() => {}}
@@ -36,7 +41,11 @@ export default function Login() {
             />
           </div>
           <div className='h-[70px] flex text-[22px] leading'>
-            <OrangeButton text='로그인' onClick={login} disabled={loading} />
+            <OrangeButton
+              text='로그인'
+              onClick={() => login({ username, password })}
+              disabled={loading}
+            />
           </div>
         </form>
         <div className='flex justify-between text-gray-scale-3 text-[17px] m-4'>

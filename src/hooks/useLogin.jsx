@@ -11,14 +11,14 @@ export default function useLogin() {
     setLoginData((prev) => ({ ...prev, [targetId]: event.target.value }));
   };
   const navigate = useNavigate();
-  const login = () => {
+  const login = (body, nextPath = '/') => {
     setLoading(true);
     axios
-      .post(API_PATH.login, loginData)
+      .post(API_PATH.login, body)
       .then((res) => {
         localStorage.setItem('accessToken', res.data.result.accessToken);
         localStorage.setItem('expireAt', res.data.result.expireAt);
-        navigate('/');
+        navigate(nextPath);
       })
       .catch((error) => {
         const { message } = error.response.data;
