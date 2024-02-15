@@ -2,8 +2,10 @@ import axios from 'axios';
 import { useState } from 'react';
 import { API_PATH, REGEX } from '../constants';
 import { useSignUpContext } from '../contexts/SignUpContext';
+import useLogin from './useLogin';
 
 export default function useSignUp() {
+  const { login } = useLogin();
   const { signUpInfo, setSignUpInfo } = useSignUpContext();
   const [isUniqued, setIsUniqued] = useState({
     userId: false,
@@ -117,7 +119,13 @@ export default function useSignUp() {
       .post(API_PATH.sumbitSignUpInfo, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
-      .then(() => moveStep('welcome'))
+      .then(() => {
+        login(
+          { username: signUpInfo.userId, password: signUpInfo.password },
+          '',
+        );
+        moveStep('welcome');
+      })
       .catch((error) => alert(error.response.data.message));
   };
 
