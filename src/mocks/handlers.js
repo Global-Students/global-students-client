@@ -591,6 +591,30 @@ const handlers = [
     //       status: 400,
     //     },
     //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON500',
+    //       message: '서버 에러',
+    //       result: {},
+    //     },
+    //     {
+    //       status: 500,
+    //     },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON503',
+    //       message: '일시적인 서버 오류',
+    //       result: {},
+    //     },
+    //     {
+    //       status: 503,
+    //     },
+    //   ),
   ),
 ];
 

@@ -59,7 +59,7 @@ export default function useFindAccount() {
         alert('비밀번호가 변경됐습니다.');
         navigator('/login');
       })
-      .catch(() => false);
+      .catch((error) => alert(error.response.data.message));
 
   return {
     message,
