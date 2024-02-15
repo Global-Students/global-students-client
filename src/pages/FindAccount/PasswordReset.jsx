@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import FindAccountButton from '../../components/Button/FindAccountButton';
 import Input from '../../components/Input/Input';
 import ValidationMessage from '../../components/ValidationMessage';
-import useFindAccount from '../../hooks/useFindPassword';
+import useFindAccount from '../../hooks/useFindAccount';
 import {
   checkPasswordPattern,
   checkPasswordReEnter,

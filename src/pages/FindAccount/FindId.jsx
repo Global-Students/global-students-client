@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import FindAccountButton from '../../components/Button/FindAccountButton';
 import Input from '../../components/Input/Input';
 import { REGEX } from '../../constants';
-import useFindAccount from '../../hooks/useFindPassword';
+import useFindAccount from '../../hooks/useFindAccount';
 
 export default function FindId() {
   const { findId } = useFindAccount();
