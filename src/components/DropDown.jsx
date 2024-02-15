@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 export default function DropDown({ setCurrSort }) {
-  const [isClick, setIsClick] = useState(true);
+  const [isClick, setIsClick] = useState(false);
   const [sort, setSort] = useState('최신순');
 
   function handleToggle() {

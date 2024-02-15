@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import API_PATH from '../../constants/api';
 
-export default function RealTimePopularPosts() {
+export default function RealTimePopularPosts({ setSearchClick }) {
   const [populars, setPopulars] = useState([]);
 
   const getPopularPosts = async () => {
@@ -33,28 +34,33 @@ export default function RealTimePopularPosts() {
         <tbody>
           {populars &&
             populars.map((post) => (
-              <tr
-                key={post.postId}
-                className='flex flex-row items-center w-[952px] h-[60px] border-b border-gray-scale-8 hover:bg-gray-scale-8'
+              <Link
+                to={`/board/${post.postId}`}
+                onClick={() => setSearchClick((prev) => !prev)}
               >
-                <td className='w-[90px] text-center text-orange-main text-xl font-bold'>
-                  {post.rank}
-                </td>
-                <td className='flex flex-row items-center w-[806px] text-gray-scale-1 text-lg font-normal'>
-                  <p className='text-orange-1 text-sm font-normal mr-2'>
-                    [게시판명]
-                  </p>
-                  <p className='text-gray-scale-1 text-base font-normal'>
-                    {post.title}
-                  </p>
-                </td>
-                <td className='w-[70px]'>
-                  <div className='flex flex-row w-[70px] items-center text-gray-scale-4 text-base font-light'>
-                    <img src='/assets/thumbUp.svg' alt='thumbUp' />
-                    &nbsp;{post.likes}
-                  </div>
-                </td>
-              </tr>
+                <tr
+                  key={post.postId}
+                  className='flex flex-row items-center w-[952px] h-[60px] border-b border-gray-scale-8 hover:bg-gray-scale-8'
+                >
+                  <td className='w-[90px] text-center text-orange-main text-xl font-bold'>
+                    {post.rank}
+                  </td>
+                  <td className='flex flex-row items-center w-[806px] text-gray-scale-1 text-lg font-normal'>
+                    <p className='text-orange-1 text-sm font-normal mr-2'>
+                      [게시판명]
+                    </p>
+                    <p className='text-gray-scale-1 text-base font-normal'>
+                      {post.title}
+                    </p>
+                  </td>
+                  <td className='w-[70px]'>
+                    <div className='flex flex-row w-[70px] items-center text-gray-scale-4 text-base font-light'>
+                      <img src='/assets/thumbUp.svg' alt='thumbUp' />
+                      &nbsp;{post.likes}
+                    </div>
+                  </td>
+                </tr>
+              </Link>
             ))}
         </tbody>
       </table>
