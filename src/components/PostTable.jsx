@@ -1,6 +1,8 @@
-import { React } from "react";
+import { React, useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import PrivacyButton from "./Button/PrivacyButton";
+import URL from "../constants/testServer";
 
 function PostPreview( {title, comments, date, author, likes, views} ) {
     return(
@@ -73,7 +75,32 @@ function PostPreview( {title, comments, date, author, likes, views} ) {
     );
 }
 
-export default function PostTable({ tablename, link}) {
+export default function PostTable({ tablename, link }) {
+  const [privacy, setPrivacy] = useState("");
+  const [posts, setPosts] = useState([""]);
+
+  // const userId = localStorage.getItem('userId');
+  const userId = "00";
+  // const accessToken = localStorage.getItem('token');
+
+  const pathname = tablename === "내가 쓴 글" ? "writepost" : "favoritepost";
+
+  useEffect(() => { 
+    async function fetchData() {
+      try {
+        const response = await axios.get(`${URL}/mypage/${pathname}?userId=${userId}`, {
+          // headers: { Authorization: accessToken }
+        });
+        setPrivacy(response.data.result.privacy);
+        setPosts(response.data.result.posts);
+        console.log(response.data.result.posts);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, []);
+
     return(
         <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 relative">
         <div className="flex-grow-0 flex-shrink-0 w-[953px] h-[69px]">
@@ -82,7 +109,7 @@ export default function PostTable({ tablename, link}) {
               <p className="h-[29px] text-xl font-medium text-left text-[#414244]">
                 {tablename}
               </p>
-              <PrivacyButton />
+              <PrivacyButton Privacy={privacy} />
               <a href={link}>
               <div className="flex flex-nowrap items-center absolute right-[0px] gap-1">
                 <p className="text-lg text-left text-[#808593]">
@@ -122,7 +149,7 @@ export default function PostTable({ tablename, link}) {
         </div>
         <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[953px] relative overflow-hidden rounded-bl-[14px] rounded-br-[14px] border-t-0 border-r border-b border-l border-[#e7eaf2]">
           <Link to='/'>
-          <PostPreview title="게시글 제목" comments="0" date="1월 1일" author="작성자" likes="0" views="조회수"/>
+          <PostPreview title={posts[0].title} comments="0" date="1월 1일" author="작성자" likes={posts[0].likes} views="조회수"/>
           </Link>
           <Link to='/'>
           <PostPreview title="게시글 제목" comments="0" date="1월 1일" author="작성자" likes="0" views="조회수"/>
