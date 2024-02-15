@@ -8,6 +8,7 @@ module.exports = {
       colors: {
         'orange-main': '#FF743D',
         'orange-1': '#FF5500',
+        'orange-4': '#FFA77B40',
         'orange-2': '#FFA77B',
         'orange-5': '#FFF2EB',
         'gray-scale-1': '#1E1E1E',
