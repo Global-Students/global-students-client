@@ -151,27 +151,104 @@ const handlers = [
     //     { status: 503 },
     //   ),
   ),
-  http.get(`/auth/join/check-id/:userId`, () =>
-    HttpResponse.json({
-      isSuccess: true,
-      message: 'OK - user id',
-    }),
+  http.get(
+    `/auth/join/check-id/:userId`,
+    () =>
+      HttpResponse.json({
+        isSuccess: true,
+        code: 'JOIN200_1',
+        message: 'OK',
+        result: {},
+      }),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'CHECK403_1',
+    //       message: '접근이 거부되었습니다',
+    //       result: {},
+    //     },
+    //     { status: 403 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'CHECK409_1',
+    //       message: '이미 존재하는 아이디입니다',
+    //       result: {},
+    //     },
+    //     { status: 409 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON500',
+    //       message: '서버 에러',
+    //       result: {},
+    //     },
+    //     { status: 500 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON503',
+    //       message: '일시적인 서버 오류',
+    //       result: {},
+    //     },
+    //     { status: 503 },
+    //   ),
   ),
   http.get(
     `/auth/join/check-nickname/:nickname`,
     () =>
       HttpResponse.json({
         isSuccess: true,
-        message: 'OK - nickname',
+        code: 'JOIN200_2',
+        message: 'OK',
+        result: {},
       }),
     // () =>
     //   HttpResponse.json(
     //     {
     //       isSuccess: false,
-    //       code: 'CHECK409_2',
-    //       message: 'fail - nickname',
+    //       code: 'CHECK403_2',
+    //       message: '접근이 거부되었습니다',
+    //       result: {},
     //     },
-    //     { status: 400 },
+    //     { status: 403 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'CHECK409_2',
+    //       message: '이미 존재하는 닉네임입니다',
+    //       result: {},
+    //     },
+    //     { status: 409 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON500',
+    //       message: '서버 에러',
+    //       result: {},
+    //     },
+    //     { status: 500 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON503',
+    //       message: '일시적인 서버 오류',
+    //       result: {},
+    //     },
+    //     { status: 503 },
     //   ),
   ),
   http.post(
@@ -181,15 +258,57 @@ const handlers = [
         isSuccess: true,
         code: 'JOIN201_3',
         message: '인증번호 전송 성공',
+        result: {},
       }),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'VERIFY400_1',
+    //       message: '잘못된 이메일 형식입니다',
+    //       result: {},
+    //     },
+    //     { status: 400 },
+    //   ),
     // () =>
     //   HttpResponse.json(
     //     {
     //       isSuccess: false,
     //       code: 'VERIFY400_2',
     //       message: '학생 혹은 교육기관의 이메일이 아닙니다',
+    //       result: {},
     //     },
     //     { status: 400 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'VERIFY403_1',
+    //       message: '접근이 거부되었습니다',
+    //       result: {},
+    //     },
+    //     { status: 403 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON500',
+    //       message: '서버 에러',
+    //       result: {},
+    //     },
+    //     { status: 500 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON503',
+    //       message: '일시적인 서버 오류',
+    //       result: {},
+    //     },
+    //     { status: 503 },
     //   ),
   ),
   http.post(
@@ -198,7 +317,10 @@ const handlers = [
       HttpResponse.json({
         isSuccess: true,
         code: 'JOIN200_5',
-        message: '인증번호 전송 성공',
+        message: 'OK',
+        result: {
+          university: '00 대학교',
+        },
       }),
     // () =>
     //   HttpResponse.json(
@@ -206,8 +328,39 @@ const handlers = [
     //       isSuccess: false,
     //       code: 'VERIFY400_2',
     //       message: '잘못된 인증번호입니다',
+    //       result: {},
     //     },
     //     { status: 400 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'VERIFY403_1',
+    //       message: '접근이 거부되었습니다',
+    //       result: {},
+    //     },
+    //     { status: 403 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON500',
+    //       message: '서버 에러',
+    //       result: {},
+    //     },
+    //     { status: 500 },
+    //   ),
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON503',
+    //       message: '일시적인 서버 오류',
+    //       result: {},
+    //     },
+    //     { status: 503 },
     //   ),
   ),
   http.post(
@@ -215,19 +368,32 @@ const handlers = [
     () =>
       HttpResponse.json({
         isSuccess: true,
-        message: '회원가입 성공',
+        code: 'JOIN201_1',
+        message: '기본 정보 입력 성공',
+        result: {
+          complete: true,
+        },
       }),
     // () =>
     //   HttpResponse.json(
     //     {
     //       isSuccess: false,
     //       code: 'COMMON500',
-    //       // code: 'COMMON503',
-    //       message: 'fail - signUp',
+    //       message: '서버 에러',
+    //       result: {},
     //     },
     //     { status: 500 },
     //   ),
-    // const baseUrl = ' http://localhost';
+    // () =>
+    //   HttpResponse.json(
+    //     {
+    //       isSuccess: false,
+    //       code: 'COMMON503',
+    //       message: '일시적인 서버 오류',
+    //       result: {},
+    //     },
+    //     { status: 503 },
+    //   ),
   ),
   http.post('/user/find-id', () =>
     HttpResponse.json({
