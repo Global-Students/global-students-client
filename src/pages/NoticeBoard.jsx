@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import authAxios from '../axios/authAxios';
 import UserInfoControl from '../components/UserInfoControl';
 import InformText from '../components/InformText';
 import Inform from '../components/Inform';
@@ -19,7 +19,6 @@ export default function NoticeBoard() {
   // const { boardId } = localStorage.getItem('board_id');
   const boardId = '123';
   const baseurl = `/boards/${boardId}`;
-  const accessToken = localStorage.getItem('accessToken');
 
   const getBoard = async () => {
     const params = {
@@ -33,10 +32,9 @@ export default function NoticeBoard() {
     const requrl = `${baseurl}/?${queryStr}`;
 
     try {
-      const res = await axios({
+      const res = await authAxios({
         method: 'get',
         url: requrl,
-        header: { Authorization: accessToken },
       });
       if (res.data.code === 'COMMON200') {
         setPageInfo(res.data.result.pageInfo);
