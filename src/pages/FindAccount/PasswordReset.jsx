@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import FindAccountButton from '../../components/Button/FindAccountButton';
 import Input from '../../components/Input/Input';
 import ValidationMessage from '../../components/ValidationMessage';
 import useFindAccount from '../../hooks/useFindPassword';
@@ -58,17 +59,14 @@ export default function PasswordReset({ email }) {
         />
         <ValidationMessage message={message.confirmPassword} />
       </div>
-      <button
-        className='self-center w-[194px] rounded border border-gray-scale-5 text-gray-scale-1 text-[18px] font-medium leading-[20px] tracking-[0.36px] py-[14px] shadow-prev-btn'
-        type='button'
+      <FindAccountButton
+        text='변경 완료'
         onClick={() => resetPassword({ email, password })}
         disabled={
           !checkPasswordPattern(password) ||
           !checkPasswordReEnter(password, confirmPassword)
         }
-      >
-        변경 완료
-      </button>
+      />
     </form>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import FindAccountButton from '../../components/Button/FindAccountButton';
 import Input from '../../components/Input/Input';
 import { REGEX } from '../../constants';
 import useFindAccount from '../../hooks/useFindPassword';
@@ -29,18 +30,11 @@ export default function FindId() {
           />
         </div>
       </div>
-      <button
-        className={`self-center w-[194px] rounded border ${
-          REGEX.email.test(email)
-            ? 'border-gray-scale-5 text-gray-scale-1'
-            : 'border-gray-scale-6 text-gray-scale-5 bg-gray-scale-8'
-        } text-[18px] font-medium leading-[20px] tracking-[0.36px] py-[14px] shadow-prev-btn`}
-        type='submit'
+      <FindAccountButton
+        text='아이디 찾기'
         onClick={submitEmail}
         disabled={!REGEX.email.test(email)}
-      >
-        아이디 찾기
-      </button>
+      />
     </form>
   );
 }
