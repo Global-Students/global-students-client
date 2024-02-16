@@ -49,7 +49,9 @@ export default function InquiryInputBox() {
           />
         </div>
         <div className='flex justify-end'>
-          <OrangeButton text='문의하기' textSize={18} width={148} py={14} />
+          <div className='w-[148px] h-[48px]'>
+            <OrangeButton text='문의하기' textSize={18} />
+          </div>
         </div>
       </div>
     </div>
