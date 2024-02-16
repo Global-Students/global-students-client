@@ -26,11 +26,11 @@ export default function RealTimePopularPosts({ setSearchClick }) {
   }, []);
 
   return (
-    <div className='flex flex-col w-[952px] h-[334px] justify-between'>
-      <p className='text-gray-scale-2 text-lg font-semibold ml-[19px]'>
+    <div className='flex flex-col w-[952px] h-[334px]'>
+      <p className='text-gray-scale-2 text-lg font-semibold ml-[19px] mb-[10px]'>
         실시간 인기글
       </p>
-      <ul className='w-[952px] table-fixed bg-gray-scale-9 rounded-[14px] border border-separate	border-spacing-0 hover:overflow-hidden border-gray-scale-8'>
+      <ul className='w-[952px] bg-gray-scale-9 rounded-[14px] border border-separate border-spacing-0 hover:overflow-hidden border-gray-scale-8'>
         {populars &&
           populars.map((post) => (
             <Link
