@@ -33,7 +33,7 @@ export default function NoticeBoard() {
         method: 'get',
         url: requrl,
       });
-      if (res.data.code === 'COMMON200') {
+      if (res.data.isSuccess === true && res.data.code === 'COMMON200') {
         setPageInfo(res.data.result.pageInfo);
         setNotice(res.data.result.noticePost);
         setPopulars(res.data.result.popular);
@@ -60,7 +60,7 @@ export default function NoticeBoard() {
 
   useEffect(() => {
     getBoard();
-  }, [currentPage, currentSort, keyword]);
+  }, []);
 
   return (
     <div className='flex flex-row h-[1824px] justify-center items-center'>
