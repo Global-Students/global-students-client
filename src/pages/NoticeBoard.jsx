@@ -86,7 +86,6 @@ export default function NoticeBoard() {
               setKeyword={setKeyword}
             />
           </div>
-          <div />
         </div>
       </div>
     </div>

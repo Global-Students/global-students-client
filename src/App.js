@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer';
 import Header from './components/Header/Header';
@@ -13,17 +13,24 @@ import UpdateProfile from './pages/Update/UpdateProfile';
 import MyPage from './pages/MyPage';
 import DashBoard from './pages/DashBoard';
 import SignUp from './pages/SignUp/SignUp';
+import PrivacyPolicy from './pages/Footer/PrivacyPolicy';
+import Inquiry from './pages/Footer/Inquiry';
 import Search from './pages/Search/Search';
 import SearchDetailListPage from './pages/Search/SearchDetailListPage';
 import SearchFriends from './pages/SearchFriends';
 import Friend from './pages/Friend';
 
 function App() {
+  const [isInquiryClick, setIsInquiryClick] = useState(false);
+  const handleToggle = () => {
+    setIsInquiryClick((prev) => !prev);
+  };
   return (
     <BrowserRouter>
       <section className='w-[1280px] h-screen flex flex-col m-auto'>
         <Header />
-        <div className='flex-1'>
+        <Inquiry isInquiryClick={isInquiryClick} onClick={handleToggle} />
+        <div className={`flex-1 ${isInquiryClick ? 'overflow-hidden' : ''}`}>
           <Routes>
             <Route path='/' element={<NoticeBoard />} />
             <Route path='/board/all' element={<NoticeBoard />} />
@@ -52,6 +59,7 @@ function App() {
                 element={<UniversityApprovalPage />}
               />
             </Route>
+            <Route path='/privacyPolicy' element={<PrivacyPolicy />} />
             <Route
               path='/searchingFriend'
               element={<SearchFriends isPublic />}
@@ -59,7 +67,7 @@ function App() {
             <Route path='/Friend' element={<Friend />} />
           </Routes>
         </div>
-        <Footer />
+        <Footer onClick={handleToggle} />
       </section>
     </BrowserRouter>
   );
