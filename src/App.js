@@ -36,10 +36,12 @@ function App() {
             <Route path='/findAccount' element={<FindAccountPage />} />
             <Route path='/updateInfo' element={<UpdateInfo />} />
             <Route path='/updateProfile' element={<UpdateProfile />} />
-            <Route path='/search' element={<Search />}>
             <Route path='/postView' element={<PostView />} />
             <Route path='/postCreate' element={<PostCreate />} />
             <Route path='/postUpdate' element={<PostUpdate />} />
+            
+            <Route path='/search' element={<Search />}>
+            
             
               <Route
                 path='/search/:keyword/:boardName'
