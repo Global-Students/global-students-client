@@ -1,4 +1,8 @@
 import { http, HttpResponse } from 'msw';
+import board from './board.json';
+import searchPop from './searchPop.json';
+
+const boardId = 123;
 
 // const deniedAccess = () =>
 //   HttpResponse.json(
@@ -34,6 +38,7 @@ import { http, HttpResponse } from 'msw';
 //   );
 
 const handlers = [
+  http.get(`/boards/${boardId}`, () => HttpResponse.json(board)),
   http.post(
     `/auth/login`,
     () =>
@@ -363,6 +368,7 @@ const handlers = [
     // serverError,
     // temporaryServerError,
   ),
+  http.get(`/search/popular-post`, () => HttpResponse.json(searchPop)),
 ];
 
 export default handlers;
