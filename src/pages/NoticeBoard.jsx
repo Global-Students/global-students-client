@@ -63,26 +63,6 @@ export default function NoticeBoard() {
   }, [currentPage, currentSort, keyword]);
 
   return (
-<<<<<<< HEAD
-    <div className='flex justify-center items-center'>
-      <div className='flex flex-row h-[1824px] justify-center items-center'>
-        <div className='flex w-[1279px] h-[1651px] justify-start gap-x-[24px]'>
-          <UserInfoControl />
-          <div className='flex flex-col w-[953px] items-center'>
-            <InformText
-              mb
-              translate
-              school='Hanyang'
-              borderId='All'
-              text='우리 학교에 재학 중인 모든 유학생을 만날 수 있습니다.'
-            />
-            <Inform />
-            <div className='flex flex-col items-center'>
-              <PopularList />
-              <Posts />
-            </div>
-            <div />
-=======
     <div className='flex flex-row h-[1824px] justify-center items-center'>
       <div className='flex w-[1279px] h-[1651px] justify-start gap-x-[24px]'>
         <UserInfoControl />
@@ -105,7 +85,6 @@ export default function NoticeBoard() {
               setCurrSort={setCurrSort}
               setKeyword={setKeyword}
             />
->>>>>>> 108da8fd47862571c3414ca4b220bf7a4ca815fc
           </div>
         </div>
       </div>
