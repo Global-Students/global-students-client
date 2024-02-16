@@ -6,7 +6,10 @@ import './locales/i18n';
 import worker from './mocks/browser';
 import reportWebVitals from './reportWebVitals';
 
-if (process.env.NODE_ENV === 'development') {
+if (
+  process.env.NODE_ENV === 'development' ||
+  process.env.NODE_ENV === 'production'
+) {
   worker.start();
 }
 
