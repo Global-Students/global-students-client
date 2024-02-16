@@ -17,7 +17,7 @@ export default function DropDown() {
   const dropDownStyle = `rounded-t-[14px] border border-gray-scale-6 border-b-0`;
 
   return (
-    <div className='z-10'>
+    <div className='absolute z-10'>
       <button
         type='button'
         onClick={handleToggle}
