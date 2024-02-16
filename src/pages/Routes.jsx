@@ -12,6 +12,7 @@ import Login from './Login';
 import MyPage from './MyPage';
 import NotFound from './NotFound';
 import NoticeBoard from './NoticeBoard';
+import ProtectedRoute from './ProtectedRoute';
 import Search from './Search/Search';
 import SearchDetailListPage from './Search/SearchDetailListPage';
 import SearchFriends from './SearchFriends';
@@ -26,8 +27,38 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       {
-        path: '/',
-        element: <NoticeBoard />,
+        path: '',
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: '/myPage',
+            element: <MyPage />,
+          },
+          {
+            path: '/updateInfo',
+            element: <UpdateInfo />,
+          },
+          {
+            path: '/updateProfile',
+            element: <UpdateProfile />,
+          },
+          {
+            path: '/dashboard/myPosts',
+            element: <DashBoard isMyPosts />,
+          },
+          {
+            path: '/dashboard/bookmarkPosts',
+            element: <DashBoard />,
+          },
+          {
+            path: '/searchingFriend',
+            element: <SearchFriends isPublic />,
+          },
+          {
+            path: '/Friend',
+            element: <Friend />,
+          },
+        ],
       },
       {
         path: '/board/all',
@@ -42,20 +73,8 @@ const router = createBrowserRouter([
         element: <SignUp />,
       },
       {
-        path: '/myPage',
-        element: <MyPage />,
-      },
-      {
         path: '/findAccount',
         element: <FindAccountPage />,
-      },
-      {
-        path: '/updateInfo',
-        element: <UpdateInfo />,
-      },
-      {
-        path: '/updateProfile',
-        element: <UpdateProfile />,
       },
       {
         path: '/search',
@@ -66,14 +85,6 @@ const router = createBrowserRouter([
             element: <SearchDetailListPage />,
           },
         ],
-      },
-      {
-        path: '/dashboard/myPosts',
-        element: <DashBoard isMyPosts />,
-      },
-      {
-        path: '/dashboard/bookmarkPosts',
-        element: <DashBoard />,
       },
       {
         path: '/admin',
@@ -96,14 +107,6 @@ const router = createBrowserRouter([
       {
         path: '/privacyPolicy',
         element: <PrivacyPolicy />,
-      },
-      {
-        path: '/searchingFriend',
-        element: <SearchFriends isPublic />,
-      },
-      {
-        path: '/Friend',
-        element: <Friend />,
       },
     ],
   },
