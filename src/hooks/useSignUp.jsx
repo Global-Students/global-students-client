@@ -40,7 +40,8 @@ export default function useSignUp() {
   const checkNicknameDuplicate = (nickname) =>
     axios
       .get(API_PATH.checkNickname(nickname))
-      .then(() => {
+      .then((response) => {
+        console.log(response);
         setIsUniqued((prev) => ({ ...prev, nickname: true }));
         setMessage((prev) => ({
           ...prev,
