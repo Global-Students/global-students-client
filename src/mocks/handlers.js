@@ -1,5 +1,38 @@
 import { http, HttpResponse } from 'msw';
 
+// const deniedAccess = () =>
+//   HttpResponse.json(
+//     {
+//       isSuccess: false,
+//       code: 'LOGIN403_1',
+//       message: '접근이 거부되었습니다',
+//       result: {},
+//     },
+//     { status: 403 },
+//   );
+
+// const serverError = () =>
+//   HttpResponse.json(
+//     {
+//       isSuccess: false,
+//       code: 'COMMON500',
+//       message: '서버 에러',
+//       result: {},
+//     },
+//     { status: 500 },
+//   );
+
+// const temporaryServerError = () =>
+//   HttpResponse.json(
+//     {
+//       isSuccess: false,
+//       code: 'COMMON503',
+//       message: '일시적인 서버 오류',
+//       result: {},
+//     },
+//     { status: 503 },
+//   );
+
 const handlers = [
   http.post(
     `/auth/login`,
@@ -29,36 +62,9 @@ const handlers = [
     //     },
     //     { status: 400 },
     //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'LOGIN403_1',
-    //       message: '접근이 거부되었습니다',
-    //       result: {},
-    //     },
-    //     { status: 403 },
-    //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'COMMON500',
-    //       message: '서버 에러',
-    //       result: {},
-    //     },
-    //     { status: 500 },
-    //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'COMMON503',
-    //       message: '일시적인 서버 오류',
-    //       result: {},
-    //     },
-    //     { status: 503 },
-    //   ),
+    // deniedAccess,
+    // serverError,
+    // temporaryServerError,
   ),
   http.post(
     '/auth/refresh',
@@ -120,36 +126,9 @@ const handlers = [
     //     },
     //     { status: 401 },
     //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'LOGIN403_1',
-    //       message: '접근이 거부되었습니다',
-    //       result: {},
-    //     },
-    //     { status: 403 },
-    //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'COMMON500',
-    //       message: '서버 에러',
-    //       result: {},
-    //     },
-    //     { status: 500 },
-    //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'COMMON503',
-    //       message: '일시적인 서버 오류',
-    //       result: {},
-    //     },
-    //     { status: 503 },
-    //   ),
+    // deniedAccess,
+    // serverError,
+    // temporaryServerError,
   ),
   http.get(
     `/auth/join/check-id/:userId`,
@@ -164,42 +143,15 @@ const handlers = [
     //   HttpResponse.json(
     //     {
     //       isSuccess: false,
-    //       code: 'CHECK403_1',
-    //       message: '접근이 거부되었습니다',
-    //       result: {},
-    //     },
-    //     { status: 403 },
-    //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
     //       code: 'CHECK409_1',
     //       message: '이미 존재하는 아이디입니다',
     //       result: {},
     //     },
     //     { status: 409 },
     //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'COMMON500',
-    //       message: '서버 에러',
-    //       result: {},
-    //     },
-    //     { status: 500 },
-    //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'COMMON503',
-    //       message: '일시적인 서버 오류',
-    //       result: {},
-    //     },
-    //     { status: 503 },
-    //   ),
+    // deniedAccess,
+    // serverError,
+    // temporaryServerError,
   ),
   http.get(
     `/auth/join/check-nickname/:nickname`,
@@ -214,42 +166,15 @@ const handlers = [
     //   HttpResponse.json(
     //     {
     //       isSuccess: false,
-    //       code: 'CHECK403_2',
-    //       message: '접근이 거부되었습니다',
-    //       result: {},
-    //     },
-    //     { status: 403 },
-    //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
     //       code: 'CHECK409_2',
     //       message: '이미 존재하는 닉네임입니다',
     //       result: {},
     //     },
     //     { status: 409 },
     //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'COMMON500',
-    //       message: '서버 에러',
-    //       result: {},
-    //     },
-    //     { status: 500 },
-    //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'COMMON503',
-    //       message: '일시적인 서버 오류',
-    //       result: {},
-    //     },
-    //     { status: 503 },
-    //   ),
+    // deniedAccess,
+    // serverError,
+    // temporaryServerError,
   ),
   http.post(
     '/auth/join/university-verification/email',
@@ -280,36 +205,9 @@ const handlers = [
     //     },
     //     { status: 400 },
     //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'VERIFY403_1',
-    //       message: '접근이 거부되었습니다',
-    //       result: {},
-    //     },
-    //     { status: 403 },
-    //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'COMMON500',
-    //       message: '서버 에러',
-    //       result: {},
-    //     },
-    //     { status: 500 },
-    //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'COMMON503',
-    //       message: '일시적인 서버 오류',
-    //       result: {},
-    //     },
-    //     { status: 503 },
-    //   ),
+    // deniedAccess,
+    // serverError,
+    // temporaryServerError,
   ),
   http.post(
     '/auth/join/university-verification/email/code',
@@ -332,36 +230,9 @@ const handlers = [
     //     },
     //     { status: 400 },
     //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'VERIFY403_1',
-    //       message: '접근이 거부되었습니다',
-    //       result: {},
-    //     },
-    //     { status: 403 },
-    //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'COMMON500',
-    //       message: '서버 에러',
-    //       result: {},
-    //     },
-    //     { status: 500 },
-    //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'COMMON503',
-    //       message: '일시적인 서버 오류',
-    //       result: {},
-    //     },
-    //     { status: 503 },
-    //   ),
+    // deniedAccess,
+    // serverError,
+    // temporaryServerError,
   ),
   http.post(
     `/auth/join/information`,
@@ -374,26 +245,8 @@ const handlers = [
           complete: true,
         },
       }),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'COMMON500',
-    //       message: '서버 에러',
-    //       result: {},
-    //     },
-    //     { status: 500 },
-    //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'COMMON503',
-    //       message: '일시적인 서버 오류',
-    //       result: {},
-    //     },
-    //     { status: 503 },
-    //   ),
+    // serverError,
+    // temporaryServerError,
   ),
   http.post(
     '/user/find-id',
@@ -414,7 +267,6 @@ const handlers = [
     //     },
     //     { status: 400 },
     //   ),
-
     // () =>
     //   HttpResponse.json(
     //     {
@@ -425,26 +277,8 @@ const handlers = [
     //     },
     //     { status: 400 },
     //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'COMMON500',
-    //       message: '서버 에러',
-    //       result: {},
-    //     },
-    //     { status: 500 },
-    //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'COMMON503',
-    //       message: '일시적인 서버 오류',
-    //       result: {},
-    //     },
-    //     { status: 503 },
-    //   ),
+    // serverError,
+    // temporaryServerError,
   ),
   http.post(
     'user/find-password',
@@ -467,42 +301,9 @@ const handlers = [
     //       status: 400,
     //     },
     //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'VERIFY403_2',
-    //       message: '접근이 거부되었습니다',
-    //       result: {},
-    //     },
-    //     {
-    //       status: 403,
-    //     },
-    //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'COMMON500',
-    //       message: '서버 에러',
-    //       result: {},
-    //     },
-    //     {
-    //       status: 500,
-    //     },
-    //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'COMMON503',
-    //       message: '일시적인 서버 오류',
-    //       result: {},
-    //     },
-    //     {
-    //       status: 503,
-    //     },
-    //   ),
+    // deniedAccess,
+    // serverError,
+    // temporaryServerError,
   ),
   http.post(
     'user/find-password/code',
@@ -523,9 +324,7 @@ const handlers = [
     //         verified: false,
     //       },
     //     },
-    //     {
-    //       status: 400,
-    //     },
+    //     { status: 400 },
     //   ),
     // () =>
     //   HttpResponse.json(
@@ -537,38 +336,10 @@ const handlers = [
     //         verified: false,
     //       },
     //     },
-    //     {
-    //       status: 403,
-    //     },
+    //     { status: 403 },
     //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'COMMON500',
-    //       message: '서버 에러',
-    //       result: {
-    //         verified: false,
-    //       },
-    //     },
-    //     {
-    //       status: 500,
-    //     },
-    //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'COMMON503',
-    //       message: '일시적인 서버 오류',
-    //       result: {
-    //         verified: false,
-    //       },
-    //     },
-    //     {
-    //       status: 503,
-    //     },
-    //   ),
+    // serverError,
+    // temporaryServerError,
   ),
   http.patch(
     '/user/find-password/reset',
@@ -587,34 +358,10 @@ const handlers = [
     //       message: '잘못된 형식입니다',
     //       result: {},
     //     },
-    //     {
-    //       status: 400,
-    //     },
+    //     { status: 400 },
     //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'COMMON500',
-    //       message: '서버 에러',
-    //       result: {},
-    //     },
-    //     {
-    //       status: 500,
-    //     },
-    //   ),
-    // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'COMMON503',
-    //       message: '일시적인 서버 오류',
-    //       result: {},
-    //     },
-    //     {
-    //       status: 503,
-    //     },
-    //   ),
+    // serverError,
+    // temporaryServerError,
   ),
 ];
 
