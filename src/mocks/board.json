@@ -1,0 +1,141 @@
+{
+  "isSuccess": true,
+  "code": "COMMON200",
+  "message": "성공입니다",
+  "result": {
+    "pageInfo": {
+      "page": 1,
+      "size": 10,
+      "totalPage": 2,
+      "totalPost": 18
+    },
+    "noticePost": {
+      "title": "공지글입니다",
+      "postId": "20"
+    },
+    "popular": [
+      {
+        "title": "아이유",
+        "likes": 1,
+        "postId": "19"
+      },
+      {
+        "title": "영화",
+        "likes": 1,
+        "postId": "5"
+      },
+      {
+        "title": "이미지 첨부 게시글",
+        "likes": 1,
+        "postId": "3"
+      },
+      {
+        "title": "수강신청",
+        "likes": 1,
+        "postId": "2"
+      }
+    ],
+    "posts": [
+      {
+        "title": "아이유",
+        "numberOfComments": 2,
+        "date": "2024-02-08 15:16:14",
+        "author": "global",
+        "likes": 1,
+        "views": 1,
+        "hasImage": true,
+        "postId": "19"
+      },
+      {
+        "title": "페이징 테스트",
+        "numberOfComments": 0,
+        "date": "2024-02-08 03:48:50",
+        "author": "익명",
+        "likes": 0,
+        "views": 0,
+        "hasImage": false,
+        "postId": "18"
+      },
+      {
+        "title": "페이징 테스트",
+        "numberOfComments": 0,
+        "date": "2024-02-08 03:48:40",
+        "author": "익명",
+        "likes": 0,
+        "views": 0,
+        "hasImage": false,
+        "postId": "17"
+      },
+      {
+        "title": "페이징 테스트",
+        "numberOfComments": 0,
+        "date": "2024-02-08 03:48:34",
+        "author": "익명",
+        "likes": 0,
+        "views": 0,
+        "hasImage": false,
+        "postId": "16"
+      },
+      {
+        "title": "페이징 테스트",
+        "numberOfComments": 0,
+        "date": "2024-02-08 03:48:29",
+        "author": "익명",
+        "likes": 15,
+        "views": 0,
+        "hasImage": false,
+        "postId": "15"
+      },
+      {
+        "title": "페이징 테스트",
+        "numberOfComments": 0,
+        "date": "2024-02-08 03:48:24",
+        "author": "익명",
+        "likes": 0,
+        "views": 0,
+        "hasImage": false,
+        "postId": "14"
+      },
+      {
+        "title": "페이징 테스트",
+        "numberOfComments": 0,
+        "date": "2024-02-08 03:48:14",
+        "author": "익명",
+        "likes": 0,
+        "views": 0,
+        "hasImage": false,
+        "postId": "13"
+      },
+      {
+        "title": "페이징 테스트",
+        "numberOfComments": 0,
+        "date": "2024-02-08 03:48:07",
+        "author": "익명",
+        "likes": 0,
+        "views": 0,
+        "hasImage": false,
+        "postId": "12"
+      },
+      {
+        "title": "페이징 테스트",
+        "numberOfComments": 0,
+        "date": "2024-02-08 03:48:02",
+        "author": "익명",
+        "likes": 0,
+        "views": 0,
+        "hasImage": false,
+        "postId": "11"
+      },
+      {
+        "title": "페이징 테스트",
+        "numberOfComments": 0,
+        "date": "2024-02-08 03:47:58",
+        "author": "익명",
+        "likes": 0,
+        "views": 0,
+        "hasImage": false,
+        "postId": "10"
+      }
+    ]
+  }
+}

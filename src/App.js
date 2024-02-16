@@ -16,7 +16,6 @@ import SignUp from './pages/SignUp/SignUp';
 import PrivacyPolicy from './pages/Footer/PrivacyPolicy';
 import Inquiry from './pages/Footer/Inquiry';
 import Search from './pages/Search/Search';
-import SearchListPage from './pages/Search/SearchListPage';
 import SearchDetailListPage from './pages/Search/SearchDetailListPage';
 import SearchFriends from './pages/SearchFriends';
 import Friend from './pages/Friend';
@@ -42,7 +41,6 @@ function App() {
             <Route path='/updateInfo' element={<UpdateInfo />} />
             <Route path='/updateProfile' element={<UpdateProfile />} />
             <Route path='/search' element={<Search />}>
-              <Route path='/search/:keyword' element={<SearchListPage />} />
               <Route
                 path='/search/:keyword/:boardName'
                 element={<SearchDetailListPage />}
