@@ -14,6 +14,7 @@ export default function SearchDetailListPage({ keyword }) {
       <div className='flex h-[31px] border-b border-gray-scale-7-main  mb-[20px]'>
         {BOARD_NAME.map((BOARD) => (
           <NavLink
+            key={BOARD}
             onClick={() => setBoardName(BOARD)}
             to={`/search/${keyword}/${BOARD}`}
             className={({ isActive }) => (isActive ? activeStyle : normalStyle)}
