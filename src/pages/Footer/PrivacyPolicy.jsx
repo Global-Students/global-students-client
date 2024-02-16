@@ -10,7 +10,7 @@ export default function PrivacyPolicy() {
 
   return (
     <div className='flex justify-center items-center'>
-      <div className='flex flex-col w-[1062px] h-[6157px] mb-[80px]'>
+      <div className='flex flex-col w-[1062px] h-[6157px] mt-[26px] mb-[80px]'>
         <div className='flex justify-start'>
           <button type='button' onClick={backButton}>
             <img src='/assets/arrow_back.svg' alt='뒤로 가기' />
