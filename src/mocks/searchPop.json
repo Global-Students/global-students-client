@@ -6,30 +6,35 @@
     "posts": [
       {
         "postId": "1",
+        "boardName": "게시판 이름(1)",
         "rank": 1,
         "title": "게시글 제목(1)",
         "likes": 1
       },
       {
         "postId": "2",
+        "boardName": "게시판 이름(2)",
         "rank": 2,
         "title": "게시글 제목(2)",
         "likes": 1
       },
       {
         "postId": "3",
+        "boardName": "게시판 이름(3)",
         "rank": 3,
         "title": "게시글 제목(3)",
         "likes": 1
       },
       {
         "postId": "4",
+        "boardName": "게시판 이름(4)",
         "rank": 4,
         "title": "게시글 제목(4)",
         "likes": 1
       },
       {
         "postId": "5",
+        "boardName": "게시판 이름(5)",
         "rank": 5,
         "title": "게시글 제목(5)",
         "likes": 1
