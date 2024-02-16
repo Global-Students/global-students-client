@@ -36,7 +36,7 @@ export default function SearchHeader({ searchClick, setSearchClick }) {
             </div>
           </div>
           <div className='flex flex-row justify-between items-end'>
-            <FindSchool />
+            <FindSchool setSearchClick={setSearchClick} />
             <RealTimePopularPosts />
           </div>
         </div>

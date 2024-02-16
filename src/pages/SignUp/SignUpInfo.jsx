@@ -13,7 +13,6 @@ import {
   LEGEND,
   MONTHS,
   PLACEHOLDER,
-  REGEX,
   YEARS,
 } from '../../constants';
 import {
@@ -23,6 +22,11 @@ import {
 } from '../../constants/belongTo';
 import { useSignUpContext } from '../../contexts/SignUpContext';
 import useSignUp from '../../hooks/useSignUp';
+import {
+  checkPasswordPattern,
+  checkPasswordReEnter,
+  checkUserIdPattern,
+} from '../../utils/checkPattern';
 
 export default function SignUpInfo({ moveStep }) {
   const {
@@ -57,8 +61,8 @@ export default function SignUpInfo({ moveStep }) {
   const isPassed =
     isUniqued.userId &&
     isUniqued.nickname &&
-    REGEX.passwordPattern.test(password) &&
-    password === confirmPassword &&
+    checkPasswordPattern(password) &&
+    checkPasswordReEnter(password, confirmPassword) &&
     firstName &&
     lastName &&
     birthYear &&
@@ -80,7 +84,7 @@ export default function SignUpInfo({ moveStep }) {
               value={userId}
               placeholder={PLACEHOLDER.id}
               buttonText='중복확인'
-              disabled={!REGEX.userIdPattern.test(userId)}
+              disabled={!checkUserIdPattern(userId)}
               message={message.userId}
               isValid={isUniqued.userId}
               onChange={(event) => {
