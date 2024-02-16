@@ -5,10 +5,11 @@ export default function ProtectedRoute() {
   let isAuth;
 
   useEffect(() => {
+    const token = localStorage.getItem('accessToken');
     const expireAt = new Date(localStorage.getItem('expireAt')).getTime();
     const currentTime = new Date().getTime();
 
-    if (expireAt < currentTime) {
+    if (!token || expireAt < currentTime) {
       localStorage.removeItem('accessToken');
       localStorage.removeItem('expireAt');
       alert('로그인이 필요합니다.');
