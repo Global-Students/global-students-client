@@ -14,7 +14,6 @@ import MyPage from './pages/MyPage';
 import DashBoard from './pages/DashBoard';
 import SignUp from './pages/SignUp/SignUp';
 import Search from './pages/Search/Search';
-import SearchListPage from './pages/Search/SearchListPage';
 import SearchDetailListPage from './pages/Search/SearchDetailListPage';
 import SearchFriends from './pages/SearchFriends';
 import Friend from './pages/Friend';
@@ -32,17 +31,19 @@ function App() {
             <Route path='/signUp' element={<SignUp />} />
             <Route path='/myPage' element={<MyPage />} />
             <Route path='/findAccount' element={<FindAccountPage />} />
-            <Route path='/updateInfo'element={<UpdateInfo />} />
+            <Route path='/updateInfo' element={<UpdateInfo />} />
             <Route path='/updateProfile' element={<UpdateProfile />} />
             <Route path='/search' element={<Search />}>
-              <Route path='/search/:keyword' element={<SearchListPage />} />
               <Route
                 path='/search/:keyword/:boardName'
                 element={<SearchDetailListPage />}
               />
             </Route>
-            <Route path='/dashboard/myPosts' element={<DashBoard isMyPosts / >} />
-            <Route path='/dashboard/bookmarkPosts' element={<DashBoard/ >} />
+            <Route
+              path='/dashboard/myPosts'
+              element={<DashBoard isMyPosts />}
+            />
+            <Route path='/dashboard/bookmarkPosts' element={<DashBoard />} />
             <Route path='/admin' element={<AdminPage />}>
               <Route index path='/admin' element={<MemberListPage />} />
               <Route path='/admin/memberList' element={<MemberListPage />} />
@@ -51,7 +52,10 @@ function App() {
                 element={<UniversityApprovalPage />}
               />
             </Route>
-            <Route path='/searchingFriend' element={<SearchFriends isPublic/>} />
+            <Route
+              path='/searchingFriend'
+              element={<SearchFriends isPublic />}
+            />
             <Route path='/Friend' element={<Friend />} />
           </Routes>
         </div>

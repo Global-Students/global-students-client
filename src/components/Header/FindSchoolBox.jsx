@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SearchInput from '../Input/SearchInput';
 
-export default function FindSchoolBox() {
+export default function FindSchoolBox({ setSearchClick }) {
   const [isClick, setIsClick] = useState(false);
   function handleToggle() {
     setIsClick((prev) => !prev);
@@ -39,6 +39,7 @@ export default function FindSchoolBox() {
           pl='pl-[19px]'
           pr='pr-[3px]'
           placeholder='학교명을 입력해주세요'
+          setSearchClick={setSearchClick}
         />
       </div>
     </div>

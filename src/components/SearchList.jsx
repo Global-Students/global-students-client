@@ -15,12 +15,14 @@ export default function SearchList({
       <div className='flex justify-between items-center mb-5'>
         <div className='flex gap-x-[10px]'>
           <p className='text-gray-scale-2 text-xl font-semibold'>{boardName}</p>
-          <p className='flex text-gray-scale-4 text-xl font-normal relative'>
-            000건
-            <div className='absolute left-[64px]'>
-              {dropDown ? <DropDown /> : ''}
+          <p className='flex text-gray-scale-4 text-xl font-normal'>000건</p>
+          {dropDown ? (
+            <div className='relative'>
+              <DropDown />
             </div>
-          </p>
+          ) : (
+            ''
+          )}
         </div>
         {showMore ? (
           <Link to={`${boardId}`} className='flex w-[63px] justify-between'>
