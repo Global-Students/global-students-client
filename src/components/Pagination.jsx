@@ -15,7 +15,10 @@ export default function Pagination({ pageInfo, setCurrPage }) {
   const [start, setStart] = useState(1);
   const noPrev = start === 1;
   const noNext = start + currentPageInfo.totalPage - 1 >= totalPages;
-
+  const keyValue = (i) => start + i;
+  useEffect(() => {
+    keyValue();
+  }, []);
   useEffect(() => {
     if (currentPageInfo.page === start + currentPageInfo.totalPage)
       setStart((prev) => prev + currentPageInfo.totalPage);
@@ -49,6 +52,7 @@ export default function Pagination({ pageInfo, setCurrPage }) {
           <div className='flex flex-row w-[340px] justify-between'>
             {[...Array(currentPageInfo.totalPage)].map((a, i) => (
               <NavLink
+                key={keyValue(i)}
                 to={`/?page=${start + i}`}
                 onClick={() => setCurrPage(start + i)}
                 className={({ isActive }) =>

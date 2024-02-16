@@ -16,14 +16,11 @@ export default function NoticeBoard() {
   const [keyword, setKeyword] = useState('');
   const [currentSort, setCurrSort] = useState('latest');
 
-  // const { boardId } = localStorage.getItem('board_id');
   const boardId = '123';
   const baseurl = `/boards/${boardId}`;
-
   const getBoard = async () => {
     const params = {
       sort: currentSort,
-      // (게시글 최신순 정렬: sort=latest, 게시글 인기순 정렬: sort=popular)
       page: currentPage,
       q: keyword,
     };
@@ -43,7 +40,6 @@ export default function NoticeBoard() {
         setPosts(res.data.result.posts);
       }
     } catch (error) {
-      console.log(error);
       /* if (error.data === 'BOARD400_1') {
         alert('잘못된 게시판 ID입니다');
       } else if (error.data === 'BOARD400_2') {
