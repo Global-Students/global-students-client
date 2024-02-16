@@ -50,7 +50,7 @@ export default function Header() {
             />
             <div className='w-[114px] h-[60px] p-2.5'>
               <NavLink
-                to='/NoticeBoard/All'
+                to='/notice-board/all'
                 onClick={() => {
                   setCurrentItem(1);
                 }}
@@ -66,7 +66,7 @@ export default function Header() {
             </div>
             <div className='w-[138x] h-[60px] p-2.5'>
               <NavLink
-                to='/NoticeBoard/International'
+                to='/notice-board/international'
                 onClick={() => {
                   setCurrentItem(2);
                 }}
@@ -82,7 +82,7 @@ export default function Header() {
             </div>
             <div className='w-[106x] h-[60px] p-2.5'>
               <NavLink
-                to='/NoticeBoard/SouthKorea'
+                to='/notice-board/south-korea'
                 onClick={() => {
                   setCurrentItem(3);
                 }}
@@ -98,7 +98,7 @@ export default function Header() {
             </div>
             <div className='w-[73x] h-[40px] p-2.5'>
               <NavLink
-                to='/SearchingFriend'
+                to='/searching-friend'
                 onClick={() => {
                   setCurrentItem(4);
                 }}
@@ -113,7 +113,7 @@ export default function Header() {
             </div>
           </div>
           <div className='flex flex-row w-[215px] h-[47px] justify-between items-center'>
-            <Link to='/Search'>
+            <Link to='/search'>
               <div className='group w-[47px] h-[47px] relative'>
                 <img src='/assets/search.svg' alt='search' />
                 <img

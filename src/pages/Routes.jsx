@@ -31,37 +31,37 @@ const router = createBrowserRouter([
         element: <ProtectedRoute />,
         children: [
           {
-            path: '/myPage',
+            path: '/my-page',
             element: <MyPage />,
           },
           {
-            path: '/updateInfo',
+            path: '/update-info',
             element: <UpdateInfo />,
           },
           {
-            path: '/updateProfile',
+            path: '/update-profile',
             element: <UpdateProfile />,
           },
           {
-            path: '/dashboard/myPosts',
+            path: '/dashboard/my-posts',
             element: <DashBoard isMyPosts />,
           },
           {
-            path: '/dashboard/bookmarkPosts',
+            path: '/dashboard/bookmark-posts',
             element: <DashBoard />,
           },
           {
-            path: '/searchingFriend',
+            path: '/searching-friend',
             element: <SearchFriends isPublic />,
           },
           {
-            path: '/Friend',
+            path: '/friend',
             element: <Friend />,
           },
         ],
       },
       {
-        path: '/board/all',
+        path: '/notice-board/all',
         element: <NoticeBoard />,
       },
       {
@@ -69,11 +69,11 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: '/signUp',
+        path: '/sign-up',
         element: <SignUp />,
       },
       {
-        path: '/findAccount',
+        path: '/find-account',
         element: <FindAccountPage />,
       },
       {
@@ -95,17 +95,17 @@ const router = createBrowserRouter([
             element: <MemberListPage />,
           },
           {
-            path: '/admin/memberList',
+            path: '/admin/member-list',
             element: <MemberListPage />,
           },
           {
-            path: '/admin/universityApproval',
+            path: '/admin/university-approval',
             element: <UniversityApprovalPage />,
           },
         ],
       },
       {
-        path: '/privacyPolicy',
+        path: '/privacy-policy',
         element: <PrivacyPolicy />,
       },
     ],
