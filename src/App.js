@@ -17,6 +17,9 @@ import Search from './pages/Search/Search';
 import SearchDetailListPage from './pages/Search/SearchDetailListPage';
 import SearchFriends from './pages/SearchFriends';
 import Friend from './pages/Friend';
+import PostCreate from './pages/Post/PostCreate';
+import PostUpdate from './pages/Post/PostUpdate';
+import PostView from './pages/Post/PostView';
 
 function App() {
   return (
@@ -34,6 +37,10 @@ function App() {
             <Route path='/updateInfo' element={<UpdateInfo />} />
             <Route path='/updateProfile' element={<UpdateProfile />} />
             <Route path='/search' element={<Search />}>
+            <Route path='/postView' element={<PostView />} />
+            <Route path='/postCreate' element={<PostCreate />} />
+            <Route path='/postUpdate' element={<PostUpdate />} />
+            
               <Route
                 path='/search/:keyword/:boardName'
                 element={<SearchDetailListPage />}
