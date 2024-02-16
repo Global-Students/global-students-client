@@ -21,8 +21,8 @@ export default function useLogin() {
         navigate(nextPath);
       })
       .catch((error) => {
-        const { message } = error.response.data;
-        window.alert(message);
+        // const { message } = error.response.data;
+        // window.alert(message);
         if (error.response.status === 400) {
           return;
         }
