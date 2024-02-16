@@ -255,23 +255,23 @@ const handlers = [
   ),
   http.post(
     '/user/find-id',
-    () =>
-      HttpResponse.json({
-        isSuccess: true,
-        code: 'LOGIN200_2',
-        message: 'OK',
-        result: {},
-      }),
     // () =>
-    //   HttpResponse.json(
-    //     {
-    //       isSuccess: false,
-    //       code: 'LOGIN400_2',
-    //       message: '등록된 이메일이 존재하지 않습니다',
-    //       result: {},
-    //     },
-    //     { status: 400 },
-    //   ),
+    //   HttpResponse.json({
+    //     isSuccess: true,
+    //     code: 'LOGIN200_2',
+    //     message: 'OK',
+    //     result: {},
+    //   }),
+    () =>
+      HttpResponse.json(
+        {
+          isSuccess: false,
+          code: 'LOGIN400_2',
+          message: '등록된 이메일이 존재하지 않습니다',
+          result: {},
+        },
+        { status: 400 },
+      ),
     // () =>
     //   HttpResponse.json(
     //     {
