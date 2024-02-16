@@ -16,7 +16,7 @@ export default function SearchInput({
   const navigate = useNavigate();
   const clickSearchButton = () => {
     setSearchClick((prev) => !prev);
-    navigate(`/search/${search}`);
+    navigate(`/search/${search}/전체`);
   };
   const defaultStyle = `flex rounded-[30px] bg-gray-scale-8`;
   const searchBoxStyle = `flex-1 w-full h-full bg-gray-scale-8 text-[16px] text-gray-scale-4 text-base font-normal placeholder:text-gray-scale-4 font-normal leading outline-none`;
