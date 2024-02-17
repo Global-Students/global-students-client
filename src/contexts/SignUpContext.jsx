@@ -29,12 +29,12 @@ export function SignUpContextProvider({ children }) {
         ...prev,
         terms: checked,
         privacy: checked,
-        marketing: checked,
+        event: checked,
       }));
       return;
     }
 
-    if (id === 'terms' || id === 'privacy' || id === 'marketing') {
+    if (id === 'terms' || id === 'privacy' || id === 'event') {
       setSignUpInfo((prev) => ({ ...prev, [id]: checked }));
       return;
     }
