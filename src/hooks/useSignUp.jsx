@@ -121,13 +121,17 @@ export default function useSignUp() {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       .then(() => {
+        console.log(formData);
         login(
           { username: signUpInfo.userId, password: signUpInfo.password },
           '',
         );
         moveStep('welcome');
       })
-      .catch((error) => alert(error.response.data.message));
+      .catch((error) => {
+        console.log(formData);
+        alert(error.response.data.message);
+      });
   };
 
   return {
