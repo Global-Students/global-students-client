@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import authAxios from '../axios/authAxios';
-import UserInfoControl from '../components/UserInfoControl';
-import InformText from '../components/InformText';
+import { authAxios } from '../axios/authAxios';
 import Inform from '../components/Inform';
+import InformText from '../components/InformText';
 import PopularList from '../components/PopularList';
 import Posts from '../components/Posts';
+import UserInfoControl from '../components/UserInfoControl';
 
 export default function NoticeBoard() {
   const [pageInfo, setPageInfo] = useState({});

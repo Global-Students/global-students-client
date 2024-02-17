@@ -1,6 +1,6 @@
-import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { defaultAxios } from '../axios/authAxios';
 import API_PATH from '../constants/api';
 
 export default function useLogin() {
@@ -13,7 +13,7 @@ export default function useLogin() {
   const navigate = useNavigate();
   const login = (body, nextPath = '/') => {
     setLoading(true);
-    axios
+    defaultAxios
       .post(API_PATH.login, body)
       .then((res) => {
         localStorage.setItem('accessToken', res.data.result.accessToken);

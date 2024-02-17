@@ -2,8 +2,8 @@ import axios from 'axios';
 import API_PATH from '../constants/api';
 
 const AxiosConfigure = {
-  baseURL: process.env.API_SERVER_URL,
-  timeout: 1000,
+  baseURL: process.env.REACT_APP_API_SERVER_URL,
+  // timeout: 5000,
   withCredentials: true,
 };
 
@@ -12,6 +12,7 @@ const AxiosConfigure = {
 //   withCredentials: true,
 // };
 
+const defaultAxios = axios.create(AxiosConfigure);
 const authAxios = axios.create(AxiosConfigure);
 const accessToken = localStorage.getItem('accessToken') ?? '';
 
@@ -63,4 +64,4 @@ authAxios.interceptors.response.use(
   },
 );
 
-export default authAxios;
+export { authAxios, defaultAxios };
