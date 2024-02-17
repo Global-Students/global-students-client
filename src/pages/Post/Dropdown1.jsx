@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 export default function DropDown1() {
-  const [isClick, setIsClick] = useState(false); // 초기 값 변경
+  const [isClick, setIsClick] = useState(false); 
 
   const [sort, setSort] = useState('All');
   let dropdownButtonText;
@@ -16,7 +16,7 @@ export default function DropDown1() {
   }
 
   function handleToggle() {
-    setIsClick(!isClick); // 클릭할 때 상태 변경
+    setIsClick(!isClick); 
   }
 
   const listChangeHandler = (e, option) => {
@@ -24,7 +24,7 @@ export default function DropDown1() {
     if (sort !== option) {
       setSort(option);
     }
-    setIsClick(false); // 메뉴를 선택한 후에도 창을 닫기 위해
+    setIsClick(false); 
   };
 
   return (

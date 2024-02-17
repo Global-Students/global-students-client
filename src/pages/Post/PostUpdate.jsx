@@ -14,7 +14,7 @@ export default function PostUpdate({ postId }) {
   const [content, setContent] = useState('');
 
   useEffect(() => {
-    // 게시글 정보 불러오기
+  
     const fetchPost = async () => {
       try {
         const response = await axios.get(`/boards/post/${postId}`);
@@ -66,7 +66,7 @@ export default function PostUpdate({ postId }) {
     try {
       const response = await axios.put(`/boards/post/write?id=${postId}`, updatedData);
       console.log(response.data);
-      // 수정 완료 후 추가 작업
+      
     } catch (error) {
       console.error('API 호출 오류:', error);
     }
@@ -99,7 +99,7 @@ export default function PostUpdate({ postId }) {
                   placeholder='제목을 입력해주세요.' 
                   className='placeholder-gray-scale-3 text-gray-scale-3 leading-[20px] tracking-[0.02em] text-[18px] font-normal bg-gray-scale-8 px-[25px] focus:outline-none'
                   value={title}
-                  onChange={(e) => setTitle(e.target.value)} // 제목 입력 시 상태 업데이트
+                  onChange={(e) => setTitle(e.target.value)} 
                 />
           </div>
         </div>
@@ -110,7 +110,7 @@ export default function PostUpdate({ postId }) {
               placeholder='내용을 입력해 주세요.' 
               className='w-[864px] h-[340px] text-left align-top placeholder-gray-scale-5 focus:outline-none resize-none'
               value={content}
-              onChange={(e) => setContent(e.target.value)} // 내용 입력 시 상태 업데이트
+              onChange={(e) => setContent(e.target.value)} 
             />
         </div>
 
