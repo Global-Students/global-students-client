@@ -6,7 +6,7 @@ export function SignUpContextProvider({ children }) {
   const [signUpInfo, setSignUpInfo] = useState({
     terms: false,
     privacy: false,
-    marketing: false,
+    event: false,
     userId: '',
     password: '',
     confirmPassword: '',
