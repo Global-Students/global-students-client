@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import API_PATH from '../../constants/api';
 
 export default function RealTimePopularPosts({ setSearchClick }) {
   const [populars, setPopulars] = useState([]);
 
+  const univId = '123';
+  const baseurl = `/search/popular-post/`;
+
   const getPopularPosts = async () => {
+    const queryStr = new URLSearchParams(univId).toString();
+    const requrl = `${baseurl}/?${queryStr}`;
+
     try {
       const res = await axios({
         method: 'get',
-        url: API_PATH.searchPopularLists,
+        url: requrl,
       });
       if (res.data.code === 'CHAT201_1') {
-        console.log(res.data.code);
         setPopulars(res.data.result.posts);
       }
     } catch (error) {
