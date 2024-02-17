@@ -109,7 +109,7 @@ export default function Header() {
               />
               <div className='w-[114px] h-[60px] p-2.5'>
                 <NavLink
-                  to={`/notice-board/${localStorage.getItem('boardId_1')}`}
+                  to={`/boards/${localStorage.getItem('boardId_1')}`}
                   onClick={() => {
                     setCurrentItem(1);
                     clickSetBoardId('boardId_1');
@@ -125,7 +125,7 @@ export default function Header() {
               </div>
               <div className='w-[138x] h-[60px] p-2.5'>
                 <NavLink
-                  to={`/notice-board/${localStorage.getItem('boardId_2')}`}
+                  to={`/boards/${localStorage.getItem('boardId_2')}`}
                   onClick={() => {
                     setCurrentItem(2);
                     clickSetBoardId('boardId_2');
@@ -141,7 +141,7 @@ export default function Header() {
               </div>
               <div className='w-[106x] h-[60px] p-2.5'>
                 <NavLink
-                  to={`/notice-board/${localStorage.getItem('boardId_3')}`}
+                  to={`/boards/${localStorage.getItem('boardId_3')}`}
                   onClick={() => {
                     setCurrentItem(3);
                     clickSetBoardId('boardId_3');
