@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function PostList({ posts, total }) {
+export default function PostList({ posts, total, boardId }) {
   return (
     <div>
       <div className='w-[953px] mb-[30px] table-fixed rounded-[14px] border border-separate	border-spacing-0 overflow-hidden border-gray-scale-main-7'>
@@ -16,7 +16,7 @@ export default function PostList({ posts, total }) {
         <ul className='flex flex-col bg-gray-scale-9'>
           {posts &&
             posts.map((post) => (
-              <Link key={post.postId} to={`/${post.postId}`}>
+              <Link key={post.postId} to={`/${boardId}/posts/${post.postId}`}>
                 <li className='flex w-[953px] h-[71px] justify-center items-center border-b border-gray-scale-7-main hover:bg-gray-scale-8'>
                   <div className='flex w-[892px] justify-between'>
                     <div className='flex w-[672px] items-center font-normal gap-x-[23px]'>

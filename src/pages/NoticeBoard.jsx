@@ -7,16 +7,15 @@ import PopularList from '../components/PopularList';
 import Posts from '../components/Posts';
 
 export default function NoticeBoard() {
+  const [boardInfo, setBoardInfo] = useState({});
   const [pageInfo, setPageInfo] = useState({});
   const [notice, setNotice] = useState({});
   const [populars, setPopulars] = useState([]);
   const [posts, setPosts] = useState([]);
 
   const [currentPage, setCurrPage] = useState(1);
-  const [keyword, setKeyword] = useState('');
   const [currentSort, setCurrSort] = useState('latest');
 
-  const boardName = localStorage.getItem('currentBoardName');
   const boardId = localStorage.getItem('currentBoardId');
   const baseurl = `/boards/${boardId}`;
 
@@ -24,7 +23,6 @@ export default function NoticeBoard() {
     const params = {
       sort: currentSort,
       page: currentPage,
-      q: keyword,
     };
 
     const queryStr = new URLSearchParams(params).toString();
@@ -36,7 +34,7 @@ export default function NoticeBoard() {
         url: requrl,
       });
       if (res.data.code === 'COMMON200') {
-        console.log(baseurl);
+        setBoardInfo(res.data.result.boardInfo);
         setPageInfo(res.data.result.pageInfo);
         setNotice(res.data.result.noticePost);
         setPopulars(res.data.result.popular);
@@ -64,7 +62,7 @@ export default function NoticeBoard() {
 
   useEffect(() => {
     getBoard();
-  }, []);
+  }, [boardId, currentPage, currentSort]);
 
   return (
     <div className='flex flex-row h-[1824px] justify-center items-center'>
@@ -74,9 +72,8 @@ export default function NoticeBoard() {
           <InformText
             mb
             translate
-            school={boardName}
-            borderId={boardId}
-            text='우리 학교에 재학 중인 모든 유학생을 만날 수 있습니다.'
+            school={boardInfo.boardName}
+            text={boardInfo.detail}
           />
           <Inform baseurl={baseurl} notice={notice} />
           <div className='flex flex-col items-center'>
@@ -86,7 +83,7 @@ export default function NoticeBoard() {
               pageInfo={pageInfo}
               setCurrPage={setCurrPage}
               setCurrSort={setCurrSort}
-              setKeyword={setKeyword}
+              boardId={boardId}
             />
           </div>
         </div>

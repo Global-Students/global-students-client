@@ -12,6 +12,11 @@ export default function Header() {
   const [searchClick, setSearchClick] = useState(false);
 
   const [boardInfo, setBoardInfo] = useState({});
+  const [currentBoardInfo, setCurrentBoardInfo] = useState({
+    currentBoardId: boardInfo.boardId_1,
+    currentBoardName: boardInfo.boardName_1,
+  });
+
   const baseurl = `/board-information`;
 
   const getHeaderInfo = async () => {
@@ -25,13 +30,13 @@ export default function Header() {
       if (res.data.code === 'COMMON200') {
         setBoardInfo(res.data.result);
         setIsLogin(true);
-        console.log(res.data.result);
         localStorage.setItem('boardId_1', boardInfo.boardId_1);
         localStorage.setItem('boardName_1', boardInfo.boardName_1);
         localStorage.setItem('boardId_2', boardInfo.boardId_2);
         localStorage.setItem('boardName_2', boardInfo.boardName_2);
         localStorage.setItem('boardId_3', boardInfo.boardId_3);
         localStorage.setItem('boardName_3', boardInfo.boardName_3);
+        console.log(localStorage.getItem('currentBoardName'));
       }
     } catch (error) {
       console.log(error);
@@ -43,15 +48,9 @@ export default function Header() {
     setSearchClick((prev) => !prev);
   }
 
-  const clickSetBoardInfo = (currentBoardId, currentBoardName) => {
-    localStorage.setItem(
-      'currentBoardId',
-      `${currentBoardId || localStorage.getItem('boardId_1')}`,
-    );
-    localStorage.setItem(
-      'currentBoardName',
-      `${currentBoardName || localStorage.getItem('boardName_1')}`,
-    );
+  const clickSetBoardInfo = () => {
+    localStorage.setItem('currentBoardId', currentBoardInfo.currentBoardId);
+    localStorage.setItem('currentBoardName', currentBoardInfo.currentBoardName);
   };
   // onClick이랑 isActive 둘다!
 
@@ -99,7 +98,11 @@ export default function Header() {
 
   useEffect(() => {
     getHeaderInfo();
-  }, []);
+  }, [currentBoardInfo]);
+
+  useEffect(() => {
+    clickSetBoardInfo();
+  }, [currentBoardInfo]);
 
   return (
     <div className='relative'>
@@ -122,10 +125,10 @@ export default function Header() {
                   to={pathname === '/' ? `/` : `/boards/${boardInfo.boardId_1}`}
                   onClick={() => {
                     setCurrentItem(1);
-                    clickSetBoardInfo(
-                      boardInfo.boardId_1,
-                      boardInfo.boardName_1,
-                    );
+                    setCurrentBoardInfo({
+                      currentBoardId: boardInfo.boardId_1,
+                      currentBoardName: boardInfo.boardName_1,
+                    });
                   }}
                   className={({ isActive }) =>
                     isActive ? 'text-gray-scale-9' : 'text-gray-scale-1'
@@ -138,13 +141,13 @@ export default function Header() {
               </div>
               <div className='w-[138x] h-[60px] p-2.5'>
                 <NavLink
-                  to={`/boards/${localStorage.getItem('boardId_2')}`}
+                  to={`/boards/${boardInfo.boardId_2}`}
                   onClick={() => {
                     setCurrentItem(2);
-                    clickSetBoardInfo(
-                      boardInfo.boardId_2,
-                      boardInfo.boardName_2,
-                    );
+                    setCurrentBoardInfo({
+                      currentBoardId: boardInfo.boardId_2,
+                      currentBoardName: boardInfo.boardName_2,
+                    });
                   }}
                   className={({ isActive }) =>
                     isActive ? 'text-gray-scale-9' : 'text-gray-scale-1'
@@ -157,13 +160,13 @@ export default function Header() {
               </div>
               <div className='w-[106x] h-[60px] p-2.5'>
                 <NavLink
-                  to={`/boards/${localStorage.getItem('boardId_3')}`}
+                  to={`/boards/${boardInfo.boardId_3}`}
                   onClick={() => {
                     setCurrentItem(3);
-                    clickSetBoardInfo(
-                      boardInfo.boardId_3,
-                      boardInfo.boardName_3,
-                    );
+                    setCurrentBoardInfo({
+                      currentBoardId: boardInfo.boardId_3,
+                      currentBoardName: boardInfo.boardName_3,
+                    });
                   }}
                   className={({ isActive }) =>
                     isActive ? 'text-gray-scale-9' : 'text-gray-scale-1'
