@@ -4,6 +4,7 @@ import API_PATH from '../constants/api';
 const defaultConfigure = {
   baseURL: process.env.REACT_APP_API_SERVER_URL,
   timeout: 5000,
+  withCredentials: true,
 };
 
 const authConfigure = {
