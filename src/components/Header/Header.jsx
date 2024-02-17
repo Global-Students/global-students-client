@@ -56,15 +56,18 @@ export default function Header() {
   };
 
   useEffect(() => {
-    if (currentItem === 1 || pathname.includes('/NoticeBoard/All/')) {
+    if (currentItem === 1 || pathname.includes('/notice-board/All/')) {
       navRectangle.current.style.width = '140px';
       navRectangle.current.style.left = '-13px';
     }
-    if (currentItem === 2 || pathname.includes('/NoticeBoard/International/')) {
+    if (
+      currentItem === 2 ||
+      pathname.includes('/notice-board/International/')
+    ) {
       navRectangle.current.style.width = '164px';
       navRectangle.current.style.left = '144px';
     }
-    if (currentItem === 3 || pathname.includes('/NoticeBoard/SouthKorea/')) {
+    if (currentItem === 3 || pathname.includes('/notice-board/SouthKorea/')) {
       navRectangle.current.style.width = '132px';
       navRectangle.current.style.left = '317px';
     }
@@ -73,7 +76,7 @@ export default function Header() {
       navRectangle.current.style.left = '464px';
     }
     if (
-      pathname.includes('/NoticeBoard/') ||
+      pathname.includes('/notice-board/') ||
       pathname.includes('/SearchingFriend')
     ) {
       navRectangle.current.style.opacity = '1';
