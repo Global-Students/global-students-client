@@ -1,5 +1,6 @@
 import { React, useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import authAxios from '../../axios/authAxios';
 import LoginControl from '../LoginControl';
 import SearchHeader from './SearchHeader';
 
@@ -7,37 +8,92 @@ export default function Header() {
   const navRectangle = useRef();
   const { pathname } = useLocation();
   const [currentItem, setCurrentItem] = useState(0);
+  const [isLogin, setIsLogin] = useState(false);
   const [searchClick, setSearchClick] = useState(false);
+
+  const [boardInfo, setBoardInfo] = useState({});
+  const baseurl = `/board-information`;
+
+  const getHeaderInfo = async () => {
+    const requrl = `${baseurl}`;
+
+    try {
+      const res = await authAxios({
+        method: 'get',
+        url: requrl,
+      });
+      if (res.data.code === 'COMMON200') {
+        setBoardInfo(res.data.result);
+        setIsLogin(true);
+        console.log(res.data.result);
+        localStorage.setItem('boardId_1', boardInfo.boardId_1);
+        localStorage.setItem('boardName_1', boardInfo.boardName_1);
+        localStorage.setItem('boardId_2', boardInfo.boardId_2);
+        localStorage.setItem('boardName_2', boardInfo.boardName_2);
+        localStorage.setItem('boardId_3', boardInfo.boardId_3);
+        localStorage.setItem('boardName_3', boardInfo.boardName_3);
+      }
+    } catch (error) {
+      console.log(error);
+      setIsLogin(false);
+    }
+  };
 
   function handleToggle() {
     setSearchClick((prev) => !prev);
   }
 
+  const clickSetBoardId = (currentBoardId) => {
+    localStorage.setItem(
+      'currentBoardId',
+      `${currentBoardId || localStorage.getItem('boardId_1')}`,
+    );
+  };
+
   useEffect(() => {
-    if (currentItem === 1 || pathname.includes('/NoticeBoard/All/')) {
+    if (pathname === '/') {
+      setCurrentItem(1);
       navRectangle.current.style.width = '140px';
       navRectangle.current.style.left = '-13px';
     }
-    if (currentItem === 2 || pathname.includes('/NoticeBoard/International/')) {
-      navRectangle.current.style.width = '164px';
-      navRectangle.current.style.left = '137px';
+    if (
+      currentItem === 1 ||
+      pathname.includes(`/boards/${localStorage.getItem('boardId_1')}`)
+    ) {
+      navRectangle.current.style.width = '140px';
+      navRectangle.current.style.left = '-13px';
     }
-    if (currentItem === 3 || pathname.includes('/NoticeBoard/SouthKorea/')) {
+    if (
+      currentItem === 2 ||
+      pathname.includes(`/boards/${localStorage.getItem('boardId_2')}`)
+    ) {
+      navRectangle.current.style.width = '164px';
+      navRectangle.current.style.left = '144px';
+    }
+    if (
+      currentItem === 3 ||
+      pathname.includes(`/boards/${localStorage.getItem('boardId_3')}`)
+    ) {
       navRectangle.current.style.width = '132px';
-      navRectangle.current.style.left = '317px';
+      navRectangle.current.style.left = '328px';
     }
     if (currentItem === 4 || pathname.includes('/SearchingFriend/')) {
       navRectangle.current.style.width = '99px';
       navRectangle.current.style.left = '464px';
     }
     if (
-      pathname.includes('/NoticeBoard/') ||
-      pathname.includes('/SearchingFriend')
+      pathname.includes('/boards/') ||
+      pathname === '/' ||
+      pathname.includes('/auth/searching-friend')
     ) {
       navRectangle.current.style.opacity = '1';
     } else {
       navRectangle.current.style.opacity = '0';
     }
+  });
+
+  useEffect(() => {
+    getHeaderInfo();
   });
 
   return (
@@ -58,55 +114,59 @@ export default function Header() {
               />
               <div className='w-[114px] h-[60px] p-2.5'>
                 <NavLink
-                  to='/NoticeBoard/All'
+                  to={
+                    pathname === '/'
+                      ? `/`
+                      : `/boards/${localStorage.getItem('boardId_1')}`
+                  }
                   onClick={() => {
                     setCurrentItem(1);
+                    clickSetBoardId('boardId_1');
                   }}
                   className={({ isActive }) =>
                     isActive ? 'text-gray-scale-9' : 'text-gray-scale-1'
                   }
                 >
                   <p className='w-[94px] h-[40px] text-headerFont text-center duration-500'>
-                    Hanyang Uni <br />
-                    All Students
+                    {localStorage.getItem('boardName_1')}
                   </p>
                 </NavLink>
               </div>
               <div className='w-[138x] h-[60px] p-2.5'>
                 <NavLink
-                  to='/NoticeBoard/International'
+                  to={`/boards/${localStorage.getItem('boardId_2')}`}
                   onClick={() => {
                     setCurrentItem(2);
+                    clickSetBoardId('boardId_2');
                   }}
                   className={({ isActive }) =>
                     isActive ? 'text-gray-scale-9' : 'text-gray-scale-1'
                   }
                 >
-                  <p className='w-[118px] h-[40px] text-headerFont text-center duration-500'>
-                    Hanyang Uni <br />
-                    Korean Students
+                  <p className='w-[146px] h-[40px] text-headerFont text-center duration-500'>
+                    {localStorage.getItem('boardName_2')}
                   </p>
                 </NavLink>
               </div>
               <div className='w-[106x] h-[60px] p-2.5'>
                 <NavLink
-                  to='/NoticeBoard/SouthKorea'
+                  to={`/boards/${localStorage.getItem('boardId_3')}`}
                   onClick={() => {
                     setCurrentItem(3);
+                    clickSetBoardId('boardId_3');
                   }}
                   className={({ isActive }) =>
                     isActive ? 'text-gray-scale-9' : 'text-gray-scale-1'
                   }
                 >
                   <p className='w-[91px] h-[40px] text-headerFont text-center duration-500'>
-                    South Korea <br />
-                    All Students
+                    {localStorage.getItem('boardName_3')}
                   </p>
                 </NavLink>
               </div>
               <div className='w-[73x] h-[40px] p-2.5'>
                 <NavLink
-                  to='/SearchingFriend'
+                  to='/auth/searching-friend'
                   onClick={() => {
                     setCurrentItem(4);
                   }}
@@ -131,7 +191,7 @@ export default function Header() {
                   />
                 </div>
               </button>
-              <LoginControl />
+              <LoginControl isLogin={isLogin} />
             </div>
           </div>
         </div>

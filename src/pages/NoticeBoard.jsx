@@ -16,8 +16,9 @@ export default function NoticeBoard() {
   const [keyword, setKeyword] = useState('');
   const [currentSort, setCurrSort] = useState('latest');
 
-  const boardId = '123';
+  const boardId = localStorage.getItem('currentBoard');
   const baseurl = `/boards/${boardId}`;
+
   const getBoard = async () => {
     const params = {
       sort: currentSort,
@@ -34,12 +35,14 @@ export default function NoticeBoard() {
         url: requrl,
       });
       if (res.data.code === 'COMMON200') {
+        console.log(baseurl);
         setPageInfo(res.data.result.pageInfo);
         setNotice(res.data.result.noticePost);
         setPopulars(res.data.result.popular);
         setPosts(res.data.result.posts);
       }
     } catch (error) {
+      console.log(error);
       /* if (error.data === 'BOARD400_1') {
         alert('잘못된 게시판 ID입니다');
       } else if (error.data === 'BOARD400_2') {
@@ -60,7 +63,7 @@ export default function NoticeBoard() {
 
   useEffect(() => {
     getBoard();
-  }, [currentPage, currentSort, keyword]);
+  }, []);
 
   return (
     <div className='flex flex-row h-[1824px] justify-center items-center'>
@@ -78,7 +81,6 @@ export default function NoticeBoard() {
           <div className='flex flex-col items-center'>
             <PopularList baseurl={baseurl} populars={populars} />
             <Posts
-              baseurl={baseurl}
               posts={posts}
               pageInfo={pageInfo}
               setCurrPage={setCurrPage}
