@@ -1,18 +1,18 @@
 import axios from 'axios';
 import API_PATH from '../constants/api';
 
-// const AxiosConfigure = {
-//   baseURL: process.env.API_SERVER_URL,
-//   timeout: 1000,
-//   withCredentials: true,
-// };
-
-const MockConfigure = {
+const AxiosConfigure = {
+  baseURL: process.env.API_SERVER_URL,
   timeout: 1000,
   withCredentials: true,
 };
 
-const authAxios = axios.create(MockConfigure);
+// const MockConfigure = {
+//   timeout: 1000,
+//   withCredentials: true,
+// };
+
+const authAxios = axios.create(AxiosConfigure);
 const accessToken = localStorage.getItem('accessToken') ?? '';
 
 authAxios.interceptors.request.use(
