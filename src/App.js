@@ -25,8 +25,8 @@ function App() {
         <Header />
         <div className='flex-1'>
           <Routes>
-            <Route path='/notice-board/' element={<NoticeBoard />} />
-            <Route path='/notice-board/:boardId' element={<NoticeBoard />} />
+            <Route path='/' element={<NoticeBoard />} />
+            <Route path='/boards/:boardId/*' element={<NoticeBoard />} />
             <Route path='/login' element={<Login />} />
             <Route path='/signUp' element={<SignUp />} />
             <Route path='/myPage' element={<MyPage />} />

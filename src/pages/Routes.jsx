@@ -61,7 +61,7 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: '/board/all',
+        path: '/notice-board/all',
         element: <NoticeBoard />,
       },
       {

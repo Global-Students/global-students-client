@@ -1,18 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import HeaderIcon from './Header/HeaderIcon';
 import ChatModal from './Chat/ChatModal';
 
-export default function LoginControl() {
-  // const [isLogin, setIsLogin] = useState(false);
-  const isLogin = true;
-  /* function handleLoginClick() {
-    setIsLogin(!isLogin);
-  }
-  function handleLooutClick() {
-    setIsLogin(!isLogin);
-  } */
-
+export default function LoginControl({ isLogin }) {
   // for chat modal
   const [isChatModalOpen, setIsChatModalOpen] = useState(false);
   function handleClick() {
@@ -26,7 +17,12 @@ export default function LoginControl() {
     <div>
       {isLogin ? (
         <div className='flex flex-row w-[131px] items-center justify-between'>
-          <div onClick={handleClick} onKeyDown={handleKeyDown} role="button" tabIndex={0}>
+          <div
+            onClick={handleClick}
+            onKeyDown={handleKeyDown}
+            role='button'
+            tabIndex={0}
+          >
             <HeaderIcon label='message' />
             <ChatModal _isChatModalOpen={isChatModalOpen} />
           </div>

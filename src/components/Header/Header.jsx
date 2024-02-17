@@ -8,6 +8,7 @@ export default function Header() {
   const navRectangle = useRef();
   const { pathname } = useLocation();
   const [currentItem, setCurrentItem] = useState(0);
+  const [isLogin, setIsLogin] = useState(false);
   const [searchClick, setSearchClick] = useState(false);
 
   const [boardInfo, setBoardInfo] = useState({});
@@ -23,7 +24,8 @@ export default function Header() {
       });
       if (res.data.code === 'COMMON200') {
         setBoardInfo(res.data.result);
-
+        setIsLogin(true);
+        console.log(res.data.result);
         localStorage.setItem('boardId_1', boardInfo.boardId_1);
         localStorage.setItem('boardName_1', boardInfo.boardName_1);
         localStorage.setItem('boardId_2', boardInfo.boardId_2);
@@ -33,41 +35,41 @@ export default function Header() {
       }
     } catch (error) {
       console.log(error);
+      setIsLogin(false);
     }
   };
-
-  useEffect(() => {
-    getHeaderInfo();
-  }, []);
 
   function handleToggle() {
     setSearchClick((prev) => !prev);
   }
-  const boardId = {
-    boardId_1: localStorage.getItem('boardId_1'),
-    boardId_2: localStorage.getItem('boardId_2'),
-    boardId_3: localStorage.getItem('boardId_3'),
-  };
 
-  const boardName = {
-    boardName_1: localStorage.getItem('boardName_1'),
-    boardName_2: localStorage.getItem('boardName_2'),
-    boardName_3: localStorage.getItem('boardName_3'),
+  const clickSetBoardId = (currentBoardId) => {
+    localStorage.setItem(
+      'currentBoardId',
+      `${currentBoardId || localStorage.getItem('boardId_1')}`,
+    );
   };
 
   useEffect(() => {
-    if (currentItem === 1 || pathname.includes('/notice-board/All/')) {
+    if (
+      currentItem === 1 ||
+      pathname === '/' ||
+      pathname.includes(`/boards/${localStorage.getItem('boardId_1')}`)
+    ) {
       navRectangle.current.style.width = '140px';
       navRectangle.current.style.left = '-13px';
     }
     if (
       currentItem === 2 ||
-      pathname.includes('/notice-board/International/')
+      pathname.includes(`/boards/${localStorage.getItem('boardId_2')}`)
     ) {
       navRectangle.current.style.width = '164px';
       navRectangle.current.style.left = '144px';
     }
-    if (currentItem === 3 || pathname.includes('/notice-board/SouthKorea/')) {
+    if (
+      currentItem === 3 ||
+      pathname.includes(`/boards/${localStorage.getItem('boardId_3')}`)
+    ) {
       navRectangle.current.style.width = '132px';
       navRectangle.current.style.left = '317px';
     }
@@ -76,7 +78,7 @@ export default function Header() {
       navRectangle.current.style.left = '464px';
     }
     if (
-      pathname.includes('/notice-board/') ||
+      pathname.includes('/boards/') ||
       pathname.includes('/SearchingFriend')
     ) {
       navRectangle.current.style.opacity = '1';
@@ -84,6 +86,10 @@ export default function Header() {
       navRectangle.current.style.opacity = '0';
     }
   });
+
+  useEffect(() => {
+    getHeaderInfo();
+  }, []);
 
   return (
     <div className='relative'>
@@ -103,47 +109,49 @@ export default function Header() {
               />
               <div className='w-[114px] h-[60px] p-2.5'>
                 <NavLink
-                  to={`/notice-board/${boardId.boardId_1}`}
+                  to={`/notice-board/${localStorage.getItem('boardId_1')}`}
                   onClick={() => {
                     setCurrentItem(1);
+                    clickSetBoardId('boardId_1');
                   }}
                   className={({ isActive }) =>
                     isActive ? 'text-gray-scale-9' : 'text-gray-scale-1'
                   }
                 >
                   <p className='w-[94px] h-[40px] text-headerFont text-center duration-500'>
-                    {boardName.boardName_1}
-                    <br />
+                    {localStorage.getItem('boardName_1')}
                   </p>
                 </NavLink>
               </div>
               <div className='w-[138x] h-[60px] p-2.5'>
                 <NavLink
-                  to={`/notice-board/${boardId.boardId_2}`}
+                  to={`/notice-board/${localStorage.getItem('boardId_2')}`}
                   onClick={() => {
                     setCurrentItem(2);
+                    clickSetBoardId('boardId_2');
                   }}
                   className={({ isActive }) =>
                     isActive ? 'text-gray-scale-9' : 'text-gray-scale-1'
                   }
                 >
                   <p className='w-[146px] h-[40px] text-headerFont text-center duration-500'>
-                    {boardName.boardName_2}
+                    {localStorage.getItem('boardName_2')}
                   </p>
                 </NavLink>
               </div>
               <div className='w-[106x] h-[60px] p-2.5'>
                 <NavLink
-                  to={`/notice-board/${boardId.boardId_3}`}
+                  to={`/notice-board/${localStorage.getItem('boardId_3')}`}
                   onClick={() => {
                     setCurrentItem(3);
+                    clickSetBoardId('boardId_3');
                   }}
                   className={({ isActive }) =>
                     isActive ? 'text-gray-scale-9' : 'text-gray-scale-1'
                   }
                 >
                   <p className='w-[91px] h-[40px] text-headerFont text-center duration-500'>
-                    {boardName.boardName_3}
+                    {localStorage.getItem('boardName_3')}
                   </p>
                 </NavLink>
               </div>
@@ -174,7 +182,7 @@ export default function Header() {
                   />
                 </div>
               </button>
-              <LoginControl />
+              <LoginControl isLogin={isLogin} />
             </div>
           </div>
         </div>

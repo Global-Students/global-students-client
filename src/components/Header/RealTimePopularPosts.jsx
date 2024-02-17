@@ -6,8 +6,8 @@ export default function RealTimePopularPosts({ setSearchClick }) {
   const [populars, setPopulars] = useState([]);
 
   const baseurl = `/search/popular-post`;
-
   const boardId = localStorage.getItem('boardId_1');
+
   const getPopularPosts = async () => {
     const queryStr = new URLSearchParams(boardId).toString();
     const requrl = `${baseurl}/?${queryStr}`;
@@ -39,12 +39,10 @@ export default function RealTimePopularPosts({ setSearchClick }) {
           populars.map((post) => (
             <Link
               to={`/board/${post.postId}`}
+              key={post.postId}
               onClick={() => setSearchClick((prev) => !prev)}
             >
-              <li
-                key={post.postId}
-                className='flex flex-row items-center w-[952px] h-[60px] border-b border-gray-scale-8 hover:bg-gray-scale-8'
-              >
+              <li className='flex flex-row items-center w-[952px] h-[60px] border-b border-gray-scale-8 hover:bg-gray-scale-8'>
                 <p className='w-[90px] text-center text-orange-main text-xl font-bold'>
                   {post.rank}
                 </p>
