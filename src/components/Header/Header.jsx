@@ -51,9 +51,13 @@ export default function Header() {
   };
 
   useEffect(() => {
+    if (pathname === '/') {
+      setCurrentItem(1);
+      navRectangle.current.style.width = '140px';
+      navRectangle.current.style.left = '-13px';
+    }
     if (
       currentItem === 1 ||
-      pathname === '/' ||
       pathname.includes(`/boards/${localStorage.getItem('boardId_1')}`)
     ) {
       navRectangle.current.style.width = '140px';
@@ -71,7 +75,7 @@ export default function Header() {
       pathname.includes(`/boards/${localStorage.getItem('boardId_3')}`)
     ) {
       navRectangle.current.style.width = '132px';
-      navRectangle.current.style.left = '317px';
+      navRectangle.current.style.left = '328px';
     }
     if (currentItem === 4 || pathname.includes('/SearchingFriend/')) {
       navRectangle.current.style.width = '99px';
@@ -79,7 +83,8 @@ export default function Header() {
     }
     if (
       pathname.includes('/boards/') ||
-      pathname.includes('/SearchingFriend')
+      pathname === '/' ||
+      pathname.includes('/auth/searching-friend')
     ) {
       navRectangle.current.style.opacity = '1';
     } else {
@@ -89,7 +94,7 @@ export default function Header() {
 
   useEffect(() => {
     getHeaderInfo();
-  }, []);
+  });
 
   return (
     <div className='relative'>
@@ -109,7 +114,11 @@ export default function Header() {
               />
               <div className='w-[114px] h-[60px] p-2.5'>
                 <NavLink
-                  to={`/boards/${localStorage.getItem('boardId_1')}`}
+                  to={
+                    pathname === '/'
+                      ? `/`
+                      : `/boards/${localStorage.getItem('boardId_1')}`
+                  }
                   onClick={() => {
                     setCurrentItem(1);
                     clickSetBoardId('boardId_1');
@@ -157,7 +166,7 @@ export default function Header() {
               </div>
               <div className='w-[73x] h-[40px] p-2.5'>
                 <NavLink
-                  to='/SearchingFriend'
+                  to='/auth/searching-friend'
                   onClick={() => {
                     setCurrentItem(4);
                   }}
