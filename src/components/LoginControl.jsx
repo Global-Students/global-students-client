@@ -35,7 +35,7 @@ export default function LoginControl() {
             <HeaderIcon label='message' />
             <ChatModal _isChatModalOpen={isChatModalOpen} />
           </div>
-          <Link to='/MyPage'>
+          <Link to='/auth/my-page'>
             <HeaderIcon label='mypage' />
           </Link>
         </div>

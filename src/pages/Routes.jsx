@@ -27,38 +27,8 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       {
-        path: '',
-        element: <ProtectedRoute />,
-        children: [
-          {
-            path: '/my-page',
-            element: <MyPage />,
-          },
-          {
-            path: '/update-info',
-            element: <UpdateInfo />,
-          },
-          {
-            path: '/update-profile',
-            element: <UpdateProfile />,
-          },
-          {
-            path: '/dashboard/my-posts',
-            element: <DashBoard isMyPosts />,
-          },
-          {
-            path: '/dashboard/bookmark-posts',
-            element: <DashBoard />,
-          },
-          {
-            path: '/searching-friend',
-            element: <SearchFriends isPublic />,
-          },
-          {
-            path: '/friend',
-            element: <Friend />,
-          },
-        ],
+        path: '/',
+        element: <NoticeBoard />,
       },
       {
         path: '/notice-board/all',
@@ -107,6 +77,40 @@ const router = createBrowserRouter([
       {
         path: '/privacy-policy',
         element: <PrivacyPolicy />,
+      },
+      {
+        path: '/auth',
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: '/auth/my-page',
+            element: <MyPage />,
+          },
+          {
+            path: '/auth/update-info',
+            element: <UpdateInfo />,
+          },
+          {
+            path: '/auth/update-profile',
+            element: <UpdateProfile />,
+          },
+          {
+            path: '/auth/dashboard/my-posts',
+            element: <DashBoard isMyPosts />,
+          },
+          {
+            path: '/auth/dashboard/bookmark-posts',
+            element: <DashBoard />,
+          },
+          {
+            path: '/auth/searching-friend',
+            element: <SearchFriends isPublic />,
+          },
+          {
+            path: '/auth/friend',
+            element: <Friend />,
+          },
+        ],
       },
     ],
   },

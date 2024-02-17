@@ -8,25 +8,28 @@ export default function Header() {
   const [currentItem, setCurrentItem] = useState(0);
 
   useEffect(() => {
-    if (currentItem === 1 || pathname.includes('/NoticeBoard/All/')) {
+    if (currentItem === 1 || pathname.includes('/notice-board/all/')) {
       navRectangle.current.style.width = '140px';
       navRectangle.current.style.left = '-13px';
     }
-    if (currentItem === 2 || pathname.includes('/NoticeBoard/International/')) {
+    if (
+      currentItem === 2 ||
+      pathname.includes('/notice-board/international/')
+    ) {
       navRectangle.current.style.width = '164px';
       navRectangle.current.style.left = '137px';
     }
-    if (currentItem === 3 || pathname.includes('/NoticeBoard/SouthKorea/')) {
+    if (currentItem === 3 || pathname.includes('/notice-board/south-korea/')) {
       navRectangle.current.style.width = '132px';
       navRectangle.current.style.left = '317px';
     }
-    if (currentItem === 4 || pathname.includes('/SearchingFriend/')) {
+    if (currentItem === 4 || pathname.includes('/searching-friend/')) {
       navRectangle.current.style.width = '99px';
       navRectangle.current.style.left = '464px';
     }
     if (
-      pathname.includes('/NoticeBoard/') ||
-      pathname.includes('/SearchingFriend')
+      pathname.includes('/notice-board/') ||
+      pathname.includes('/searching-friend')
     ) {
       navRectangle.current.style.opacity = '1';
     } else {
@@ -98,7 +101,7 @@ export default function Header() {
             </div>
             <div className='w-[73x] h-[40px] p-2.5'>
               <NavLink
-                to='/searching-friend'
+                to='/auth/searching-friend'
                 onClick={() => {
                   setCurrentItem(4);
                 }}
