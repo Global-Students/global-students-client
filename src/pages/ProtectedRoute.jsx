@@ -1,20 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
+import { useAuthContext } from '../contexts/AuthContext';
 
 export default function ProtectedRoute() {
-  let isAuth;
+  const { isLogin } = useAuthContext();
 
-  useEffect(() => {
-    const token = localStorage.getItem('accessToken');
-    const expireAt = new Date(localStorage.getItem('expireAt')).getTime();
-    const currentTime = new Date().getTime();
+  if (!isLogin) {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('expireAt');
+    alert('로그인이 필요합니다.');
+  }
 
-    if (!token || expireAt < currentTime) {
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('expireAt');
-      alert('로그인이 필요합니다.');
-    }
-  }, [isAuth]);
-
-  return isAuth ? <Outlet /> : <Navigate to='/board/all' replace />;
+  return isLogin ? <Outlet /> : <Navigate to='/' replace />;
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { AuthContextProvider } from './contexts/AuthContext';
 import './index.css';
 import './locales/i18n';
 import worker from './mocks/browser';
@@ -13,7 +14,9 @@ if (process.env.NODE_ENV === 'development') {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Routes />
+    <AuthContextProvider>
+      <Routes />
+    </AuthContextProvider>
   </React.StrictMode>,
 );
 
