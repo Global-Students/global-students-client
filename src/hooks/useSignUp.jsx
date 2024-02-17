@@ -121,7 +121,9 @@ export default function useSignUp() {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       .then(() => {
-        console.log(formData);
+        console.log(`file: ${file}`);
+        console.log(`json: ${JSON.stringify(signUpInfo)}`);
+        console.log(`signUpInfo: ${signUpInfo}`);
         login(
           { username: signUpInfo.userId, password: signUpInfo.password },
           '',
@@ -129,7 +131,9 @@ export default function useSignUp() {
         moveStep('welcome');
       })
       .catch((error) => {
-        console.log(formData);
+        console.log(`file: ${file}`);
+        console.log(`json: ${JSON.stringify(signUpInfo)}`);
+        console.log(`signUpInfo: ${signUpInfo}`);
         alert(error.response.data.message);
       });
   };
