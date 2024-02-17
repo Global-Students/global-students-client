@@ -118,7 +118,9 @@ export default function useSignUp() {
 
     defaultAxios
       .post(API_PATH.sumbitSignUpInfo, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
+        headers: {
+          'Content-Type': 'multipart/form-data;application/json',
+        },
       })
       .then(() => {
         console.log(`file: ${file}`);
