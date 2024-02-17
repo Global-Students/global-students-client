@@ -99,7 +99,7 @@ export default function Header() {
 
   useEffect(() => {
     getHeaderInfo();
-  });
+  }, []);
 
   return (
     <div className='relative'>

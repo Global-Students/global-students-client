@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import authAxios from '../axios/authAxios';
+import axios from 'axios';
 import UserInfoControl from '../components/UserInfoControl';
 import InformText from '../components/InformText';
 import Inform from '../components/Inform';
@@ -31,7 +31,7 @@ export default function NoticeBoard() {
     const requrl = `${baseurl}/?${queryStr}`;
 
     try {
-      const res = await authAxios({
+      const res = await axios({
         method: 'get',
         url: requrl,
       });
