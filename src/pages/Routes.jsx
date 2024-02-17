@@ -12,6 +12,9 @@ import Login from './Login';
 import MyPage from './MyPage';
 import NotFound from './NotFound';
 import NoticeBoard from './NoticeBoard';
+import PostCreate from './Post/PostCreate';
+import PostUpdate from './Post/PostUpdate';
+import PostView from './Post/PostView';
 import ProtectedRoute from './ProtectedRoute';
 import Search from './Search/Search';
 import SearchDetailListPage from './Search/SearchDetailListPage';
@@ -79,9 +82,21 @@ const router = createBrowserRouter([
         element: <PrivacyPolicy />,
       },
       {
+        path: '/post-view:postId',
+        element: <PostView />,
+      },
+      {
         path: '/auth',
         element: <ProtectedRoute />,
         children: [
+          {
+            path: '/auth/post-create',
+            element: <PostCreate />,
+          },
+          {
+            path: '/auth/post-update:postId',
+            element: <PostUpdate />,
+          },
           {
             path: '/auth/my-page',
             element: <MyPage />,
