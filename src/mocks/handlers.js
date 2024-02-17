@@ -1,8 +1,9 @@
 import { http, HttpResponse } from 'msw';
 import board from './board.json';
 import searchPop from './searchPop.json';
+import boardInfo from './boardInfo.json';
 
-const boardId = 123;
+const boardId = localStorage.getItem('boardId_1');
 
 // const deniedAccess = () =>
 //   HttpResponse.json(
@@ -369,6 +370,7 @@ const handlers = [
     // temporaryServerError,
   ),
   http.get(`/search/popular-post`, () => HttpResponse.json(searchPop)),
+  http.get(`/board-information`, () => HttpResponse.json(boardInfo)),
 ];
 
 export default handlers;

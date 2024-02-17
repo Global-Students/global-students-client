@@ -1,5 +1,6 @@
 import { React, useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import authAxios from '../../axios/authAxios';
 import LoginControl from '../LoginControl';
 import SearchHeader from './SearchHeader';
 
@@ -9,9 +10,50 @@ export default function Header() {
   const [currentItem, setCurrentItem] = useState(0);
   const [searchClick, setSearchClick] = useState(false);
 
+  const [boardInfo, setBoardInfo] = useState({});
+  const baseurl = `/board-information`;
+
+  const getHeaderInfo = async () => {
+    const requrl = `${baseurl}`;
+
+    try {
+      const res = await authAxios({
+        method: 'get',
+        url: requrl,
+      });
+      if (res.data.code === 'COMMON200') {
+        setBoardInfo(res.data.result);
+
+        localStorage.setItem('boardId_1', boardInfo.boardId_1);
+        localStorage.setItem('boardName_1', boardInfo.boardName_1);
+        localStorage.setItem('boardId_2', boardInfo.boardId_2);
+        localStorage.setItem('boardName_2', boardInfo.boardName_2);
+        localStorage.setItem('boardId_3', boardInfo.boardId_3);
+        localStorage.setItem('boardName_3', boardInfo.boardName_3);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getHeaderInfo();
+  }, []);
+
   function handleToggle() {
     setSearchClick((prev) => !prev);
   }
+  const boardId = {
+    boardId_1: localStorage.getItem('boardId_1'),
+    boardId_2: localStorage.getItem('boardId_2'),
+    boardId_3: localStorage.getItem('boardId_3'),
+  };
+
+  const boardName = {
+    boardName_1: localStorage.getItem('boardName_1'),
+    boardName_2: localStorage.getItem('boardName_2'),
+    boardName_3: localStorage.getItem('boardName_3'),
+  };
 
   useEffect(() => {
     if (currentItem === 1 || pathname.includes('/NoticeBoard/All/')) {
@@ -20,7 +62,7 @@ export default function Header() {
     }
     if (currentItem === 2 || pathname.includes('/NoticeBoard/International/')) {
       navRectangle.current.style.width = '164px';
-      navRectangle.current.style.left = '137px';
+      navRectangle.current.style.left = '144px';
     }
     if (currentItem === 3 || pathname.includes('/NoticeBoard/SouthKorea/')) {
       navRectangle.current.style.width = '132px';
@@ -58,7 +100,7 @@ export default function Header() {
               />
               <div className='w-[114px] h-[60px] p-2.5'>
                 <NavLink
-                  to='/NoticeBoard/All'
+                  to={`/notice-board/${boardId.boardId_1}`}
                   onClick={() => {
                     setCurrentItem(1);
                   }}
@@ -67,14 +109,14 @@ export default function Header() {
                   }
                 >
                   <p className='w-[94px] h-[40px] text-headerFont text-center duration-500'>
-                    Hanyang Uni <br />
-                    All Students
+                    {boardName.boardName_1}
+                    <br />
                   </p>
                 </NavLink>
               </div>
               <div className='w-[138x] h-[60px] p-2.5'>
                 <NavLink
-                  to='/NoticeBoard/International'
+                  to={`/notice-board/${boardId.boardId_2}`}
                   onClick={() => {
                     setCurrentItem(2);
                   }}
@@ -82,15 +124,14 @@ export default function Header() {
                     isActive ? 'text-gray-scale-9' : 'text-gray-scale-1'
                   }
                 >
-                  <p className='w-[118px] h-[40px] text-headerFont text-center duration-500'>
-                    Hanyang Uni <br />
-                    Korean Students
+                  <p className='w-[146px] h-[40px] text-headerFont text-center duration-500'>
+                    {boardName.boardName_2}
                   </p>
                 </NavLink>
               </div>
               <div className='w-[106x] h-[60px] p-2.5'>
                 <NavLink
-                  to='/NoticeBoard/SouthKorea'
+                  to={`/notice-board/${boardId.boardId_3}`}
                   onClick={() => {
                     setCurrentItem(3);
                   }}
@@ -99,8 +140,7 @@ export default function Header() {
                   }
                 >
                   <p className='w-[91px] h-[40px] text-headerFont text-center duration-500'>
-                    South Korea <br />
-                    All Students
+                    {boardName.boardName_3}
                   </p>
                 </NavLink>
               </div>
