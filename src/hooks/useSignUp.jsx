@@ -119,7 +119,7 @@ export default function useSignUp() {
     defaultAxios
       .post(API_PATH.sumbitSignUpInfo, formData, {
         headers: {
-          'Content-Type': `multipart/form-data; boundary=${formData.boundary}`,
+          'Content-Type': `multipart/form-data; application/json`,
         },
       })
       .then(() => {
