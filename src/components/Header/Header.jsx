@@ -43,12 +43,17 @@ export default function Header() {
     setSearchClick((prev) => !prev);
   }
 
-  const clickSetBoardId = (currentBoardId) => {
+  const clickSetBoardInfo = (currentBoardId, currentBoardName) => {
     localStorage.setItem(
       'currentBoardId',
       `${currentBoardId || localStorage.getItem('boardId_1')}`,
     );
+    localStorage.setItem(
+      'currentBoardName',
+      `${currentBoardName || localStorage.getItem('boardName_1')}`,
+    );
   };
+  // onClick이랑 isActive 둘다!
 
   useEffect(() => {
     if (pathname === '/') {
@@ -114,14 +119,13 @@ export default function Header() {
               />
               <div className='w-[114px] h-[60px] p-2.5'>
                 <NavLink
-                  to={
-                    pathname === '/'
-                      ? `/`
-                      : `/boards/${localStorage.getItem('boardId_1')}`
-                  }
+                  to={pathname === '/' ? `/` : `/boards/${boardInfo.boardId_1}`}
                   onClick={() => {
                     setCurrentItem(1);
-                    clickSetBoardId('boardId_1');
+                    clickSetBoardInfo(
+                      boardInfo.boardId_1,
+                      boardInfo.boardName_1,
+                    );
                   }}
                   className={({ isActive }) =>
                     isActive ? 'text-gray-scale-9' : 'text-gray-scale-1'
@@ -137,7 +141,10 @@ export default function Header() {
                   to={`/boards/${localStorage.getItem('boardId_2')}`}
                   onClick={() => {
                     setCurrentItem(2);
-                    clickSetBoardId('boardId_2');
+                    clickSetBoardInfo(
+                      boardInfo.boardId_2,
+                      boardInfo.boardName_2,
+                    );
                   }}
                   className={({ isActive }) =>
                     isActive ? 'text-gray-scale-9' : 'text-gray-scale-1'
@@ -153,7 +160,10 @@ export default function Header() {
                   to={`/boards/${localStorage.getItem('boardId_3')}`}
                   onClick={() => {
                     setCurrentItem(3);
-                    clickSetBoardId('boardId_3');
+                    clickSetBoardInfo(
+                      boardInfo.boardId_3,
+                      boardInfo.boardName_3,
+                    );
                   }}
                   className={({ isActive }) =>
                     isActive ? 'text-gray-scale-9' : 'text-gray-scale-1'

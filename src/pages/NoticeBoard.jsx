@@ -16,7 +16,8 @@ export default function NoticeBoard() {
   const [keyword, setKeyword] = useState('');
   const [currentSort, setCurrSort] = useState('latest');
 
-  const boardId = localStorage.getItem('currentBoard');
+  const boardName = localStorage.getItem('currentBoardName');
+  const boardId = localStorage.getItem('currentBoardId');
   const baseurl = `/boards/${boardId}`;
 
   const getBoard = async () => {
@@ -73,8 +74,8 @@ export default function NoticeBoard() {
           <InformText
             mb
             translate
-            school='Hanyang'
-            borderId='All'
+            school={boardName}
+            borderId={boardId}
             text='우리 학교에 재학 중인 모든 유학생을 만날 수 있습니다.'
           />
           <Inform baseurl={baseurl} notice={notice} />
