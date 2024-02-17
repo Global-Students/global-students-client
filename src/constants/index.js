@@ -7,7 +7,6 @@ import {
 import { DATES, MONTHS, YEARS } from './date';
 import { MEMBER_LIST, UNIVERSITY_APPROVAL_LIST } from './dummy';
 import FILE_MAX_SIZE from './file';
-import MENU_ID from './id';
 import REGEX from './regex';
 import SCHEMA from './schema';
 import { CONSENTS, LABEL, LEGEND, PLACEHOLDER } from './signUpForm';
@@ -23,7 +22,6 @@ export {
   LABEL,
   LEGEND,
   MEMBER_LIST,
-  MENU_ID,
   MONTHS,
   PLACEHOLDER,
   REGEX,

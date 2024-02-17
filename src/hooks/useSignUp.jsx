@@ -87,11 +87,11 @@ export default function useSignUp() {
     axios
       .post(API_PATH.emailVarification, body)
       .then(() => {
-        // alert('메일을 보냈습니다.');
+        alert('메일을 보냈습니다.');
         setIsSent(true);
       })
-      .catch(() => {
-        // alert(error.response.data.message);
+      .catch((error) => {
+        alert(error.response.data.message);
         setIsSent(false);
       });
 

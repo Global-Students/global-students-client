@@ -8,25 +8,28 @@ export default function Header() {
   const [currentItem, setCurrentItem] = useState(0);
 
   useEffect(() => {
-    if (currentItem === 1 || pathname.includes('/NoticeBoard/All/')) {
+    if (currentItem === 1 || pathname.includes('/notice-board/all/')) {
       navRectangle.current.style.width = '140px';
       navRectangle.current.style.left = '-13px';
     }
-    if (currentItem === 2 || pathname.includes('/NoticeBoard/International/')) {
+    if (
+      currentItem === 2 ||
+      pathname.includes('/notice-board/international/')
+    ) {
       navRectangle.current.style.width = '164px';
       navRectangle.current.style.left = '137px';
     }
-    if (currentItem === 3 || pathname.includes('/NoticeBoard/SouthKorea/')) {
+    if (currentItem === 3 || pathname.includes('/notice-board/south-korea/')) {
       navRectangle.current.style.width = '132px';
       navRectangle.current.style.left = '317px';
     }
-    if (currentItem === 4 || pathname.includes('/SearchingFriend/')) {
+    if (currentItem === 4 || pathname.includes('/auth/searching-friend/')) {
       navRectangle.current.style.width = '99px';
       navRectangle.current.style.left = '464px';
     }
     if (
-      pathname.includes('/NoticeBoard/') ||
-      pathname.includes('/SearchingFriend')
+      pathname.includes('/notice-board/') ||
+      pathname.includes('/auth/searching-friend')
     ) {
       navRectangle.current.style.opacity = '1';
     } else {
@@ -50,7 +53,7 @@ export default function Header() {
             />
             <div className='w-[114px] h-[60px] p-2.5'>
               <NavLink
-                to='/NoticeBoard/All'
+                to='/notice-board/all'
                 onClick={() => {
                   setCurrentItem(1);
                 }}
@@ -66,7 +69,7 @@ export default function Header() {
             </div>
             <div className='w-[138x] h-[60px] p-2.5'>
               <NavLink
-                to='/NoticeBoard/International'
+                to='/notice-board/international'
                 onClick={() => {
                   setCurrentItem(2);
                 }}
@@ -82,7 +85,7 @@ export default function Header() {
             </div>
             <div className='w-[106x] h-[60px] p-2.5'>
               <NavLink
-                to='/NoticeBoard/SouthKorea'
+                to='/notice-board/south-korea'
                 onClick={() => {
                   setCurrentItem(3);
                 }}
@@ -98,7 +101,7 @@ export default function Header() {
             </div>
             <div className='w-[73x] h-[40px] p-2.5'>
               <NavLink
-                to='/SearchingFriend'
+                to='/auth/searching-friend'
                 onClick={() => {
                   setCurrentItem(4);
                 }}
@@ -113,7 +116,7 @@ export default function Header() {
             </div>
           </div>
           <div className='flex flex-row w-[215px] h-[47px] justify-between items-center'>
-            <Link to='/Search'>
+            <Link to='/search'>
               <div className='group w-[47px] h-[47px] relative'>
                 <img src='/assets/search.svg' alt='search' />
                 <img

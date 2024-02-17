@@ -40,7 +40,7 @@ export default function UserInfoControl() {
                 <u>로그인</u>이 필요한 서비스입니다
               </div>
             </div>
-            <Link to='/Login'>
+            <Link to='/login'>
               <button
                 className='flex w-[263px] h-[54px] bg-orange-main rounded-[14px] shadow-inner justify-center items-center text-gray-scale-9 text-xl font-bold leading-tight tracking-tight'
                 type='button'
