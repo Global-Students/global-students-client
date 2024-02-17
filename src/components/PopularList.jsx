@@ -47,7 +47,7 @@ export default function PopularList({ baseurl, populars }) {
               <img src='/assets/arrowNew.svg' alt='arrowNew' />
             </div>
           </button>
-          <ul className='w-[953px] h-[351px] table-fixed rounded-b-[14px] border border-separate	border-spacing-0 overflow-hidden border-gray-scale-7 '>
+          <ul className='w-[953px] table-fixed rounded-b-[14px] border border-separate	border-spacing-0 overflow-hidden border-gray-scale-7 '>
             {populars &&
               populars.map((popular, index) => (
                 <Link to={`${baseurl}/${popular.postId}`} key={popular.postId}>
