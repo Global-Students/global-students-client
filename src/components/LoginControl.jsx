@@ -18,18 +18,15 @@ export default function LoginControl() {
   function handleClick() {
     setIsChatModalOpen(!isChatModalOpen);
   }
-  function handleKeyDown() {
-    console.log('keydown');
-  }
 
   return (
     <div>
       {isLogin ? (
         <div className='flex flex-row w-[131px] items-center justify-between'>
-          <div onClick={handleClick} onKeyDown={handleKeyDown} role="button" tabIndex={0}>
+          <button onClick={handleClick} type="button" tabIndex={0}>
             <HeaderIcon label='message' />
             <ChatModal _isChatModalOpen={isChatModalOpen} />
-          </div>
+          </button>
           <Link to='/MyPage'>
             <HeaderIcon label='mypage' />
           </Link>

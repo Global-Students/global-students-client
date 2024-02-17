@@ -223,17 +223,13 @@ class PrivacyButton extends Component {
         this.setState((prevState) => ({ show: !prevState.show }));
     }
 
-    handleKeyDown() {
-        console.log(this.state);
-    }
-
   render() {
     const { show } = this.state;
 
     return (
-        <div onClick={this.handleClick} onKeyDown={this.handleKeyDown} role="button" tabIndex={0} aria-label="Click me">
+        <button onClick={this.handleClick} type="button" tabIndex={0} aria-label="Click me">
             <AccessButton show={show} />
-        </div>
+        </button>
     );
   }
 }

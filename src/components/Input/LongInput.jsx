@@ -7,10 +7,6 @@ export default function LongInput({ index, value }) {
     setClickStyle("pl-6 pr-[9px] py-[9px] rounded-[14px] border bg-[#ffa77b]/25 border-[#ffa77b]");
   }
 
-  function handleKeyDown() {
-    console.log("Key down");
-  }
-
   useEffect(() => {
     function handleClickOutside(event) {
       if (InputRef.current && !InputRef.current.contains(event.target)) {
@@ -22,7 +18,7 @@ export default function LongInput({ index, value }) {
   });
 
     return(
-        <div ref={InputRef} onMouseDown={handleClick} onKeyDown={handleKeyDown} role="button" tabIndex={0} className={ClickStyle}>
+        <button ref={InputRef} onMouseDown={handleClick} type="button" tabIndex={0} className={ClickStyle}>
         <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 gap-9">
           <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-2.5 py-3">
             <p className="flex-grow-0 flex-shrink-0 w-[47px] h-[21px] text-lg text-left text-[#1e1e1e]">
@@ -33,6 +29,6 @@ export default function LongInput({ index, value }) {
             <input className="flex-grow-0 flex-shrink-0 w-[165px] h-[21px] text-lg font-light text-left text-[#b7becf] outline-none" placeholder={value} />
           </div>
         </div>
-      </div>
+      </button>
     );
 }
