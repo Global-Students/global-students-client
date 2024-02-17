@@ -23,13 +23,13 @@ export default function Header() {
       navRectangle.current.style.width = '132px';
       navRectangle.current.style.left = '317px';
     }
-    if (currentItem === 4 || pathname.includes('/searching-friend/')) {
+    if (currentItem === 4 || pathname.includes('/auth/searching-friend/')) {
       navRectangle.current.style.width = '99px';
       navRectangle.current.style.left = '464px';
     }
     if (
       pathname.includes('/notice-board/') ||
-      pathname.includes('/searching-friend')
+      pathname.includes('/auth/searching-friend')
     ) {
       navRectangle.current.style.opacity = '1';
     } else {
