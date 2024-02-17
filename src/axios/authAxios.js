@@ -1,9 +1,14 @@
 import axios from 'axios';
 import API_PATH from '../constants/api';
 
-const AxiosConfigure = {
+const defaultConfigure = {
   baseURL: process.env.REACT_APP_API_SERVER_URL,
-  // timeout: 5000,
+  timeout: 5000,
+};
+
+const authConfigure = {
+  baseURL: process.env.REACT_APP_API_SERVER_URL,
+  timeout: 5000,
   withCredentials: true,
 };
 
@@ -12,8 +17,8 @@ const AxiosConfigure = {
 //   withCredentials: true,
 // };
 
-const defaultAxios = axios.create(AxiosConfigure);
-const authAxios = axios.create(AxiosConfigure);
+const defaultAxios = axios.create(defaultConfigure);
+const authAxios = axios.create(authConfigure);
 const accessToken = localStorage.getItem('accessToken') ?? '';
 
 authAxios.interceptors.request.use(
