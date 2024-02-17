@@ -18,10 +18,8 @@ export default function Header() {
   });
 
   const baseurl = `/board-information`;
-
   const getHeaderInfo = async () => {
     const requrl = `${baseurl}`;
-
     try {
       const res = await authAxios({
         method: 'get',
@@ -36,7 +34,6 @@ export default function Header() {
         localStorage.setItem('boardName_2', boardInfo.boardName_2);
         localStorage.setItem('boardId_3', boardInfo.boardId_3);
         localStorage.setItem('boardName_3', boardInfo.boardName_3);
-        console.log(localStorage.getItem('currentBoardName'));
       }
     } catch (error) {
       console.log(error);
@@ -59,6 +56,10 @@ export default function Header() {
       setCurrentItem(1);
       navRectangle.current.style.width = '140px';
       navRectangle.current.style.left = '-13px';
+      setCurrentBoardInfo({
+        currentBoardId: boardInfo.boardId_1,
+        currentBoardName: boardInfo.boardName_1,
+      });
     }
     if (
       currentItem === 1 ||
@@ -66,6 +67,10 @@ export default function Header() {
     ) {
       navRectangle.current.style.width = '140px';
       navRectangle.current.style.left = '-13px';
+      setCurrentBoardInfo({
+        currentBoardId: boardInfo.boardId_1,
+        currentBoardName: boardInfo.boardName_1,
+      });
     }
     if (
       currentItem === 2 ||
@@ -73,6 +78,10 @@ export default function Header() {
     ) {
       navRectangle.current.style.width = '164px';
       navRectangle.current.style.left = '144px';
+      setCurrentBoardInfo({
+        currentBoardId: boardInfo.boardId_2,
+        currentBoardName: boardInfo.boardName_2,
+      });
     }
     if (
       currentItem === 3 ||
@@ -80,6 +89,10 @@ export default function Header() {
     ) {
       navRectangle.current.style.width = '132px';
       navRectangle.current.style.left = '328px';
+      setCurrentBoardInfo({
+        currentBoardId: boardInfo.boardId_3,
+        currentBoardName: boardInfo.boardName_3,
+      });
     }
     if (currentItem === 4 || pathname.includes('/SearchingFriend/')) {
       navRectangle.current.style.width = '99px';
