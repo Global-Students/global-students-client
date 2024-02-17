@@ -126,8 +126,8 @@ export default function useSignUp() {
           '',
         );
         moveStep('welcome');
-      });
-    // .catch((error) => alert(error.response.data.message));
+      })
+      .catch((error) => alert(error.response.data.message));
   };
 
   return {
