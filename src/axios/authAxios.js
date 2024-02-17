@@ -33,10 +33,12 @@ authAxios.interceptors.response.use(
   (response) => response,
   async (error) => {
     const prevRequest = error?.config;
-    const expireAt = new Date(localStorage.getItem('expireAt'));
+    const expireAt = localStorage.getItem('expireAt') ?? '0';
+    const expireTime = new Date(expireAt);
     const currentTime = new Date().getTime();
+    const isRefresh = accessToken && expireTime < currentTime;
 
-    if (expireAt > currentTime) {
+    if (!isRefresh) {
       return Promise.reject(error);
     }
 
