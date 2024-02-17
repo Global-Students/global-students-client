@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { MENU_ID } from '../constants';
 
 export default function SideBar() {
   const { pathname } = useLocation();
   const menu = pathname.split('/').pop();
   const [selectedMenu, setSelectedMenu] = useState(
-    menu === 'admin' || menu === '' ? MENU_ID.member : menu,
+    menu === 'admin' || menu === '' ? 'member-list' : menu,
   );
-  const changeMenu = (event) => setSelectedMenu(event.target.id);
+  const changeMenu = (event) => setSelectedMenu(event.target.name);
 
   const makerStyle = 'list-inside list-disc marker:text-sm';
   const makerColor = (menuId) =>
@@ -29,23 +28,21 @@ export default function SideBar() {
     <section className='flex flex-col gap-[23px] border rounded border-gray-scale-8 bg-gray-scale-9 shadow py-[48px] pl-[38px] pr-[79px] mr-[42px]'>
       <ul className={`flex flex-col gap-[23px] ${makerStyle}`}>
         <span className={`${titleStyle}`}>회원관리</span>
-        <li className={`${listLayout} ${makerColor(MENU_ID.member)}`}>
+        <li className={`${listLayout} ${makerColor('member-list')}`}>
           <Link
-            to={`/admin/${MENU_ID.member}`}
-            className={`${listStyle(MENU_ID.member)}`}
-            id={MENU_ID.member}
+            to='/admin/member-list'
+            className={`${listStyle('member-list')}`}
+            name='member-list'
             onClick={changeMenu}
           >
             회원목록
           </Link>
         </li>
-        <li
-          className={`${listLayout} ${makerColor(MENU_ID.universityApproval)}`}
-        >
+        <li className={`${listLayout} ${makerColor('university-approval')}`}>
           <Link
-            to={`/admin/${MENU_ID.universityApproval}`}
-            className={listStyle(MENU_ID.universityApproval)}
-            id={MENU_ID.universityApproval}
+            to='/admin/university-approval'
+            className={listStyle('university-approval')}
+            name='university-approval'
             onClick={changeMenu}
           >
             학교승인
@@ -54,21 +51,21 @@ export default function SideBar() {
       </ul>
       <ul className={`flex flex-col gap-[23px] ${makerStyle}`}>
         <span className={`${titleStyle}`}>신고 및 문의</span>
-        <li className={`${listLayout} ${makerColor(MENU_ID.report)}`}>
+        <li className={`${listLayout} ${makerColor('report')}`}>
           <Link
-            to={`/admin/${MENU_ID.report}`}
-            className={listStyle(MENU_ID.report)}
-            id={MENU_ID.report}
+            to='/admin/report'
+            className={listStyle('report')}
+            name='report'
             onClick={changeMenu}
           >
             게시글/댓글 신고
           </Link>
         </li>
-        <li className={`${listLayout} ${makerColor(MENU_ID.inquiry)}`}>
+        <li className={`${listLayout} ${makerColor('inquiry')}`}>
           <Link
-            to={`/admin/${MENU_ID.inquiry}`}
-            className={listStyle(MENU_ID.inquiry)}
-            id={MENU_ID.inquiry}
+            to='/admin/inquiry'
+            className={listStyle('inquiry')}
+            name='inquiry'
             onClick={changeMenu}
           >
             회원 문의
@@ -77,21 +74,21 @@ export default function SideBar() {
       </ul>
       <ul className={`flex flex-col gap-[23px] ${makerStyle}`}>
         <span className={`${titleStyle}`}>양식 관리</span>
-        <li className={`${listLayout} ${makerColor(MENU_ID.emailTemplate)}`}>
+        <li className={`${listLayout} ${makerColor('email-template')}`}>
           <Link
-            to={`/admin/${MENU_ID.emailTemplate}`}
-            className={listStyle(MENU_ID.emailTemplate)}
-            id={MENU_ID.emailTemplate}
+            to='/admin/email-template'
+            className={listStyle('email-template')}
+            name='email-template'
             onClick={changeMenu}
           >
             메일 양식 관리하기
           </Link>
         </li>
-        <li className={`${listLayout} ${makerColor(MENU_ID.notice)}`}>
+        <li className={`${listLayout} ${makerColor('notice')}`}>
           <Link
-            to={`/admin/${MENU_ID.notice}`}
-            className={listStyle(MENU_ID.notice)}
-            id={MENU_ID.notice}
+            to='/admin/notice'
+            className={listStyle('notice')}
+            name='notice'
             onClick={changeMenu}
           >
             공지글 관리하기
