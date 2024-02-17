@@ -114,7 +114,7 @@ export default function useSignUp() {
   const submitSignUpInfo = (file, moveStep) => {
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('join', signUpInfo);
+    formData.append('join', JSON.stringify(signUpInfo));
 
     defaultAxios
       .post(API_PATH.sumbitSignUpInfo, formData, {
