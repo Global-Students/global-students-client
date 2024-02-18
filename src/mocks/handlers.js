@@ -427,5 +427,4 @@ const handlers = [
   http.get(`/search/total`, () => HttpResponse.json(totalSearch)),
   http.get(`/search/university`, () => HttpResponse.json(univSearch)),
 ];
-
 export default handlers;
