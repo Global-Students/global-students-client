@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
+import { authAxios } from '../axios/authAxios';
 import Inform from '../components/Inform';
 import InformText from '../components/InformText';
 import PopularList from '../components/PopularList';
 import Posts from '../components/Posts';
 import UserInfoControl from '../components/UserInfoControl';
-import { authAxios } from '../axios/authAxios';
 
 export default function NoticeBoard({ bottom }) {
+  const { boardId } = useParams();
   const [noticeBoardInfo, setNoticeBoardInfo] = useState({
     boardInfo: {},
     pageInfo: {},
@@ -16,14 +17,13 @@ export default function NoticeBoard({ bottom }) {
     posts: [],
   });
 
-  const [currentBoard] = useState(`${localStorage.getItem('currentBoardId')}`);
   const [currentPage, setCurrPage] = useState(1);
   const [currentSort, setCurrSort] = useState('latest');
 
   const location = useLocation();
   const baseUrl = location.toString();
 
-  const baseurl = `/boards/${currentBoard}`;
+  const baseurl = `/boards/${boardId}`;
   const getBoard = async () => {
     const queryParams = {
       sort: currentSort,
@@ -61,7 +61,7 @@ export default function NoticeBoard({ bottom }) {
 
   useEffect(() => {
     getBoard();
-  }, [currentBoard]);
+  }, [boardId]);
 
   return (
     <div className='flex flex-row h-[1824px] justify-center items-center'>
