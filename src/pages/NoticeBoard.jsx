@@ -23,19 +23,20 @@ export default function NoticeBoard({ bottom }) {
   const baseUrl = location.toString();
 
   const getBoard = async () => {
-    const params = {
+    const queryParams = {
       sort: currentSort,
       page: currentPage,
     };
 
     const baseurl = `/boards/${localStorage.getItem('currentBoardId')}`;
-    const queryStr = new URLSearchParams(params).toString();
+    const queryStr = new URLSearchParams(queryParams).toString();
     const requrl = `${baseurl}/?${queryStr}`;
 
     try {
       const res = await axios({
         method: 'get',
         url: requrl,
+        params: { board_id: `${localStorage.getItem('currentBoardId')}` },
       });
       if (res.data.code === 'COMMON200') {
         setNoticeBoardInfo(res.data.result);
