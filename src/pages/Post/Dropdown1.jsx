@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 
-export default function DropDown1() {
+export default function DropDown1({ onDropDownChange }) {
   const [isClick, setIsClick] = useState(false); 
 
-  const [sort, setSort] = useState('All');
+  const [sort, setSort] = useState('all');
   let dropdownButtonText;
   const arrowIcon = isClick ? 'arrowNew.svg' : 'arrowBack.svg';
 
-  if (sort === 'All') {
+  if (sort === 'all') {
     dropdownButtonText = 'Hanyang Uni All Students';
-  } else if (sort === 'International') {
+  } else if (sort === 'international') {
     dropdownButtonText = 'Hanyang Uni Korean Students';
   } else {
     dropdownButtonText = 'South Korea All Students';
@@ -23,6 +23,7 @@ export default function DropDown1() {
     e.preventDefault();
     if (sort !== option) {
       setSort(option);
+      onDropDownChange(option);
     }
     setIsClick(false); 
   };
@@ -46,7 +47,7 @@ export default function DropDown1() {
           <table className='w-[698px] table-fixed border-spacing-0 rounded-b-[14px] border border-gray-scale-6 bg-gray-scale-9 hover:overflow-hidden hover:cursor-pointer px-[15px]'>
             <tbody>
               <tr
-                onClick={(e) => listChangeHandler(e, 'All')}
+                onClick={(e) => listChangeHandler(e, 'all')}
                 className='h-[7px] border-b border-gray-scale-7-main hover:bg-gray-scale-8'
               >
                 <td className='text-gray-scale-4 text-[18px] font-normal hover:text-gray-scale-2 px-[15px] py-[10px]'>
@@ -54,7 +55,7 @@ export default function DropDown1() {
                 </td>
               </tr>
               <tr
-                onClick={(e) => listChangeHandler(e, 'International')}
+                onClick={(e) => listChangeHandler(e, 'international')}
                 className='h-[7px] border-b border-gray-scale-7-main hover:bg-gray-scale-8'
               >
                 <td className='text-gray-scale-4 text-[18px] font-normal hover:text-gray-scale-2 px-[15px] py-[10px]'>
@@ -62,7 +63,7 @@ export default function DropDown1() {
                 </td>
               </tr>
               <tr
-                onClick={(e) => listChangeHandler(e, 'SouthKorea')}
+                onClick={(e) => listChangeHandler(e, 'south-Korea')}
                 className='h-[7px] border-b border-gray-scale-7-main hover:bg-gray-scale-8'
               >
                 <td className='text-gray-scale-4 text-[18px] font-normal hover:text-gray-scale-2 px-[15px] py-[10px]'>

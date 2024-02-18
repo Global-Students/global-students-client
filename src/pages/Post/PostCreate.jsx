@@ -13,9 +13,13 @@ export default function PostCreate() {
   const [uploadedImageIds, setUploadedImageIds] = useState([]);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [uploadedImageUrl, setUploadedImageUrl] = useState('');
+  const [uploadedImageUrl, setUploadedImageUrl] = useState('')
+  const [boardId, setBoardId] = useState('all');
   
-  
+
+  const handleDropDownChange = (value) => {
+    setBoardId(value);
+  }
 
   const handleImageChange = (event) => {
     const file = event.target.files[0]; 
@@ -45,8 +49,7 @@ export default function PostCreate() {
 
   const handleSubmit = async () => {
     const postData = {
-      boardId: '1',
-      postId: '1',
+      boardId,
       title,
       content,
       isAnonymous: checkboxChecked,
@@ -57,7 +60,7 @@ export default function PostCreate() {
     try {
       const response = await axios.post('/boards/post/write', postData);
       console.log(response.data);
-      // Reset form after successful submission
+      
       setTitle('');
       setContent('');
       setCheckboxChecked(false);
@@ -75,7 +78,7 @@ export default function PostCreate() {
 
           <div className='flex flex-row w-[864px] h-[50px] items-center justify-between'>
             <p className='pr-[18px] text-[20px]'>게시판</p>
-            <DropDown1 />
+            <DropDown1 onDropDownChange={handleDropDownChange} />
             <div className="ml-[15px] justify-start z-[10]">
             <CheckboxPost
             text="익명"

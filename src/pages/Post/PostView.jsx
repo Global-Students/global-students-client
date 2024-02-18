@@ -7,6 +7,7 @@ import Comment from '../../components/Comment';
 import WriteComment from '../../components/WriteComment';
 import MoreDropdown from '../../components/MoreDropdown';
 import CommentPagination from '../../components/CommentPagination';
+import NoticeBoard from '../NoticeBoard'
 
 export default function PostView() {
   
@@ -132,8 +133,10 @@ export default function PostView() {
               </div>
             </div>
           </div>
+
         </div>
       )}
+      <NoticeBoard bottom/>
     </div>
   );
 }

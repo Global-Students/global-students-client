@@ -12,6 +12,7 @@ export default function PostUpdate({ postId }) {
   const [uploadedImageUrl, setUploadedImageUrl] = useState(null);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [boardId, setBoardId] = useState('all');
 
   useEffect(() => {
   
@@ -28,6 +29,10 @@ export default function PostUpdate({ postId }) {
 
     fetchPost();
   }, [postId]);
+
+  const handleDropDownChange = (value) => {
+    setBoardId(value);
+  }
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -57,6 +62,7 @@ export default function PostUpdate({ postId }) {
 
   const handleUpdate = async () => {
     const updatedData = {
+        boardId,
         title,
         content,
         isAnonymous: checkboxChecked,
@@ -80,7 +86,7 @@ export default function PostUpdate({ postId }) {
 
           <div className='flex flex-row w-[864px] h-[50px] items-center justify-between'>
             <p className='pr-[18px] text-[20px]'>게시판</p>
-            <DropDown1 />
+            <DropDown1 onDropDownChange={handleDropDownChange} />
             <div className="ml-[15px] justify-start z-[10]">
             <CheckboxPost
             text="익명"
