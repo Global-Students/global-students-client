@@ -50,8 +50,8 @@ export default function Login() {
           </div>
         </form>
         <div className='flex justify-between text-gray-scale-3 text-[17px] m-4'>
-          <a href='/findAccount'>아이디 | 비밀번호 찾기</a>
-          <a href='/signUp'>회원가입</a>
+          <a href='/find-account'>아이디 | 비밀번호 찾기</a>
+          <a href='/sign-up'>회원가입</a>
         </div>
       </div>
     </div>
