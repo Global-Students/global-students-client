@@ -422,6 +422,22 @@ const handlers = [
   }),
   http.get(`/search/popular-post`, () => HttpResponse.json(searchPop)),
   http.get(`/board-information`, () => HttpResponse.json(boardInfo)),
+  http.get(`/mypage`, () => HttpResponse.json({
+    "isSuccess": true,
+    "code": "MYPAGE200_1",
+    "message": "마이페이지 조회 성공",
+    "result": {
+        "nickname": "유성",
+        "introduction": "내 이름은 유성이라고 해",
+        "host_university": "00 대학교",
+        "country": "미국",
+        "major": "기계공학과",
+        "post": "작성글 id",
+        "favorite_post": "즐겨찾기 글 id",
+        "profile_photo": "프로필 사진 id",
+        "background_photo": "배경 사진 id",
+        "phone": "010-0000-0000"
+    } })),
 ];
 
 export default handlers;

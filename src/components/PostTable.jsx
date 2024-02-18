@@ -1,7 +1,6 @@
 import { React, useState, useEffect } from "react";
 import authAxios from "../axios/authAxios";
 import PrivacyButton from "./Button/PrivacyButton";
-import URL from "../constants/testServer";
 
 function PostPreview( {title, comments, date, author, likes, views} ) {
     return(

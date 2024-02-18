@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import authAxios from "../axios/authAxios";
-import URL from "../constants/testServer";
 
 function PostPreview( {title, comments, date, author, likes, views} ) {
   return(
