@@ -1,6 +1,5 @@
 import { React, useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { authAxios } from '../../axios/authAxios';
 import LoginControl from '../LoginControl';
 import SearchHeader from './SearchHeader';
 
@@ -8,58 +7,23 @@ export default function Header() {
   const navRectangle = useRef();
   const { pathname } = useLocation();
   const [currentItem, setCurrentItem] = useState(0);
-  const [isLogin, setIsLogin] = useState(false);
   const [searchClick, setSearchClick] = useState(false);
-
-  const [boardInfo, setBoardInfo] = useState({});
-  const [currentBoardInfo, setCurrentBoardInfo] = useState({
-    currentBoardId: boardInfo.boardId_1,
-    currentBoardName: boardInfo.boardName_1,
-  });
-
-  const baseurl = `/board-information`;
-  const getHeaderInfo = async () => {
-    const requrl = `${baseurl}`;
-    try {
-      const res = await authAxios({
-        method: 'get',
-        url: requrl,
-      });
-      if (res.data.code === 'COMMON200') {
-        setBoardInfo(res.data.result);
-        setIsLogin(true);
-        localStorage.setItem('boardId_1', boardInfo.boardId_1);
-        localStorage.setItem('boardName_1', boardInfo.boardName_1);
-        localStorage.setItem('boardId_2', boardInfo.boardId_2);
-        localStorage.setItem('boardName_2', boardInfo.boardName_2);
-        localStorage.setItem('boardId_3', boardInfo.boardId_3);
-        localStorage.setItem('boardName_3', boardInfo.boardName_3);
-      }
-    } catch (error) {
-      console.log(error);
-      setIsLogin(false);
-    }
-  };
+  const [currentBoardId, setCurrentBoardId] = useState();
 
   function handleToggle() {
     setSearchClick((prev) => !prev);
   }
 
   const clickSetBoardInfo = () => {
-    localStorage.setItem('currentBoardId', currentBoardInfo.currentBoardId);
-    localStorage.setItem('currentBoardName', currentBoardInfo.currentBoardName);
+    localStorage.setItem('currentBoardId', currentBoardId);
   };
-  // onClick이랑 isActive 둘다!
 
   useEffect(() => {
     if (pathname === '/') {
       setCurrentItem(1);
       navRectangle.current.style.width = '140px';
       navRectangle.current.style.left = '-13px';
-      setCurrentBoardInfo({
-        currentBoardId: boardInfo.boardId_1,
-        currentBoardName: boardInfo.boardName_1,
-      });
+      setCurrentBoardId(localStorage.getItem('boardId_1'));
     }
     if (
       currentItem === 1 ||
@@ -67,10 +31,7 @@ export default function Header() {
     ) {
       navRectangle.current.style.width = '140px';
       navRectangle.current.style.left = '-13px';
-      setCurrentBoardInfo({
-        currentBoardId: boardInfo.boardId_1,
-        currentBoardName: boardInfo.boardName_1,
-      });
+      setCurrentBoardId(localStorage.getItem('boardId_1'));
     }
     if (
       currentItem === 2 ||
@@ -78,10 +39,7 @@ export default function Header() {
     ) {
       navRectangle.current.style.width = '164px';
       navRectangle.current.style.left = '144px';
-      setCurrentBoardInfo({
-        currentBoardId: boardInfo.boardId_2,
-        currentBoardName: boardInfo.boardName_2,
-      });
+      setCurrentBoardId(localStorage.getItem('boardId_2'));
     }
     if (
       currentItem === 3 ||
@@ -89,12 +47,9 @@ export default function Header() {
     ) {
       navRectangle.current.style.width = '132px';
       navRectangle.current.style.left = '328px';
-      setCurrentBoardInfo({
-        currentBoardId: boardInfo.boardId_3,
-        currentBoardName: boardInfo.boardName_3,
-      });
+      setCurrentBoardId(localStorage.getItem('boardId_3'));
     }
-    if (currentItem === 4 || pathname.includes('/SearchingFriend/')) {
+    if (currentItem === 4 || pathname.includes('/auth/searching-friend')) {
       navRectangle.current.style.width = '99px';
       navRectangle.current.style.left = '464px';
     }
@@ -110,12 +65,8 @@ export default function Header() {
   }, [pathname, currentItem]);
 
   useEffect(() => {
-    getHeaderInfo();
-  }, [currentBoardInfo, isLogin]);
-
-  useEffect(() => {
     clickSetBoardInfo();
-  }, [currentBoardInfo]);
+  }, [currentBoardId]);
 
   return (
     <div className='relative'>
@@ -135,13 +86,13 @@ export default function Header() {
               />
               <div className='w-[114px] h-[60px] p-2.5'>
                 <NavLink
-                  to={pathname === '/' ? `/` : `/boards/${boardInfo.boardId_1}`}
+                  to={
+                    pathname === '/'
+                      ? `/`
+                      : `/boards/${localStorage.getItem('boardId_1')}`
+                  }
                   onClick={() => {
                     setCurrentItem(1);
-                    setCurrentBoardInfo({
-                      currentBoardId: boardInfo.boardId_1,
-                      currentBoardName: boardInfo.boardName_1,
-                    });
                   }}
                   className={({ isActive }) =>
                     isActive ? 'text-gray-scale-9' : 'text-gray-scale-1'
@@ -154,13 +105,9 @@ export default function Header() {
               </div>
               <div className='w-[138x] h-[60px] p-2.5'>
                 <NavLink
-                  to={`/boards/${boardInfo.boardId_2}`}
+                  to={`/boards/${localStorage.getItem('boardId_2')}`}
                   onClick={() => {
                     setCurrentItem(2);
-                    setCurrentBoardInfo({
-                      currentBoardId: boardInfo.boardId_2,
-                      currentBoardName: boardInfo.boardName_2,
-                    });
                   }}
                   className={({ isActive }) =>
                     isActive ? 'text-gray-scale-9' : 'text-gray-scale-1'
@@ -173,13 +120,9 @@ export default function Header() {
               </div>
               <div className='w-[106x] h-[60px] p-2.5'>
                 <NavLink
-                  to={`/boards/${boardInfo.boardId_3}`}
+                  to={`/boards/${localStorage.getItem('boardId_3')}`}
                   onClick={() => {
                     setCurrentItem(3);
-                    setCurrentBoardInfo({
-                      currentBoardId: boardInfo.boardId_3,
-                      currentBoardName: boardInfo.boardName_3,
-                    });
                   }}
                   className={({ isActive }) =>
                     isActive ? 'text-gray-scale-9' : 'text-gray-scale-1'
@@ -217,7 +160,7 @@ export default function Header() {
                   />
                 </div>
               </button>
-              <LoginControl isLogin={isLogin} />
+              <LoginControl isLogin />
             </div>
           </div>
         </div>

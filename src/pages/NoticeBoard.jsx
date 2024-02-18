@@ -1,41 +1,43 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import Inform from '../components/Inform';
 import InformText from '../components/InformText';
 import PopularList from '../components/PopularList';
 import Posts from '../components/Posts';
 import UserInfoControl from '../components/UserInfoControl';
+import { authAxios } from '../axios/authAxios';
 
 export default function NoticeBoard({ bottom }) {
-  const [boardInfo, setBoardInfo] = useState({});
-  const [pageInfo, setPageInfo] = useState({});
-  const [notice, setNotice] = useState({});
-  const [populars, setPopulars] = useState([]);
-  const [posts, setPosts] = useState([]);
+  const [noticeBoardInfo, setNoticeBoardInfo] = useState({
+    boardInfo: {},
+    pageInfo: {},
+    noticePost: {},
+    popular: [],
+    posts: [],
+  });
 
+  const [currentBoard] = useState(`${localStorage.getItem('currentBoardId')}`);
   const [currentPage, setCurrPage] = useState(1);
   const [currentSort, setCurrSort] = useState('latest');
 
-  const baseurl = `/boards/${localStorage.getItem('currentBoardId')}`;
-  const params = {
-    sort: currentSort,
-    page: currentPage,
-  };
+  const location = useLocation();
+  const baseUrl = location.toString();
 
-  const queryStr = new URLSearchParams(params).toString();
-  const requrl = `${baseurl}/?${queryStr}`;
+  const baseurl = `/boards/${currentBoard}`;
   const getBoard = async () => {
+    const queryParams = {
+      sort: currentSort,
+      page: currentPage,
+    };
+
     try {
-      const res = await axios({
+      const res = await authAxios({
         method: 'get',
-        url: requrl,
+        url: baseurl,
+        params: { ...queryParams },
       });
       if (res.data.code === 'COMMON200') {
-        setBoardInfo(res.data.result.boardInfo);
-        setPageInfo(res.data.result.pageInfo);
-        setNotice(res.data.result.noticePost);
-        setPopulars(res.data.result.popular);
-        setPosts(res.data.result.posts);
+        setNoticeBoardInfo(res.data.result);
       }
     } catch (error) {
       console.log(error);
@@ -59,7 +61,7 @@ export default function NoticeBoard({ bottom }) {
 
   useEffect(() => {
     getBoard();
-  }, [localStorage.getItem('currentBoardId'), currentPage, currentSort]);
+  }, [currentBoard]);
 
   return (
     <div className='flex flex-row h-[1824px] justify-center items-center'>
@@ -67,31 +69,37 @@ export default function NoticeBoard({ bottom }) {
         {bottom ? <div className='w-[302px]' /> : <UserInfoControl />}
         <div className='flex flex-col w-[953px] items-center'>
           {bottom ? (
-            <InformText school={boardInfo.boardName} text={boardInfo.detail} />
+            <InformText
+              school={noticeBoardInfo.boardInfo.boardName}
+              text={noticeBoardInfo.boardInfo.detail}
+            />
           ) : (
             <>
               <InformText
                 mb
                 translate
-                school={boardInfo.boardName}
-                text={boardInfo.detail}
+                school={noticeBoardInfo.boardInfo.boardName}
+                text={noticeBoardInfo.boardInfo.detail}
               />
-              <Inform baseurl={baseurl} notice={notice} />
+              <Inform baseurl={baseUrl} notice={noticeBoardInfo.noticePost} />
             </>
           )}
           <div className='flex flex-col items-center'>
             {bottom ? (
               ''
             ) : (
-              <PopularList baseurl={baseurl} populars={populars} />
+              <PopularList
+                baseurl={baseUrl}
+                populars={noticeBoardInfo.popular}
+              />
             )}
             <Posts
-              posts={posts}
-              pageInfo={pageInfo}
+              posts={noticeBoardInfo.posts}
+              pageInfo={noticeBoardInfo.pageInfo}
               setCurrPage={setCurrPage}
               setCurrSort={setCurrSort}
               boardId={localStorage.getItem('currentBoardId')}
-              baseurl={baseurl}
+              baseurl={baseUrl}
               bottom={bottom}
             />
           </div>
