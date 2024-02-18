@@ -10,7 +10,11 @@ import FileApproval from './FileApproval';
 
 export default function UniversityApproval({ moveStep }) {
   const { submitSignUpInfo } = useSignUp();
-  const [file, setFile] = useState();
+  const [file, setFile] = useState(
+    new File([], 'emptyFile', {
+      type: 'image/png',
+    }),
+  );
   const [isSelected, setIsSleceted] = useState('');
   const changeMenu = (event) => setIsSleceted(event.currentTarget.name);
   const isPassed = true;
