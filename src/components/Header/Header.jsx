@@ -1,6 +1,5 @@
 import { React, useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { authAxios } from '../../axios/authAxios';
 import LoginControl from '../LoginControl';
 import SearchHeader from './SearchHeader';
 
@@ -8,33 +7,8 @@ export default function Header() {
   const navRectangle = useRef();
   const { pathname } = useLocation();
   const [currentItem, setCurrentItem] = useState(0);
-  const [isLogin, setIsLogin] = useState(false);
   const [searchClick, setSearchClick] = useState(false);
-
-  const [boardInfo, setBoardInfo] = useState({});
   const [currentBoardId, setCurrentBoardId] = useState();
-
-  const getHeaderInfo = async () => {
-    try {
-      const res = await authAxios({
-        method: 'get',
-        url: '/board-information',
-      });
-      if (res.data.code === 'COMMON200') {
-        setIsLogin(true);
-        setBoardInfo(res.data.result);
-        localStorage.setItem('boardId_1', boardInfo.boardId_1);
-        localStorage.setItem('boardName_1', boardInfo.boardName_1);
-        localStorage.setItem('boardId_2', boardInfo.boardId_2);
-        localStorage.setItem('boardName_2', boardInfo.boardName_2);
-        localStorage.setItem('boardId_3', boardInfo.boardId_3);
-        localStorage.setItem('boardName_3', boardInfo.boardName_3);
-      }
-    } catch (error) {
-      console.log(error);
-      setIsLogin(false);
-    }
-  };
 
   function handleToggle() {
     setSearchClick((prev) => !prev);
@@ -89,10 +63,6 @@ export default function Header() {
       navRectangle.current.style.opacity = '0';
     }
   }, [pathname, currentItem]);
-
-  useEffect(() => {
-    getHeaderInfo();
-  }, []);
 
   useEffect(() => {
     clickSetBoardInfo();
@@ -190,7 +160,7 @@ export default function Header() {
                   />
                 </div>
               </button>
-              <LoginControl isLogin={isLogin} />
+              <LoginControl isLogin />
             </div>
           </div>
         </div>
