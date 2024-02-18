@@ -107,7 +107,7 @@ export default function Header() {
     } else {
       navRectangle.current.style.opacity = '0';
     }
-  });
+  }, [pathname]);
 
   useEffect(() => {
     getHeaderInfo();

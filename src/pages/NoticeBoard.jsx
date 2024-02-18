@@ -93,6 +93,7 @@ export default function NoticeBoard({ bottom }) {
               setCurrSort={setCurrSort}
               boardId={boardId}
               requrl={requrl}
+              bottom={bottom}
             />
           </div>
         </div>

@@ -17,6 +17,7 @@ import PostUpdate from './Post/PostUpdate';
 import PostView from './Post/PostView';
 import ProtectedRoute from './ProtectedRoute';
 import Search from './Search/Search';
+import SearchListPage from './Search/SearchListPage';
 import SearchDetailListPage from './Search/SearchDetailListPage';
 import SearchFriends from './SearchFriends';
 import SignUp from './SignUp/SignUp';
@@ -54,7 +55,11 @@ const router = createBrowserRouter([
         element: <Search />,
         children: [
           {
-            path: '/search/total/*',
+            path: '/search/total/:keyword',
+            element: <SearchListPage />,
+          },
+          {
+            path: '/search/total/detail/*',
             element: <SearchDetailListPage />,
           },
         ],

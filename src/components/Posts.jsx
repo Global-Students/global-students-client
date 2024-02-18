@@ -13,6 +13,7 @@ export default function Posts({
   setCurrSort,
   boardId,
   requrl,
+  bottom,
 }) {
   return (
     <div className='flex flex-col w-[953px]'>
@@ -43,6 +44,7 @@ export default function Posts({
           height='h-[50px]'
           px='px-[24px]'
           searchInBox
+          bottom={bottom}
         />
       </div>
     </div>

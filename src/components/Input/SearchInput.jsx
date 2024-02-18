@@ -11,6 +11,7 @@ export default function SearchInput({
   searchInBox,
   setSearchClick,
   setIsFindSchool,
+  bottom,
 }) {
   const [keyword, setKeyword] = useState('');
   const handleChange = (event) => {
@@ -25,9 +26,11 @@ export default function SearchInput({
     setSearchClick((prev) => !prev);
     localStorage.setItem('q', keyword);
     navigate(
-      `/search/total/?boardId=${localStorage.getItem(
-        'currentBoardId',
-      )}&q=${localStorage.getItem('q')}`,
+      bottom
+        ? `/search/total/?boardId=${localStorage.getItem(
+            'currentBoardId',
+          )}&q=${localStorage.getItem('q')}`
+        : `/search/total/&q=${localStorage.getItem('q')}`,
     );
   };
   const defaultStyle = `flex rounded-[30px] bg-gray-scale-8`;
@@ -45,7 +48,9 @@ export default function SearchInput({
           type='search'
           value={keyword}
           onChange={handleChange}
-          placeholder={placeholder ? `${placeholder}` : '검색어를 입력해주세요'}
+          placeholder={
+            placeholder ? `"${placeholder}"` : '검색어를 입력해주세요'
+          }
         />
         <button type='button' onClick={clickSearchButton}>
           <img

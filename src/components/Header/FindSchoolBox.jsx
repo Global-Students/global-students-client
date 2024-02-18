@@ -35,7 +35,7 @@ export default function FindSchoolBox({ setSearchClick }) {
 
   useEffect(() => {
     getFindSchool();
-  }, []);
+  }, [q]);
 
   return (
     <div className='flex flex-col w-[302px] h-[354px] bg-white rounded-[20px] border border-gray-scale-8 items-center justify-center'>

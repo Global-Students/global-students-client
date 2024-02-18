@@ -5,17 +5,13 @@ import axios from 'axios';
 export default function RealTimePopularPosts({ setSearchClick }) {
   const [populars, setPopulars] = useState([]);
 
-  const baseurl = `/search/popular-post`;
-  const boardId = localStorage.getItem('boardId_1');
+  const baseurl = `/search/popular-post/${localStorage.getItem('boardId_1')}`;
 
   const getPopularPosts = async () => {
-    const queryStr = new URLSearchParams(boardId).toString();
-    const requrl = `${baseurl}/?${queryStr}`;
-
     try {
       const res = await axios({
         method: 'get',
-        url: requrl,
+        url: baseurl,
       });
       if (res.data.code === 'CHAT201_1') {
         setPopulars(res.data.result.posts);
