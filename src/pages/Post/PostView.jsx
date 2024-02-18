@@ -151,7 +151,6 @@ export default function PostView() {
                     deleteComment={deleteComment}
                   />
                 ))}
-
                 <CommentPagination
                   pageInfo={{
                     page: currentPage,
