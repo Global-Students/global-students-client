@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import PostHeader from '../../components/PostHeader';
 import MoreButton from '../../components/Button/MoreButton';
@@ -8,6 +7,7 @@ import WriteComment from '../../components/WriteComment';
 import MoreDropdown from '../../components/MoreDropdown';
 import CommentPagination from '../../components/CommentPagination';
 import NoticeBoard from '../NoticeBoard'
+import { defaultAxios } from '../../axios/authAxios';
 
 export default function PostView() {
   
@@ -20,7 +20,7 @@ export default function PostView() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get(`/boards/${boardId}/posts/${postId}`);
+        const response = await defaultAxios.get(`/boards/${boardId}/posts/${postId}`);
         setPost(response.data);
         setComments(response.data.comments);
       } catch (error) {
