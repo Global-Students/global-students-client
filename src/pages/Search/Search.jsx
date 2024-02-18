@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Outlet } from 'react-router-dom';
 import UserInfoControl from '../../components/UserInfoControl';
 import SearchText from '../../components/SearchText';
 import SearchInput from '../../components/Input/SearchInput';
 
 export default function Search() {
-  const [boardInfo, setBoardInfo] = useState({ boardId: '', boardName: '' });
   return (
     <div className='flex flex-row h-[1824px] justify-center items-center'>
       <div className='flex w-[1279px] h-[1651px] justify-start gap-x-[24px]'>
@@ -20,7 +19,7 @@ export default function Search() {
               placeholder={localStorage.getItem('q')}
             />
           </div>
-          <Outlet context={{ boardInfo, setBoardInfo }} />
+          <Outlet />
         </div>
       </div>
     </div>

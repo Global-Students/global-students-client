@@ -8,12 +8,12 @@ export default function useSearchList({ boardId, boardName }) {
 
   const [currPage, setCurrPage] = useState(1);
   const [currentSort, setCurrSort] = useState('latest');
-
+  const currentBoard = boardId;
   const baseurl = `/search/total`;
   const q = localStorage.getItem('q');
 
   const params = {
-    boardId,
+    boardId: currentBoard,
     q: localStorage.getItem('q'),
     page: currPage,
     sort: currentSort,
@@ -40,7 +40,7 @@ export default function useSearchList({ boardId, boardName }) {
 
   useEffect(() => {
     getSearch();
-  }, [boardId, q]);
+  }, [q]);
 
   return {
     requrl,

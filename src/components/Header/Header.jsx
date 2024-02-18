@@ -111,7 +111,7 @@ export default function Header() {
 
   useEffect(() => {
     getHeaderInfo();
-  }, [currentBoardInfo]);
+  }, [currentBoardInfo, isLogin]);
 
   useEffect(() => {
     clickSetBoardInfo();

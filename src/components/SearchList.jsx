@@ -10,7 +10,6 @@ export default function SearchList({
   total,
   showMore,
   dropDown,
-  setBoardInfo,
 }) {
   const { queryStr, setCurrSort, keyword, pageInfo, posts } = useSearchList({
     boardId,
@@ -37,7 +36,7 @@ export default function SearchList({
           <Link
             to={`/search/total/detail/?${queryStr}`}
             className='flex w-[63px] justify-between'
-            onClick={() => setBoardInfo({ boardId }, { boardName })}
+            state={{ nowBoardId: boardId, nowBoardName: boardName }}
           >
             <p className='text-gray-scale-4 text-base font-normal'>더보기</p>
             <img src='/assets/arrow_forward_ios.svg' alt='더보기' />
