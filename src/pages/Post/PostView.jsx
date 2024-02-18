@@ -15,6 +15,7 @@ export default function PostView() {
   const [comments, setComments] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const { boardId, postId } = useParams();
+  const [isAnonymous, setIsAnonymous] = useState(false);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -139,11 +140,26 @@ export default function PostView() {
                 <div className='flex flex-row w-[884px] h-[26px] justify-between'>
                   <p className='text-[22px]'>댓글 {comments.length}</p>
                   <div className='flex flex-row w-[117px] justify-between items-center text-[16px]'>
+                    <button
+                      className={`rounded w-4 ${
+                        isAnonymous
+                          ? 'bg-orange-1 text-white'
+                          : 'bg-gray-scale-5 text-gray-scale-8'
+                      }`}
+                      type='button'
+                      onClick={() => setIsAnonymous((prev) => !prev)}
+                    >
+                      익명
+                    </button>
                     <button type='button'>좋아요순</button>
                     <button type='button'>최신순</button>
                   </div>
                 </div>
-                <WriteComment addComment={addComment} postId={postId}/>
+                <WriteComment
+                  addComment={addComment}
+                  postId={postId}
+                  isAnonymous
+                />
                 {comments.map((comment) => (
                   <Comment
                     key={comment.commentId}

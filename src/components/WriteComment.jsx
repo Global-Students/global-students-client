@@ -1,8 +1,13 @@
-import React,{ useState } from 'react'
+import React, { useState } from 'react';
 import { authAxios } from '../axios/authAxios';
-import OrangeButton from './Button/OrangeButton'
+import OrangeButton from './Button/OrangeButton';
 
-export default function WriteComment({ addComment,postId,userNickname }) {
+export default function WriteComment({
+  addComment,
+  postId,
+  userNickname,
+  isAnonymous,
+}) {
   const [value, setValue] = useState('');
   const maxLength = 1000;
 
@@ -12,22 +17,21 @@ export default function WriteComment({ addComment,postId,userNickname }) {
     }
   };
 
-  
   const handleSubmit = async () => {
     try {
       const response = await authAxios.post('/boards/post/comment/write', {
         postId,
         content: value,
-        isAnonymous: true,
+        isAnonymous,
       });
 
       const newComment = {
         commentId: response.data.result,
         content: value,
         nickname: userNickname,
-        date: new Date().toLocaleDateString(), 
+        date: new Date().toLocaleDateString(),
       };
-      
+
       addComment(newComment);
       setValue('');
     } catch (error) {
@@ -60,4 +64,3 @@ export default function WriteComment({ addComment,postId,userNickname }) {
     </div>
   );
 }
-
