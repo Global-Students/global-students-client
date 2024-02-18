@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { AuthContextProvider } from './contexts/AuthContext';
 import './index.css';
 import './locales/i18n';
+import worker from './mocks/browser';
 import Routes from './pages/Routes';
 import reportWebVitals from './reportWebVitals';
 import worker from './mocks/browser';

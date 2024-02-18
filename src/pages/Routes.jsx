@@ -91,17 +91,17 @@ const router = createBrowserRouter([
         element: <PostView />,
       },
       {
-        path: '/post-create',
-        element: <PostCreate />,
-      },
-      {
-        path: '/post-update/:boardId/:postId',
-        element: <PostUpdate />,
-      },
-      {
         path: '/auth',
         element: <ProtectedRoute />,
         children: [
+          {
+            path: '/auth/post-create',
+            element: <PostCreate />,
+          },
+          {
+            path: '/auth/post-update/:boardId/:postId',
+            element: <PostUpdate />,
+          },
           {
             path: '/auth/my-page',
             element: <MyPage />,
