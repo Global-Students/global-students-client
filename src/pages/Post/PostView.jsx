@@ -22,6 +22,9 @@ export default function PostView() {
         const response = await defaultAxios.get(
           `/boards/${boardId}/posts/${postId}`,
         );
+        console.log(response);
+        console.log(response.data.comment);
+
         setPost(response.data);
         setComments(response.data.comment);
       } catch (error) {
