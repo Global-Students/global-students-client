@@ -96,11 +96,11 @@ export default function useSignUp() {
         setIsSent(false);
       });
 
-  const verifyAuthCode = (body) =>
+  const verifyAuthCode = (body, email) =>
     defaultAxios
       .post(API_PATH.emailVarificationCode, body)
       .then(() => {
-        setSignUpInfo((prev) => ({ ...prev, verified: true }));
+        setSignUpInfo((prev) => ({ ...prev, email, verified: true }));
         setMessage((prev) => ({ ...prev, code: '인증에 성공했습니다.' }));
       })
       .catch((error) => {

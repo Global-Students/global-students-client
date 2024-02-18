@@ -20,6 +20,7 @@ export function SignUpContextProvider({ children }) {
     hostCountry: '',
     homeUniversity: '',
     hostUniversity: '',
+    email: '',
     verified: false,
   });
   const updateSignUpInfo = (event) => {
