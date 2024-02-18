@@ -29,6 +29,7 @@ export default function useLogin() {
       localStorage.setItem('boardName_2', boardInfo.boardName_2);
       localStorage.setItem('boardId_3', boardInfo.boardId_3);
       localStorage.setItem('boardName_3', boardInfo.boardName_3);
+      localStorage.setItem('currentBoardId', boardInfo.boardId_1);
       navigate(nextPath);
     } catch (error) {
       const { message } = error.response.data;
