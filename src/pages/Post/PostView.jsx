@@ -143,7 +143,7 @@ export default function PostView() {
                     <button type='button'>최신순</button>
                   </div>
                 </div>
-                <WriteComment addComment={addComment} />
+                <WriteComment addComment={addComment} postId={postId}/>
                 {comments.map((comment) => (
                   <Comment
                     key={comment.commentId}
@@ -151,7 +151,6 @@ export default function PostView() {
                     deleteComment={deleteComment}
                   />
                 ))}
-
                 <CommentPagination
                   pageInfo={{
                     page: currentPage,
