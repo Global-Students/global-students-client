@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw';
 import board from './board.json';
 import searchPop from './searchPop.json';
-import boardInfo from './boardInfo.json';
+// import boardInfo from './boardInfo.json';
 import totalSearch from './totalSearch.json';
 import univSearch from './univSearch.json';
 
@@ -39,7 +39,9 @@ import univSearch from './univSearch.json';
 //   );
 
 const handlers = [
-  http.get(`/boards/{board_id}`, () => HttpResponse.json(board)),
+  http.get(`/boards/${localStorage.getItem('currentBoardId')}`, () =>
+    HttpResponse.json(board),
+  ),
   http.post(
     `/auth/login`,
     () =>
@@ -419,7 +421,21 @@ const handlers = [
     }
   }),
   http.get(`/search/popular-post`, () => HttpResponse.json(searchPop)),
-  http.get(`/board-information`, () => HttpResponse.json(boardInfo)),
+  http.get(`/board-information`, () =>
+    HttpResponse.json({
+      isSuccess: true,
+      code: 'COMMON200',
+      message: '성공입니다',
+      result: {
+        boardId_1: 1,
+        boardName_1: 'Hanyang Univ All Students',
+        boardId_2: 3,
+        boardName_2: 'Hanyang Univ South Korean Students',
+        boardId_3: 5,
+        boardName_3: 'South Korea All Students',
+      },
+    }),
+  ),
   http.get(`/search/total`, () => HttpResponse.json(totalSearch)),
   http.get(`/search/university`, () => HttpResponse.json(univSearch)),
 ];
