@@ -31,7 +31,7 @@ export default function PostView() {
     };
 
     fetchPost();
-  }, [boardId, postId]);
+  }, [boardId, postId, comments]);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
