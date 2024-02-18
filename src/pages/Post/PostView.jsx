@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import PostHeader from '../../components/PostHeader';
 import MoreButton from '../../components/Button/MoreButton';
 import Comment from '../../components/Comment';
@@ -7,13 +8,13 @@ import WriteComment from '../../components/WriteComment';
 import MoreDropdown from '../../components/MoreDropdown';
 import CommentPagination from '../../components/CommentPagination';
 
-
-export default function PostView({ boardId, postId }) {
+export default function PostView() {
   
   const [post, setPost] = useState(true);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [comments, setComments] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const { boardId, postId } = useParams();
   
   useEffect(() => {
     const fetchPost = async () => {
