@@ -23,13 +23,12 @@ export default function NoticeBoard({ bottom }) {
   const location = useLocation();
   const baseUrl = location.toString();
 
+  const baseurl = `/boards/${currentBoard}`;
   const getBoard = async () => {
     const queryParams = {
       sort: currentSort,
       page: currentPage,
     };
-
-    const baseurl = `/boards/${localStorage.getItem('currentBoardId')}`;
 
     try {
       const res = await authAxios({
