@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import DropDown1 from './Dropdown1';
 import CheckboxPost from '../../components/CheckboxPost';
 import OrangeButton from '../../components/Button/OrangeButton1';
 import WhiteButton from '../../components/Button/WhiteButton1';
+import { authAxios } from '../../axios/authAxios';
 
-export default function PostUpdate({ postId }) {
-  const [checkboxChecked, setCheckboxChecked] = useState(true);
+export default function PostUpdate({ postId='52' }) {
+  const [checkboxChecked, setCheckboxChecked] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploadedImageIds, setUploadedImageIds] = useState([]);
   const [uploadedImageUrl, setUploadedImageUrl] = useState(null);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [boardId, setBoardId] = useState('all');
+  const [boardId, setBoardId] = useState('1');
 
   useEffect(() => {
   
     const fetchPost = async () => {
       try {
-        const response = await axios.get(`/boards/post/${postId}`);
+        const response = await authAxios.get(`/boards/post/${postId}`);
         const { title: postTitle, content: postContent } = response.data;
         setTitle(postTitle);
         setContent(postContent);
@@ -44,7 +44,7 @@ export default function PostUpdate({ postId }) {
       const formData = new FormData();
       formData.append('image', selectedImage);
 
-      const response = await axios.post('/boards/post/upload-image', formData, {
+      const response = await authAxios.post('/boards/post/upload-image', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -70,7 +70,7 @@ export default function PostUpdate({ postId }) {
       };
 
     try {
-      const response = await axios.put(`/boards/post/write?id=${postId}`, updatedData);
+      const response = await authAxios.put(`/boards/post/write?id=${postId}`, updatedData);
       console.log(response.data);
       
     } catch (error) {
