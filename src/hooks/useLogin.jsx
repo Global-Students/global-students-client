@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authAxios, defaultAxios } from '../axios/authAxios';
 import API_PATH from '../constants/api';
+import { useBoardInfoContext } from '../contexts/BoardInfoContext';
 
 export default function useLogin() {
+  const setBoardInfo = useBoardInfoContext();
   const [loading, setLoading] = useState(false);
   const [loginData, setLoginData] = useState({ username: '', password: '' });
   const updateLoginFormData = (event) => {
@@ -23,6 +25,7 @@ export default function useLogin() {
 
       const getHeaderInfoResponse = await authAxios.get('/board-information');
       const boardInfo = getHeaderInfoResponse.data.result;
+      setBoardInfo(boardInfo);
       localStorage.setItem('boardId_1', boardInfo.boardId_1);
       localStorage.setItem('boardName_1', boardInfo.boardName_1);
       localStorage.setItem('boardId_2', boardInfo.boardId_2);
@@ -30,16 +33,6 @@ export default function useLogin() {
       localStorage.setItem('boardId_3', boardInfo.boardId_3);
       localStorage.setItem('boardName_3', boardInfo.boardName_3);
       localStorage.setItem('currentBoardId', boardInfo.boardId_1);
-      const currentBoardResponse = await authAxios.get(
-        `/boards/${boardInfo.boardId_1}`,
-        {
-          params: {
-            sort: 'latest',
-            page: 1,
-          },
-        },
-      );
-      localStorage.setItem('homeBoard', currentBoardResponse.data.result);
       navigate(nextPath);
     } catch (error) {
       const { message } = error.response.data;
