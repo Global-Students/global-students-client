@@ -376,31 +376,30 @@ const handlers = [
       status: 200,
 
       body: {
-        postId: '12345',
+        postId: '1',
         title,
         content,
         message: '게시물이 성공적으로 작성되었습니다.',
       },
     });
+    
   }),
-  http.get('/boards/post/:postId', async () => {
-    const postData = {
-      title: '수정된 제목',
-      content: '수정된 내용',
-    };
-    return HttpResponse.json(postData);
-  }),
-  http.put('/boards/post/write', async ({ request }) => {
-    const { title, content } = request.body;
-
+  
+  http.put('/boards/post/write/:postId', async ({ request, params }) => {
+    const { postId } = params;
+  
+    const { title, content } = await request.json();
+  
     const updatedData = {
-      postId: '11111',
+      postId,
       title,
       content,
       message: '게시물이 성공적으로 수정되었습니다.',
     };
+  
     return HttpResponse.json(updatedData);
   }),
+
   http.post('/boards/post/upload-image', async ({ request }) => {
     try {
       const formData = await request.formData();
