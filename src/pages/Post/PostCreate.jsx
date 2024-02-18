@@ -14,7 +14,7 @@ export default function PostCreate() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [uploadedImageUrl, setUploadedImageUrl] = useState('')
-  const [boardId, setBoardId] = useState('all');
+  const [boardId, setBoardId] = useState('1');
   
 
   const handleDropDownChange = (value) => {
