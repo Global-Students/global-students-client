@@ -6,7 +6,6 @@ import './locales/i18n';
 import worker from './mocks/browser';
 import Routes from './pages/Routes';
 import reportWebVitals from './reportWebVitals';
-import worker from './mocks/browser';
 
 if (process.env.NODE_ENV === 'development') {
   worker.start();

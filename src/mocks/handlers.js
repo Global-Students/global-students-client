@@ -39,7 +39,9 @@ import univSearch from './univSearch.json';
 //   );
 
 const handlers = [
-  http.get(`/boards/{board_id}`, () => HttpResponse.json(board)),
+  http.get(`/boards/${localStorage.getItem('currentBoardId')}`, () =>
+    HttpResponse.json(board),
+  ),
   http.post(
     `/auth/login`,
     () =>

@@ -64,7 +64,7 @@ export default function NoticeBoard({ bottom }) {
 
   useEffect(() => {
     getBoard();
-  }, []);
+  }, [localStorage.getItem('currentBoardId')]);
 
   return (
     <div className='flex flex-row h-[1824px] justify-center items-center'>

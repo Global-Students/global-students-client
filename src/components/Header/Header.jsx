@@ -14,16 +14,15 @@ export default function Header() {
   const [boardInfo, setBoardInfo] = useState({});
   const [currentBoardId, setCurrentBoardId] = useState();
 
-  const baseurl = '/board-information';
   const getHeaderInfo = async () => {
     try {
       const res = await authAxios({
         method: 'get',
-        url: baseurl,
+        url: '/board-information',
       });
       if (res.data.code === 'COMMON200') {
-        setBoardInfo(res.data.result);
         setIsLogin(true);
+        setBoardInfo(res.data.result);
         localStorage.setItem('boardId_1', boardInfo.boardId_1);
         localStorage.setItem('boardName_1', boardInfo.boardName_1);
         localStorage.setItem('boardId_2', boardInfo.boardId_2);
@@ -44,7 +43,6 @@ export default function Header() {
   const clickSetBoardInfo = () => {
     localStorage.setItem('currentBoardId', currentBoardId);
   };
-  // onClick이랑 isActive 둘다!
 
   useEffect(() => {
     if (pathname === '/') {
