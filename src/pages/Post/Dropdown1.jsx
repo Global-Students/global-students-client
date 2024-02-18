@@ -21,10 +21,14 @@ export default function DropDown1({ onDropDownChange }) {
 
   const listChangeHandler = (e, option) => {
     e.preventDefault();
-    if (sort !== option) {
-      setSort(option);
-      onDropDownChange(option);
+    let boardId = '1';
+    if (option === 'international') {
+      boardId = '3';
+    } else if (option === 'south-Korea') {
+      boardId = '5';
     }
+    setSort(option);
+    onDropDownChange(boardId);
     setIsClick(false); 
   };
 
@@ -63,7 +67,7 @@ export default function DropDown1({ onDropDownChange }) {
                 </td>
               </tr>
               <tr
-                onClick={(e) => listChangeHandler(e, 'south-Korea')}
+                onClick={(e) => listChangeHandler(e, 'south-korea')}
                 className='h-[7px] border-b border-gray-scale-7-main hover:bg-gray-scale-8'
               >
                 <td className='text-gray-scale-4 text-[18px] font-normal hover:text-gray-scale-2 px-[15px] py-[10px]'>
