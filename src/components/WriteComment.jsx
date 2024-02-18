@@ -2,7 +2,7 @@ import React,{ useState } from 'react'
 import { authAxios } from '../axios/authAxios';
 import OrangeButton from './Button/OrangeButton'
 
-export default function WriteComment({ addComment,postId,userNickname }) {
+export default function WriteComment({ addComment, postId, userNickname }) {
   const [value, setValue] = useState('');
   const maxLength = 1000;
 
