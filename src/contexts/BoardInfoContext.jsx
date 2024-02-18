@@ -2,7 +2,11 @@ import React, { createContext, useContext, useMemo, useState } from 'react';
 
 const BoardInfoContext = createContext();
 export function BoardInfoContextProvider({ children }) {
-  const [boardInfo, setBoardInfo] = useState();
+  const [boardInfo, setBoardInfo] = useState({
+    boardId_1: '1',
+    boardId_2: '2',
+    boardId_3: '3',
+  });
   const value = useMemo(
     () => ({
       boardInfo,
