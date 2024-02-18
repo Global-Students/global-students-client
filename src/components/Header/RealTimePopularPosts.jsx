@@ -34,7 +34,9 @@ export default function RealTimePopularPosts({ setSearchClick }) {
         {populars &&
           populars.map((post) => (
             <Link
-              to={`/board/${post.postId}`}
+              to={`/post-view/${localStorage.getItem('boardId_1')}/${
+                post.postId
+              }`}
               key={post.postId}
               onClick={() => setSearchClick((prev) => !prev)}
             >
