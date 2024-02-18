@@ -2,6 +2,8 @@ import { http, HttpResponse } from 'msw';
 import board from './board.json';
 import searchPop from './searchPop.json';
 import boardInfo from './boardInfo.json';
+import totalSearch from './totalSearch.json';
+import univSearch from './univSearch.json';
 
 const boardId = localStorage.getItem('boardId_1');
 
@@ -419,8 +421,12 @@ const handlers = [
       return HttpResponse.error();
     }
   }),
-  http.get(`/search/popular-post`, () => HttpResponse.json(searchPop)),
+  http.get(`/search/popular-post/${localStorage.getItem('boardId_1')}`, () =>
+    HttpResponse.json(searchPop),
+  ),
   http.get(`/board-information`, () => HttpResponse.json(boardInfo)),
+  http.get(`/search/total`, () => HttpResponse.json(totalSearch)),
+  http.get(`/search/university`, () => HttpResponse.json(univSearch)),
 ];
 
 export default handlers;

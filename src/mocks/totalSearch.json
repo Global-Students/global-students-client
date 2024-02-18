@@ -1,0 +1,34 @@
+{
+  "isSuccess": true,
+  "code": "CHAT201_1",
+  "message": "성공하였습니다",
+  "result": {
+    "q": "검색어",
+    "pageInfo": {
+      "page": 1,
+      "size": 10,
+      "totalPage": 3,
+      "totalPost": 25
+    },
+    "posts": [
+      {
+        "postId": "0",
+        "title": "게시글 제목(1)",
+        "comments": 2,
+        "author": "이윤주",
+        "likes": 1,
+        "views": 1,
+        "date": "2024-02-08 15:16:14"
+      },
+      {
+        "postId": "1",
+        "title": "게시글 제목(2)",
+        "comments": 3,
+        "author": "익명",
+        "likes": 1,
+        "views": 1,
+        "date": "2024-02-09 19:45:09"
+      }
+    ]
+  }
+}

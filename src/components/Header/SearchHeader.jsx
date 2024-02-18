@@ -23,7 +23,6 @@ export default function SearchHeader({ searchClick, setSearchClick }) {
                 height='h-[59px]'
                 pl='pl-[19px]'
                 pr='pr-[15px]'
-                placeholder='검색어를 입력해주세요'
                 setSearchClick={setSearchClick}
               />
               <button
@@ -37,7 +36,10 @@ export default function SearchHeader({ searchClick, setSearchClick }) {
           </div>
           <div className='flex flex-row justify-between items-end'>
             <FindSchool setSearchClick={setSearchClick} />
-            <RealTimePopularPosts setSearchClick={setSearchClick} />
+            <RealTimePopularPosts
+              searchClick={searchClick}
+              setSearchClick={setSearchClick}
+            />
           </div>
         </div>
       </div>

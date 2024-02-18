@@ -16,13 +16,16 @@ export default function PostList({ posts, total, boardId }) {
         <ul className='flex flex-col bg-gray-scale-9'>
           {posts &&
             posts.map((post) => (
-              <Link key={post.postId} to={`/${boardId}/posts/${post.postId}`}>
+              <Link
+                key={post.postId}
+                to={`/post-view/${boardId}/${post.postId}`}
+              >
                 <li className='flex w-[953px] h-[71px] justify-center items-center border-b border-gray-scale-7-main hover:bg-gray-scale-8'>
                   <div className='flex w-[892px] justify-between'>
                     <div className='flex w-[672px] items-center font-normal gap-x-[23px]'>
                       {total ? (
                         <p className='text-orange-main text-base font-normal'>
-                          [게시판명]
+                          [{post.boardName}]
                         </p>
                       ) : (
                         ''

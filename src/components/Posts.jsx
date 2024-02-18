@@ -12,6 +12,7 @@ export default function Posts({
   setCurrPage,
   setCurrSort,
   boardId,
+  bottom,
 }) {
   return (
     <div className='flex flex-col w-[953px]'>
@@ -32,13 +33,17 @@ export default function Posts({
       </div>
       <PostList posts={posts} baseurl={baseurl} boardId={boardId} />
       <div className='flex flex-col items-center'>
-        <Pagination pageInfo={pageInfo} setCurrPage={setCurrPage} />
+        <Pagination
+          baseurl={baseurl}
+          pageInfo={pageInfo}
+          setCurrPage={setCurrPage}
+        />
         <SearchInput
           width='w-[496px]'
           height='h-[50px]'
           px='px-[24px]'
-          placeholder='검색어를 입력해주세요'
           searchInBox
+          bottom={bottom}
         />
       </div>
     </div>

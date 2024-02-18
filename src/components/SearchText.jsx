@@ -8,9 +8,9 @@ export default function SearchText({ keyword }) {
         <div className='flex flex-row justify-between text-[26px] font-bold'>
           <img src='/assets/manage_search.svg' alt='검색 결과' />
           <p className='text-orange-1'>
-            &quot;<u>{keyword}</u>&quot;
+            &nbsp;&quot;<u>{keyword}</u>&quot;
           </p>
-          <p className=''>검색 결과입니다.</p>
+          <p className=''>&nbsp;검색 결과입니다.</p>
         </div>
         <TranslateButton />
       </div>
