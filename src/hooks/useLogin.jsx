@@ -34,10 +34,6 @@ export default function useLogin() {
     } catch (error) {
       const { message } = error.response.data;
       window.alert(message);
-      if (error.response.status === 400) {
-        return;
-      }
-      navigate(nextPath);
     } finally {
       setLoading(false);
     }
