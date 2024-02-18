@@ -9,7 +9,6 @@ import SearchInput from './Input/SearchInput';
 export default function Posts({
   pageInfo,
   posts,
-  baseurl,
   setCurrPage,
   setCurrSort,
   boardId,
@@ -36,13 +35,9 @@ export default function Posts({
           </div>
         </div>
       </div>
-      <PostList posts={posts} baseurl={baseurl} boardId={boardId} />
+      <PostList posts={posts} boardId={boardId} />
       <div className='flex flex-col items-center'>
-        <Pagination
-          baseurl={baseurl}
-          pageInfo={pageInfo}
-          setCurrPage={setCurrPage}
-        />
+        <Pagination pageInfo={pageInfo} setCurrPage={setCurrPage} />
         <SearchInput
           width='w-[496px]'
           height='h-[50px]'

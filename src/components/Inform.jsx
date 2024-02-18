@@ -10,7 +10,7 @@ export default function Inform({ notice }) {
           to={`/post-view/${localStorage.getItem('currentBoardId')}/${
             notice.postId
           }`}
-          className='text-gray-scale-4 text-lg font-normal'
+          className='flex items-center text-gray-scale-4 text-lg font-normal'
         >
           {notice.title}
         </Link>
