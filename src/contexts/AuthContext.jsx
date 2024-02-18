@@ -1,24 +1,44 @@
-import React, { createContext, useContext, useMemo, useState } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
 const AuthContext = createContext();
 
 export function AuthContextProvider({ children }) {
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(true);
   const [auth, setAuth] = useState({
-    token: localStorage.getItem('accessToken'),
-    expireAt: localStorage.getItem('expireAt'),
+    token: '',
+    expireAt: '',
+    isLogin: undefined,
   });
-
-  setLoading(true);
-  const { token, expireAt } = auth;
-  const expireTime = new Date(expireAt).getTime();
-  const currentTime = new Date().getTime();
-  const isLogin = token && expireTime > currentTime;
+  const { token, expireAt, isLogin } = auth;
   const value = useMemo(
     () => ({ token, expireAt, isLogin, loading, setAuth }),
     [token, expireAt],
   );
-  setLoading(false);
+  useEffect(() => {
+    const getAuth = () => {
+      setLoading(true);
+      setAuth((prev) => {
+        const newToken = localStorage.getItem('accessToken');
+        const newExpireAt = localStorage.getItem('expireAt');
+        const expireTime = new Date(newExpireAt).getTime();
+        const currentTime = new Date().getTime();
+        return {
+          ...prev,
+          token: newToken,
+          expireAt: newExpireAt,
+          isLogin: newToken && expireTime > currentTime,
+        };
+      });
+      setLoading(false);
+    };
+    getAuth();
+  }, []);
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
