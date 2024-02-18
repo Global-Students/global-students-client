@@ -4,7 +4,6 @@ import API_PATH from '../constants/api';
 /* const defaultConfigure = {
   baseURL: process.env.REACT_APP_API_SERVER_URL,
   timeout: 5000,
-  // withCredentials: true,
 };
 
 const authConfigure = {
@@ -30,7 +29,7 @@ authAxios.interceptors.request.use(
 
     return {
       ...config,
-      headers: { ...config.headers, authorization: accessToken },
+      headers: { ...config.headers, Authorization: accessToken },
     };
   },
   (error) => Promise.reject(error),
