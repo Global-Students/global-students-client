@@ -22,7 +22,7 @@ const defaultAxios = axios.create(defaultConfigure);
 const authAxios = axios.create(authConfigure);
 const accessToken = localStorage.getItem('accessToken') ?? '';
 
-authAxios.interceptors.request.use(
+  authAxios.interceptors.request.use(
   (config) => {
     if (config.headers.authorization) {
       return config;
@@ -30,7 +30,7 @@ authAxios.interceptors.request.use(
 
     return {
       ...config,
-      headers: { ...config.headers, authorization: accessToken },
+      headers: { ...config.headers, Authorization: accessToken },
     };
   },
   (error) => Promise.reject(error),
