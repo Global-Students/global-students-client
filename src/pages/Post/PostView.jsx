@@ -28,7 +28,7 @@ export default function PostView() {
     }
   };
   useEffect(() => {
-    fetchPost();
+    fetchPost(boardId, postId);
   }, [boardId, postId]);
 
   const toggleDropdown = () => {
