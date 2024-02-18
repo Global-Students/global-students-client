@@ -20,7 +20,7 @@ export default function PostUpdate() {
     const fetchPost = async () => {
       try {
         const response = await authAxios.get(`/boards/${boardId}/posts/${postId}`);
-        const { title: postTitle, content: postContent } = response.data;
+        const { title: postTitle, content: postContent } = response.data.result;
         setTitle(postTitle);
         setContent(postContent);
       } catch (error) {
