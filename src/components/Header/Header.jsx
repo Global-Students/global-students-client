@@ -109,9 +109,9 @@ export default function Header() {
     }
   }, [pathname, currentItem]);
 
-  // useEffect(() => {
-  //   getHeaderInfo();
-  // }, [currentBoardInfo, isLogin]);
+  useEffect(() => {
+    getHeaderInfo();
+  }, [currentBoardInfo, isLogin]);
 
   useEffect(() => {
     clickSetBoardInfo();
