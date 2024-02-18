@@ -349,7 +349,7 @@ const handlers = [
     // serverError,
     // temporaryServerError,
   ),
-  http.patch(
+  http.post(
     '/user/find-password/reset',
     () =>
       HttpResponse.json({
@@ -384,21 +384,20 @@ const handlers = [
         message: '게시물이 성공적으로 작성되었습니다.',
       },
     });
-    
   }),
-  
+
   http.put('/boards/post/write/:postId', async ({ request, params }) => {
     const { postId } = params;
-  
+
     const { title, content } = await request.json();
-  
+
     const updatedData = {
       postId,
       title,
       content,
       message: '게시물이 성공적으로 수정되었습니다.',
     };
-  
+
     return HttpResponse.json(updatedData);
   }),
 
