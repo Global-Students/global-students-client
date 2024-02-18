@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Inform from '../components/Inform';
@@ -6,14 +5,15 @@ import InformText from '../components/InformText';
 import PopularList from '../components/PopularList';
 import Posts from '../components/Posts';
 import UserInfoControl from '../components/UserInfoControl';
+import { authAxios } from '../axios/authAxios';
 
 export default function NoticeBoard({ bottom }) {
   const [noticeBoardInfo, setNoticeBoardInfo] = useState({
     boardInfo: {},
     pageInfo: {},
     noticePost: {},
-    popular: {},
-    posts: {},
+    popular: [],
+    posts: [],
   });
 
   const [currentPage, setCurrPage] = useState(1);
@@ -30,7 +30,7 @@ export default function NoticeBoard({ bottom }) {
 
     const baseurl = `/boards/${localStorage.getItem('currentBoardId')}`;
     try {
-      const res = await axios({
+      const res = await authAxios({
         method: 'get',
         url: baseurl,
         params: { ...queryParams },
