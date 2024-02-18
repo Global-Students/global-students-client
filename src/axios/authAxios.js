@@ -12,6 +12,7 @@ const authConfigure = {
   withCredentials: true,
 };
 */
+
 const MockConfigure = {
   timeout: 1000,
   withCredentials: true,
