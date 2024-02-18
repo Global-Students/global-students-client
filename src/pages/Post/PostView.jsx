@@ -7,6 +7,7 @@ import CommentPagination from '../../components/CommentPagination';
 import MoreDropdown from '../../components/MoreDropdown';
 import PostHeader from '../../components/PostHeader';
 import WriteComment from '../../components/WriteComment';
+import NoticeBoard from '../NoticeBoard';
 
 export default function PostView() {
   const [post, setPost] = useState(true);
@@ -163,7 +164,7 @@ export default function PostView() {
           </div>
         </div>
       )}
-      {/* <NoticeBoard bottom/> */}
+      <NoticeBoard bottom />
     </div>
   );
 }
