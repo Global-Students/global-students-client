@@ -5,7 +5,8 @@ import OrangeButton from '../../components/Button/OrangeButton1';
 import WhiteButton from '../../components/Button/WhiteButton1';
 import { authAxios } from '../../axios/authAxios';
 
-export default function PostUpdate({ postId='52' }) {
+export default function PostUpdate() {
+  const postId = 52; 
   const [checkboxChecked, setCheckboxChecked] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploadedImageIds, setUploadedImageIds] = useState([]);
