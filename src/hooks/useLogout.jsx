@@ -10,7 +10,7 @@ export default function useLogout() {
       .then(() => {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('expireAt');
-        navigate('/board/all');
+        navigate('/');
       })
       .catch((error) => {
         const { message } = error.response.data;

@@ -1,16 +1,33 @@
+import axios from 'axios';
 import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
-import { useAuthContext } from '../contexts/AuthContext';
+import { Outlet } from 'react-router-dom';
+import { API_PATH } from '../constants';
 
 export default function ProtectedRoute() {
-  const { loading, isLogin } = useAuthContext();
+  const token = localStorage.getItem('accessToken');
+  const expireAt = localStorage.getItem('expireAt');
+  const expireTime = new Date(expireAt).getTime();
+  const currentTime = new Date().getTime();
+  const isLogin = token && expireTime > currentTime;
 
-  if (loading) return null;
+  const logout = () =>
+    axios
+      .post(API_PATH.logout, { headers: { Authorization: token } }) //
+      .then(() => {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('expireAt');
+      })
+      .catch((error) => {
+        const { message } = error.response.data;
+        alert(message);
+      });
+
   if (!isLogin) {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('expireAt');
-    alert('로그인이 필요합니다.');
+    logout().then(() => {
+      alert('로그인이 필요합니다.');
+      window.location.replace('/');
+    });
   }
 
-  return isLogin ? <Outlet /> : <Navigate to='/' replace />;
+  return <Outlet />;
 }
