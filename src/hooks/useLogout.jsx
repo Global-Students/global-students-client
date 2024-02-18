@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import authAxios from '../axios/authAxios';
+import { authAxios } from '../axios/authAxios';
 import API_PATH from '../constants/api';
 
 export default function useLogout() {
@@ -10,7 +10,7 @@ export default function useLogout() {
       .then(() => {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('expireAt');
-        navigate('/board/all');
+        navigate('/');
       })
       .catch((error) => {
         const { message } = error.response.data;

@@ -1,6 +1,6 @@
 import { React, useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import authAxios from '../../axios/authAxios';
+import { authAxios } from '../../axios/authAxios';
 import LoginControl from '../LoginControl';
 import SearchHeader from './SearchHeader';
 

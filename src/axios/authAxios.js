@@ -1,18 +1,25 @@
 import axios from 'axios';
 import API_PATH from '../constants/api';
 
-// const AxiosConfigure = {
-//   baseURL: process.env.API_SERVER_URL,
+const defaultConfigure = {
+  baseURL: process.env.REACT_APP_API_SERVER_URL,
+  timeout: 5000,
+  // withCredentials: true,
+};
+
+const authConfigure = {
+  baseURL: process.env.REACT_APP_API_SERVER_URL,
+  timeout: 5000,
+  withCredentials: true,
+};
+
+// const MockConfigure = {
 //   timeout: 1000,
 //   withCredentials: true,
 // };
 
-const MockConfigure = {
-  timeout: 1000,
-  withCredentials: true,
-};
-
-const authAxios = axios.create(MockConfigure);
+const defaultAxios = axios.create(defaultConfigure);
+const authAxios = axios.create(authConfigure);
 const accessToken = localStorage.getItem('accessToken') ?? '';
 
 authAxios.interceptors.request.use(
@@ -63,4 +70,4 @@ authAxios.interceptors.response.use(
   },
 );
 
-export default authAxios;
+export { authAxios, defaultAxios };
