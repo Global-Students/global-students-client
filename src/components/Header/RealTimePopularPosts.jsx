@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export default function RealTimePopularPosts({ setSearchClick }) {
   const [populars, setPopulars] = useState([]);
-  const baseurl = `/search/popular-post`;
+  const baseurl = `/search/popular-post/`;
 
   const getPopularPosts = async () => {
     try {

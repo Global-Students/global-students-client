@@ -3,7 +3,12 @@ import axios from 'axios';
 
 export default function useSearchList({ boardId, boardName }) {
   const [keyword, setKeyword] = useState('');
-  const [pageInfo, setPageInfo] = useState({});
+  const [pageInfo, setPageInfo] = useState({
+    page: 1,
+    size: 10,
+    totalPage: 10,
+    totalPost: 100,
+  });
   const [posts, setPosts] = useState([]);
 
   const [currPage, setCurrPage] = useState(1);
@@ -24,7 +29,12 @@ export default function useSearchList({ boardId, boardName }) {
       });
       if (res.data.code === 'CHAT201_1') {
         setKeyword(res.data.result.q);
-        setPageInfo(res.data.result.pageInfo);
+        setPageInfo({
+          page: res.data.result.page,
+          size: res.data.result.size,
+          totalPage: res.data.result.totalPage,
+          totalPost: res.data.result.totalPost,
+        });
         setPosts(res.data.result.posts);
       }
     } catch (error) {
