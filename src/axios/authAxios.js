@@ -4,7 +4,6 @@ import API_PATH from '../constants/api';
 const defaultConfigure = {
   baseURL: process.env.REACT_APP_API_SERVER_URL,
   timeout: 5000,
-  // withCredentials: true,
 };
 
 const authConfigure = {
@@ -22,7 +21,7 @@ const defaultAxios = axios.create(defaultConfigure);
 const authAxios = axios.create(authConfigure);
 const accessToken = localStorage.getItem('accessToken') ?? '';
 
-  authAxios.interceptors.request.use(
+authAxios.interceptors.request.use(
   (config) => {
     if (config.headers.authorization) {
       return config;
