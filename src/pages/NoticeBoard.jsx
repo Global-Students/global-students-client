@@ -8,11 +8,13 @@ import Posts from '../components/Posts';
 import UserInfoControl from '../components/UserInfoControl';
 
 export default function NoticeBoard({ bottom }) {
-  const [boardInfo, setBoardInfo] = useState({});
-  const [pageInfo, setPageInfo] = useState({});
-  const [notice, setNotice] = useState({});
-  const [populars, setPopulars] = useState([]);
-  const [posts, setPosts] = useState([]);
+  const [noticeBoardInfo] = useState({
+    boardInfo: {},
+    pageInfo: {},
+    noticePost: {},
+    popular: {},
+    posts: {},
+  });
 
   const [currentPage, setCurrPage] = useState(1);
   const [currentSort, setCurrSort] = useState('latest');
@@ -36,11 +38,7 @@ export default function NoticeBoard({ bottom }) {
         url: requrl,
       });
       if (res.data.code === 'COMMON200') {
-        setBoardInfo(res.data.result.boardInfo);
-        setPageInfo(res.data.result.pageInfo);
-        setNotice(res.data.result.noticePost);
-        setPopulars(res.data.result.popular);
-        setPosts(res.data.result.posts);
+        noticeBoardInfo(res.data.result);
       }
     } catch (error) {
       console.log(error);
@@ -72,27 +70,33 @@ export default function NoticeBoard({ bottom }) {
         {bottom ? <div className='w-[302px]' /> : <UserInfoControl />}
         <div className='flex flex-col w-[953px] items-center'>
           {bottom ? (
-            <InformText school={boardInfo.boardName} text={boardInfo.detail} />
+            <InformText
+              school={noticeBoardInfo.boardInfo.boardName}
+              text={noticeBoardInfo.boardInfo.detail}
+            />
           ) : (
             <>
               <InformText
                 mb
                 translate
-                school={boardInfo.boardName}
-                text={boardInfo.detail}
+                school={noticeBoardInfo.boardInfo.boardName}
+                text={noticeBoardInfo.boardInfo.detail}
               />
-              <Inform baseurl={baseUrl} notice={notice} />
+              <Inform baseurl={baseUrl} notice={noticeBoardInfo.notice} />
             </>
           )}
           <div className='flex flex-col items-center'>
             {bottom ? (
               ''
             ) : (
-              <PopularList baseurl={baseUrl} populars={populars} />
+              <PopularList
+                baseurl={baseUrl}
+                populars={noticeBoardInfo.populars}
+              />
             )}
             <Posts
-              posts={posts}
-              pageInfo={pageInfo}
+              posts={noticeBoardInfo.posts}
+              pageInfo={noticeBoardInfo.pageInfo}
               setCurrPage={setCurrPage}
               setCurrSort={setCurrSort}
               boardId={localStorage.getItem('currentBoardId')}
