@@ -39,7 +39,7 @@ export default function useLogin() {
           },
         },
       );
-      localStorage.setItem('homeBoard', currentBoardResponse);
+      localStorage.setItem('homeBoard', currentBoardResponse.data.result);
       navigate(nextPath);
     } catch (error) {
       const { message } = error.response.data;
