@@ -44,7 +44,7 @@ export default function Comment({ comment, deleteComment }) {
               className='w-[20px] h-[18.14px]'
             />
             <p className='font-normal text-[#808593] text-[14px] leading-[20px] tracking-[0.02em]'>
-              00
+              {comment.likes}
             </p>
           </div>
         </div>
