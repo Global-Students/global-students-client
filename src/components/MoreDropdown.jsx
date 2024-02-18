@@ -1,21 +1,18 @@
 import React from 'react'
-import { Link,useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { authAxios } from '../axios/authAxios';
 
 
 
-export default function MoreDropdown() {
+export default function MoreDropdown({boardId,postId }) {
 
-  const { boardId, postId } = useParams();
 
   const handleDeletePost = async () => {
-
     try {
       const response = await authAxios.post('/boards/post/delete', {
-        boardId,
         postId,
       });
-      console.log(response.data);
+      console.log(response);
       alert('삭제되었습니다')
     } catch (error) {
       console.error('Error deleting post:', error);
