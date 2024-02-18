@@ -23,7 +23,7 @@ export default function PostView() {
           `/boards/${boardId}/posts/${postId}`,
         );
         setPost(response.data);
-        setComments(response.data.comments);
+        setComments(response.data.commment);
       } catch (error) {
         console.error('Error fetching post:', error);
       }
