@@ -5,8 +5,6 @@ import boardInfo from './boardInfo.json';
 import totalSearch from './totalSearch.json';
 import univSearch from './univSearch.json';
 
-const boardId = localStorage.getItem('boardId_1');
-
 // const deniedAccess = () =>
 //   HttpResponse.json(
 //     {
@@ -41,7 +39,7 @@ const boardId = localStorage.getItem('boardId_1');
 //   );
 
 const handlers = [
-  http.get(`/boards/${boardId}`, () => HttpResponse.json(board)),
+  http.get(`/boards/{board_id}`, () => HttpResponse.json(board)),
   http.post(
     `/auth/login`,
     () =>

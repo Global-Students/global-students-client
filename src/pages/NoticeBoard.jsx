@@ -29,6 +29,7 @@ export default function NoticeBoard({ bottom }) {
     const baseurl = `/boards/${localStorage.getItem('currentBoardId')}`;
     const queryStr = new URLSearchParams(params).toString();
     const requrl = `${baseurl}/?${queryStr}`;
+
     try {
       const res = await axios({
         method: 'get',

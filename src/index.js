@@ -5,10 +5,11 @@ import './index.css';
 import './locales/i18n';
 import Routes from './pages/Routes';
 import reportWebVitals from './reportWebVitals';
+import worker from './mocks/browser';
 
-// if (process.env.NODE_ENV === 'development') {
-//   worker.start();
-// }
+if (process.env.NODE_ENV === 'development') {
+  worker.start();
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

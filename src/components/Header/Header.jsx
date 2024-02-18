@@ -14,14 +14,12 @@ export default function Header() {
   const [boardInfo, setBoardInfo] = useState({});
   const [currentBoardId, setCurrentBoardId] = useState();
 
-  const baseurl = `/board-information`;
-
+  const baseurl = '/board-information';
   const getHeaderInfo = async () => {
-    const requrl = `${baseurl}`;
     try {
       const res = await authAxios({
         method: 'get',
-        url: requrl,
+        url: baseurl,
       });
       if (res.data.code === 'COMMON200') {
         setBoardInfo(res.data.result);
@@ -96,7 +94,7 @@ export default function Header() {
 
   useEffect(() => {
     getHeaderInfo();
-  }, [currentBoardId]);
+  }, []);
 
   useEffect(() => {
     clickSetBoardInfo();
