@@ -1,0 +1,21 @@
+{
+  "isSuccess": true,
+  "code": "CHAT201_1",
+  "message": "성공하였습니다",
+  "result": {
+    "q": "한양",
+    "counts": 2,
+    "searchResults": [
+      {
+        "uinvId": "0",
+        "univName": "한양대학교",
+        "univBoardId": "3"
+      },
+      {
+        "uinvId": "1",
+        "univeName": "한양여자대학교",
+        "univBoardId": "4"
+      }
+    ]
+  }
+}

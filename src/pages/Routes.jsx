@@ -54,7 +54,7 @@ const router = createBrowserRouter([
         element: <Search />,
         children: [
           {
-            path: '/search/:keyword/:board-name',
+            path: '/search/total/*',
             element: <SearchDetailListPage />,
           },
         ],

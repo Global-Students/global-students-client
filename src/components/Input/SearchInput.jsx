@@ -10,13 +10,25 @@ export default function SearchInput({
   placeholder,
   searchInBox,
   setSearchClick,
+  setIsFindSchool,
 }) {
-  const [search, setSearch] = useState('');
-  const handleChange = (event) => setSearch(event.target.value);
+  const [keyword, setKeyword] = useState('');
+  const handleChange = (event) => {
+    setKeyword(event.target.value);
+  };
   const navigate = useNavigate();
   const clickSearchButton = () => {
+    if (placeholder === '학교명을 입력해주세요') {
+      setIsFindSchool((prev) => !prev);
+      return;
+    }
     setSearchClick((prev) => !prev);
-    navigate(`/search/${search}/전체`);
+    localStorage.setItem('q', keyword);
+    navigate(
+      `/search/total/?boardId=${localStorage.getItem(
+        'currentBoardId',
+      )}&q=${localStorage.getItem('q')}`,
+    );
   };
   const defaultStyle = `flex rounded-[30px] bg-gray-scale-8`;
   const searchBoxStyle = `flex-1 w-full h-full bg-gray-scale-8 text-[16px] text-gray-scale-4 text-base font-normal placeholder:text-gray-scale-4 font-normal leading outline-none`;
@@ -31,9 +43,9 @@ export default function SearchInput({
         <input
           className={searchBoxStyle}
           type='search'
-          value={search}
+          value={keyword}
           onChange={handleChange}
-          placeholder={placeholder}
+          placeholder={placeholder ? `${placeholder}` : '검색어를 입력해주세요'}
         />
         <button type='button' onClick={clickSearchButton}>
           <img

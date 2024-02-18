@@ -18,16 +18,14 @@ export default function NoticeBoard() {
 
   const boardId = localStorage.getItem('currentBoardId');
   const baseurl = `/boards/${boardId}`;
+  const params = {
+    sort: currentSort,
+    page: currentPage,
+  };
 
+  const queryStr = new URLSearchParams(params).toString();
+  const requrl = `${baseurl}/?${queryStr}`;
   const getBoard = async () => {
-    const params = {
-      sort: currentSort,
-      page: currentPage,
-    };
-
-    const queryStr = new URLSearchParams(params).toString();
-    const requrl = `${baseurl}/?${queryStr}`;
-
     try {
       const res = await axios({
         method: 'get',
@@ -84,6 +82,7 @@ export default function NoticeBoard() {
               setCurrPage={setCurrPage}
               setCurrSort={setCurrSort}
               boardId={boardId}
+              requrl={requrl}
             />
           </div>
         </div>
