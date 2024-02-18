@@ -8,7 +8,7 @@ import { authAxios } from '../../axios/authAxios';
 
 
 export default function PostCreate() {
-  const [checkboxChecked, setCheckboxChecked] = useState(true);
+  const [checkboxChecked, setCheckboxChecked] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploadedImageIds, setUploadedImageIds] = useState([]);
   const [title, setTitle] = useState('');
