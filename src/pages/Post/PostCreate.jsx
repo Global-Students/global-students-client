@@ -7,18 +7,22 @@ import WhiteButton from '../../components/Button/WhiteButton1'
 
 
 
-export default function PostCRUD() {
+export default function PostCreate() {
   const [checkboxChecked, setCheckboxChecked] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploadedImageIds, setUploadedImageIds] = useState([]);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [uploadedImageUrl, setUploadedImageUrl] = useState('');
-  
+  const [uploadedImageUrl, setUploadedImageUrl] = useState('')
+  const [boardId, setBoardId] = useState('all');
   
 
+  const handleDropDownChange = (value) => {
+    setBoardId(value);
+  }
+
   const handleImageChange = (event) => {
-    const file = event.target.files[0]; // 선택된 파일 가져오기
+    const file = event.target.files[0]; 
     setSelectedImage(file);
   };
 
@@ -45,7 +49,7 @@ export default function PostCRUD() {
 
   const handleSubmit = async () => {
     const postData = {
-      boardId: '게시판 ID',
+      boardId,
       title,
       content,
       isAnonymous: checkboxChecked,
@@ -56,10 +60,10 @@ export default function PostCRUD() {
     try {
       const response = await axios.post('/boards/post/write', postData);
       console.log(response.data);
-      // Reset form after successful submission
+      
       setTitle('');
       setContent('');
-      setCheckboxChecked(true);
+      setCheckboxChecked(false);
       setUploadedImageIds([]);
     } catch (error) {
       console.error('Error submitting post:', error);
@@ -74,7 +78,7 @@ export default function PostCRUD() {
 
           <div className='flex flex-row w-[864px] h-[50px] items-center justify-between'>
             <p className='pr-[18px] text-[20px]'>게시판</p>
-            <DropDown1 />
+            <DropDown1 onDropDownChange={handleDropDownChange} />
             <div className="ml-[15px] justify-start z-[10]">
             <CheckboxPost
             text="익명"
@@ -93,7 +97,7 @@ export default function PostCRUD() {
                   placeholder='제목을 입력해주세요.' 
                   className='placeholder-gray-scale-3 text-gray-scale-3 leading-[20px] tracking-[0.02em] text-[18px] font-normal bg-gray-scale-8 px-[25px] focus:outline-none'
                   value={title}
-                  onChange={(e) => setTitle(e.target.value)} // 제목 입력 시 상태 업데이트
+                  onChange={(e) => setTitle(e.target.value)}
                 />
           </div>
         </div>
@@ -104,7 +108,7 @@ export default function PostCRUD() {
               placeholder='내용을 입력해 주세요.' 
               className='w-[864px] h-[340px] text-left align-top placeholder-gray-scale-5 focus:outline-none resize-none'
               value={content}
-              onChange={(e) => setContent(e.target.value)} // 내용 입력 시 상태 업데이트
+              onChange={(e) => setContent(e.target.value)} 
             />
         </div>
 
@@ -136,7 +140,6 @@ export default function PostCRUD() {
       <OrangeButton text='등록' textSize={18} py={8} width={148} height={50} onClick={handleSubmit} />
       </div>
     </div>
-
   </div>
   
   )
