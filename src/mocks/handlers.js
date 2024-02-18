@@ -421,13 +421,7 @@ const handlers = [
     }
   }),
   http.get(`/search/popular-post`, () => HttpResponse.json(searchPop)),
-  http.get(`/board-information`, () =>
-    HttpResponse.json(boardInfo, {
-      headers: {
-        'Access-Control-Allow-Credentials': true,
-      },
-    }),
-  ),
+  http.get(`/board-information`, () => HttpResponse.json(boardInfo)),
   http.get(`/search/total`, () => HttpResponse.json(totalSearch)),
   http.get(`/search/university`, () => HttpResponse.json(univSearch)),
 ];
