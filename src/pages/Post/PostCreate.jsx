@@ -14,6 +14,8 @@ export default function PostCreate() {
   const [uploadedImageUrl, setUploadedImageUrl] = useState('');
   const [boardId, setBoardId] = useState(localStorage.getItem('boardId_1'));
 
+  console.log(boardId);
+
   const handleDropDownChange = (value) => {
     setBoardId(value);
   };
