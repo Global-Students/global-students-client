@@ -22,7 +22,11 @@ import {
 } from '../../constants/belongTo';
 import { useSignUpContext } from '../../contexts/SignUpContext';
 import useSignUp from '../../hooks/useSignUp';
-import { checkUserIdPattern } from '../../utils/checkPattern';
+import {
+  checkPasswordPattern,
+  checkPasswordReEnter,
+  checkUserIdPattern,
+} from '../../utils/checkPattern';
 
 export default function SignUpInfo({ moveStep }) {
   const {
@@ -54,21 +58,20 @@ export default function SignUpInfo({ moveStep }) {
     updateConfirmPasswordMessage,
   } = useSignUp();
 
-  // const isPassed =
-  //   isUniqued.userId &&
-  //   isUniqued.nickname &&
-  //   checkPasswordPattern(password) &&
-  //   checkPasswordReEnter(password, confirmPassword) &&
-  //   firstName &&
-  //   lastName &&
-  //   birthYear &&
-  //   birthMonth &&
-  //   birthDate &&
-  //   nationality &&
-  //   homeUniversity &&
-  //   hostCountry &&
-  //   hostUniversity;
-  const isPassed = true;
+  const isPassed =
+    isUniqued.userId &&
+    isUniqued.nickname &&
+    checkPasswordPattern(password) &&
+    checkPasswordReEnter(password, confirmPassword) &&
+    firstName &&
+    lastName &&
+    birthYear &&
+    birthMonth &&
+    birthDate &&
+    nationality &&
+    homeUniversity &&
+    hostCountry &&
+    hostUniversity;
 
   return (
     <section className='flex flex-col items-center mt-[94px]'>
