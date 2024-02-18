@@ -8,7 +8,7 @@ import Posts from '../components/Posts';
 import UserInfoControl from '../components/UserInfoControl';
 
 export default function NoticeBoard({ bottom }) {
-  const [noticeBoardInfo] = useState({
+  const [noticeBoardInfo, setNoticeBoardInfo] = useState({
     boardInfo: {},
     pageInfo: {},
     noticePost: {},
@@ -38,7 +38,7 @@ export default function NoticeBoard({ bottom }) {
         url: requrl,
       });
       if (res.data.code === 'COMMON200') {
-        noticeBoardInfo(res.data.result);
+        setNoticeBoardInfo(res.data.result);
       }
     } catch (error) {
       console.log(error);
