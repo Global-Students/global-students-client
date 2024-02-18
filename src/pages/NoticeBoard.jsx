@@ -6,16 +6,16 @@ import InformText from '../components/InformText';
 import PopularList from '../components/PopularList';
 import Posts from '../components/Posts';
 import UserInfoControl from '../components/UserInfoControl';
+import { useBoardInfoContext } from '../contexts/BoardInfoContext';
 
 export default function NoticeBoard({ bottom }) {
+  const { boardInfo } = useBoardInfoContext();
   const [noticeBoardInfo, setNoticeBoardInfo] = useState(
     localStorage.getItem('homeBoard'),
   );
-  console.log(noticeBoardInfo);
+  console.log(boardInfo);
 
-  const [currentBoard, setCurrentBoard] = useState(
-    `${localStorage.getItem('currentBoardId')}`,
-  );
+  const [currentBoard] = useState(boardInfo.boardId_1);
   const [currentPage, setCurrPage] = useState(1);
   const [currentSort, setCurrSort] = useState('latest');
 
@@ -23,8 +23,7 @@ export default function NoticeBoard({ bottom }) {
   const baseUrl = location.toString();
 
   const getBoard = async () => {
-    setCurrentBoard(localStorage.getItem('currentBoardId'));
-    const baseurl = `/boards/${localStorage.getItem('currentBoardId')}`;
+    const baseurl = `/boards/${currentBoard}}`;
     const queryParams = {
       sort: currentSort,
       page: currentPage,
