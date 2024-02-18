@@ -9,7 +9,6 @@ export default function Header() {
   const [currentItem, setCurrentItem] = useState(0);
   const [searchClick, setSearchClick] = useState(false);
   const [currentBoardId, setCurrentBoardId] = useState();
-
   function handleToggle() {
     setSearchClick((prev) => !prev);
   }
@@ -75,7 +74,7 @@ export default function Header() {
         <div className='flex w-[1280px] h-[130px] justify-center items-center border-b border-gray-scale-8'>
           <div className='flex flex-row w-[1280px] h-[76px] py-[27px] justify-between items-center'>
             <div className='flex w-[216px] h-[61px]'>
-              <Link to='/'>
+              <Link to={`/boards/${localStorage.getItem('boardId_1')}`}>
                 <img src='/assets/logoHeader.svg' alt='logo' />
               </Link>
             </div>
