@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import axios from 'axios'
 import DropDown1 from './Dropdown1'
 import CheckboxPost from '../../components/CheckboxPost'
 import OrangeButton from '../../components/Button/OrangeButton1'
 import WhiteButton from '../../components/Button/WhiteButton1'
+import { authAxios } from '../../axios/authAxios';
 
 
 
@@ -31,12 +31,12 @@ export default function PostCreate() {
       const formData = new FormData();
       formData.append('image', selectedImage);
 
-      const response = await axios.post('/boards/post/upload-image', formData, {
+      const response = await authAxios.post('/boards/post/upload-image', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       });
-      console.log(response.data)
+      console.log(response)
 
       const { imageId, imageUrl } = response.data;
       setUploadedImageIds([...uploadedImageIds, imageId]);
@@ -58,7 +58,7 @@ export default function PostCreate() {
     
 
     try {
-      const response = await axios.post('/boards/post/write', postData);
+      const response = await authAxios.post('/boards/post/write', postData);
       console.log(response.data);
       
       setTitle('');
