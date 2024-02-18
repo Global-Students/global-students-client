@@ -3,32 +3,38 @@ import axios from 'axios';
 
 export default function useSearchList({ boardId, boardName }) {
   const [keyword, setKeyword] = useState('');
-  const [pageInfo, setPageInfo] = useState({});
+  const [pageInfo, setPageInfo] = useState({
+    page: 1,
+    size: 10,
+    totalPage: 10,
+    totalPost: 100,
+  });
   const [posts, setPosts] = useState([]);
 
   const [currPage, setCurrPage] = useState(1);
-  const currentBoard = boardId;
-  const baseurl = `/search/total`;
   const q = localStorage.getItem('q');
 
   const params = {
-    boardId: currentBoard,
+    boardId: { boardId },
     q: localStorage.getItem('q'),
     page: currPage,
   };
 
-  const queryStr = new URLSearchParams(params).toString();
-  const requrl = `${baseurl}/?${queryStr}`;
   const getSearch = async () => {
     try {
       const res = await axios({
         method: 'get',
-        url: requrl,
+        url: `/search/total`,
+        params: { params },
       });
       if (res.data.code === 'CHAT201_1') {
-        console.log(res.data.code);
         setKeyword(res.data.result.q);
-        setPageInfo(res.data.result.pageInfo);
+        setPageInfo({
+          page: res.data.result.page,
+          size: res.data.result.size,
+          totalPage: res.data.result.totalPage,
+          totalPost: res.data.result.totalPost,
+        });
         setPosts(res.data.result.posts);
       }
     } catch (error) {
@@ -43,6 +49,7 @@ export default function useSearchList({ boardId, boardName }) {
   return {
     boardName,
     boardId,
+    currPage,
     setCurrPage,
     keyword,
     pageInfo,

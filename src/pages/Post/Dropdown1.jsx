@@ -1,35 +1,36 @@
 import React, { useState } from 'react';
 
 export default function DropDown1({ onDropDownChange }) {
-  const [isClick, setIsClick] = useState(false); 
-
+  const [isClick, setIsClick] = useState(false);
   const [sort, setSort] = useState('all');
+  const boardId1 = localStorage.getItem('boardId_1');
+  const boardId2 = localStorage.getItem('boardId_2');
+  const boardId3 = localStorage.getItem('boardId_3');
+  const boardName1 = localStorage.getItem('boardName_1');
+  const boardName2 = localStorage.getItem('boardName_2');
+  const boardName3 = localStorage.getItem('boardName_3');
   let dropdownButtonText;
   const arrowIcon = isClick ? 'arrowNew.svg' : 'arrowBack.svg';
 
   if (sort === 'all') {
-    dropdownButtonText = 'Hanyang Uni All Students';
+    dropdownButtonText = boardName1;
   } else if (sort === 'international') {
-    dropdownButtonText = 'Hanyang Uni Korean Students';
+    dropdownButtonText = boardName2;
   } else {
-    dropdownButtonText = 'South Korea All Students';
+    dropdownButtonText = boardName3;
   }
 
   function handleToggle() {
-    setIsClick(!isClick); 
+    setIsClick(!isClick);
   }
 
-  const listChangeHandler = (e, option) => {
+  const listChangeHandler = (e, option, boardId) => {
     e.preventDefault();
-    let boardId = '1';
-    if (option === 'international') {
-      boardId = '3';
-    } else if (option === 'south-Korea') {
-      boardId = '5';
+    if (sort !== option) {
+      setSort(option);
     }
-    setSort(option);
+    setIsClick(false);
     onDropDownChange(boardId);
-    setIsClick(false); 
   };
 
   return (
@@ -51,27 +52,27 @@ export default function DropDown1({ onDropDownChange }) {
           <table className='w-[698px] table-fixed border-spacing-0 rounded-b-[14px] border border-gray-scale-6 bg-gray-scale-9 hover:overflow-hidden hover:cursor-pointer px-[15px]'>
             <tbody>
               <tr
-                onClick={(e) => listChangeHandler(e, 'all')}
+                onClick={(e) => listChangeHandler(e, 'all', boardId1)}
                 className='h-[7px] border-b border-gray-scale-7-main hover:bg-gray-scale-8'
               >
                 <td className='text-gray-scale-4 text-[18px] font-normal hover:text-gray-scale-2 px-[15px] py-[10px]'>
-                  Hanyang Uni All Students
+                  {boardName1}
                 </td>
               </tr>
               <tr
-                onClick={(e) => listChangeHandler(e, 'international')}
+                onClick={(e) => listChangeHandler(e, 'international', boardId2)}
                 className='h-[7px] border-b border-gray-scale-7-main hover:bg-gray-scale-8'
               >
                 <td className='text-gray-scale-4 text-[18px] font-normal hover:text-gray-scale-2 px-[15px] py-[10px]'>
-                  Hanyang Uni Korean Students
+                  {boardName2}
                 </td>
               </tr>
               <tr
-                onClick={(e) => listChangeHandler(e, 'south-korea')}
+                onClick={(e) => listChangeHandler(e, 'south-Korea', boardId3)}
                 className='h-[7px] border-b border-gray-scale-7-main hover:bg-gray-scale-8'
               >
                 <td className='text-gray-scale-4 text-[18px] font-normal hover:text-gray-scale-2 px-[15px] py-[10px]'>
-                  South Korea All Students
+                  {boardName3}
                 </td>
               </tr>
             </tbody>
@@ -81,5 +82,3 @@ export default function DropDown1({ onDropDownChange }) {
     </div>
   );
 }
-
-
