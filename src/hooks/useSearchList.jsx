@@ -7,26 +7,22 @@ export default function useSearchList({ boardId, boardName }) {
   const [posts, setPosts] = useState([]);
 
   const [currPage, setCurrPage] = useState(1);
-  const currentBoard = boardId;
-  const baseurl = `/search/total`;
   const q = localStorage.getItem('q');
 
   const params = {
-    boardId: currentBoard,
+    boardId: `${localStorage.getItem('boardId_1')}`,
     q: localStorage.getItem('q'),
     page: currPage,
   };
 
-  const queryStr = new URLSearchParams(params).toString();
-  const requrl = `${baseurl}/?${queryStr}`;
   const getSearch = async () => {
     try {
       const res = await axios({
         method: 'get',
-        url: requrl,
+        url: `/search/total`,
+        params: { params },
       });
       if (res.data.code === 'CHAT201_1') {
-        console.log(res.data.code);
         setKeyword(res.data.result.q);
         setPageInfo(res.data.result.pageInfo);
         setPosts(res.data.result.posts);

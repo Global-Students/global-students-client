@@ -29,6 +29,7 @@ export default function NoticeBoard({ bottom }) {
     };
 
     const baseurl = `/boards/${localStorage.getItem('currentBoardId')}`;
+
     try {
       const res = await authAxios({
         method: 'get',

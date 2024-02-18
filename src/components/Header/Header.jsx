@@ -49,7 +49,7 @@ export default function Header() {
       navRectangle.current.style.left = '328px';
       setCurrentBoardId(localStorage.getItem('boardId_3'));
     }
-    if (currentItem === 4 || pathname.includes('/SearchingFriend/')) {
+    if (currentItem === 4 || pathname.includes('/auth/searching-friend')) {
       navRectangle.current.style.width = '99px';
       navRectangle.current.style.left = '464px';
     }
