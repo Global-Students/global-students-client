@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { defaultAxios } from '../../axios/authAxios';
+import { authAxios, defaultAxios } from '../../axios/authAxios';
 import MoreButton from '../../components/Button/MoreButton';
 import Comment from '../../components/Comment';
 import CommentPagination from '../../components/CommentPagination';
@@ -44,9 +44,16 @@ export default function PostView() {
     setCurrentPage(page);
   };
 
-  const deleteComment = (commentId) => {
-    setComments(comments.filter((comment) => comment.commentId !== commentId));
+  const handleDeleteComment = async (commentId) => {
+    try {
+      const response = await authAxios.post('/boards/post/comment/delete', { commentId });
+      console.log(response.data);
+      setComments(comments.filter((comment) => comment.commentId !== commentId));
+    } catch (error) {
+      console.error('Error deleting comment:', error);
+    }
   };
+
 
   return (
     <div>
@@ -148,7 +155,7 @@ export default function PostView() {
                   <Comment
                     key={comment.commentId}
                     comment={comment}
-                    deleteComment={deleteComment}
+                    deleteComment={() => handleDeleteComment(comment.commentId)}
                   />
                 ))}
 
