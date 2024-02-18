@@ -3,8 +3,9 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { useAuthContext } from '../contexts/AuthContext';
 
 export default function ProtectedRoute() {
-  const { isLogin } = useAuthContext();
+  const { loading, isLogin } = useAuthContext();
 
+  if (loading) return null;
   if (!isLogin) {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('expireAt');
