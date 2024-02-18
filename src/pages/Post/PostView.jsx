@@ -139,7 +139,7 @@ export default function PostView() {
               <div className='w-[884px] h-[166px]'>
                 <div className='flex flex-row w-[884px] h-[26px] justify-between'>
                   <p className='text-[22px]'>댓글 {comments.length}</p>
-                  <div className='flex flex-row w-[117px] justify-between items-center text-[16px]'>
+                  <div className='flex flex-row w-[170px] justify-between items-center text-[16px]'>
                     <button
                       className={`rounded w-4 ${
                         isAnonymous
@@ -158,7 +158,7 @@ export default function PostView() {
                 <WriteComment
                   addComment={addComment}
                   postId={postId}
-                  isAnonymous
+                  isAnonymous={isAnonymous}
                 />
                 {comments.map((comment) => (
                   <Comment
