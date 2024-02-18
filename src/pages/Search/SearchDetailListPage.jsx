@@ -1,29 +1,42 @@
-import React, { useState } from 'react';
-import { NavLink, useParams, useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { NavLink, useParams } from 'react-router-dom';
 import SearchList from '../../components/SearchList';
 import Pagination from '../../components/Pagination';
 import useSearchList from '../../hooks/useSearchList';
 
 export default function SearchDetailListPage() {
   const params = useParams();
-  const location = useLocation();
-  const baseUrl = location.toString();
+  const [baseUrl, setBaseUrl] = useState(
+    `search/total/detail/${params.boardId}/${localStorage.getItem('q')}`,
+  );
   const [boardName, setBoardName] = useState('');
-  const { keyword, posts, pageInfo, setCurrPage } = useSearchList(
+  const [boardId, setboardId] = useState();
+  const changeBaseUrl = () => {
+    setBaseUrl(`search/total/detail/${boardId}/${localStorage.getItem('q')}`);
+  };
+
+  const { posts, pageInfo, currPage, setCurrPage } = useSearchList(
     params.boardId,
     boardName,
   );
+
+  useEffect(() => {
+    changeBaseUrl();
+  }, [boardId, currPage]);
+
   const normalStyle = `text-gray-scale-4 font-light`;
   const activeStyle = `border-b-2 border-orange-main text-orange-main font-normal `;
-
   return (
     <div className='flex flex-col items-center'>
       <div className='flex w-[954px] h-[31px] justify-end border-b border-gray-scale-7-main mb-[20px]'>
         <NavLink
           to={`/search/total/detail/${localStorage.getItem(
             'boardId_1',
-          )}/${keyword}`}
-          onClick={() => setBoardName(`${localStorage.getItem('boardName_1')}`)}
+          )}/${localStorage.getItem('q')}`}
+          onClick={() => {
+            setBoardName(`${localStorage.getItem('boardName_1')}`);
+            setboardId(`${localStorage.getItem('boardId_1')}`);
+          }}
           className={({ isActive }) => (isActive ? activeStyle : normalStyle)}
         >
           <p className='h-[31px] px-[13px] text-center text-base'>
@@ -33,8 +46,11 @@ export default function SearchDetailListPage() {
         <NavLink
           to={`/search/total/detail/${localStorage.getItem(
             'boardId_2',
-          )}/${keyword}`}
-          onClick={() => setBoardName(`${localStorage.getItem('boardName_2')}`)}
+          )}/${localStorage.getItem('q')}`}
+          onClick={() => {
+            setBoardName(`${localStorage.getItem('boardName_2')}`);
+            setboardId(`${localStorage.getItem('boardId_2')}`);
+          }}
           className={({ isActive }) => (isActive ? activeStyle : normalStyle)}
         >
           <p className='h-[31px] px-[13px] text-center text-base'>
@@ -44,8 +60,11 @@ export default function SearchDetailListPage() {
         <NavLink
           to={`/search/total/detail/${localStorage.getItem(
             'boardId_3',
-          )}/${keyword}`}
-          onClick={() => setBoardName(`${localStorage.getItem('boardName_3')}`)}
+          )}/${localStorage.getItem('q')}`}
+          onClick={() => {
+            setBoardName(`${localStorage.getItem('boardName_3')}`);
+            setboardId(`${localStorage.getItem('boardId_3')}`);
+          }}
           className={({ isActive }) => (isActive ? activeStyle : normalStyle)}
         >
           <p className='h-[31px] px-[13px] text-center text-base'>

@@ -43,6 +43,7 @@ export default function useSearchList({ boardId, boardName }) {
   return {
     boardName,
     boardId,
+    currPage,
     setCurrPage,
     keyword,
     pageInfo,

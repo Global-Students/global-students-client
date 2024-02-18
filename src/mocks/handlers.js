@@ -384,21 +384,20 @@ const handlers = [
         message: '게시물이 성공적으로 작성되었습니다.',
       },
     });
-    
   }),
-  
+
   http.put('/boards/post/write/:postId', async ({ request, params }) => {
     const { postId } = params;
-  
+
     const { title, content } = await request.json();
-  
+
     const updatedData = {
       postId,
       title,
       content,
       message: '게시물이 성공적으로 수정되었습니다.',
     };
-  
+
     return HttpResponse.json(updatedData);
   }),
 
@@ -421,9 +420,7 @@ const handlers = [
       return HttpResponse.error();
     }
   }),
-  http.get(`/search/popular-post/${localStorage.getItem('boardId_1')}`, () =>
-    HttpResponse.json(searchPop),
-  ),
+  http.get(`/search/popular-post`, () => HttpResponse.json(searchPop)),
   http.get(`/board-information`, () => HttpResponse.json(boardInfo)),
   http.get(`/search/total`, () => HttpResponse.json(totalSearch)),
   http.get(`/search/university`, () => HttpResponse.json(univSearch)),
