@@ -67,7 +67,7 @@ export default function PostUpdate() {
         title,
         content,
         isAnonymous: checkboxChecked,
-        imageId: uploadedImageIds
+        image: uploadedImageIds
       };
 
     try {
