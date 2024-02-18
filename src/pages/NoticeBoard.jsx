@@ -6,7 +6,7 @@ import Inform from '../components/Inform';
 import PopularList from '../components/PopularList';
 import Posts from '../components/Posts';
 
-export default function NoticeBoard() {
+export default function NoticeBoard({ bottom }) {
   const [boardInfo, setBoardInfo] = useState({});
   const [pageInfo, setPageInfo] = useState({});
   const [notice, setNotice] = useState({});
@@ -18,16 +18,14 @@ export default function NoticeBoard() {
 
   const boardId = localStorage.getItem('currentBoardId');
   const baseurl = `/boards/${boardId}`;
+  const params = {
+    sort: currentSort,
+    page: currentPage,
+  };
 
+  const queryStr = new URLSearchParams(params).toString();
+  const requrl = `${baseurl}/?${queryStr}`;
   const getBoard = async () => {
-    const params = {
-      sort: currentSort,
-      page: currentPage,
-    };
-
-    const queryStr = new URLSearchParams(params).toString();
-    const requrl = `${baseurl}/?${queryStr}`;
-
     try {
       const res = await axios({
         method: 'get',
@@ -69,21 +67,32 @@ export default function NoticeBoard() {
       <div className='flex w-[1279px] h-[1651px] justify-start gap-x-[24px]'>
         <UserInfoControl />
         <div className='flex flex-col w-[953px] items-center'>
-          <InformText
-            mb
-            translate
-            school={boardInfo.boardName}
-            text={boardInfo.detail}
-          />
-          <Inform baseurl={baseurl} notice={notice} />
+          {bottom ? (
+            <InformText school={boardInfo.boardName} text={boardInfo.detail} />
+          ) : (
+            <>
+              <InformText
+                mb
+                translate
+                school={boardInfo.boardName}
+                text={boardInfo.detail}
+              />
+              <Inform baseurl={baseurl} notice={notice} />
+            </>
+          )}
           <div className='flex flex-col items-center'>
-            <PopularList baseurl={baseurl} populars={populars} />
+            {bottom ? (
+              ''
+            ) : (
+              <PopularList baseurl={baseurl} populars={populars} />
+            )}
             <Posts
               posts={posts}
               pageInfo={pageInfo}
               setCurrPage={setCurrPage}
               setCurrSort={setCurrSort}
               boardId={boardId}
+              requrl={requrl}
             />
           </div>
         </div>
