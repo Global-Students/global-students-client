@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { authAxios } from '../axios/authAxios';
 import Inform from '../components/Inform';
 import InformText from '../components/InformText';
 import PopularList from '../components/PopularList';
 import Posts from '../components/Posts';
 import UserInfoControl from '../components/UserInfoControl';
-import { authAxios } from '../axios/authAxios';
 
 export default function NoticeBoard({ bottom }) {
   const [noticeBoardInfo, setNoticeBoardInfo] = useState({
@@ -29,7 +29,7 @@ export default function NoticeBoard({ bottom }) {
       page: currentPage,
     };
 
-    const baseurl = `/boards/${localStorage.getItem('currentBoardId')}`;
+    const baseurl = `/boards/${currentBoard}`;
 
     try {
       const res = await authAxios({
