@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { authAxios } from '../../axios/authAxios';
 import OrangeButton from '../../components/Button/OrangeButton1';
 import WhiteButton from '../../components/Button/WhiteButton1';
@@ -13,8 +14,7 @@ export default function PostCreate() {
   const [content, setContent] = useState('');
   const [uploadedImageUrl, setUploadedImageUrl] = useState('');
   const [boardId, setBoardId] = useState(localStorage.getItem('boardId_1'));
-
-  console.log(boardId);
+  const navigate = useNavigate();
 
   const handleDropDownChange = (value) => {
     setBoardId(value);
@@ -66,6 +66,7 @@ export default function PostCreate() {
       setContent('');
       setCheckboxChecked(false);
       setUploadedImageIds([]);
+      navigate(-1);
     } catch (error) {
       console.error('Error submitting post:', error);
     }
