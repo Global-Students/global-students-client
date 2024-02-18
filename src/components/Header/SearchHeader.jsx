@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import SearchInput from '../Input/SearchInput';
 import FindSchool from './FindSchoolBox';
 import RealTimePopularPosts from './RealTimePopularPosts';
-
+//
 export default function SearchHeader({ searchClick, setSearchClick }) {
   return (
     <div
