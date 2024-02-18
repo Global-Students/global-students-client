@@ -61,7 +61,7 @@ export default function PostView() {
                   </p>
                   <MoreButton onClick={toggleDropdown} />
                 </div>
-                {isDropdownOpen && <MoreDropdown />}
+                {isDropdownOpen && <MoreDropdown boardId={boardId} postId={postId}/>}
 
                 <div className='flex my-[30px]'>
                   <div
@@ -179,7 +179,7 @@ export default function PostView() {
           </div>
         </div>
       )}
-      <NoticeBoard bottom />
+      <NoticeBoard bottom/>
     </div>
   );
 }

@@ -52,9 +52,9 @@ export default function PostUpdate() {
       });
       console.log(response.data)
 
-      const { imageId, imageUrl } = response.data;
+      const { imageId, uploadUrl } = response.data.result;
       setUploadedImageIds([...uploadedImageIds, imageId]);
-      setUploadedImageUrl(imageUrl);
+      setUploadedImageUrl(uploadUrl);
 
     } catch (error) {
       console.error('Error uploading image:', error);

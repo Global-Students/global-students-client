@@ -41,9 +41,9 @@ export default function PostCreate() {
       );
       console.log(response);
 
-      const { imageId, imageUrl } = response.data;
+      const { imageId, uploadUrl } = response.data.result;
       setUploadedImageIds([...uploadedImageIds, imageId]);
-      setUploadedImageUrl(imageUrl);
+      setUploadedImageUrl(uploadUrl);
     } catch (error) {
       console.error('Error uploading image:', error);
     }
