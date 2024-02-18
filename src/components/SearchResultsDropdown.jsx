@@ -6,7 +6,6 @@ function SearchResultsDropdown({ searchResults, setSearchClick }) {
   const clickUnivButton = (result) => {
     setSearchClick((prev) => !prev);
     localStorage.setItem('currentBoardId', result.univBoardId);
-    console.log('됐다');
     navigate(`/boards/${result.univBoardId}`);
   };
   return (
