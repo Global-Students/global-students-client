@@ -29,14 +29,11 @@ export default function NoticeBoard({ bottom }) {
     };
 
     const baseurl = `/boards/${localStorage.getItem('currentBoardId')}`;
-    const queryStr = new URLSearchParams(queryParams).toString();
-    const requrl = `${baseurl}/?${queryStr}`;
-
     try {
       const res = await axios({
         method: 'get',
-        url: requrl,
-        params: { board_id: `${localStorage.getItem('currentBoardId')}` },
+        url: baseurl,
+        params: { ...queryParams },
       });
       if (res.data.code === 'COMMON200') {
         setNoticeBoardInfo(res.data.result);
@@ -83,7 +80,7 @@ export default function NoticeBoard({ bottom }) {
                 school={noticeBoardInfo.boardInfo.boardName}
                 text={noticeBoardInfo.boardInfo.detail}
               />
-              <Inform baseurl={baseUrl} notice={noticeBoardInfo.notice} />
+              <Inform baseurl={baseUrl} notice={noticeBoardInfo.noticePost} />
             </>
           )}
           <div className='flex flex-col items-center'>
@@ -92,7 +89,7 @@ export default function NoticeBoard({ bottom }) {
             ) : (
               <PopularList
                 baseurl={baseUrl}
-                populars={noticeBoardInfo.populars}
+                populars={noticeBoardInfo.popular}
               />
             )}
             <Posts
