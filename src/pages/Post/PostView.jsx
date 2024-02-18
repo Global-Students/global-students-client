@@ -22,10 +22,14 @@ export default function PostView() {
         const response = await defaultAxios.get(
           `/boards/${boardId}/posts/${postId}`,
         );
+<<<<<<< Updated upstream
         console.log(response);
         console.log(response.data.comment);
 
         setPost(response.data);
+=======
+        setPost(response.data.result);
+>>>>>>> Stashed changes
         setComments(response.data.comment);
       } catch (error) {
         console.error('Error fetching post:', error);
