@@ -141,7 +141,7 @@ export default function PostView() {
                   <p className='text-[22px]'>댓글 {comments.length}</p>
                   <div className='flex flex-row w-[170px] justify-between items-center text-[16px]'>
                     <button
-                      className={`rounded w-4 ${
+                      className={`rounded w-14 ${
                         isAnonymous
                           ? 'bg-orange-1 text-white'
                           : 'bg-gray-scale-5 text-gray-scale-8'
