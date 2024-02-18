@@ -1,4 +1,4 @@
-import React, { createContext, useAuthContext, useMemo, useState } from 'react';
+import React, { createContext, useContext, useMemo, useState } from 'react';
 
 const BoardInfoContext = createContext();
 export function BoardInfoContextProvider({ children }) {
@@ -18,5 +18,5 @@ export function BoardInfoContextProvider({ children }) {
 }
 
 export function useBoardInfoContext() {
-  return useAuthContext(BoardInfoContext);
+  return useContext(BoardInfoContext);
 }
