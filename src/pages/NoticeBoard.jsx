@@ -11,8 +11,11 @@ export default function NoticeBoard({ bottom }) {
   const [noticeBoardInfo, setNoticeBoardInfo] = useState(
     localStorage.getItem('homeBoard'),
   );
+  console.log(noticeBoardInfo);
 
-  const [currentBoard] = useState(`${localStorage.getItem('currentBoardId')}`);
+  const [currentBoard, setCurrentBoard] = useState(
+    `${localStorage.getItem('currentBoardId')}`,
+  );
   const [currentPage, setCurrPage] = useState(1);
   const [currentSort, setCurrSort] = useState('latest');
 
@@ -20,7 +23,8 @@ export default function NoticeBoard({ bottom }) {
   const baseUrl = location.toString();
 
   const getBoard = async () => {
-    const baseurl = `/boards/${currentBoard}`;
+    setCurrentBoard(localStorage.getItem('currentBoardId'));
+    const baseurl = `/boards/${localStorage.getItem('currentBoardId')}`;
     const queryParams = {
       sort: currentSort,
       page: currentPage,
