@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link, NavLink } from 'react-router-dom';
 
-export default function Pagination({ baseUrl, pageInfo, setCurrPage }) {
+export default function Pagination({ pageInfo, setCurrPage }) {
   const currentPageInfo = {
     page: pageInfo.page, // 현재 페이지
     size: pageInfo.size, // 페이지 당 보여줄 데이터 개수
@@ -31,20 +30,16 @@ export default function Pagination({ baseUrl, pageInfo, setCurrPage }) {
   return (
     <div className='flex w-[640px] h-10 justify-center items-center bg-white rounded-[100px] border border-gray-scale-8 mb-3'>
       <div className='flex flex-row w-[610px] h-7 justify-between items-center'>
-        <Link to={`/${baseUrl}/?page=1`}>
+        <button type='button' onClick={() => setCurrPage(1)}>
           <img
             src='/assets/keyboard_double_arrow_left.svg'
             className='rounded-full hover:bg-gray-scale-8 duration-500'
             alt='double_arrow_left'
           />
-        </Link>
+        </button>
         <div className='flex flex-row w-[416px] justify-between items-center'>
-          <Link
-            to={
-              noPrev
-                ? `/${baseUrl}/?page=${1}`
-                : `/${baseUrl}/?page=${start - 1}`
-            }
+          <button
+            type='button'
             onClick={() => (noPrev ? setCurrPage(1) : setCurrPage(start - 1))}
           >
             <img
@@ -52,29 +47,23 @@ export default function Pagination({ baseUrl, pageInfo, setCurrPage }) {
               className='rounded-full hover:bg-gray-scale-8 duration-500'
               alt='arrow_left'
             />
-          </Link>
+          </button>
           <div className='flex flex-row gap-x-[11px]'>
             {[...Array(currentPageInfo.totalPage)].map((a, i) => (
-              <NavLink
+              <button
+                type='button'
                 key={keyValue(i)}
-                to={`/${baseUrl}/?page=${keyValue(i)}`}
                 onClick={() => setCurrPage(start + i)}
-                className={({ isActive }) =>
-                  isActive && start + i === currentPageInfo.page
-                    ? activeStyle
-                    : commonStyle
+                className={
+                  start + i === currentPageInfo.page ? activeStyle : commonStyle
                 }
               >
                 {start + i}
-              </NavLink>
+              </button>
             ))}
           </div>
-          <Link
-            to={
-              noNext
-                ? `/${baseUrl}/?page=${totalPages}`
-                : `/${baseUrl}/?page=${start + currentPageInfo.totalPage}`
-            }
+          <button
+            type='button'
             onClick={() =>
               noNext
                 ? setCurrPage(totalPages)
@@ -86,15 +75,15 @@ export default function Pagination({ baseUrl, pageInfo, setCurrPage }) {
               className='rounded-full hover:bg-gray-scale-8 duration-500'
               alt='arrow_right'
             />
-          </Link>
+          </button>
         </div>
-        <Link to={`/${baseUrl}/?page=${totalPages}`}>
+        <button type='button' onClick={() => setCurrPage(totalPages)}>
           <img
             src='/assets/keyboard_double_arrow_right.svg'
             className='rounded-full hover:bg-gray-scale-8 duration-500'
             alt='double_arrow_right'
           />
-        </Link>
+        </button>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { authAxios } from '../axios/authAxios';
 import Inform from '../components/Inform';
 import InformText from '../components/InformText';
@@ -19,9 +19,6 @@ export default function NoticeBoard({ bottom }) {
 
   const [currentPage, setCurrPage] = useState(1);
   const [currentSort, setCurrSort] = useState('latest');
-
-  const location = useLocation();
-  const baseUrl = location.toString();
 
   const baseurl = `/boards/${boardId}`;
   const getBoard = async () => {
@@ -81,25 +78,17 @@ export default function NoticeBoard({ bottom }) {
                 school={noticeBoardInfo.boardInfo.boardName}
                 text={noticeBoardInfo.boardInfo.detail}
               />
-              <Inform baseurl={baseUrl} notice={noticeBoardInfo.noticePost} />
+              <Inform notice={noticeBoardInfo.noticePost} />
             </>
           )}
           <div className='flex flex-col items-center'>
-            {bottom ? (
-              ''
-            ) : (
-              <PopularList
-                baseurl={baseUrl}
-                populars={noticeBoardInfo.popular}
-              />
-            )}
+            {bottom ? '' : <PopularList populars={noticeBoardInfo.popular} />}
             <Posts
               posts={noticeBoardInfo.posts}
               pageInfo={noticeBoardInfo.pageInfo}
               setCurrPage={setCurrPage}
               setCurrSort={setCurrSort}
               boardId={localStorage.getItem('currentBoardId')}
-              baseurl={baseUrl}
               bottom={bottom}
             />
           </div>
