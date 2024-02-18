@@ -117,7 +117,7 @@ export default function useSignUp() {
     formData.append(
       'join',
       new Blob([JSON.stringify(signUpInfo)], {
-        'Content-Type': 'application/json',
+        type: 'application/json',
       }),
     );
 
