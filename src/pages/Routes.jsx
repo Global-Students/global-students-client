@@ -12,6 +12,9 @@ import Login from './Login';
 import MyPage from './MyPage';
 import NotFound from './NotFound';
 import NoticeBoard from './NoticeBoard';
+import PostCreate from './Post/PostCreate';
+import PostUpdate from './Post/PostUpdate';
+import PostView from './Post/PostView';
 import ProtectedRoute from './ProtectedRoute';
 import Search from './Search/Search';
 import SearchDetailListPage from './Search/SearchDetailListPage';
@@ -27,41 +30,11 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       {
-        path: '',
-        element: <ProtectedRoute />,
-        children: [
-          {
-            path: '/myPage',
-            element: <MyPage />,
-          },
-          {
-            path: '/updateInfo',
-            element: <UpdateInfo />,
-          },
-          {
-            path: '/updateProfile',
-            element: <UpdateProfile />,
-          },
-          {
-            path: '/dashboard/myPosts',
-            element: <DashBoard isMyPosts />,
-          },
-          {
-            path: '/dashboard/bookmarkPosts',
-            element: <DashBoard />,
-          },
-          {
-            path: '/searchingFriend',
-            element: <SearchFriends isPublic />,
-          },
-          {
-            path: '/Friend',
-            element: <Friend />,
-          },
-        ],
+        path: '/',
+        element: <NoticeBoard />,
       },
       {
-        path: '/board/all',
+        path: '/boards/:boardId',
         element: <NoticeBoard />,
       },
       {
@@ -69,11 +42,11 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: '/signUp',
+        path: '/sign-up',
         element: <SignUp />,
       },
       {
-        path: '/findAccount',
+        path: '/find-account',
         element: <FindAccountPage />,
       },
       {
@@ -95,18 +68,64 @@ const router = createBrowserRouter([
             element: <MemberListPage />,
           },
           {
-            path: '/admin/memberList',
+            path: '/admin/member-list',
             element: <MemberListPage />,
           },
           {
-            path: '/admin/universityApproval',
+            path: '/admin/university-approval',
             element: <UniversityApprovalPage />,
           },
         ],
       },
       {
-        path: '/privacyPolicy',
+        path: '/privacy-policy',
         element: <PrivacyPolicy />,
+      },
+      {
+        path: '/post-view:postId',
+        element: <PostView />,
+      },
+      {
+        path: '/auth',
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: '/auth/post-create',
+            element: <PostCreate />,
+          },
+          {
+            path: '/auth/post-update:postId',
+            element: <PostUpdate />,
+          },
+          {
+            path: '/auth/my-page',
+            element: <MyPage />,
+          },
+          {
+            path: '/auth/update-info',
+            element: <UpdateInfo />,
+          },
+          {
+            path: '/auth/update-profile',
+            element: <UpdateProfile />,
+          },
+          {
+            path: '/auth/dashboard/my-posts',
+            element: <DashBoard isMyPosts />,
+          },
+          {
+            path: '/auth/dashboard/bookmark-posts',
+            element: <DashBoard />,
+          },
+          {
+            path: '/auth/searching-friend',
+            element: <SearchFriends isPublic />,
+          },
+          {
+            path: '/auth/friend',
+            element: <Friend />,
+          },
+        ],
       },
     ],
   },

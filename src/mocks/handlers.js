@@ -1,8 +1,9 @@
 import { http, HttpResponse } from 'msw';
 import board from './board.json';
 import searchPop from './searchPop.json';
+import boardInfo from './boardInfo.json';
 
-const boardId = 123;
+const boardId = localStorage.getItem('boardId_1');
 
 // const deniedAccess = () =>
 //   HttpResponse.json(
@@ -368,7 +369,59 @@ const handlers = [
     // serverError,
     // temporaryServerError,
   ),
+  http.post('/boards/post/write', async ({ request }) => {
+    const { title, content } = await request.json();
+
+    return HttpResponse.json({
+      status: 200,
+
+      body: {
+        postId: '12345',
+        title,
+        content,
+        message: '게시물이 성공적으로 작성되었습니다.',
+      },
+    });
+  }),
+  http.get('/boards/post/:postId', async () => {
+    const postData = {
+      title: '수정된 제목',
+      content: '수정된 내용',
+    };
+    return HttpResponse.json(postData);
+  }),
+  http.put('/boards/post/write', async ({ request }) => {
+    const { title, content } = request.body;
+
+    const updatedData = {
+      postId: '11111',
+      title,
+      content,
+      message: '게시물이 성공적으로 수정되었습니다.',
+    };
+    return HttpResponse.json(updatedData);
+  }),
+  http.post('/boards/post/upload-image', async ({ request }) => {
+    try {
+      const formData = await request.formData();
+      const imageFile = formData.get('image');
+
+      return HttpResponse.json({
+        status: 200,
+
+        body: {
+          postId: '12345',
+          imageFile,
+          message: '사진이 성공적으로 업로드되었습니다.',
+        },
+      });
+    } catch (error) {
+      console.error('Error while uploading image:', error);
+      return HttpResponse.error();
+    }
+  }),
   http.get(`/search/popular-post`, () => HttpResponse.json(searchPop)),
+  http.get(`/board-information`, () => HttpResponse.json(boardInfo)),
 ];
 
 export default handlers;

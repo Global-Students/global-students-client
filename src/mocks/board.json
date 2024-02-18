@@ -3,6 +3,10 @@
   "code": "COMMON200",
   "message": "성공입니다",
   "result": {
+    "boardInfo": {
+      "boardName": "Hanyang Univ Korean Students",
+      "detail": "우리학교에 재학중인 같은 국적의 유학생을 만날 수 있습니다"
+    },
     "pageInfo": {
       "page": 1,
       "size": 10,
@@ -81,7 +85,7 @@
         "numberOfComments": 0,
         "date": "2024-02-08 03:48:29",
         "author": "익명",
-        "likes": 15,
+        "likes": 0,
         "views": 0,
         "hasImage": false,
         "postId": "15"
