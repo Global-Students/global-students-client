@@ -163,7 +163,7 @@ export default function PostView() {
           </div>
         </div>
       )}
-      <NoticeBoard bottom />
+      <NoticeBoard bottom/>
     </div>
   );
 }
