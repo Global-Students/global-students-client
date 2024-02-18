@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import DropDown from './DropDown';
 import OrangeButton from './Button/OrangeButton';
 import PostList from './PostList';
@@ -14,6 +15,7 @@ export default function Posts({
   boardId,
   bottom,
 }) {
+  const navigate = useNavigate();
   return (
     <div className='flex flex-col w-[953px]'>
       <div className='flex flex-row h-[34px] justify-between items-center mb-[16px]'>
@@ -27,7 +29,10 @@ export default function Posts({
         </div>
         <div className='flex justify-end'>
           <div className='w-[115px] h-[34px]'>
-            <OrangeButton text='글쓰기' />
+            <OrangeButton
+              text='글쓰기'
+              onClick={() => navigate('/auth/post-create')}
+            />
           </div>
         </div>
       </div>
