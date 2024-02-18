@@ -65,7 +65,7 @@ export default function NoticeBoard({ bottom }) {
   return (
     <div className='flex flex-row h-[1824px] justify-center items-center'>
       <div className='flex w-[1279px] h-[1651px] justify-start gap-x-[24px]'>
-        <UserInfoControl />
+        {bottom ? '' : <UserInfoControl />}
         <div className='flex flex-col w-[953px] items-center'>
           {bottom ? (
             <InformText school={boardInfo.boardName} text={boardInfo.detail} />
