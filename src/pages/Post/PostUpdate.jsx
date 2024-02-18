@@ -6,20 +6,20 @@ import OrangeButton from '../../components/Button/OrangeButton1';
 import WhiteButton from '../../components/Button/WhiteButton1';
 
 export default function PostUpdate({ postId }) {
-  const [checkboxChecked, setCheckboxChecked] = useState(true);
+  const [checkboxChecked, setCheckboxChecked] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploadedImageIds, setUploadedImageIds] = useState([]);
   const [uploadedImageUrl, setUploadedImageUrl] = useState(null);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [boardId, setBoardId] = useState('all');
+  const [boardId, setBoardId] = useState('1');
 
   useEffect(() => {
   
     const fetchPost = async () => {
       try {
         const response = await axios.get(`/boards/post/${postId}`);
-        const { title: postTitle, content: postContent } = response.data;
+        const { title: postTitle, content: postContent } = response.data.result;
         setTitle(postTitle);
         setContent(postContent);
       } catch (error) {
@@ -51,9 +51,9 @@ export default function PostUpdate({ postId }) {
       });
       console.log(response.data)
 
-      const { imageId, imageUrl } = response.data;
+      const { imageId, uploadUrl } = response.data.result;
       setUploadedImageIds([...uploadedImageIds, imageId]);
-      setUploadedImageUrl(imageUrl);
+      setUploadedImageUrl(uploadUrl);
 
     } catch (error) {
       console.error('Error uploading image:', error);
