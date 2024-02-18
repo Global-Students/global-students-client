@@ -10,7 +10,7 @@ export default function useSearchList({ boardId, boardName }) {
   const q = localStorage.getItem('q');
 
   const params = {
-    boardId: `${localStorage.getItem('boardId_1')}`,
+    boardId: { boardId },
     q: localStorage.getItem('q'),
     page: currPage,
   };

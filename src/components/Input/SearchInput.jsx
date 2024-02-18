@@ -19,22 +19,20 @@ export default function SearchInput({
   };
   const navigate = useNavigate();
   const clickSearchButton = () => {
+    localStorage.setItem('q', keyword);
     if (placeholder === '학교명을 입력해주세요') {
       setIsFindSchool((prev) => !prev);
-      return;
-    }
-
-    localStorage.setItem('q', keyword);
-    navigate(
-      bottom
-        ? `/search/total/detail/${localStorage.getItem(
-            'currentBoardId',
-          )}/${keyword}`
-        : `/search/total/${keyword}`,
-    );
-
-    if (setSearchClick) {
-      setSearchClick((prev) => !prev);
+    } else {
+      navigate(
+        bottom
+          ? `/search/total/detail/${localStorage.getItem(
+              'currentBoardId',
+            )}/${keyword}`
+          : `/search/total/${keyword}`,
+      );
+      if (setSearchClick) {
+        setSearchClick((prev) => !prev);
+      }
     }
   };
   const defaultStyle = `flex rounded-[30px] bg-gray-scale-8`;

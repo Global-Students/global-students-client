@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-export default function RealTimePopularPosts({ isClick, setSearchClick }) {
+export default function RealTimePopularPosts({ setSearchClick }) {
   const [populars, setPopulars] = useState([]);
-
-  const baseurl = `/search/popular-post/${localStorage.getItem('boardId_1')}`;
+  const baseurl = `/search/popular-post`;
 
   const getPopularPosts = async () => {
     try {
       const res = await axios({
         method: 'get',
         url: baseurl,
+        params: { boardId: `${localStorage.getItem('boardId_1')}` },
       });
       if (res.data.code === 'CHAT201_1') {
         setPopulars(res.data.result.posts);
@@ -23,7 +23,7 @@ export default function RealTimePopularPosts({ isClick, setSearchClick }) {
 
   useEffect(() => {
     getPopularPosts();
-  }, [isClick]);
+  }, []);
 
   return (
     <div className='flex flex-col w-[952px] h-[334px]'>
