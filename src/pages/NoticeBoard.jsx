@@ -16,6 +16,7 @@ export default function NoticeBoard({ bottom }) {
     posts: [],
   });
 
+  const [currentBoard] = useState(`${localStorage.getItem('currentBoardId')}`);
   const [currentPage, setCurrPage] = useState(1);
   const [currentSort, setCurrSort] = useState('latest');
 
@@ -61,7 +62,7 @@ export default function NoticeBoard({ bottom }) {
 
   useEffect(() => {
     getBoard();
-  }, [localStorage.getItem('currentBoardId')]);
+  }, [currentBoard]);
 
   return (
     <div className='flex flex-row h-[1824px] justify-center items-center'>
