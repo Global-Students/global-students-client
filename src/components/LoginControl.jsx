@@ -3,16 +3,7 @@ import { Link } from 'react-router-dom';
 import ChatModal from './Chat/ChatModal';
 import HeaderIcon from './Header/HeaderIcon';
 
-export default function LoginControl() {
-  // const [isLogin, setIsLogin] = useState(false);
-  const isLogin = true;
-  /* function handleLoginClick() {
-    setIsLogin(!isLogin);
-  }
-  function handleLooutClick() {
-    setIsLogin(!isLogin);
-  } */
-
+export default function LoginControl({ isLogin }) {
   // for chat modal
   const [isChatModalOpen, setIsChatModalOpen] = useState(false);
   function handleClick() {

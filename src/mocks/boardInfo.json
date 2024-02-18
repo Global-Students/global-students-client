@@ -1,0 +1,13 @@
+{
+  "isSuccess": true,
+  "code": "COMMON200",
+  "message": "성공입니다",
+  "result": {
+    "boardId_1": 1,
+    "boardName_1": "Hanyang Univ All Students",
+    "boardId_2": 3,
+    "boardName_2": "Hanyang Univ South Korean Students",
+    "boardId_3": 5,
+    "boardName_3": "South Korea All Students"
+  }
+}

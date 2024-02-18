@@ -6,7 +6,6 @@ import { FILE_MAX_SIZE, LABEL } from '../../constants';
 export default function FileApproval({ file, changeFile }) {
   const handleFile = (event) => {
     const selectedFile = event.target.files[0];
-    console.log(selectedFile);
     if (selectedFile?.size > FILE_MAX_SIZE) {
       alert('파일은 최대 10MB까지 업로드 할 수 있습니다.');
       return;
