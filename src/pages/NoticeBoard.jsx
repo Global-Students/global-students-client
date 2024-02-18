@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import UserInfoControl from '../components/UserInfoControl';
-import InformText from '../components/InformText';
+import React, { useEffect, useState } from 'react';
 import Inform from '../components/Inform';
+import InformText from '../components/InformText';
 import PopularList from '../components/PopularList';
 import Posts from '../components/Posts';
+import UserInfoControl from '../components/UserInfoControl';
 
 export default function NoticeBoard({ bottom }) {
   const [boardInfo, setBoardInfo] = useState({});

@@ -64,7 +64,10 @@ export default function FindPassword() {
           </div>
           <FindAccountButton
             text='비밀번호 재설정'
-            onClick={() => verifyCode(data, setIsPasswordResettable)}
+            onClick={(event) => {
+              event.preventDefault();
+              verifyCode(data, setIsPasswordResettable);
+            }}
           />
         </>
       )}
