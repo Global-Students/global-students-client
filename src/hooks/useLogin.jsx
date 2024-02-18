@@ -11,7 +11,7 @@ export default function useLogin() {
     setLoginData((prev) => ({ ...prev, [targetId]: event.target.value }));
   };
   const navigate = useNavigate();
-  const login = async (body, nextPath = '/') => {
+  const login = async (body, nextPath) => {
     try {
       setLoading(true);
       const loginResponse = await defaultAxios.post(API_PATH.login, body);
@@ -30,7 +30,9 @@ export default function useLogin() {
       localStorage.setItem('boardId_3', boardInfo.boardId_3);
       localStorage.setItem('boardName_3', boardInfo.boardName_3);
       localStorage.setItem('currentBoardId', boardInfo.boardId_1);
-      navigate(nextPath);
+      navigate(
+        !!nextPath === false ? `/boards/${boardInfo.boardId_1}` : nextPath,
+      );
     } catch (error) {
       const { message } = error.response.data;
       window.alert(message);
