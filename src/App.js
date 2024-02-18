@@ -26,7 +26,7 @@ function App() {
         <div className='flex-1'>
           <Routes>
             <Route path='/' element={<NoticeBoard />} />
-            <Route path='/board/all' element={<NoticeBoard />} />
+            <Route path='/notice-board/:boardId/*' element={<NoticeBoard />} />
             <Route path='/login' element={<Login />} />
             <Route path='/signUp' element={<SignUp />} />
             <Route path='/myPage' element={<MyPage />} />

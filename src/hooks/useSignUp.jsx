@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { useState } from 'react';
+import { defaultAxios } from '../axios/authAxios';
 import { API_PATH, REGEX } from '../constants';
 import { useSignUpContext } from '../contexts/SignUpContext';
 import useLogin from './useLogin';
@@ -20,7 +20,7 @@ export default function useSignUp() {
   });
 
   const checkIdDuplicate = (userId) =>
-    axios
+    defaultAxios
       .get(API_PATH.checkUserId(userId))
       .then(() => {
         setIsUniqued((prev) => ({ ...prev, userId: true }));
@@ -30,6 +30,7 @@ export default function useSignUp() {
         }));
       })
       .catch((error) => {
+        console.log(error);
         setIsUniqued((prev) => ({ ...prev, userId: false }));
         setMessage((prev) => ({
           ...prev,
@@ -38,7 +39,7 @@ export default function useSignUp() {
       });
 
   const checkNicknameDuplicate = (nickname) =>
-    axios
+    defaultAxios
       .get(API_PATH.checkNickname(nickname))
       .then((response) => {
         console.log(response);
@@ -85,7 +86,7 @@ export default function useSignUp() {
     }));
 
   const verifyUniversityEmail = (body, setIsSent) =>
-    axios
+    defaultAxios
       .post(API_PATH.emailVarification, body)
       .then(() => {
         alert('메일을 보냈습니다.');
@@ -98,7 +99,7 @@ export default function useSignUp() {
       });
 
   const verifyAuthCode = (body) =>
-    axios
+    defaultAxios
       .post(API_PATH.emailVarificationCode, body)
       .then(() => {
         setSignUpInfo((prev) => ({ ...prev, verified: true }));
@@ -115,11 +116,18 @@ export default function useSignUp() {
   const submitSignUpInfo = (file, moveStep) => {
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('join', signUpInfo);
+    formData.append(
+      'join',
+      new Blob([JSON.stringify(signUpInfo)], {
+        type: 'application/json',
+      }),
+    );
 
-    axios
+    defaultAxios
       .post(API_PATH.sumbitSignUpInfo, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       })
       .then(() => {
         login(
@@ -127,8 +135,10 @@ export default function useSignUp() {
           '',
         );
         moveStep('welcome');
+      })
+      .catch((error) => {
+        alert(error.response.data.message);
       });
-    // .catch((error) => alert(error.response.data.message));
   };
 
   return {

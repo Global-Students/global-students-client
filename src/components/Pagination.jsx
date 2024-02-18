@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
-export default function Pagination({ pageInfo, setCurrPage }) {
+export default function Pagination({ baseUrl, pageInfo, setCurrPage }) {
   const currentPageInfo = {
     page: pageInfo.page, // 현재 페이지
     size: pageInfo.size, // 페이지 당 보여줄 데이터 개수
@@ -24,14 +24,14 @@ export default function Pagination({ pageInfo, setCurrPage }) {
       setStart((prev) => prev + currentPageInfo.totalPage);
     if (currentPageInfo.page < start)
       setStart((prev) => prev - currentPageInfo.totalPage);
-  }, []);
+  }, [currentPageInfo.page, currentPageInfo.totalPage, start]);
 
   const commonStyle = `flex w-7 h-7 justify-center items-center rounded-full border border-gray-scale-7-main text-center text-gray-scale-2 text-xs font-light hover:bg-gray-scale-7-main duration-500`;
   const activeStyle = `flex w-7 h-7 justify-center items-center rounded-full bg-orange-main text-center text-gray-scale-9 text-xs font-light duration-500`;
   return (
     <div className='flex w-[640px] h-10 justify-center items-center bg-white rounded-[100px] border border-gray-scale-8 mb-3'>
       <div className='flex flex-row w-[610px] h-7 justify-between items-center'>
-        <Link to='/?page=1'>
+        <Link to={`/${baseUrl}/?page=1`}>
           <img
             src='/assets/keyboard_double_arrow_left.svg'
             className='rounded-full hover:bg-gray-scale-8 duration-500'
@@ -40,7 +40,11 @@ export default function Pagination({ pageInfo, setCurrPage }) {
         </Link>
         <div className='flex flex-row w-[416px] justify-between items-center'>
           <Link
-            to={noPrev ? `/?page=${1}` : `/?page=${start - 1}`}
+            to={
+              noPrev
+                ? `/${baseUrl}/?page=${1}`
+                : `/${baseUrl}/?page=${start - 1}`
+            }
             onClick={() => (noPrev ? setCurrPage(1) : setCurrPage(start - 1))}
           >
             <img
@@ -49,11 +53,11 @@ export default function Pagination({ pageInfo, setCurrPage }) {
               alt='arrow_left'
             />
           </Link>
-          <div className='flex flex-row w-[340px] justify-between'>
+          <div className='flex flex-row gap-x-[11px]'>
             {[...Array(currentPageInfo.totalPage)].map((a, i) => (
               <NavLink
                 key={keyValue(i)}
-                to={`/?page=${start + i}`}
+                to={`/${baseUrl}/?page=${keyValue(i)}`}
                 onClick={() => setCurrPage(start + i)}
                 className={({ isActive }) =>
                   isActive && start + i === currentPageInfo.page
@@ -68,8 +72,8 @@ export default function Pagination({ pageInfo, setCurrPage }) {
           <Link
             to={
               noNext
-                ? `/?page=${totalPages}`
-                : `/?page=${start + currentPageInfo.totalPage}`
+                ? `/${baseUrl}/?page=${totalPages}`
+                : `/${baseUrl}/?page=${start + currentPageInfo.totalPage}`
             }
             onClick={() =>
               noNext
@@ -84,7 +88,7 @@ export default function Pagination({ pageInfo, setCurrPage }) {
             />
           </Link>
         </div>
-        <Link to={`/?page=${totalPages}`}>
+        <Link to={`/${baseUrl}/?page=${totalPages}`}>
           <img
             src='/assets/keyboard_double_arrow_right.svg'
             className='rounded-full hover:bg-gray-scale-8 duration-500'

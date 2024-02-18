@@ -13,9 +13,17 @@ export default function DropDown({ setCurrSort }) {
     return sort === '최신순' ? setSort('인기순') : setSort('최신순');
   };
 
-  useEffect(() =>
-    sort === '인기순' ? setCurrSort('popular') : setCurrSort('latest'),
-  );
+  const funcSetSort = () => {
+    if (sort === '인기순') {
+      setCurrSort('popular');
+    } else {
+      setCurrSort('latest');
+    }
+  };
+
+  useEffect(() => {
+    funcSetSort();
+  }, [sort]);
 
   const normalStyle = `rounded-[14px] border border-gray-scale-7-main`;
   const dropDownStyle = `rounded-t-[14px] border border-gray-scale-6 border-b-0`;

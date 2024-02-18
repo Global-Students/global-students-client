@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import authAxios from '../axios/authAxios';
+import { authAxios } from '../axios/authAxios';
 import API_PATH from '../constants/api';
 
 export default function useLogout() {
