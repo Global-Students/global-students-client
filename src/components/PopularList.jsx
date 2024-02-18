@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-export default function PopularList({ baseurl, populars }) {
+export default function PopularList({ populars }) {
   const [isClick, setIsClick] = useState(false);
   function handleToggle() {
     setIsClick((prev) => !prev);
@@ -50,7 +50,12 @@ export default function PopularList({ baseurl, populars }) {
           <ul className='w-[953px] table-fixed rounded-b-[14px] border border-separate	border-spacing-0 overflow-hidden border-gray-scale-7 '>
             {populars &&
               populars.map((popular, index) => (
-                <Link to={`${baseurl}/${popular.postId}`} key={popular.postId}>
+                <Link
+                  to={`/post-view/${localStorage.getItem('currentBoardId')}/${
+                    popular.postId
+                  }`}
+                  key={popular.postId}
+                >
                   <li className='flex h-[71px] justify-center items-center border-b border-gray-scale-7-main hover:bg-gray-scale-8 '>
                     <p className='w-[77px] text-center text-orange-main text-xl font-bold'>
                       {index + 1}
