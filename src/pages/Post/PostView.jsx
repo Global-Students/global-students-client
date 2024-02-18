@@ -16,22 +16,20 @@ export default function PostView() {
   const [currentPage, setCurrentPage] = useState(1);
   const { boardId, postId } = useParams();
   const [isAnonymous, setIsAnonymous] = useState(false);
-
+  const fetchPost = async (boardIdParam, postIdParam) => {
+    try {
+      const response = await defaultAxios.get(
+        `/boards/${boardIdParam}/posts/${postIdParam}`,
+      );
+      setPost(response.data.result);
+      setComments(response.data.result.comment);
+    } catch (error) {
+      console.error('Error fetching post:', error);
+    }
+  };
   useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        const response = await defaultAxios.get(
-          `/boards/${boardId}/posts/${postId}`,
-        );
-        setPost(response.data.result);
-        setComments(response.data.result.comment);
-      } catch (error) {
-        console.error('Error fetching post:', error);
-      }
-    };
-
     fetchPost();
-  }, [boardId, postId, comments]);
+  }, [boardId, postId]);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -157,6 +155,8 @@ export default function PostView() {
                 </div>
                 <WriteComment
                   addComment={addComment}
+                  fetchPost={fetchPost}
+                  boardId={boardId}
                   postId={postId}
                   isAnonymous={isAnonymous}
                 />

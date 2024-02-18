@@ -3,9 +3,9 @@ import { authAxios } from '../axios/authAxios';
 import OrangeButton from './Button/OrangeButton';
 
 export default function WriteComment({
-  addComment,
+  fetchPost,
+  boardId,
   postId,
-  userNickname,
   isAnonymous,
 }) {
   const [value, setValue] = useState('');
@@ -19,20 +19,20 @@ export default function WriteComment({
 
   const handleSubmit = async () => {
     try {
-      const response = await authAxios.post('/boards/post/comment/write', {
+      await authAxios.post('/boards/post/comment/write', {
         postId,
         content: value,
         isAnonymous,
       });
+      await fetchPost(boardId, postId);
+      // const newComment = {
+      //   commentId: response.data.result,
+      //   content: value,
+      //   nickname: userNickname,
+      //   date: new Date().toLocaleDateString(),
+      // };
 
-      const newComment = {
-        commentId: response.data.result,
-        content: value,
-        nickname: userNickname,
-        date: new Date().toLocaleDateString(),
-      };
-
-      addComment(newComment);
+      // addComment(newComment);
       setValue('');
     } catch (error) {
       console.error('Error adding comment:', error);
