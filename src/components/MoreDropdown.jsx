@@ -4,7 +4,7 @@ import { authAxios } from '../axios/authAxios';
 
 
 
-export default function MoreDropdown({boardId,postId }) {
+export default function MoreDropdown({boardId,postId}) {
 
 
   const handleDeletePost = async () => {
