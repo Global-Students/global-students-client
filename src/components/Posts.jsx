@@ -12,7 +12,6 @@ export default function Posts({
   setCurrPage,
   setCurrSort,
   boardId,
-  requrl,
   bottom,
 }) {
   return (
@@ -35,7 +34,7 @@ export default function Posts({
       <PostList posts={posts} baseurl={baseurl} boardId={boardId} />
       <div className='flex flex-col items-center'>
         <Pagination
-          requrl={requrl}
+          baseurl={baseurl}
           pageInfo={pageInfo}
           setCurrPage={setCurrPage}
         />

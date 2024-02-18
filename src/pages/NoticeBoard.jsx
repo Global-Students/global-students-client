@@ -91,7 +91,7 @@ export default function NoticeBoard({ bottom }) {
               setCurrPage={setCurrPage}
               setCurrSort={setCurrSort}
               boardId={localStorage.getItem('currentBoardId')}
-              requrl={requrl}
+              baseurl={baseurl}
               bottom={bottom}
             />
           </div>

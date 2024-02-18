@@ -5,7 +5,6 @@ import SearchList from '../../components/SearchList';
 export default function SearchListPage() {
   return (
     <div>
-      <SearchList boardName='전체' boardId='전체' total showMore />
       <SearchList
         boardName={localStorage.getItem('boardName_1')}
         boardId={localStorage.getItem('boardId_1')}

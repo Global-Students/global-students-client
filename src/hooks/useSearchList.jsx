@@ -7,7 +7,6 @@ export default function useSearchList({ boardId, boardName }) {
   const [posts, setPosts] = useState([]);
 
   const [currPage, setCurrPage] = useState(1);
-  const [currentSort, setCurrSort] = useState('latest');
   const currentBoard = boardId;
   const baseurl = `/search/total`;
   const q = localStorage.getItem('q');
@@ -16,7 +15,6 @@ export default function useSearchList({ boardId, boardName }) {
     boardId: currentBoard,
     q: localStorage.getItem('q'),
     page: currPage,
-    sort: currentSort,
   };
 
   const queryStr = new URLSearchParams(params).toString();
@@ -43,12 +41,9 @@ export default function useSearchList({ boardId, boardName }) {
   }, [q]);
 
   return {
-    requrl,
-    queryStr,
     boardName,
     boardId,
     setCurrPage,
-    setCurrSort,
     keyword,
     pageInfo,
     posts,

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-export default function RealTimePopularPosts({ setSearchClick }) {
+export default function RealTimePopularPosts({ isClick, setSearchClick }) {
   const [populars, setPopulars] = useState([]);
 
   const baseurl = `/search/popular-post/${localStorage.getItem('boardId_1')}`;
@@ -23,7 +23,7 @@ export default function RealTimePopularPosts({ setSearchClick }) {
 
   useEffect(() => {
     getPopularPosts();
-  }, []);
+  }, [isClick]);
 
   return (
     <div className='flex flex-col w-[952px] h-[334px]'>
