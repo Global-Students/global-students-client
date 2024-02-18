@@ -30,6 +30,16 @@ export default function useLogin() {
       localStorage.setItem('boardId_3', boardInfo.boardId_3);
       localStorage.setItem('boardName_3', boardInfo.boardName_3);
       localStorage.setItem('currentBoardId', boardInfo.boardId_1);
+      const currentBoardResponse = await authAxios.get(
+        `/boards/${boardInfo.boardId_1}`,
+        {
+          params: {
+            sort: 'latest',
+            page: 1,
+          },
+        },
+      );
+      localStorage.setItem('homeBoard', currentBoardResponse);
       navigate(nextPath);
     } catch (error) {
       const { message } = error.response.data;

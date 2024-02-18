@@ -8,13 +8,9 @@ import Posts from '../components/Posts';
 import UserInfoControl from '../components/UserInfoControl';
 
 export default function NoticeBoard({ bottom }) {
-  const [noticeBoardInfo, setNoticeBoardInfo] = useState({
-    boardInfo: {},
-    pageInfo: {},
-    noticePost: {},
-    popular: [],
-    posts: [],
-  });
+  const [noticeBoardInfo, setNoticeBoardInfo] = useState(
+    localStorage.getItem('homeBoard'),
+  );
 
   const [currentBoard] = useState(`${localStorage.getItem('currentBoardId')}`);
   const [currentPage, setCurrPage] = useState(1);
@@ -24,13 +20,11 @@ export default function NoticeBoard({ bottom }) {
   const baseUrl = location.toString();
 
   const getBoard = async () => {
+    const baseurl = `/boards/${currentBoard}`;
     const queryParams = {
       sort: currentSort,
       page: currentPage,
     };
-
-    const baseurl = `/boards/${currentBoard}`;
-
     try {
       const res = await authAxios({
         method: 'get',
