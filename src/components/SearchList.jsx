@@ -34,9 +34,13 @@ export default function SearchList({
         </div>
         {showMore ? (
           <Link
-            to={`/search/total/detail/?${queryStr}`}
+            to={`/search/total/detail/${boardId}/${keyword}`}
             className='flex w-[63px] justify-between'
-            state={{ nowBoardId: boardId, nowBoardName: boardName }}
+            state={{
+              boardName,
+              queryStr,
+              pageInfo,
+            }}
           >
             <p className='text-gray-scale-4 text-base font-normal'>더보기</p>
             <img src='/assets/arrow_forward_ios.svg' alt='더보기' />

@@ -16,8 +16,7 @@ export default function NoticeBoard({ bottom }) {
   const [currentPage, setCurrPage] = useState(1);
   const [currentSort, setCurrSort] = useState('latest');
 
-  const boardId = localStorage.getItem('currentBoardId');
-  const baseurl = `/boards/${boardId}`;
+  const baseurl = `/boards/${localStorage.getItem('currentBoardId')}`;
   const params = {
     sort: currentSort,
     page: currentPage,
@@ -60,7 +59,7 @@ export default function NoticeBoard({ bottom }) {
 
   useEffect(() => {
     getBoard();
-  }, [boardId, currentPage, currentSort]);
+  }, [localStorage.getItem('currentBoardId'), currentPage, currentSort]);
 
   return (
     <div className='flex flex-row h-[1824px] justify-center items-center'>
@@ -91,7 +90,7 @@ export default function NoticeBoard({ bottom }) {
               pageInfo={pageInfo}
               setCurrPage={setCurrPage}
               setCurrSort={setCurrSort}
-              boardId={boardId}
+              boardId={localStorage.getItem('currentBoardId')}
               requrl={requrl}
               bottom={bottom}
             />

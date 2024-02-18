@@ -59,7 +59,7 @@ const router = createBrowserRouter([
             element: <SearchListPage />,
           },
           {
-            path: '/search/total/detail/*',
+            path: '/search/total/detail/:boardId/:keyword',
             element: <SearchDetailListPage />,
           },
         ],

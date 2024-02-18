@@ -27,10 +27,10 @@ export default function SearchInput({
     localStorage.setItem('q', keyword);
     navigate(
       bottom
-        ? `/search/total/?boardId=${localStorage.getItem(
+        ? `/search/total/detail/${localStorage.getItem(
             'currentBoardId',
-          )}&q=${localStorage.getItem('q')}`
-        : `/search/total/&q=${localStorage.getItem('q')}`,
+          )}/${keyword}`
+        : `/search/total/${keyword}`,
     );
   };
   const defaultStyle = `flex rounded-[30px] bg-gray-scale-8`;
