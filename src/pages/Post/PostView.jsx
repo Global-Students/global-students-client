@@ -20,8 +20,7 @@ export default function PostView() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await defaultAxios.get(`/boards/2/posts/45`);
-        // const response = await axios.get(`/boards/${boardId}/posts/${postId}`);
+        const response = await defaultAxios.get(`/boards/${boardId}/posts/${postId}`);
         setPost(response.data);
         setComments(response.data.comments);
       } catch (error) {
