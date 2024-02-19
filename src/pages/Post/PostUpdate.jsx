@@ -76,9 +76,10 @@ export default function PostUpdate() {
 
     try {
       await authAxios.put(`/boards/post/write?id=${postId}`, updatedData);
+      window.alert('수정이 완료되었습니다!');
       navigate(-1);
     } catch (error) {
-      console.error('API 호출 오류:', error);
+      window.alert('수정 실패');
     }
   };
 
