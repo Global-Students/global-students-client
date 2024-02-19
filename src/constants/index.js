@@ -1,9 +1,5 @@
 import API_PATH from './api';
-import {
-  COUNTRY_LIST,
-  HOME_UNIVERSITY_LIST,
-  HOST_UNIVERSITY_LIST,
-} from './belongTo';
+import { COUNTRY_LIST, UNIVERSITY_LIST } from './belongTo';
 import { DATES, MONTHS, YEARS } from './date';
 import { MEMBER_LIST, UNIVERSITY_APPROVAL_LIST } from './dummy';
 import FILE_MAX_SIZE from './file';
@@ -17,8 +13,6 @@ export {
   COUNTRY_LIST,
   DATES,
   FILE_MAX_SIZE,
-  HOME_UNIVERSITY_LIST,
-  HOST_UNIVERSITY_LIST,
   LABEL,
   LEGEND,
   MEMBER_LIST,
@@ -27,5 +21,6 @@ export {
   REGEX,
   SCHEMA,
   UNIVERSITY_APPROVAL_LIST,
+  UNIVERSITY_LIST,
   YEARS,
 };
