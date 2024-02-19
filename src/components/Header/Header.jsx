@@ -18,12 +18,6 @@ export default function Header() {
   };
 
   useEffect(() => {
-    if (pathname === '/') {
-      setCurrentItem(1);
-      navRectangle.current.style.width = '140px';
-      navRectangle.current.style.left = '-13px';
-      setCurrentBoardId(localStorage.getItem('boardId_1'));
-    }
     if (
       currentItem === 1 ||
       pathname.includes(`/boards/${localStorage.getItem('boardId_1')}`)
@@ -54,7 +48,6 @@ export default function Header() {
     }
     if (
       pathname.includes('/boards/') ||
-      pathname === '/' ||
       pathname.includes('/auth/searching-friend')
     ) {
       navRectangle.current.style.opacity = '1';
@@ -74,7 +67,12 @@ export default function Header() {
         <div className='flex w-[1280px] h-[130px] justify-center items-center border-b border-gray-scale-8'>
           <div className='flex flex-row w-[1280px] h-[76px] py-[27px] justify-between items-center'>
             <div className='flex w-[216px] h-[61px]'>
-              <Link to={`/boards/${localStorage.getItem('boardId_1')}`}>
+              <Link
+                to={`/boards/${localStorage.getItem('boardId_1')}`}
+                onClick={() => {
+                  setCurrentItem(1);
+                }}
+              >
                 <img src='/assets/logoHeader.svg' alt='logo' />
               </Link>
             </div>
