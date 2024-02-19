@@ -14,6 +14,7 @@ export default function PostUpdate() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const { boardId, postId } = useParams();
+  const [selectedBoardId, setSelectedBoardId] = useState(boardId);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -33,7 +34,7 @@ export default function PostUpdate() {
   }, [postId]);
 
   const handleDropDownChange = (value) => {
-    setBoardId(value);
+    setSelectedBoardId(value);
   };
 
   const handleImageChange = (event) => {
@@ -66,7 +67,7 @@ export default function PostUpdate() {
 
   const handleUpdate = async () => {
     const updatedData = {
-      boardId,
+      boardId: selectedBoardId,
       title,
       content,
       isAnonymous: checkboxChecked,
