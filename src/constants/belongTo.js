@@ -60,6 +60,7 @@ const UNIVERSITY_LIST = Object.freeze([
   'Yale University',
   'Swiss Federal Institute of Technology',
   'Tsinghua University',
+  'UMC University',
   'University of Chicago',
   'Peking University',
   'Johns Hopkins University',

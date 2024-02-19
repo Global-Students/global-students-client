@@ -7,27 +7,25 @@ export default function Pagination({ pageInfo, setCurrPage }) {
     totalPage: pageInfo.totalPage, // 보여줄 페이지 개수
     totalPost: pageInfo.totalPost, // 데이터의 총 개수
   };
-  const totalPages = Math.ceil(
-    currentPageInfo.totalPost / currentPageInfo.size,
-  );
+
   const [start, setStart] = useState(1);
   const keyValue = (i) => start + i;
   useEffect(() => {
     keyValue();
   }, []);
-  useEffect(() => {
-    if (currentPageInfo.page === start + currentPageInfo.totalPage)
-      setStart((prev) => prev + currentPageInfo.totalPage);
-    if (currentPageInfo.page < start)
-      setStart((prev) => prev - currentPageInfo.totalPage);
-  }, [currentPageInfo.page, currentPageInfo.totalPage, start]);
 
   const commonStyle = `flex w-7 h-7 justify-center items-center rounded-full border border-gray-scale-7-main text-center text-gray-scale-2 text-xs font-light hover:bg-gray-scale-7-main duration-500`;
   const activeStyle = `flex w-7 h-7 justify-center items-center rounded-full bg-orange-main text-center text-gray-scale-9 text-xs font-light duration-500`;
   return (
     <div className='flex w-[640px] h-10 justify-center items-center bg-white rounded-[100px] border border-gray-scale-8 mb-3'>
       <div className='flex flex-row w-[610px] h-7 justify-between items-center'>
-        <button type='button' onClick={() => setCurrPage(1)}>
+        <button
+          type='button'
+          onClick={() => {
+            setCurrPage(1);
+            setStart(1);
+          }}
+        >
           <img
             src='/assets/keyboard_double_arrow_left.svg'
             className='rounded-full hover:bg-gray-scale-8 duration-500'
@@ -37,9 +35,10 @@ export default function Pagination({ pageInfo, setCurrPage }) {
         <div className='flex flex-row w-[416px] justify-between items-center'>
           <button
             type='button'
-            onClick={() =>
-              start === 1 ? setCurrPage(1) : setCurrPage(start - 1)
-            }
+            onClick={() => {
+              setCurrPage(start === 1 ? 1 : start - 1);
+              setStart(start === 1 ? 1 : start - currentPageInfo.size);
+            }}
           >
             <img
               src='/assets/keyboard_arrow_left.svg'
@@ -52,7 +51,14 @@ export default function Pagination({ pageInfo, setCurrPage }) {
               <button
                 type='button'
                 key={keyValue(i)}
-                onClick={() => setCurrPage(i + 1)}
+                onClick={() => {
+                  setCurrPage(i + 1);
+                  setStart(
+                    currentPageInfo.page >= start + currentPageInfo.size
+                      ? start + currentPageInfo.size
+                      : start,
+                  );
+                }}
                 className={
                   start + i === currentPageInfo.page ? activeStyle : commonStyle
                 }
@@ -63,11 +69,15 @@ export default function Pagination({ pageInfo, setCurrPage }) {
           </div>
           <button
             type='button'
-            onClick={() =>
-              start + currentPageInfo.totalPage - 1 >= totalPages
-                ? setCurrPage(totalPages)
-                : setCurrPage(start - currentPageInfo.size)
-            }
+            onClick={() => {
+              setCurrPage(
+                start === currentPageInfo.totalPage ||
+                  currentPageInfo.page === currentPageInfo.totalPage
+                  ? currentPageInfo.totalPage
+                  : start + currentPageInfo.size,
+              );
+              setStart(start + currentPageInfo.size);
+            }}
           >
             <img
               src='/assets/keyboard_arrow_right.svg'
@@ -76,7 +86,10 @@ export default function Pagination({ pageInfo, setCurrPage }) {
             />
           </button>
         </div>
-        <button type='button' onClick={() => setCurrPage(totalPages)}>
+        <button
+          type='button'
+          onClick={() => setCurrPage(currentPageInfo.totalPage)}
+        >
           <img
             src='/assets/keyboard_double_arrow_right.svg'
             className='rounded-full hover:bg-gray-scale-8 duration-500'
