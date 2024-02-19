@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function Pagination({ pageInfo, setCurrPage }) {
   const currentPageInfo = {
@@ -7,13 +7,10 @@ export default function Pagination({ pageInfo, setCurrPage }) {
     totalPage: pageInfo.totalPage, // 보여줄 페이지 개수
     totalPost: pageInfo.totalPost, // 데이터의 총 개수
   };
-
   const totalPages = Math.ceil(
     currentPageInfo.totalPost / currentPageInfo.size,
   );
   const [start, setStart] = useState(1);
-  const noPrev = start === 1;
-  const noNext = start + currentPageInfo.totalPage - 1 >= totalPages;
   const keyValue = (i) => start + i;
   useEffect(() => {
     keyValue();
@@ -40,7 +37,9 @@ export default function Pagination({ pageInfo, setCurrPage }) {
         <div className='flex flex-row w-[416px] justify-between items-center'>
           <button
             type='button'
-            onClick={() => (noPrev ? setCurrPage(1) : setCurrPage(start - 1))}
+            onClick={() =>
+              start === 1 ? setCurrPage(1) : setCurrPage(start - 1)
+            }
           >
             <img
               src='/assets/keyboard_arrow_left.svg'
@@ -49,11 +48,11 @@ export default function Pagination({ pageInfo, setCurrPage }) {
             />
           </button>
           <div className='flex flex-row gap-x-[11px]'>
-            {[...Array(currentPageInfo.totalPage)].map((a, i) => (
+            {[...Array(currentPageInfo.totalPage)].map((i) => (
               <button
                 type='button'
                 key={keyValue(i)}
-                onClick={() => setCurrPage(start + i)}
+                onClick={() => setCurrPage(i + 1)}
                 className={
                   start + i === currentPageInfo.page ? activeStyle : commonStyle
                 }
@@ -65,9 +64,9 @@ export default function Pagination({ pageInfo, setCurrPage }) {
           <button
             type='button'
             onClick={() =>
-              noNext
+              start + currentPageInfo.totalPage - 1 >= totalPages
                 ? setCurrPage(totalPages)
-                : setCurrPage(start + currentPageInfo.totalPage)
+                : setCurrPage(start - currentPageInfo.size)
             }
           >
             <img
