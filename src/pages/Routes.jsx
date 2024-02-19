@@ -127,7 +127,7 @@ const router = createBrowserRouter([
             element: <SearchFriends isPublic />,
           },
           {
-            path: '/auth/friend',
+            path: '/auth/friend/:userId',
             element: <Friend />,
           },
         ],
