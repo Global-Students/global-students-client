@@ -10,7 +10,6 @@ export default function WriteComment({
 }) {
   const [value, setValue] = useState('');
   const maxLength = 1000;
-
   const handleChange = (event) => {
     if (event.target.value.length <= maxLength) {
       setValue(event.target.value);
