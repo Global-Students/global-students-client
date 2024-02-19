@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { authAxios } from '../../axios/authAxios';
 import OrangeButton from '../../components/Button/OrangeButton1';
 import WhiteButton from '../../components/Button/WhiteButton1';
@@ -6,14 +7,13 @@ import CheckboxPost from '../../components/CheckboxPost';
 import DropDown1 from './Dropdown1';
 
 export default function PostUpdate() {
-  const postId = 52;
   const [checkboxChecked, setCheckboxChecked] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploadedImageIds, setUploadedImageIds] = useState([]);
   const [uploadedImageUrl, setUploadedImageUrl] = useState(null);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [boardId, setBoardId] = useState('1');
+  const { boardId, postId } = useParams();
 
   useEffect(() => {
     const fetchPost = async () => {
