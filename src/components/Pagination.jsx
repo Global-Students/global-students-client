@@ -7,13 +7,10 @@ export default function Pagination({ pageInfo, setCurrPage }) {
     totalPage: pageInfo.totalPage, // 보여줄 페이지 개수
     totalPost: pageInfo.totalPost, // 데이터의 총 개수
   };
-
   const totalPages = Math.ceil(
     currentPageInfo.totalPost / currentPageInfo.size,
   );
   const [start, setStart] = useState(1);
-  const noPrev = start === 1;
-  const noNext = start + currentPageInfo.totalPage - 1 >= totalPages;
   const keyValue = (i) => start + i;
   useEffect(() => {
     keyValue();
@@ -41,7 +38,7 @@ export default function Pagination({ pageInfo, setCurrPage }) {
           <button
             type='button'
             onClick={() =>
-              noPrev ? setCurrPage(1) : setCurrPage((prev) => prev - 1)
+              start === 1 ? setCurrPage(1) : setCurrPage(start - 1)
             }
           >
             <img
@@ -51,11 +48,11 @@ export default function Pagination({ pageInfo, setCurrPage }) {
             />
           </button>
           <div className='flex flex-row gap-x-[11px]'>
-            {[...Array(currentPageInfo.totalPage)].map((a, i) => (
+            {[...Array(currentPageInfo.totalPage)].map((i) => (
               <button
                 type='button'
                 key={keyValue(i)}
-                onClick={() => setCurrPage((prev) => prev + i)}
+                onClick={() => setCurrPage(i + 1)}
                 className={
                   start + i === currentPageInfo.page ? activeStyle : commonStyle
                 }
@@ -67,9 +64,9 @@ export default function Pagination({ pageInfo, setCurrPage }) {
           <button
             type='button'
             onClick={() =>
-              noNext
+              start + currentPageInfo.totalPage - 1 >= totalPages
                 ? setCurrPage(totalPages)
-                : setCurrPage((prev) => prev + currentPageInfo.totalPage)
+                : setCurrPage(start - currentPageInfo.size)
             }
           >
             <img
