@@ -10,10 +10,6 @@ export default function InfoInput({ index, value, accessbutton }) {
     setTextStyle("w-[81px] h-[29px] text-lg font-semibold text-left text-[#ff743d]");
   }
 
-  function handleKeyDown() {
-    console.log("Key down");
-  }
-
   useEffect(() => {
     function handleClickOutside(event) {
       if (InputRef.current && !InputRef.current.contains(event.target)) {
@@ -26,11 +22,10 @@ export default function InfoInput({ index, value, accessbutton }) {
   });
 
     return (
-      <div
+      <button
       ref={InputRef}
       onMouseDown={handleClick}
-      onKeyDown={handleKeyDown}
-      role="button"
+      type="button"
       tabIndex={0}
       className={ClickStyle}
       style={{ boxShadow: "0px 5px 30px -15px rgba(0,0,0,0.1)" }}
@@ -43,6 +38,6 @@ export default function InfoInput({ index, value, accessbutton }) {
           <input className="flex-grow-0 flex-shrink-0 w-[326px] h-[29px] text-lg text-left text-[#808593] outline-none" placeholder={value}/>
         </div>
         {accessbutton && <AccessToggle isPublic />}      </div>
-    </div>
+    </button>
     );
 }

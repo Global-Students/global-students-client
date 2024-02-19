@@ -24,14 +24,9 @@ export default function ChatModal({_isChatModalOpen}) {
         event.stopPropagation();
       }
 
-      function handleKeyDown() {
-        console.log('keydown');
-      }
-    
-
     return (
         <div>
-            {isChatModalOpen ? <div ref={ChatRef} onClick={handleModalClick} onKeyDown={handleKeyDown} role="button" tabIndex={0} className="flex flex-col justify-start items-start fixed top-[84px] right-[320px]">
+            {isChatModalOpen ? <button ref={ChatRef} onClick={handleModalClick} type="button" tabIndex={0} className="flex flex-col justify-start items-start fixed top-[84px] right-[320px]">
   <div className="w-[410px] h-[46px] relative">
     <img src="assets/Frame_321.svg" alt="frame" className="absolute left-[288px] top-[10px] boxShadow-dropShadow"/>
   </div>
@@ -60,7 +55,7 @@ export default function ChatModal({_isChatModalOpen}) {
       </div>
     </div>
   </div>
-</div> : false }
+</button> : false }
         </div>
     );
     }

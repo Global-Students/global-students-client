@@ -22,6 +22,7 @@ const COUNTRY_LIST = Object.freeze([
   'Nigeria',
   'Pakistan',
   'Russia',
+  'South Korea',
   'Spain',
   'Taiwan',
   'Thailand',
@@ -31,7 +32,22 @@ const COUNTRY_LIST = Object.freeze([
   'Vietnam',
 ]);
 
-const HOME_UNIVERSITY_LIST = Object.freeze([
+const UNIVERSITY_LIST = Object.freeze([
+  'ChungAng University',
+  'Dongguk University',
+  'Ewha Womans University',
+  'Hanyang University',
+  'Hankuk University of Foreign Studies',
+  'Inha University',
+  'Korea University',
+  'Konkuk University',
+  'KyungHee University',
+  'Seoul City University',
+  'Seoul National University',
+  'Sogang University',
+  'Sungkyunkwan University',
+  "Sookmyung Women's University",
+  'Yonsei University',
   'Oxford University',
   'Stanford University',
   'Massachusetts Institute of Technology',
@@ -49,22 +65,4 @@ const HOME_UNIVERSITY_LIST = Object.freeze([
   'Johns Hopkins University',
 ]);
 
-const HOST_UNIVERSITY_LIST = Object.freeze([
-  'ChungAng University',
-  'Dongguk University',
-  'Ewha Womans University',
-  'Hanyang University',
-  'Hankuk University of Foreign Studies',
-  'Inha University',
-  'Korea University',
-  'Konkuk University',
-  'KyungHee University',
-  'Seoul City University',
-  'Seoul National University',
-  'Sogang University',
-  'Sungkyunkwan University',
-  "Sookmyung Women's University",
-  'Yonsei University',
-]);
-
-export { COUNTRY_LIST, HOME_UNIVERSITY_LIST, HOST_UNIVERSITY_LIST };
+export { COUNTRY_LIST, UNIVERSITY_LIST };

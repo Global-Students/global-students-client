@@ -6,15 +6,12 @@ export default function ChatListItem({username, message, time, isNewMessage}){
     function handleClick() {
         setIsChatRoomOpen(!isChatRoomOpen);
     }
-    function handleKeyDown() {
-        console.log('keydown');
-    }
+    
     return (
         <div>
-            <div 
+            <button 
         onClick={handleClick}
-        onKeyDown={handleKeyDown}
-        role="button"
+        type="button"
         tabIndex={0}
         className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2.5 px-[13px] py-[11px] rounded-[11px] bg-white border border-gray-scale-7-main">
         <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[11px]">
@@ -38,7 +35,7 @@ export default function ChatListItem({username, message, time, isNewMessage}){
                 </div>
             </div>
         </div>
-    </div>
+            </button>
     {isChatRoomOpen && <ChatRoom username={username} />}
         </div>
     );
