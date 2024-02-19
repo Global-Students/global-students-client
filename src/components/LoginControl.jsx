@@ -14,15 +14,14 @@ export default function LoginControl({ isLogin }) {
     <div>
       {isLogin ? (
         <div className='flex flex-row w-[131px] items-center justify-between'>
-          <div
+          <button
             onClick={handleClick}
-            onKeyDown={handleKeyDown}
-            role='button'
+            type='button'
             tabIndex={0}
           >
             <HeaderIcon label='message' />
             <ChatModal _isChatModalOpen={isChatModalOpen} />
-          </div>
+          </button>
           <Link to='/auth/my-page'>
             <HeaderIcon label='mypage' />
           </Link>

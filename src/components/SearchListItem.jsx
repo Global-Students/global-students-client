@@ -6,12 +6,15 @@ export default function SearchListItem({
   country,
   major,
   bio,
+  imageAddress
 }) {
   const link = `/auth/friend/${userId}`;
   return (
-    <div className='flex w-[954px] h-[146px] px-[18px] py-[27.5px] border border-gray-scale-7-main rounded-[14px] gap-[449px]'>
+    <div className='flex w-[954px] h-[146px] px-[18px] py-[27.5px] border border-gray-scale-7-main rounded-[14px] gap-[449px] relative'>
       <div className='flex items-center gap-[30px]'>
-        <div className='w-[110px] h-[110px] rounded-full bg-[#D9D9D9]'> </div>
+        <div className='w-[110px] h-[110px] rounded-full bg-[#D9D9D9]'> 
+          <img src={`/assets/profileImg/ellipse-27${imageAddress}.png`} alt="profile" />
+        </div>
         <div className='flex flex-col justify-center gap-[15px] h-[87px]'>
           <div className='flex items-center gap-2'>
             <p className='text-gray-scale-1 text-[22px] leading-[22px] font-semibold'>
@@ -19,7 +22,7 @@ export default function SearchListItem({
               {nickname}{' '}
             </p>
             <a href={link}>
-              <img src='assets/expand_circle_right.svg' alt='expand icon' />
+              <img src='/assets/expand_circle_right.svg' alt='expand icon' />
             </a>
           </div>
           <div className='flex flex-col gap-2 leading-5 text-align-center'>
@@ -37,8 +40,8 @@ export default function SearchListItem({
           </div>
         </div>
       </div>
-      <div className='flex flex-col items-center gap-1.5 px-[18px] py-4 rounded-2xl bg-orange-4'>
-        <img src='assets/forward_to_inbox.svg' alt='envelop icon' width='28' />
+      <div className='flex flex-col items-center gap-1.5 px-[18px] py-4 rounded-2xl bg-orange-4 absolute right-[20px]'>
+        <img src='/assets/forward_to_inbox.svg' alt='envelop icon' width='28' />
         <p className='text-orange-main font-medium'> 1:1 메세지 </p>
       </div>
     </div>
