@@ -19,7 +19,7 @@ export default function NoticeBoard({ bottom }) {
 
   const [currentPage, setCurrPage] = useState(1);
   const [currentSort, setCurrSort] = useState('latest');
-
+  console.log(currentPage);
   const baseurl = `/boards/${boardId}`;
   const getBoard = async () => {
     const queryParams = {
