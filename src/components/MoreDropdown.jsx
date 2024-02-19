@@ -7,10 +7,9 @@ export default function MoreDropdown({ boardId, postId }) {
 
   const handleDeletePost = async () => {
     try {
-      const response = await authAxios.post('/boards/post/delete', {
+      await authAxios.post('/boards/post/delete', {
         postId,
       });
-      console.log(response);
       alert('삭제되었습니다');
       navigate(-1);
     } catch (error) {
