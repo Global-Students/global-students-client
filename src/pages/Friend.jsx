@@ -12,10 +12,10 @@ export default function SearchFriends() {
             <div className="h-[290px] bg-[#D9D9D9]"> </div>
             <div className="absolute top-[195px] left-[30px] w-[190px] h-[190px] bg-gray-scale-8 rounded-full"> </div>
             <div className="absolute top-4 left-4 w-[32px] h-[32px] rounded-full">
-              <img src="assets/arrow_back_ios.svg" alt="arrow back icon" />
+              <img src="/assets/arrow_back_ios.svg" alt="arrow back icon" />
             </div>
             <div className="absolute top-4 right-4 w-[32px] h-[32px] rounded-full">
-              <img src="assets/share.svg" alt="share icon" />
+              <img src="/assets/share.svg" alt="share icon" />
             </div>
         </div>
         <div className="flex flex-col justify-center absolute top-[405px] left-[30px] w-[894px] gap-[60px]"> 
@@ -42,7 +42,7 @@ export default function SearchFriends() {
                 <div className="flex flex-col gap-[15px]"> 
                   <p className="text-gray-scale-4 text-xl leading-5"> 사용자 소개글 텍스트 입력 </p>
                   <div className="flex gap-[7px]"> 
-                    <img src="assets/cake.svg" alt="cake icon" />
+                    <img src="/assets/cake.svg" alt="cake icon" />
                     <p className="text-base text-gray-scale-4 leading-5"> 2000.00.00 </p>
                   </div>
                 </div>
@@ -51,7 +51,7 @@ export default function SearchFriends() {
                 <div className="flex flex-col gap-[18px]">
                   <div className="flex gap-[17px]"> 
                     <div className="relative flex w-[119px]">
-                      <img src="assets/article.svg" alt="article icon" />
+                      <img src="/assets/article.svg" alt="article icon" />
                       <p className="text-gray-scale-4 text-lg font-semibold absolute left-[38px] leading-5"> Skill </p>
                       <div className="w-0.5 h-5 bg-gray-scale-4 absolute left-[119px]"> </div>
                     </div>
@@ -63,7 +63,7 @@ export default function SearchFriends() {
                   </div>
                   <div className="flex gap-[17px]"> 
                     <div className="relative flex w-[119px]">
-                      <img src="assets/article.svg" alt="article icon" />
+                      <img src="/assets/article.svg" alt="article icon" />
                       <p className="text-gray-scale-4 text-lg font-semibold absolute left-[38px] leading-5"> 전화번호 </p>
                       <div className="w-0.5 h-5 bg-gray-scale-4 absolute left-[119px]"> </div>
                     </div>
@@ -73,7 +73,7 @@ export default function SearchFriends() {
                   </div>
                   <div className="flex gap-[17px]"> 
                     <div className="relative flex w-[119px]">
-                      <img src="assets/article.svg" alt="article icon" />
+                      <img src="/assets/article.svg" alt="article icon" />
                       <p className="text-gray-scale-4 text-lg font-semibold absolute left-[38px] leading-5"> 이메일 </p>
                       <div className="w-0.5 h-5 bg-gray-scale-4 absolute left-[119px]"> </div>
                     </div>
@@ -90,7 +90,7 @@ export default function SearchFriends() {
               <p className="text-xl font-semibold"> 친구목록 </p>
               <div className="absolute right-0 flex">
                 <p className="text-gray-scale-4 text-xl"> 더보기 </p>
-                <img src="assets/arrow_back_gray.svg" alt="arrow back icon" />
+                <img src="/assets/arrow_back_gray.svg" alt="arrow back icon" />
               </div>
             </div>
             <div className="flex rounded-[14px] shadow border border-gray-scale-8 p-[14.5px] gap-2.5 overflow-auto">

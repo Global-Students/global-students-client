@@ -1,14 +1,13 @@
 import React from 'react';
 
 export default function SearchListItem({
-  userId,
   nickname,
   country,
   major,
   bio,
   imageAddress
 }) {
-  const link = `/auth/friend/${userId}`;
+  const link = `/auth/friend`;
   return (
     <div className='flex w-[954px] h-[146px] px-[18px] py-[27.5px] border border-gray-scale-7-main rounded-[14px] gap-[449px] relative'>
       <div className='flex items-center gap-[30px]'>
