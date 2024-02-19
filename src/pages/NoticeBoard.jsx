@@ -34,6 +34,8 @@ export default function NoticeBoard({ bottom }) {
         params: { ...queryParams },
       });
       if (res.data.code === 'COMMON200') {
+        console.log(baseurl);
+        console.log(currentPage);
         setNoticeBoardInfo(res.data.result);
       }
     } catch (error) {
@@ -58,7 +60,7 @@ export default function NoticeBoard({ bottom }) {
 
   useEffect(() => {
     getBoard();
-  }, [boardId]);
+  }, [boardId, currentPage, currentSort]);
 
   return (
     <div className='flex flex-row h-[1824px] justify-center items-center'>
