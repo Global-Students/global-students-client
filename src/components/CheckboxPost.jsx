@@ -8,11 +8,11 @@ export default function CheckboxPost({ id, isChecked, updateCheck, tag, text }) 
         {tag && (
           <span
             className={`text-[16px] ${
-              tag === '익명' && isChecked ? 'text-orange-main ' : 'text-gray-scale-4'
+              tag === '익명' && isChecked ? 'text-gray-scale-4' : 'text-orange-main '
             }`}
           >{`[${tag}]`}</span>
         )}
-        <p className={`${id === 'anonymous' && isChecked ? 'text-[22px]' : 'text-[22px] text-orange-main'}`}>
+        <p className={`${id === 'anonymous' && isChecked ? 'text-[22px] text-orange-main' : 'text-[22px]'}`}>
           {text}
         </p>
       </label>

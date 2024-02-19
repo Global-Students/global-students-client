@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { defaultAxios } from '../../axios/authAxios';
+import { authAxios, defaultAxios } from '../../axios/authAxios';
 import MoreButton from '../../components/Button/MoreButton';
 import Comment from '../../components/Comment';
 import CommentPagination from '../../components/CommentPagination';
@@ -15,21 +15,20 @@ export default function PostView() {
   const [comments, setComments] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const { boardId, postId } = useParams();
-
+  const [isAnonymous, setIsAnonymous] = useState(false);
+  const fetchPost = async (boardIdParam, postIdParam) => {
+    try {
+      const response = await defaultAxios.get(
+        `/boards/${boardIdParam}/posts/${postIdParam}`,
+      );
+      setPost(response.data.result);
+      setComments(response.data.result.comment);
+    } catch (error) {
+      console.error('Error fetching post:', error);
+    }
+  };
   useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        const response = await defaultAxios.get(
-          `/boards/${boardId}/posts/${postId}`,
-        );
-        setPost(response.data.result);
-        setComments(response.data.result.comment);
-      } catch (error) {
-        console.error('Error fetching post:', error);
-      }
-    };
-
-    fetchPost();
+    fetchPost(boardId, postId);
   }, [boardId, postId]);
 
   const toggleDropdown = () => {
@@ -44,8 +43,18 @@ export default function PostView() {
     setCurrentPage(page);
   };
 
-  const deleteComment = (commentId) => {
-    setComments(comments.filter((comment) => comment.commentId !== commentId));
+  const handleDeleteComment = async (commentId) => {
+    try {
+      const response = await authAxios.post('/boards/post/comment/delete', {
+        commentId,
+      });
+      console.log(response.data);
+      setComments(
+        comments.filter((comment) => comment.commentId !== commentId),
+      );
+    } catch (error) {
+      console.error('Error deleting comment:', error);
+    }
   };
 
   return (
@@ -62,7 +71,9 @@ export default function PostView() {
                   </p>
                   <MoreButton onClick={toggleDropdown} />
                 </div>
-                {isDropdownOpen && <MoreDropdown />}
+                {isDropdownOpen && (
+                  <MoreDropdown boardId={boardId} postId={postId} />
+                )}
 
                 <div className='flex my-[30px]'>
                   <div
@@ -138,17 +149,34 @@ export default function PostView() {
               <div className='w-[884px] h-[166px]'>
                 <div className='flex flex-row w-[884px] h-[26px] justify-between'>
                   <p className='text-[22px]'>댓글 {comments.length}</p>
-                  <div className='flex flex-row w-[117px] justify-between items-center text-[16px]'>
+                  <div className='flex flex-row w-[170px] justify-between items-center text-[16px]'>
+                    <button
+                      className={`rounded w-14 ${
+                        isAnonymous
+                          ? 'bg-orange-1 text-white'
+                          : 'bg-gray-scale-5 text-gray-scale-8'
+                      }`}
+                      type='button'
+                      onClick={() => setIsAnonymous((prev) => !prev)}
+                    >
+                      익명
+                    </button>
                     <button type='button'>좋아요순</button>
                     <button type='button'>최신순</button>
                   </div>
                 </div>
-                <WriteComment addComment={addComment} postId={postId}/>
+                <WriteComment
+                  addComment={addComment}
+                  fetchPost={fetchPost}
+                  boardId={boardId}
+                  postId={postId}
+                  isAnonymous={isAnonymous}
+                />
                 {comments.map((comment) => (
                   <Comment
                     key={comment.commentId}
                     comment={comment}
-                    deleteComment={deleteComment}
+                    deleteComment={() => handleDeleteComment(comment.commentId)}
                   />
                 ))}
                 <CommentPagination

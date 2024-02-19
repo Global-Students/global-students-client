@@ -1,10 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import DropDown from './DropDown';
 import OrangeButton from './Button/OrangeButton';
-import PostList from './PostList';
-import Pagination from './Pagination';
+import DropDown from './DropDown';
 import SearchInput from './Input/SearchInput';
+import Pagination from './Pagination';
+import PostList from './PostList';
 
 export default function Posts({
   pageInfo,
