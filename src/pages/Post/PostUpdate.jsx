@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { authAxios } from '../../axios/authAxios';
 import OrangeButton from '../../components/Button/OrangeButton1';
 import WhiteButton from '../../components/Button/WhiteButton1';
@@ -15,7 +15,7 @@ export default function PostUpdate() {
   const [content, setContent] = useState('');
   const { boardId, postId } = useParams();
   const [selectedBoardId, setSelectedBoardId] = useState(boardId);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchPost = async () => {
       try {
@@ -76,6 +76,7 @@ export default function PostUpdate() {
 
     try {
       await authAxios.put(`/boards/post/write?id=${postId}`, updatedData);
+      navigate(-1);
     } catch (error) {
       console.error('API 호출 오류:', error);
     }
@@ -160,6 +161,7 @@ export default function PostUpdate() {
             py={8}
             width={148}
             height={50}
+            onClick={() => navigate(-1)}
           />
         </div>
         <div className='px-[10px] mt-[6px]'>
