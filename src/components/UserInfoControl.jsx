@@ -15,7 +15,9 @@ export default function UserInfoControl() {
               <div
                 className='flex w-[190px] h-[190px] rounded-full bg-[#D9D9D9] mb-[18px]'
                 alt='프로필 사진'
-              />
+                >
+                <img src='/assets/profileImg/ellipse-25.png' alt='profile' />
+                </div>
               <div className='text-gray-scale-1 text-2xl font-bold leading-tight tracking-wide'>
                 나의 닉네임
               </div>

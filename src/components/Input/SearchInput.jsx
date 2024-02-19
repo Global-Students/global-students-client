@@ -51,7 +51,7 @@ export default function SearchInput({
           value={keyword}
           onChange={handleChange}
           placeholder={
-            placeholder ? `"${placeholder}"` : '검색어를 입력해주세요'
+            placeholder ? `${placeholder}` : '검색어를 입력해주세요'
           }
         />
         <button type='button' onClick={clickSearchButton}>

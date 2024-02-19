@@ -3,7 +3,6 @@ import React from "react";
 export default function ChatMessage({receiverId, userId, text, creatAt, status}) {
     let messageStyle = 'max-w-[223px] px-6 py-3.5 shadow-message ';
     messageStyle += receiverId === userId ? ' bg-gray-scale-8 rounded-l-[30px] ' : 'bg-orange-4 rounded-r-[30px] ';
-    console.log(messageStyle);
     if (status === 'SINGLE') {
       // single message
       messageStyle += receiverId === userId ? 'rounded-r-[30px]' : 'rounded-l-[30px]';
