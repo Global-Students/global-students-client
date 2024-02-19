@@ -15,11 +15,7 @@ import {
   PLACEHOLDER,
   YEARS,
 } from '../../constants';
-import {
-  COUNTRY_LIST,
-  HOME_UNIVERSITY_LIST,
-  HOST_UNIVERSITY_LIST,
-} from '../../constants/belongTo';
+import { COUNTRY_LIST, UNIVERSITY_LIST } from '../../constants/belongTo';
 import { useSignUpContext } from '../../contexts/SignUpContext';
 import useSignUp from '../../hooks/useSignUp';
 import {
@@ -225,7 +221,7 @@ export default function SignUpInfo({ moveStep }) {
               <OptionInput
                 id='homeUniversity'
                 value={homeUniversity}
-                options={HOME_UNIVERSITY_LIST}
+                options={UNIVERSITY_LIST}
                 placeholder={PLACEHOLDER.homeUniversity}
                 onChange={updateSignUpInfo}
               />
@@ -245,7 +241,7 @@ export default function SignUpInfo({ moveStep }) {
               <OptionInput
                 id='hostUniversity'
                 value={hostUniversity}
-                options={HOST_UNIVERSITY_LIST}
+                options={UNIVERSITY_LIST}
                 placeholder={PLACEHOLDER.hostUniversity}
                 onChange={updateSignUpInfo}
               />

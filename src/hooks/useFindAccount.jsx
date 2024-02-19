@@ -1,6 +1,6 @@
-import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { defaultAxios } from '../axios/authAxios';
 import { API_PATH, REGEX } from '../constants';
 
 export default function useFindAccount() {
@@ -28,13 +28,13 @@ export default function useFindAccount() {
   };
 
   const findId = (body) =>
-    axios
+    defaultAxios
       .post(API_PATH.findId, body)
       .then(() => alert('메일로 아이디를 전송했습니다.'))
       .catch((error) => alert(error.response.data.message));
 
   const sendCode = (body, setIsEmailVerified) =>
-    axios
+    defaultAxios
       .post(API_PATH.findPassword, body)
       .then((response) => {
         setIsEmailVerified(true);
@@ -43,7 +43,7 @@ export default function useFindAccount() {
       .catch((error) => alert(error.response.data.message));
 
   const verifyCode = (body, setIsPasswordResettable) =>
-    axios
+    defaultAxios
       .post(API_PATH.findPasswordCode, body)
       .then(() => setIsPasswordResettable(true))
       .catch((error) => {
@@ -53,8 +53,8 @@ export default function useFindAccount() {
 
   const navigator = useNavigate();
   const resetPassword = (body) =>
-    axios
-      .patch(API_PATH.passwordReset, body)
+    defaultAxios
+      .post(API_PATH.passwordReset, body)
       .then(() => {
         alert('비밀번호가 변경됐습니다.');
         navigator('/login');

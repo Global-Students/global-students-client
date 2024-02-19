@@ -1,11 +1,20 @@
 import React from 'react';
-import DropDown from './DropDown';
+import { useNavigate } from 'react-router-dom';
 import OrangeButton from './Button/OrangeButton';
-import PostList from './PostList';
-import Pagination from './Pagination';
+import DropDown from './DropDown';
 import SearchInput from './Input/SearchInput';
+import Pagination from './Pagination';
+import PostList from './PostList';
 
-export default function Posts() {
+export default function Posts({
+  pageInfo,
+  posts,
+  setCurrPage,
+  setCurrSort,
+  boardId,
+  bottom,
+}) {
+  const navigate = useNavigate();
   return (
     <div className='flex flex-col w-[953px]'>
       <div className='flex flex-row h-[34px] justify-between items-center mb-[16px]'>
@@ -14,22 +23,27 @@ export default function Posts() {
             게시글
           </p>
           <div className='absolute left-[79px] top-[2px]'>
-            <DropDown />
+            <DropDown setCurrSort={setCurrSort} />
           </div>
         </div>
         <div className='flex justify-end'>
-          <OrangeButton text='글쓰기' width={115} textSize={15} py={8} />
+          <div className='w-[115px] h-[34px]'>
+            <OrangeButton
+              text='글쓰기'
+              onClick={() => navigate('/auth/post-create')}
+            />
+          </div>
         </div>
       </div>
-      <PostList />
+      <PostList posts={posts} boardId={boardId} />
       <div className='flex flex-col items-center'>
-        <Pagination />
+        <Pagination pageInfo={pageInfo} setCurrPage={setCurrPage} />
         <SearchInput
           width='w-[496px]'
           height='h-[50px]'
           px='px-[24px]'
-          placeholder='검색어를 입력해주세요'
           searchInBox
+          bottom={bottom}
         />
       </div>
     </div>

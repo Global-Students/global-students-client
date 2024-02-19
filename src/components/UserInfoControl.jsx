@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import useLogout from '../hooks/useLogout';
 import ShowButton from './Button/ShowButton';
 
 export default function UserInfoControl() {
   const [isLogin, setIsLogin] = useState(true);
-
+  const { logout } = useLogout();
   return (
     <div>
       {isLogin ? (
@@ -25,7 +26,9 @@ export default function UserInfoControl() {
             </div>
             <button
               type='button'
-              onClick={() => setIsLogin(!isLogin)}
+              onClick={() => {
+                logout().then(() => setIsLogin(!isLogin));
+              }}
               className='flex mt-[10px] justify-center items-center text-gray-scale-4 text-[13px] font-light'
             >
               로그아웃
@@ -40,7 +43,7 @@ export default function UserInfoControl() {
                 <u>로그인</u>이 필요한 서비스입니다
               </div>
             </div>
-            <Link to='/Login'>
+            <Link to='/login'>
               <button
                 className='flex w-[263px] h-[54px] bg-orange-main rounded-[14px] shadow-inner justify-center items-center text-gray-scale-9 text-xl font-bold leading-tight tracking-tight'
                 type='button'

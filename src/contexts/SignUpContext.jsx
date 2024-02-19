@@ -6,7 +6,7 @@ export function SignUpContextProvider({ children }) {
   const [signUpInfo, setSignUpInfo] = useState({
     terms: false,
     privacy: false,
-    marketing: false,
+    event: false,
     userId: '',
     password: '',
     confirmPassword: '',
@@ -20,6 +20,7 @@ export function SignUpContextProvider({ children }) {
     hostCountry: '',
     homeUniversity: '',
     hostUniversity: '',
+    email: '',
     verified: false,
   });
   const updateSignUpInfo = (event) => {
@@ -29,12 +30,12 @@ export function SignUpContextProvider({ children }) {
         ...prev,
         terms: checked,
         privacy: checked,
-        marketing: checked,
+        event: checked,
       }));
       return;
     }
 
-    if (id === 'terms' || id === 'privacy' || id === 'marketing') {
+    if (id === 'terms' || id === 'privacy' || id === 'event') {
       setSignUpInfo((prev) => ({ ...prev, [id]: checked }));
       return;
     }

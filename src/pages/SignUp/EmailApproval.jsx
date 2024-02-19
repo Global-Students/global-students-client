@@ -50,11 +50,14 @@ export default function EmailApproval() {
           isValid={signUpInfo.verified}
           onChange={handleChange}
           onClick={() =>
-            verifyAuthCode({
+            verifyAuthCode(
+              {
+                email,
+                code,
+                university: signUpInfo.hostUniversity,
+              },
               email,
-              code,
-              university: signUpInfo.hostUniversity,
-            })
+            )
           }
         />
       </div>

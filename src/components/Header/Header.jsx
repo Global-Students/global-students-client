@@ -8,37 +8,64 @@ export default function Header() {
   const { pathname } = useLocation();
   const [currentItem, setCurrentItem] = useState(0);
   const [searchClick, setSearchClick] = useState(false);
-
+  const [currentBoardId, setCurrentBoardId] = useState();
   function handleToggle() {
     setSearchClick((prev) => !prev);
   }
 
+  const clickSetBoardInfo = () => {
+    localStorage.setItem('currentBoardId', currentBoardId);
+  };
+
   useEffect(() => {
-    if (currentItem === 1 || pathname.includes('/NoticeBoard/All/')) {
+    if (pathname === '/') {
+      setCurrentItem(1);
       navRectangle.current.style.width = '140px';
       navRectangle.current.style.left = '-13px';
+      setCurrentBoardId(localStorage.getItem('boardId_1'));
     }
-    if (currentItem === 2 || pathname.includes('/NoticeBoard/International/')) {
+    if (
+      currentItem === 1 ||
+      pathname.includes(`/boards/${localStorage.getItem('boardId_1')}`)
+    ) {
+      navRectangle.current.style.width = '140px';
+      navRectangle.current.style.left = '-13px';
+      setCurrentBoardId(localStorage.getItem('boardId_1'));
+    }
+    if (
+      currentItem === 2 ||
+      pathname.includes(`/boards/${localStorage.getItem('boardId_2')}`)
+    ) {
       navRectangle.current.style.width = '164px';
-      navRectangle.current.style.left = '137px';
+      navRectangle.current.style.left = '144px';
+      setCurrentBoardId(localStorage.getItem('boardId_2'));
     }
-    if (currentItem === 3 || pathname.includes('/NoticeBoard/SouthKorea/')) {
+    if (
+      currentItem === 3 ||
+      pathname.includes(`/boards/${localStorage.getItem('boardId_3')}`)
+    ) {
       navRectangle.current.style.width = '132px';
-      navRectangle.current.style.left = '317px';
+      navRectangle.current.style.left = '328px';
+      setCurrentBoardId(localStorage.getItem('boardId_3'));
     }
-    if (currentItem === 4 || pathname.includes('/SearchingFriend/')) {
+    if (currentItem === 4 || pathname.includes('/auth/searching-friend')) {
       navRectangle.current.style.width = '99px';
       navRectangle.current.style.left = '464px';
     }
     if (
-      pathname.includes('/NoticeBoard/') ||
-      pathname.includes('/SearchingFriend')
+      pathname.includes('/boards/') ||
+      pathname === '/' ||
+      pathname.includes('/auth/searching-friend')
     ) {
       navRectangle.current.style.opacity = '1';
     } else {
       navRectangle.current.style.opacity = '0';
     }
-  });
+  }, [pathname, currentItem]);
+
+  useEffect(() => {
+    clickSetBoardInfo();
+  }, [currentBoardId]);
 
   return (
     <div className='relative'>
@@ -47,7 +74,7 @@ export default function Header() {
         <div className='flex w-[1280px] h-[130px] justify-center items-center border-b border-gray-scale-8'>
           <div className='flex flex-row w-[1280px] h-[76px] py-[27px] justify-between items-center'>
             <div className='flex w-[216px] h-[61px]'>
-              <Link to='/'>
+              <Link to={`/boards/${localStorage.getItem('boardId_1')}`}>
                 <img src='/assets/logoHeader.svg' alt='logo' />
               </Link>
             </div>
@@ -58,7 +85,11 @@ export default function Header() {
               />
               <div className='w-[114px] h-[60px] p-2.5'>
                 <NavLink
-                  to='/NoticeBoard/All'
+                  to={
+                    pathname === '/'
+                      ? `/`
+                      : `/boards/${localStorage.getItem('boardId_1')}`
+                  }
                   onClick={() => {
                     setCurrentItem(1);
                   }}
@@ -67,14 +98,13 @@ export default function Header() {
                   }
                 >
                   <p className='w-[94px] h-[40px] text-headerFont text-center duration-500'>
-                    Hanyang Uni <br />
-                    All Students
+                    {localStorage.getItem('boardName_1')}
                   </p>
                 </NavLink>
               </div>
               <div className='w-[138x] h-[60px] p-2.5'>
                 <NavLink
-                  to='/NoticeBoard/International'
+                  to={`/boards/${localStorage.getItem('boardId_2')}`}
                   onClick={() => {
                     setCurrentItem(2);
                   }}
@@ -82,15 +112,14 @@ export default function Header() {
                     isActive ? 'text-gray-scale-9' : 'text-gray-scale-1'
                   }
                 >
-                  <p className='w-[118px] h-[40px] text-headerFont text-center duration-500'>
-                    Hanyang Uni <br />
-                    Korean Students
+                  <p className='w-[146px] h-[40px] text-headerFont text-center duration-500'>
+                    {localStorage.getItem('boardName_2')}
                   </p>
                 </NavLink>
               </div>
               <div className='w-[106x] h-[60px] p-2.5'>
                 <NavLink
-                  to='/NoticeBoard/SouthKorea'
+                  to={`/boards/${localStorage.getItem('boardId_3')}`}
                   onClick={() => {
                     setCurrentItem(3);
                   }}
@@ -99,14 +128,13 @@ export default function Header() {
                   }
                 >
                   <p className='w-[91px] h-[40px] text-headerFont text-center duration-500'>
-                    South Korea <br />
-                    All Students
+                    {localStorage.getItem('boardName_3')}
                   </p>
                 </NavLink>
               </div>
               <div className='w-[73x] h-[40px] p-2.5'>
                 <NavLink
-                  to='/SearchingFriend'
+                  to='/auth/searching-friend'
                   onClick={() => {
                     setCurrentItem(4);
                   }}
@@ -131,7 +159,7 @@ export default function Header() {
                   />
                 </div>
               </button>
-              <LoginControl />
+              <LoginControl isLogin />
             </div>
           </div>
         </div>

@@ -11,6 +11,7 @@ const API_PATH = Object.freeze({
   findPassword: '/user/find-password',
   findPasswordCode: '/user/find-password/code',
   passwordReset: '/user/find-password/reset',
+  searchPopularLists: '/search/popular-post',
 });
 
 export default API_PATH;
