@@ -1,18 +1,19 @@
 import React from 'react';
 
 export default function SearchListItem({
+  userId,
   nickname,
   country,
   major,
   bio,
   imageAddress
 }) {
-  const link = `/auth/friend`;
+  const link = `/auth/friend/${userId}`;
   return (
     <div className='flex w-[954px] h-[146px] px-[18px] py-[27.5px] border border-gray-scale-7-main rounded-[14px] gap-[449px] relative'>
       <div className='flex items-center gap-[30px]'>
-        <div className='w-[110px] h-[110px] rounded-full bg-[#D9D9D9]'> 
-          <img src={`/assets/profileImg/ellipse-27${imageAddress}.png`} alt="profile" />
+        <div className='w-[110px] h-[110px] rounded-full bg-[#D9D9D9] overflow-hidden'> 
+          <img src={`/assets/profileImg/${imageAddress}.png`} alt="profile" />
         </div>
         <div className='flex flex-col justify-center gap-[15px] h-[87px]'>
           <div className='flex items-center gap-2'>
