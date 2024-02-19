@@ -11,7 +11,7 @@ export default function Search() {
         <UserInfoControl />
         <div>
           <div className='flex flex-col w-[954px] h-[109px] justify-between items-center mb-[60px]'>
-            <SearchText keyword={localStorage.getItem('q')} />
+            <SearchText />
             <SearchInput
               width='w-[540px]'
               height='h-[50px]'
