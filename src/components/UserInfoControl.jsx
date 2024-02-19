@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import useLogout from '../hooks/useLogout';
 import ShowButton from './Button/ShowButton';
 
 export default function UserInfoControl() {
   const [isLogin, setIsLogin] = useState(true);
-
+  const { logout } = useLogout();
   return (
     <div>
       {isLogin ? (
@@ -25,7 +26,9 @@ export default function UserInfoControl() {
             </div>
             <button
               type='button'
-              onClick={() => setIsLogin(!isLogin)}
+              onClick={() => {
+                logout().then(() => setIsLogin(!isLogin));
+              }}
               className='flex mt-[10px] justify-center items-center text-gray-scale-4 text-[13px] font-light'
             >
               로그아웃

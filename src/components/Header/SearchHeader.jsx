@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import SearchInput from '../Input/SearchInput';
 import FindSchool from './FindSchoolBox';
 import RealTimePopularPosts from './RealTimePopularPosts';
-
+//
 export default function SearchHeader({ searchClick, setSearchClick }) {
   return (
     <div
@@ -36,10 +36,7 @@ export default function SearchHeader({ searchClick, setSearchClick }) {
           </div>
           <div className='flex flex-row justify-between items-end'>
             <FindSchool setSearchClick={setSearchClick} />
-            <RealTimePopularPosts
-              searchClick={searchClick}
-              setSearchClick={setSearchClick}
-            />
+            <RealTimePopularPosts setSearchClick={setSearchClick} />
           </div>
         </div>
       </div>

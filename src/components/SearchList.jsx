@@ -34,7 +34,7 @@ export default function SearchList({
         </div>
         {showMore ? (
           <Link
-            to={`/search/total/detail/${boardId}/${keyword}`}
+            to={`/search/total/detail/${boardId}/${localStorage.getItem('q')}`}
             className='flex w-[63px] justify-between'
             state={{
               boardName,

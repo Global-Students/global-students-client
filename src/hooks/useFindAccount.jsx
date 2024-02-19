@@ -54,7 +54,7 @@ export default function useFindAccount() {
   const navigator = useNavigate();
   const resetPassword = (body) =>
     defaultAxios
-      .patch(API_PATH.passwordReset, body)
+      .post(API_PATH.passwordReset, body)
       .then(() => {
         alert('비밀번호가 변경됐습니다.');
         navigator('/login');
